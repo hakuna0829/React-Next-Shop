@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import AuthLayout from '../components/authLayout';
+import AuthLayout from '../components/AuthLayout';
 
 const forgotPwdValidation = Yup.object().shape({
   email: Yup.string()

@@ -11,7 +11,7 @@ export default () => {
             </div>
             
             <div className="w3layouts-login">
-                <a data-toggle="modal" data-target="#myModal" href="#"><i className="glyphicon glyphicon-user"> </i>Login/Register</a>
+                <Link href='/login'><a>Login/Register</a></Link>
             </div>    
                 <div className="clearfix"></div>
             

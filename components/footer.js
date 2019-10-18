@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default () => {
     return (
@@ -79,10 +80,10 @@ export default () => {
             <div className="w3l-footer-bottom">
             <div className="container-fluid">
                 <div className="col-md-4 w3-footer-logo">
-                <h2><a href="index.html">ONLINE RECHARGE</a></h2>
+                <h2><Link href='/'><a>CELESTE</a></Link></h2>
                 </div>
                 <div className="col-md-8 agileits-footer-class">
-                <p >© 2017 Online Recharge. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                <p >© 2019 Celeste. All Rights Reserved</p>
                 </div>
             <div className="clearfix"> </div>
             </div>
