@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import constants from '../constants';
 import AuthLayout from '../components/authLayout';
 
 const registerValidation = Yup.object().shape({
@@ -21,7 +22,7 @@ class RegisterPage extends React.Component {
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
         console.log(values)
 
-        axios.post('https://next-celeste.herokuapp.com/api/register', values)
+        axios.post(constants.serverUrl + 'api/register', values)
         .then((response) => {
           console.log(response)
           

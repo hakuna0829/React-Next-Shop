@@ -5,14 +5,13 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import constants from '../constants';
 import AuthLayout from '../components/authLayout';
 
 const forgotPwdValidation = Yup.object().shape({
   email: Yup.string()
     .email('Please enter a valid e-mail address.')
     .required('Email is required.'),
-  password: Yup.string()
-    .required('Password is required.')
 })
 
 class ForgotPasswodPage extends React.Component {
@@ -20,7 +19,7 @@ class ForgotPasswodPage extends React.Component {
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
     console.log(values)
 
-    axios.post('/api/request_password', values)
+    axios.post(constants.serverUrl + 'api/request_password', values)
       .then((response) => {
         console.log(response)
         

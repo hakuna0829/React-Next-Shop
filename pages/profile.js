@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import Layout from '../components/layout';
 
+const host = 'https://next-celeste.herokuapp.com/';
 
 class ProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
@@ -27,7 +28,7 @@ class ProfilePage extends React.Component {
     fetchData() {
         let token = localStorage.getItem("token")
         this.setState({loading: true}, () => {
-            axios.get('https://next-celeste.herokuapp.com/api/profile/', { headers: { 'Authorization': token } })
+            axios.get(host + 'api/profile/', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('response', response)
                 

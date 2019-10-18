@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import constants from '../constants';
 import AuthLayout from '../components/authLayout';
 
 const loginValidation = Yup.object().shape({
@@ -15,12 +16,13 @@ const loginValidation = Yup.object().shape({
     .required('Password is required.')
 })
 
+
 class LoginPage extends React.Component {
 
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
     console.log(values)
 
-    axios.post('https://next-celeste.herokuapp.com/api/login', values)
+    axios.post(constants.serverUrl + 'api/login', values)
       .then((response) => {
         console.log(response)
         
