@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
         console.log(response)
         
         if( response.data.auth == true ){
-          setErrors({ "success" : response.data.message})
+          //setErrors({ "success" : response.data.message})
           localStorage.setItem("token", response.data.token)
           Router.push('/profile')
         }
