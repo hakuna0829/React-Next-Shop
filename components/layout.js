@@ -14,6 +14,7 @@ export default ({ children, title = 'Main' }) => (
       <meta name='defaultLanguage' content='en' />
       <meta name='availableLanguages' content='en' />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+      <link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
       <link rel="stylesheet" href="css/bootstrap-select.css"/>
       <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
       <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	

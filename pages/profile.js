@@ -5,6 +5,7 @@ import Router from 'next/router';
 import axios from 'axios';
 
 import Layout from '../components/Layout';
+import ProfileForm from '../components/ProfileForm';
 
 const host = 'https://next-celeste.herokuapp.com/';
 
@@ -53,14 +54,23 @@ class ProfilePage extends React.Component {
         const { user } = this.state
         return (
             <Layout title={ 'Profile' }>
-            <div className='container'>
-                <h1>Profile Page</h1>
-                { user.email }
-                <p>
-                    <Button variant="primary" onClick={this.logout} >Logout</Button>
-                    
-                </p>
-            </div>
+                <div class="agileits-inner-banner">
+		
+                </div>
+                <div class="w3layouts-breadcrumbs text-center">
+                    <div class="container">
+                        <span class="agile-breadcrumbs"><a href="index.html"><i class="fa fa-home home_1"></i></a> / <span>Profile</span></span>
+                    </div>
+                </div>
+                <ProfileForm></ProfileForm>
+                <div className='container'>
+                    <h1>Profile Page</h1>
+                    { user.email }
+                    <p>
+                        <Button variant="primary" onClick={this.logout} >Logout</Button>
+                        
+                    </p>
+                </div>
             </Layout>
         );
     }
