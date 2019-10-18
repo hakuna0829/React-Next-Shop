@@ -15,14 +15,16 @@ export default () => {
 					Maecenas placerat eget mi vitae euismod. Duis aliquam efficitur mi, 
 					et eleifend velit.</p>
 				<div className="agile_more">
-					<a href="support.html" className="type-4">
+					<Link href='/support' >
+						<a className="type-4">
 						<span> Support </span>
 						<span> Support  </span>
 						<span> Support  </span>
 						<span> Support  </span>	
 						<span> Support  </span>
 						<span> Support  </span>
-					</a>
+						</a>
+					</Link>
 				</div>
 			</div>
 			<div className="clearfix"> </div>

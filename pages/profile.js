@@ -54,23 +54,17 @@ class ProfilePage extends React.Component {
         const { user } = this.state
         return (
             <Layout title={ 'Profile' }>
-                <div class="agileits-inner-banner">
+                <div className="agileits-inner-banner">
 		
                 </div>
-                <div class="w3layouts-breadcrumbs text-center">
-                    <div class="container">
-                        <span class="agile-breadcrumbs"><a href="index.html"><i class="fa fa-home home_1"></i></a> / <span>Profile</span></span>
+                <div className="w3layouts-breadcrumbs text-center">
+                    <div className="container">
+                        <span className="agile-breadcrumbs"><a href="index.html"><i className="fa fa-home home_1"></i></a> / <span>Profile</span></span>
                     </div>
                 </div>
                 <ProfileForm></ProfileForm>
-                <div className='container'>
-                    <h1>Profile Page</h1>
-                    { user.email }
-                    <p>
-                        <Button variant="primary" onClick={this.logout} >Logout</Button>
-                        
-                    </p>
-                </div>
+                { user.email }
+                <Button variant="primary" onClick={this.logout} >Logout</Button>
             </Layout>
         );
     }
