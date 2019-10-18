@@ -21,7 +21,7 @@ class RegisterPage extends React.Component {
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
         console.log(values)
 
-        axios.post('/api/register', values)
+        axios.post('https://next-celeste.herokuapp.com/api/register', values)
         .then((response) => {
           console.log(response)
           

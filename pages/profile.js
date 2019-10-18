@@ -27,7 +27,7 @@ class ProfilePage extends React.Component {
     fetchData() {
         let token = localStorage.getItem("token")
         this.setState({loading: true}, () => {
-            axios.get('/api/profile/', { headers: { 'Authorization': token } })
+            axios.get('https://next-celeste.herokuapp.com/api/profile/', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('response', response)
                 

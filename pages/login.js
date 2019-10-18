@@ -20,7 +20,7 @@ class LoginPage extends React.Component {
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
     console.log(values)
 
-    axios.post('/api/login', values)
+    axios.post('https://next-celeste.herokuapp.com/api/login', values)
       .then((response) => {
         console.log(response)
         
