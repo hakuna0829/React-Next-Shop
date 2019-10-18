@@ -62,9 +62,11 @@ class ProfilePage extends React.Component {
                         <span className="agile-breadcrumbs"><a href="index.html"><i className="fa fa-home home_1"></i></a> / <span>Profile</span></span>
                     </div>
                 </div>
-                <ProfileForm></ProfileForm>
-                { user.email }
-                <Button variant="primary" onClick={this.logout} >Logout</Button>
+                <ProfileForm user={user}>
+                    <Button className="submit" onClick={this.logout} >Logout</Button>
+                </ProfileForm>
+                {/* { user.email } */}
+                
             </Layout>
         );
     }

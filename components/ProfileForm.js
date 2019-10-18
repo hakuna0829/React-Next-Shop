@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default () => {
+export default ({ children, user = {} }) => {
     return (
         <div className="agile-trains w3layouts-content">
             <div className="container">
@@ -16,33 +16,30 @@ export default () => {
                             <div className="ban-top">
                                 <div className="bnr-left">
                                     <label className="inputLabel">Email:</label>
-                                    <input className="city" type="text"  required="required" />
+                                    <input className="city" type="text" disabled value={user.email} required="required" />
                                 </div>
                                 
                                 <div className="bnr-left">
-                                    <label className="inputLabel">Username:</label>
-                                    <input className="city" type="text"  required="required" />
+                                    <label className="inputLabel">Full Name:</label>
+                                    <input className="city" type="text" disabled value={user.full_name} required="required" />
                                 </div>
-                                    <div className="clearfix"></div>
+                                <div className="clearfix"></div>
                             </div>
                             <div className="ban-bottom">
-                                    <div className="bnr-right">
-                                        <label className="inputLabel">Date of Journey:</label>
-                                        <input className="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  required="required" />
+                                <div className="bnr-left">
+                                        <label className="inputLabel">Role:</label>
+                                        <input className="city" type="text" disabled value={user.role} required="required" />
                                     </div>
-                                    <div className="bnr-right">
-                                        <label className="inputLabel">Date of Return<span className="opt">&nbsp;(Optional):</span></label>
-                                        <input className="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" />
+                                    
+                                    <div className="bnr-left">
+                                        <label className="inputLabel">Birthday:</label>
+                                        <input className="city" type="text"  required="required" />
                                     </div>
-                                        <div className="clearfix"></div>
-                                        
-                                        <link rel="stylesheet" href="css/jquery-ui.css"/>
-                                        
-                                            
-                                </div>
+                                <div className="clearfix"></div>
+                            </div>
                             <div className="search">
-                                <input type="submit" className="submit" value="Search"/>
-                            
+                                {/* <input type="submit" className="submit" value="Save"/> */}
+                                { children }
                             </div>
                         </form>
                     </div>
