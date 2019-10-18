@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
 
-export default ({ children, title = 'Next.js / Express App' }) => (
+export default ({ children, title = 'Celeste' }) => (
   <div>
     <Head>
       <title>{ title } | Dashboard</title>

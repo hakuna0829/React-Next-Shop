@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 
-import Layout from '../components/Layout';
+import Layout from '../components/layout';
 import ProfileForm from '../components/ProfileForm';
 
 const host = 'https://next-celeste.herokuapp.com/';

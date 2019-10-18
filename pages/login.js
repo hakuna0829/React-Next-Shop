@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import AuthLayout from '../components/AuthLayout';
+import AuthLayout from '../components/authLayout';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()

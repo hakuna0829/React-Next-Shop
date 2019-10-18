@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Layout from '../components/Layout';
+import Layout from '../components/layout';
 import HeroImage from '../components/HeroImage';
 import MobileSection from '../components/MobileSection';
 import CustomerSupport from '../components/CustomerSupport';

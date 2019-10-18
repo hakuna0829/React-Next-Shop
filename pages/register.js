@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import AuthLayout from '../components/AuthLayout';
+import AuthLayout from '../components/authLayout';
 
 const registerValidation = Yup.object().shape({
   full_name: Yup.string()
