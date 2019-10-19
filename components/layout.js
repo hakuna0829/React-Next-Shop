@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Header from './header';
 import Footer from './footer';
 
+//import "./style.css"
+
 export default ({ children, title = 'Main' }) => (
   <div>
     <Head>

@@ -45,19 +45,8 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <AuthLayout title={ 'Login' }>
-        <div className="auth">
-          <div className="login-container">
-              <div className="container-inner">
-                  <div className="left">
-                      <Link href="/"><a><img src="/images/logo.png" alt="Celeste Logo" className="logo"></img></a></Link>
-
-                      <div className="content">
-                          <h1>Welcome Back</h1>
-
-                          <p>Trouble Logging in? <Link href="/contact"><a>Send us a message</a></Link></p>
-                      </div>
-                  </div>
+      <AuthLayout title={ 'Login' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
+        
                   <div className="right">
                     <Formik
                       initialValues={{ email: '', password: ''}}
@@ -129,10 +118,9 @@ class LoginPage extends React.Component {
                     </div>
                       
                   </div>
-              </div>
-          </div>
-        </div>
-        <style jsx global>{`
+              
+        <style jsx global>
+        {`
           
             .forget-link a {
               color: #aaaaaa;
@@ -145,7 +133,66 @@ class LoginPage extends React.Component {
               color: white;
             }
              
-          `}</style>
+          `}
+          </style>
+
+      <style jsx>{`
+	
+  .right p {
+    margin: 2em 0 1em;
+  }
+
+  input, button {
+    width: calc(100% - 3em);
+    padding: .5em;
+    font-size: 1.3rem;
+    outline: none;
+    margin: 1em;
+  }
+
+   button {
+    width: calc(100% - 2em);
+    margin: 0;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
+  @media only screen and (min-width: 1024px) {
+
+    .right {
+      text-align: center;
+      -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+      padding: 0 2em 1.5em;
+      -ms-grid-column-align: center;
+      justify-self: center;
+    }
+
+    .right input {
+      width: 100% !important;
+      margin: 1em 0;
+    }
+
+    .right button {
+      width: 100% !important;
+    }
+  }
+
+  @media only screen and (min-width: 1600px) {
+
+    .right {
+      padding: 0 !important;
+    }
+  }
+
+    `}
+  </style>
+
+  
       </AuthLayout>
     );
   }

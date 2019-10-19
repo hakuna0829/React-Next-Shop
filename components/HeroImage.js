@@ -44,6 +44,18 @@ export default () => {
 			  </div>
 			</div>
 		</div>
+		<style jsx>{`
+			.banner1 {
+				background: url(images/2.jpg) no-repeat;
+				width: 100%;
+				min-height: 700px;
+				background-size: cover;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+			}
+			`}
+		</style>
 	</div>
 
   );
