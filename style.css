@@ -88,7 +88,7 @@ body {
 }
 
 @media only screen and (min-width: 1024px) {
-  .logo {
+  .login-container .logo {
     margin: 1em 0;
   }
 

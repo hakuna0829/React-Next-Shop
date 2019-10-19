@@ -16,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     src:url(../fonts/OpenSans-Regular.ttf) format('truetype');
 }
 html,body{
-	background:#fff;
+	background:#fff !important;
 	font-size: 100% !important;
 	height: auto !important;
 	font-family: 'Oxygen-Regular';
