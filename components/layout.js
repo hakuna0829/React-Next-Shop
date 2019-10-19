@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from './header';
 import Footer from './footer';
 
-//import "./style.css"
+import css from "../landing.css"
 
 export default ({ children, title = 'Main' }) => (
   <div>
@@ -32,16 +32,7 @@ export default ({ children, title = 'Main' }) => (
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="js/responsiveslides.min.js"></script>
-    <script>
-      {/* jQuery(function () {
-        jQuery("#slider").responsiveSlides({
-          auto: true,
-          speed: 500,
-          namespace: "callbacks",
-          pager: true,
-        })
-      }) */}
-    </script>
+
     <script src="js/bootstrap-select.js"></script>
   </div>
 );
