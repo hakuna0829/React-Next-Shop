@@ -29,7 +29,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
         </div>
       </div>
     </div>
-    <style jsx global>{`
+    {/* <style jsx global>{`
       @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
       * {
         margin: 0;
@@ -64,7 +64,6 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
         font-size: 13px;
         color: red;
         padding: 10px;
-        /* border: 2px solid red; */
         border-radius: 25px;
       }
       
@@ -75,13 +74,12 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
       form .success {
           color: #33cc33;
           padding: 10px;
-          /* border: 2px solid #33cc33; */
           border-radius: 25px;
       }
     
-    `}</style>
+    `}</style> */}
 
-    <style jsx global>{`
+    {/* <style jsx global>{`
 
 
 
@@ -288,7 +286,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
 }
 
 			`}
-		</style>
+		</style> */}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>

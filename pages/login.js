@@ -16,6 +16,7 @@ const loginValidation = Yup.object().shape({
     .required('Password is required.')
 })
 
+import css from "../style.css"
 
 class LoginPage extends React.Component {
 
@@ -119,7 +120,7 @@ class LoginPage extends React.Component {
                       
                   </div>
               
-        <style jsx global>
+        {/* <style jsx global>
         {`
           
             .forget-link a {
@@ -190,7 +191,7 @@ class LoginPage extends React.Component {
   }
 
     `}
-  </style>
+  </style> */}
 
   
       </AuthLayout>

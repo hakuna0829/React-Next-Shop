@@ -8,6 +8,8 @@ import axios from 'axios';
 import constants from '../constants';
 import AuthLayout from '../components/authLayout';
 
+import css from "../style.css"
+
 const forgotPwdValidation = Yup.object().shape({
   email: Yup.string()
     .email('Please enter a valid e-mail address.')
@@ -94,7 +96,7 @@ class ForgotPasswodPage extends React.Component {
                     </div>
                       
                   </div>
-                  <style jsx>{`
+                  {/* <style jsx>{`
 	
   .right p {
     margin: 2em 0 1em;
@@ -148,7 +150,7 @@ class ForgotPasswodPage extends React.Component {
   }
 
     `}
-  </style>
+  </style> */}
 
       </AuthLayout>
     );

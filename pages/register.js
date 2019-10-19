@@ -7,6 +7,8 @@ import axios from 'axios';
 import constants from '../constants';
 import AuthLayout from '../components/authLayout';
 
+import css from "../style.css"
+
 const registerValidation = Yup.object().shape({
   full_name: Yup.string()
     .required('Full Name is required.'),
@@ -129,7 +131,7 @@ class RegisterPage extends React.Component {
                         
                     </div>
 
-         <style jsx>{`
+         {/* <style jsx>{`
   
     .right p {
       margin: 2em 0 1em;
@@ -181,7 +183,7 @@ class RegisterPage extends React.Component {
     }
 
       `}
-    </style>
+    </style> */}
         </AuthLayout>
         );
     }
