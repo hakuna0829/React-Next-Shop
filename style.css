@@ -134,7 +134,7 @@ body {
     justify-self: center;
   }
 
-  .container-inner .right input {
+  .container-inner .right input, .container-inner .right select {
     width: 100% !important;
     margin: 1em 0;
   }
@@ -188,6 +188,26 @@ body {
     -webkit-appearance: none;
     border-radius: 25px;
 }
+
+.auth select {
+  box-sizing: border-box;
+  height: 2.4375rem;
+  margin: 1rem;
+  padding: 0.5rem 1erm;
+  border: 1px solid #767777;
+  border-radius: 0;
+  background-color: #fefefe !important;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #0a0a0a;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;
+
+  border-radius: 25px;
+}
+
 
 .auth input:focus {
     outline: none;

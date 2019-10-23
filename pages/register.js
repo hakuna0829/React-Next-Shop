@@ -10,8 +10,10 @@ import AuthLayout from '../components/authLayout';
 import css from "../style.css"
 
 const registerValidation = Yup.object().shape({
-  full_name: Yup.string()
-    .required('Full Name is required.'),
+  first_name: Yup.string()
+    .required('First Name is required.'),
+  last_name: Yup.string()
+    .required('Last Name is required.'),
   email: Yup.string()
     .email('Please enter a valid e-mail address.')
     .required('Email is required.'),
@@ -50,7 +52,7 @@ class RegisterPage extends React.Component {
 
                     <div className="right">
                         <Formik
-                        initialValues={{ full_name: '', email: '', password: ''}}
+                        initialValues={{ first_name: '', last_name: '', email: '', type: '', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
                         >
@@ -69,18 +71,33 @@ class RegisterPage extends React.Component {
                                 {errors.total && 
                                     (<p className="error">{errors.total}</p>) }
                                 <div className="form-group">
-                                    <label htmlFor="full_name">Full Name</label>
+                                    <label htmlFor="first_name">First Name</label>
                                     <input
                                         className="form-control"
-                                        placeholder="Full Name"
+                                        placeholder="First Name"
                                         type="input"
-                                        name="full_name"
+                                        name="first_name"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.full_name}
+                                        value={values.first_name}
                                     />
-                                    {errors.full_name && touched.full_name && 
-                                    (<p className="error">{errors.full_name}</p>) }
+                                    {errors.first_name && touched.first_name && 
+                                    (<p className="error">{errors.first_name}</p>) }
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="last_name">Last Name</label>
+                                    <input
+                                        className="form-control"
+                                        placeholder="Last Name"
+                                        type="input"
+                                        name="last_name"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.last_name}
+                                    />
+                                    {errors.last_name && touched.last_name && 
+                                    (<p className="error">{errors.last_name}</p>) }
                                 </div>
 
                                 <div className="form-group">
@@ -111,6 +128,21 @@ class RegisterPage extends React.Component {
                                     />
                                     {errors.password && touched.password && 
                                     (<p className="error">{errors.password}</p>) }                 
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="type">User Type</label>
+                                    <select 
+                                      className="form-control" 
+                                      name="type" 
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      value={values.type}>
+                                      <option>Client</option>
+                                      <option>Artist</option>
+                                    </select>
+                                    {errors.type && touched.type && 
+                                    (<p className="error">{errors.type}</p>) }
                                 </div>
 
                             <button 
