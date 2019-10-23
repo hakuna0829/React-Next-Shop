@@ -68,7 +68,7 @@ class ProfilePage extends React.Component {
         axios.post(constants.serverUrl + 'api/artist/save', artist, { headers: { 'Authorization': token } })
           .then((response) => {
             console.log(response)
-            if(response.auth == true) {
+            if(response.data.auth == true) {
                 Router.push('/preview')
             }
            

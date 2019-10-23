@@ -52,7 +52,7 @@ class RegisterPage extends React.Component {
 
                     <div className="right">
                         <Formik
-                        initialValues={{ first_name: '', last_name: '', email: '', type: '', password: ''}}
+                        initialValues={{ first_name: '', last_name: '', email: '', role: '', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
                         >
@@ -131,18 +131,18 @@ class RegisterPage extends React.Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="type">User Type</label>
+                                    <label htmlFor="role">User Type</label>
                                     <select 
                                       className="form-control" 
-                                      name="type" 
+                                      name="role" 
                                       onChange={handleChange}
                                       onBlur={handleBlur}
-                                      value={values.type}>
-                                      <option>Client</option>
-                                      <option>Artist</option>
+                                      value={values.role}>
+                                      <option value="client">Client</option>
+                                      <option value="artist">Artist</option>
                                     </select>
-                                    {errors.type && touched.type && 
-                                    (<p className="error">{errors.type}</p>) }
+                                    {errors.role && touched.role && 
+                                    (<p className="error">{errors.role}</p>) }
                                 </div>
 
                             <button 

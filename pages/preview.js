@@ -19,7 +19,7 @@ class PreviewPage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-        
+            artist: {}
         };
 
     }
@@ -37,7 +37,7 @@ class PreviewPage extends React.Component {
                 
                 this.setState({
                     loading: false,
-                    user: response.data.user
+                    artist: response.data.artist
                 });
             })
             .catch((error) => {
@@ -48,7 +48,7 @@ class PreviewPage extends React.Component {
     }
 
     render() {
-        const { user, step } = this.state
+        const { artist } = this.state
         return (
             <Layout title={'Profile'}>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
@@ -61,10 +61,10 @@ class PreviewPage extends React.Component {
                                 <div className="profile">
                                     <img src="/images/user1.jpg" alt=""/>
                                     <div className="personal_info">
-                                        <p className="name">Palma Wyman</p>
+                                        <p className="name">{artist.first_name} {artist.last_name}</p>
                                         <p className="job">Front-end Developer</p>
-                                        <p className="location">Chicago, IL</p>
-                                        <button>Connect</button>
+                                        <p className="location">{artist.location}</p>
+                                        {/* <button>Connect</button> */}
                                     </div>
                                 </div>
                             </div>
@@ -82,14 +82,6 @@ class PreviewPage extends React.Component {
                                         <p className="title">LinkedIn</p>
                                         <p className="link">Not Connected</p>
                                     </div>
-                                    <div className="col s6 m4 l4 xl4">
-                                        <p className="title" >Cohort</p>
-                                        <p className="link">Academy</p>
-                                    </div>
-                                    <div className="col s6 m4 l4 xl4">
-                                        <p className="title">Resume</p>
-                                        <p className="download">Download <img src="images/download.svg" alt=""/></p>
-                                    </div>
                                 </div>
                             </div>
                             <div className="aboutme">
@@ -103,12 +95,6 @@ class PreviewPage extends React.Component {
                                 <div className="tags">
                                     <span className="tag">React</span>
                                     <span className="tag">Vue</span>
-                                    <span className="tag">Wordpress</span>
-                                    <span className="tag">Laravel</span>
-                                    <span className="tag">Angular</span>
-                                    <span className="tag">Django</span>
-                                    <span className="tag">Yii</span>
-                                    <span className="tag">Codeigniter</span>
                                 </div>
                             </div>
                             <div className="education">
@@ -127,38 +113,6 @@ class PreviewPage extends React.Component {
                                 <p className="category">Portfolio</p>
                                 <div className="row">
                                     <div className="col s12 m6 l6 xl6 ">
-                                        <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
-                                            </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col s12 m6 l6 xl6">
-                                        <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
-                                            </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col ss12 m6 l6 xl6">
                                         <div className="card">
                                             <div className="card-content">
                                                 <span className="card-title">
