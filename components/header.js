@@ -1,9 +1,35 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import Router from 'next/router';
+import axios from 'axios';
 
-export default () => {
-  return (
-    <header>
+
+class Header extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            logged_in: false,
+        };
+    }
+
+    componentDidMount() {
+        let token = localStorage.getItem("token")
+        if(token) {
+            this.setState({logged_in : true})
+        }
+    }
+
+    logout() {
+        localStorage.removeItem("token")
+        Router.push('/login')
+    }
+    
+  render() {
+      const {logged_in} = this.state
+    return (
+        <header>
         <div className="container">
             
             <div className="logo">
@@ -11,8 +37,9 @@ export default () => {
             </div>
             
             <div className="w3layouts-login">
-                <Link href='/login'><a>Login/Register</a></Link>
-            </div>    
+                {logged_in ? (<Button className="logout-btn" onClick={this.logout} >Logout</Button>) : (<Link href='/login'><a>Login/Register</a></Link>)}
+                
+            </div>
                 <div className="clearfix"></div>
             
                 {/* <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" 
@@ -140,6 +167,27 @@ export default () => {
                 </div> */}
             
             </div>
+            <style global jsx>{`
+                .w3layouts-login {
+                    margin-top: 0;
+                }
+                .container .w3layouts-login .logout-btn {
+                    display: block;
+                    letter-spacing: 2px;
+                    font-size: 13px;
+                    color: #fff905;
+                    text-decoration: none;
+                    margin: 0 0.3em;
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                    margin: 0;
+                }
+
+            `}</style>
         </header>
-  );
+    );
+  }
 }
+
+export default Header;

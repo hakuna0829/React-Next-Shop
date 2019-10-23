@@ -3,10 +3,18 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import { Formik, Field } from 'formik';
+import * as Yup from 'yup';
 
 import Layout from '../components/layout';
 import ProfileForm from '../components/ProfileForm';
 
+const profileValidation = Yup.object().shape({
+    picture: Yup.string()
+      .required('Picture is required.'),
+    bio: Yup.string()
+      .required('Bio is required.')
+  })
 
 import constants from '../constants';
 
@@ -24,34 +32,7 @@ class PortfolioPage extends React.Component {
             step: 0,
             max_step: 6,
         };
-        this.fetchData = this.fetchData.bind(this);
-    }
 
-    componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData() {
-        let token = localStorage.getItem("token")
-        // if(!token) {
-        //     Router.push('/login')
-        //     return
-        // }
-        // this.setState({loading: true}, () => {
-        //     axios.get(constants.serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
-        //     .then((response) => {
-        //         console.log('response', response)
-                
-        //         this.setState({
-        //             loading: false,
-        //             user: response.data.user
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         Router.push('/login')
-        //         this.setState({loading: false});
-        //     });
-        // });
     }
 
     logout() {
@@ -69,16 +50,59 @@ class PortfolioPage extends React.Component {
             step : step
         })
     }
+    
+    saveProfile = () => {
 
-    ProfileStep() {
+    }
+
+    handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
+        console.log('sutbmit', values)
+        return
+    
+        axios.post(constants.serverUrl + 'api/login', values)
+          .then((response) => {
+            console.log(response)
+            
+            if( response.data.auth == true ){
+              //setErrors({ "success" : response.data.message})
+              localStorage.setItem("token", response.data.token)
+              if(response.data.type == "Artist") {
+                Router.push('/profile')
+              }
+              else {
+                Router.push('/client_profile')
+              }
+              
+            }
+            else {
+              setErrors({ "total" : response.data.message})
+            }
+          })
+          .catch((error) => {
+            this.setState({loading: false});
+          })
+          .finally(() => {
+              setSubmitting(false);
+          });
+      }
+
+    ProfileStep(values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting) {
         switch(this.state.step) {
           case 0:
             return (
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="form-group">
+                            <label htmlFor="picture" className="control-label">Picture</label> 
+                            <input id="picture" placeholder="Bio" type="file" className="form-control" onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.picture}/>
+                        </div>
+                        <div className="form-group">
                             <label htmlFor="bio" className="control-label">Bio</label> 
-                            <input id="bio" placeholder="Bio" type="text" className="form-control"/>
+                            <Field component="textarea" id="bio" placeholder="Bio" className="form-control" onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.bio}></Field>
                         </div>
                     </div>
                 </div>
@@ -226,18 +250,38 @@ class PortfolioPage extends React.Component {
                 </div>
                 <div className="col-md-9 right-box">
                     <div className="air-card m-0-top p-0-top-bottom">
- 
-                        {this.ProfileStep()}
-                        <div className="btn-row">
-                            {/* <a href="/freelancers/#specializedPortfolios" target="_self" className="btn btn-default ellipsis">
-                                Cancel
-                            </a> */}
-                            
-                            <button className="btn btn-default ellipsis" onClick={() => {this.gotoStep(-1)}}> Back </button>
+                        <Formik
+                        initialValues={{ 
+                            picture: '', 
+                            bio: ''
+                        }}
+                        validationSchema={profileValidation}
+                        onSubmit={this.handleSubmit}
+                        >
+                        {({
+                            values,
+                            errors,
+                            touched,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            isSubmitting,
+                        }) => (
+                            <form onSubmit={handleSubmit}>
+                                {this.ProfileStep(values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting)}
+                                <div className="btn-row">
+                                    {/* <a href="/freelancers/#specializedPortfolios" target="_self" className="btn btn-default ellipsis">
+                                        Cancel
+                                    </a> */}
+                                    
+                                    <button className="btn btn-default ellipsis" onClick={() => {this.gotoStep(-1)}}> Back </button>
 
-                            <button className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button>
-                        </div>
+                                    { step == 6 ? (<button className="btn btn-primary ellipsis" type="submit" > Save </button>) : ( <button className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button> ) }
+                                </div>
+                            </form>
                         
+                        )}
+                      </Formik>
                         
                     </div>
                 </div>
