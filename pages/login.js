@@ -30,7 +30,13 @@ class LoginPage extends React.Component {
         if( response.data.auth == true ){
           //setErrors({ "success" : response.data.message})
           localStorage.setItem("token", response.data.token)
-          Router.push('/profile')
+          if(response.data.type == "Artist") {
+            Router.push('/profile')
+          }
+          else {
+            Router.push('/client_profile')
+          }
+          
         }
         else {
           setErrors({ "total" : response.data.message})
