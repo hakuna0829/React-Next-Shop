@@ -3,24 +3,15 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
+
 
 import Layout from '../components/layout';
-import ProfileForm from '../components/ProfileForm';
-
-const profileValidation = Yup.object().shape({
-    picture: Yup.string()
-      .required('Picture is required.'),
-    bio: Yup.string()
-      .required('Bio is required.')
-  })
 
 import constants from '../constants';
 
 import css from "../landing.css"
 
-class PortfolioPage extends React.Component {
+class ProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
     //   return { id };
     // }
@@ -31,6 +22,24 @@ class PortfolioPage extends React.Component {
             user: {},
             step: 0,
             max_step: 6,
+
+            picture: '',
+            bio: 'Temporary',
+            work_site: 'work.com',
+            rate: 2,
+            location: 'New York',
+            can_travel: true,
+            max_travel_distance: 10,
+            instagram_url: '',
+            facebook_url: '',
+            linkedin_url: '',
+            skills: 'html, css',
+            labels: 'bootstrap',
+            experience: 5,
+            pricing_types: '',
+            prices: '',
+            work_photos: ''
+        
         };
 
     }
@@ -52,57 +61,52 @@ class PortfolioPage extends React.Component {
     }
     
     saveProfile = () => {
+        let token = localStorage.getItem("token")
+        let {...artist} = this.state
 
-    }
-
-    handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
-        console.log('sutbmit', values)
-        return
-    
-        axios.post(constants.serverUrl + 'api/login', values)
+        console.log(artist)
+        axios.post(constants.serverUrl + 'api/artist/save', artist, { headers: { 'Authorization': token } })
           .then((response) => {
             console.log(response)
-            
-            if( response.data.auth == true ){
-              //setErrors({ "success" : response.data.message})
-              localStorage.setItem("token", response.data.token)
-              if(response.data.type == "Artist") {
-                Router.push('/profile')
-              }
-              else {
-                Router.push('/client_profile')
-              }
-              
+            if(response.auth == true) {
+                Router.push('/preview')
             }
-            else {
-              setErrors({ "total" : response.data.message})
-            }
+           
           })
           .catch((error) => {
             this.setState({loading: false});
           })
-          .finally(() => {
-              setSubmitting(false);
-          });
-      }
+    }
+    
+    handleChange = (e) => {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        
+        this.setState({
+            [name]: value
+        });
+    }
 
-    ProfileStep(values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting) {
-        switch(this.state.step) {
+    
+    ProfileStep = () => {
+        let {step} = this.state
+        switch(step) {
           case 0:
             return (
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="form-group">
                             <label htmlFor="picture" className="control-label">Picture</label> 
-                            <input id="picture" placeholder="Bio" type="file" className="form-control" onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.picture}/>
+                            <input id="picture" placeholder="picture" type="file" className="form-control" onChange={this.handleChange}
+                                name="picture"
+                                value={this.state.picture}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="bio" className="control-label">Bio</label> 
-                            <Field component="textarea" id="bio" placeholder="Bio" className="form-control" onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.bio}></Field>
+                            <textarea id="bio" placeholder="Bio" className="form-control" onChange={this.handleChange}
+                                name="bio"
+                                value={this.state.bio}/>
                         </div>
                     </div>
                 </div>
@@ -112,12 +116,16 @@ class PortfolioPage extends React.Component {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="form-group">
-                            <label htmlFor="portfolio" className="control-label">Your Work</label> 
-                            <input id="portfolio" placeholder="yourwork.com" type="text" className="form-control"/>
+                            <label htmlFor="work_site" className="control-label">Your Work</label> 
+                            <input id="work_site" placeholder="yourwork.com" type="text" className="form-control" onChange={this.handleChange}
+                                name="work_site"
+                                value={this.state.work_site}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="rate" className="control-label">Rate</label> 
-                            <input id="rate" placeholder="Just a range to give your clients a guide" type="text" className="form-control"/>
+                            <input id="rate" placeholder="Just a range to give your clients a guide" type="text" className="form-control" onChange={this.handleChange}
+                                name="rate"
+                                value={this.state.rate}/>
                         </div>
                     </div>
                 </div>
@@ -128,15 +136,21 @@ class PortfolioPage extends React.Component {
                     <div className="col-lg-6">
                         <div className="form-group">
                             <label htmlFor="location" className="control-label">Your Location</label> 
-                            <input id="location" placeholder="Brooklyn, New York, USA" type="text" className="form-control"/>
+                            <input id="location" placeholder="Brooklyn, New York, USA" type="text" className="form-control" onChange={this.handleChange}
+                                name="location"
+                                value={this.state.location}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="can_travel" className="control-label">Willing to travel?</label> 
-                            <input id="can_travel" placeholder="100km" type="checkbox" className="form-control"/>
+                            <input id="can_travel" placeholder="100km" type="checkbox" className="form-control" onChange={this.handleChange}
+                                name="can_travel"
+                                checked={!!this.state.can_travel}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="max_travel_distance" className="control-label">How far are you willing to travel?</label> 
-                            <input id="max_travel_distance" placeholder="100km" type="text" className="form-control"/>
+                            <input id="max_travel_distance" placeholder="100km" type="text" className="form-control" onChange={this.handleChange}
+                                name="max_travel_distance"
+                                value={this.state.max_travel_distance}/>
                         </div>
                     </div>
                 </div>
@@ -147,16 +161,22 @@ class PortfolioPage extends React.Component {
                     <div className="col-lg-6">
                         <h2> Connect Social Accounts</h2>
                         <div className="form-group">
-                            <label htmlFor="instagram" className="control-label">Instagram</label> 
-                            <input id="instagram" placeholder="Instagram" type="text" className="form-control"/>
+                            <label htmlFor="instagram_url" className="control-label">Instagram</label> 
+                            <input id="instagram_url" placeholder="Instagram" type="text" className="form-control" onChange={this.handleChange}
+                                name="instagram_url"
+                                value={this.state.instagram_url}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="facebook" className="control-label">Facebook</label> 
-                            <input id="facebook" placeholder="Facebook" type="text" className="form-control"/>
+                            <label htmlFor="facebook_url" className="control-label">Facebook</label> 
+                            <input id="facebook_url" placeholder="Facebook" type="text" className="form-control" onChange={this.handleChange}
+                                name="facebook_url"
+                                value={this.state.facebook_url}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="linkedin" className="control-label">Linkedin</label> 
-                            <input id="linkedin" placeholder="Linkedin" type="text" className="form-control"/>
+                            <label htmlFor="linkedin_url" className="control-label">Linkedin</label> 
+                            <input id="linkedin_url" placeholder="Linkedin" type="text" className="form-control" onChange={this.handleChange}
+                                name="linkedin_url"
+                                value={this.state.linkedin_url}/>
                         </div>
                     </div>
                 </div>
@@ -167,15 +187,21 @@ class PortfolioPage extends React.Component {
                     <div className="col-lg-6">
                         <div className="form-group">
                             <label htmlFor="skills" className="control-label">Skills</label> 
-                            <input id="skills" placeholder="Skills" type="text" className="form-control"/>
+                            <input id="skills" placeholder="Skills" type="text" className="form-control" onChange={this.handleChange}
+                                name="skills"
+                                value={this.state.skills}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="labels" className="control-label">More labels to pick</label> 
-                            <input id="labels" placeholder="labels" type="text" className="form-control"/>
+                            <input id="labels" placeholder="labels" type="text" className="form-control" onChange={this.handleChange}
+                                name="labels"
+                                value={this.state.labels}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="experience" className="control-label">Experience : When did you start your career?</label> 
-                            <input id="experience" placeholder="Experience" type="text" className="form-control"/>
+                            <input id="experience" placeholder="Experience" type="text" className="form-control" onChange={this.handleChange}
+                                name="experience"
+                                value={this.state.experience}/>
                         </div>
                     </div>
                 </div>
@@ -183,11 +209,19 @@ class PortfolioPage extends React.Component {
         case 5:
             return (
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-12">
                         <h2>Pricing</h2>
+                    </div>
+                    <div className="col-lg-6">
                         <div className="form-group">
-                            <input name="type[]" placeholder="Wedding makeup" type="text" className="form-control"/>
-                            <input name="price[]" placeholder="250$" type="text" className="form-control"/>
+                            <input name="pricing_types" placeholder="Wedding makeup" type="text" className="form-control" onChange={this.handleChange}
+                                value={this.state.pricing_types}/>
+                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="form-group">
+                            <input name="prices" placeholder="250$" type="text" className="form-control" onChange={this.handleChange}
+                                value={this.state.prices}/>
                         </div>
                     </div>
                 </div>
@@ -197,8 +231,10 @@ class PortfolioPage extends React.Component {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="form-group">
-                            <label htmlFor="skills" className="control-label">Add Photos of your work</label> 
-                            <input id="skills" placeholder="Skills" type="text" className="form-control"/>
+                            <label htmlFor="work_photos" className="control-label">Add Photos of your work</label> 
+                            <input id="work_photos" placeholder="work_photos" type="text" className="form-control" onChange={this.handleChange}
+                                name="work_photos"
+                                value={this.state.work_photos}/>
                         </div>
                     </div>
                 </div>
@@ -250,38 +286,20 @@ class PortfolioPage extends React.Component {
                 </div>
                 <div className="col-md-9 right-box">
                     <div className="air-card m-0-top p-0-top-bottom">
-                        <Formik
-                        initialValues={{ 
-                            picture: '', 
-                            bio: ''
-                        }}
-                        validationSchema={profileValidation}
-                        onSubmit={this.handleSubmit}
-                        >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            isSubmitting,
-                        }) => (
-                            <form onSubmit={handleSubmit}>
-                                {this.ProfileStep(values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting)}
+                        
+                                {this.ProfileStep()}
                                 <div className="btn-row">
-                                    {/* <a href="/freelancers/#specializedPortfolios" target="_self" className="btn btn-default ellipsis">
+                                    {/* <a href="/freelancers/#specializedwork_sites" target="_self" className="btn btn-default ellipsis">
                                         Cancel
                                     </a> */}
                                     
-                                    <button className="btn btn-default ellipsis" onClick={() => {this.gotoStep(-1)}}> Back </button>
+                                    <button className="btn btn-default ellipsis" type="button" onClick={() => {this.gotoStep(-1)}}> Back </button>
+                                    
+                                    { step == 6 ? (<button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>) : ( <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button> ) }
 
-                                    { step == 6 ? (<button className="btn btn-primary ellipsis" type="submit" > Save </button>) : ( <button className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button> ) }
+                                    <button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>
                                 </div>
-                            </form>
-                        
-                        )}
-                      </Formik>
+                            
                         
                     </div>
                 </div>
@@ -317,6 +335,10 @@ class PortfolioPage extends React.Component {
                             width: 100px !important;
                             margin-bottom: 0;
                         }
+
+                        input[type='checkbox'] {
+                            width: 40px !important;
+                        }
                     `}</style>
             </main>
             </Layout>
@@ -324,4 +346,4 @@ class PortfolioPage extends React.Component {
     }
   }
   
-  export default PortfolioPage;
+  export default ProfilePage;
