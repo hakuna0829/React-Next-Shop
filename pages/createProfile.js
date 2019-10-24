@@ -63,7 +63,7 @@ class CreateProfilePage extends React.Component {
           .then((response) => {
             console.log(response)
             if(response.data.auth == true) {
-                Router.push('/preview')
+                Router.push('/profile')
             }
            
           })

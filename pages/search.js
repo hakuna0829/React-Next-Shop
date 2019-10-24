@@ -11,7 +11,7 @@ import constants from '../constants';
 
 import css from "../landing.css"
 
-class PreviewPage extends React.Component {
+class SearchPage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
     //   return { id };
     // }
@@ -24,57 +24,15 @@ class PreviewPage extends React.Component {
 
     }
 
-    // static async getInitialProps({req}){
-    //     if(req){
-    //       // called on server
-
-    //       console.log('server')
-    //     } else {
-    //       // called on client
-    //       console.log('client')
-    //     }
-        
-    //         axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
-    //         .then((response) => {
-    //             console.log('response', response)
-    //             return {
-    //                 artist : response.data.artist
-    //               }
-    //         })
-        
-    // }
-
-    componentDidMount() {
-       this.fetchData();
-    }
-
-    fetchData() {
-        let token = localStorage.getItem("token")
-        this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
-            .then((response) => {
-                console.log('response', response)
-                
-                this.setState({
-                    loading: false,
-                    artist: response.data.artist
-                });
-            })
-            .catch((error) => {
-                Router.push('/login')
-                this.setState({loading: false});
-            });
-        });
-    }
 
     render() {
         const { artist } = this.state
         //const { artist } = this.props;
         return (
-            <Layout title={'Profile'}>
+            <Layout title={'Search'}>
             
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/preview.css"></link>
+            <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
             <div id="student_public">
                 <div className="content">
                     <div className="row">
@@ -83,9 +41,9 @@ class PreviewPage extends React.Component {
                                 <div className="profile">
                                     <img src="/images/user1.jpg" alt=""/>
                                     <div className="personal_info">
-                                        <p className="name">{artist.first_name} {artist.last_name}</p>
+                                        
                                         <p className="job">Front-end Developer</p>
-                                        <p className="location">{artist.location}</p>
+                                        
                                         {/* <button>Connect</button> */}
                                     </div>
                                 </div>
@@ -177,4 +135,4 @@ class PreviewPage extends React.Component {
     }
   }
   
-  export default PreviewPage;
+  export default SearchPage;
