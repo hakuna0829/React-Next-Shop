@@ -37,8 +37,17 @@ class Header extends React.Component {
             </div>
             
             <div className="w3layouts-login">
-                {logged_in ? (<Button className="logout-btn" onClick={this.logout} >Logout</Button>) : (<Link href='/login'><a>Login/Register</a></Link>)}
-                
+                {logged_in ? (
+                    <template>
+                    <Link href='/users'><a>Users</a></Link>
+                    <Link href='/artists'><a>Artists</a></Link>
+                    <Button className="logout-btn" onClick={this.logout} >Logout</Button>
+                    </template>
+                ) : (
+                <template>
+                    <Link href='/login'><a>Login/Register</a></Link>
+                </template>
+                )}
             </div>
                 <div className="clearfix"></div>
             

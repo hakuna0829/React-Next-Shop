@@ -84,7 +84,7 @@ class UsersPage extends React.Component {
                             </div>
                             
                             <div className="portfolio">
-                                <p className="category">Artists</p>
+                                <p className="category">Users</p>
                                 <div className="row">
                                     { artists.map((artist, i) => {     
                                         return (
@@ -98,18 +98,9 @@ class UsersPage extends React.Component {
                                                         <p>
                                                             {artist.bio}
                                                         </p>
-                                                        <p>
-                                                            {artist.work_site}
-                                                        </p>
-                                                        <p>
-                                                            {artist.skills}
-                                                        </p>
-                                                        <p>
-                                                            {artist.labels}
-                                                        </p>
                                                     </div>
                                                     <div className="card-action">
-                                                        <p className="italic">Location : {artist.role}</p>
+                                                        <p className="italic">Role : {artist.role}</p>
                                                         
                                                     </div>
                                                 </div>
