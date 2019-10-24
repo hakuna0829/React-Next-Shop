@@ -109,10 +109,8 @@ class UsersPage extends React.Component {
                                                         </p>
                                                     </div>
                                                     <div className="card-action">
-                                                        <p className="italic">Location : {artist.location}</p>
+                                                        <p className="italic">Location : {artist.role}</p>
                                                         
-                                                        
-                                                        <p className="italic">Price : {artist.rate}</p>
                                                     </div>
                                                 </div>
                                             </div>
