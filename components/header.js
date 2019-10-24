@@ -38,15 +38,14 @@ class Header extends React.Component {
             
             <div className="w3layouts-login">
                 {logged_in ? (
-                    <template>
+                    <div className="nav-menu">
                     <Link href='/users'><a>Users</a></Link>
                     <Link href='/artists'><a>Artists</a></Link>
+                </div> ) : '' }
+                {logged_in ? (
                     <Button className="logout-btn" onClick={this.logout} >Logout</Button>
-                    </template>
                 ) : (
-                <template>
                     <Link href='/login'><a>Login/Register</a></Link>
-                </template>
                 )}
             </div>
                 <div className="clearfix"></div>
@@ -179,6 +178,7 @@ class Header extends React.Component {
             <style global jsx>{`
                 .w3layouts-login {
                     margin-top: 0;
+                    display:flex;
                 }
                 .container .w3layouts-login .logout-btn {
                     display: block;
@@ -191,6 +191,32 @@ class Header extends React.Component {
                     border: none;
                     box-shadow: none;
                     margin: 0;
+                }
+
+                .nav-menu {
+                    display: flex;
+                    line-height: 35px;
+                }
+
+                .nav-menu a {
+                    display: block;
+                    -webkit-letter-spacing: 2px;
+                    -moz-letter-spacing: 2px;
+                    -ms-letter-spacing: 2px;
+                    letter-spacing: 2px;
+                    font-size: 13px;
+                    color: #fff905;
+                    -webkit-text-decoration: none;
+                    text-decoration: none;
+                    margin: 0 0.3em;
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                    margin: 0;
+                    margin-right: 20px;
+                    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+                    font-size: 15px;
+                    text-transform: uppercase;
                 }
 
             `}</style>
