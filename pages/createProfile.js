@@ -36,8 +36,8 @@ class CreateProfilePage extends React.Component {
             skills: 'html, css',
             labels: 'bootstrap',
             experience: 5,
-            pricing_types: '',
-            prices: '',
+            pricing_types: 'Wedding Makeup',
+            prices: 100,
             work_photos: ''
         
         };

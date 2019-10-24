@@ -21,8 +21,7 @@ import css from "../style.css"
 class LoginPage extends React.Component {
 
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
-    console.log(values)
-
+    
     axios.post(constants.serverUrl + 'api/login', values)
       .then((response) => {
         console.log('login response', response)
@@ -30,11 +29,19 @@ class LoginPage extends React.Component {
         if( response.data.auth == true ){
           //setErrors({ "success" : response.data.message})
           localStorage.setItem("token", response.data.token)
-          if(response.data.role == "artist" && response.data.has_profile == false) {
-            Router.push('/createProfile')
+          if(response.data.role == "artist") {
+            if(response.data.has_profile == false) {
+              Router.push('/createProfile')
+            }
+            else {
+              Router.push('/profile')
+            }
+          }
+          else if(response.data.role == "client") {
+            Router.push('/search')
           }
           else {
-            Router.push('/client_profile')
+            Router.push('/')
           }
           
         }

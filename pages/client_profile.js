@@ -23,6 +23,7 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
+        console.log('client_profile page', response)
         this.fetchData();
     }
 
@@ -31,7 +32,7 @@ class ProfilePage extends React.Component {
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
             .then((response) => {
-                console.log('response', response)
+                console.log('client_profile response', response)
                 
                 this.setState({
                     loading: false,

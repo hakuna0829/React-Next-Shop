@@ -25,15 +25,20 @@ const registerValidation = Yup.object().shape({
 class RegisterPage extends React.Component {
 
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
-        console.log(values)
 
-        axios.post(constants.serverUrl + 'api/register', values)
+      axios.post(constants.serverUrl + 'api/register', values)
         .then((response) => {
-          console.log(response)
+          console.log('register response', response)
           
-          if( response.data.auth == true && response.data.role == "artist" ){
-            // setErrors({ "success" : response.data.message})
-            Router.push('/createProfile')
+          if( response.data.auth == true  ){
+            localStorage.setItem("token", response.data.token)
+
+            if(response.data.role == "artist") {
+              Router.push('/createProfile')
+            }
+            if(response.data.role == "client") {
+              Router.push('/search')
+            }
           }
           else {
             setErrors({ "total" : response.data.message})
@@ -54,7 +59,7 @@ class RegisterPage extends React.Component {
 
                     <div className="right">
                         <Formik
-                        initialValues={{ first_name: '', last_name: '', email: '', role: '', password: ''}}
+                        initialValues={{ first_name: '', last_name: '', email: '', role: 'client', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
                         >

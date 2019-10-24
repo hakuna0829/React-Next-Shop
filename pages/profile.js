@@ -54,14 +54,17 @@ class ProfilePage extends React.Component {
             axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('artist/me response', response)
-                
+                if(response.data.artist.has_profile == false)
+                {
+                    Router.push('/createProfile') 
+                }
                 this.setState({
                     loading: false,
                     artist: response.data.artist
                 });
             })
             .catch((error) => {
-                Router.push('/login')
+                Router.push('/')
                 this.setState({loading: false});
             });
         });
