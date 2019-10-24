@@ -24,8 +24,28 @@ class PreviewPage extends React.Component {
 
     }
 
+    // static async getInitialProps({req}){
+    //     if(req){
+    //       // called on server
+
+    //       console.log('server')
+    //     } else {
+    //       // called on client
+    //       console.log('client')
+    //     }
+        
+    //         axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
+    //         .then((response) => {
+    //             console.log('response', response)
+    //             return {
+    //                 artist : response.data.artist
+    //               }
+    //         })
+        
+    // }
+
     componentDidMount() {
-        this.fetchData();
+       this.fetchData();
     }
 
     fetchData() {
@@ -49,8 +69,10 @@ class PreviewPage extends React.Component {
 
     render() {
         const { artist } = this.state
+        //const { artist } = this.props;
         return (
             <Layout title={'Profile'}>
+            
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
             <link rel="stylesheet" type="text/css" href="css/preview.css"></link>
             <div id="student_public">

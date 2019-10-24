@@ -11,7 +11,7 @@ import constants from '../constants';
 
 import css from "../landing.css"
 
-class ProfilePage extends React.Component {
+class CreateProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
     //   return { id };
     // }
@@ -43,12 +43,6 @@ class ProfilePage extends React.Component {
         };
 
     }
-
-    logout() {
-        localStorage.removeItem("token")
-        Router.push('/login')
-    }
-
     gotoStep = (dir) => {
         let step = this.state.step + dir
         if( step < 0)
@@ -65,7 +59,7 @@ class ProfilePage extends React.Component {
         let {...artist} = this.state
 
         console.log(artist)
-        axios.post(constants.serverUrl + 'api/artist/save', artist, { headers: { 'Authorization': token } })
+        axios.post(constants.serverUrl + 'api/artist/create', artist, { headers: { 'Authorization': token } })
           .then((response) => {
             console.log(response)
             if(response.data.auth == true) {
@@ -346,4 +340,4 @@ class ProfilePage extends React.Component {
     }
   }
   
-  export default ProfilePage;
+  export default CreateProfilePage;

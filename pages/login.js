@@ -25,13 +25,13 @@ class LoginPage extends React.Component {
 
     axios.post(constants.serverUrl + 'api/login', values)
       .then((response) => {
-        console.log(response)
+        console.log('login response', response)
         
         if( response.data.auth == true ){
           //setErrors({ "success" : response.data.message})
           localStorage.setItem("token", response.data.token)
-          if(response.data.role == "artist") {
-            Router.push('/profile')
+          if(response.data.role == "artist" && response.data.has_profile == false) {
+            Router.push('/createProfile')
           }
           else {
             Router.push('/client_profile')

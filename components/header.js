@@ -13,7 +13,7 @@ class Header extends React.Component {
             logged_in: false,
         };
     }
-
+    
     componentDidMount() {
         let token = localStorage.getItem("token")
         if(token) {

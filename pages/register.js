@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Router from 'next/router';
 
 import constants from '../constants';
 import AuthLayout from '../components/authLayout';
@@ -30,8 +31,9 @@ class RegisterPage extends React.Component {
         .then((response) => {
           console.log(response)
           
-          if( response.data.auth == true ){
-            setErrors({ "success" : response.data.message})
+          if( response.data.auth == true && response.data.role == "artist" ){
+            // setErrors({ "success" : response.data.message})
+            Router.push('/createProfile')
           }
           else {
             setErrors({ "total" : response.data.message})

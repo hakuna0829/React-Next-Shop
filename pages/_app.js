@@ -6,6 +6,7 @@ import css from "../style.css"
 
 
 export default class MyApp extends App {
+  
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {}
 
