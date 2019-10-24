@@ -34,12 +34,13 @@ class SearchPage extends React.Component {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
             <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
             <div id="student_public">
-                <h1>Search Artists</h1>
+                
                 <div className="content">
                     <div className="row">
                         <div className="container">
                             <div className="header">
                                 <div className="profile">
+                                    <h1>Search Artists</h1>
                                     <img src="/images/user1.jpg" alt=""/>
                                     <div className="personal_info">
                                         

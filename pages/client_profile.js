@@ -23,7 +23,7 @@ class ProfilePage extends React.Component {
     }
 
     componentDidMount() {
-        console.log('client_profile page', response)
+        console.log('client_profile page')
         this.fetchData();
     }
 
@@ -40,7 +40,7 @@ class ProfilePage extends React.Component {
                 });
             })
             .catch((error) => {
-                Router.push('/login')
+                Router.push('/')
                 this.setState({loading: false});
             });
         });
