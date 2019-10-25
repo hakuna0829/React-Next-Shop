@@ -67,7 +67,7 @@ class UsersPage extends React.Component {
     render() {
         const { artists } = this.state
         return (
-            <Layout title={'Artists'}>
+            <Layout title={'Users'}>
             
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
             <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
@@ -96,7 +96,7 @@ class UsersPage extends React.Component {
                                                             {artist.first_name} {artist.last_name}
                                                         </span>
                                                         <p>
-                                                            {artist.bio}
+                                                            {artist.email}
                                                         </p>
                                                     </div>
                                                     <div className="card-action">

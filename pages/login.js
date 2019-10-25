@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import AuthLayout from '../components/authLayout';
+import NewLayout from '../components/newLayout';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()
@@ -16,200 +16,166 @@ const loginValidation = Yup.object().shape({
     .required('Password is required.')
 })
 
-import css from "../style.css"
 
-class LoginPage extends React.Component {
 
-  handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
+class Login1Page extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            artist: {}
+        };
+
+    }
+
+    componentDidMount() {
+        this.fetchData();
+      }
     
-    axios.post(constants.serverUrl + 'api/login', values)
-      .then((response) => {
-        console.log('login response', response)
+      fetchData() {
+        let token = localStorage.getItem("token")
+        if(token) {
+          Router.push('/profile')
+        }
+      }
+    
+      handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
         
-        if( response.data.auth == true ){
-          //setErrors({ "success" : response.data.message})
-          localStorage.setItem("token", response.data.token)
-          if(response.data.role == "artist") {
-            if(response.data.has_profile == false) {
-              Router.push('/createProfile')
+        axios.post(constants.serverUrl + 'api/login', values)
+          .then((response) => {
+            console.log('login response', response)
+            
+            if( response.data.auth == true ){
+              //setErrors({ "success" : response.data.message})
+              localStorage.setItem("token", response.data.token)
+              if(response.data.role == "artist") {
+                if(response.data.has_profile == false) {
+                  Router.push('/createProfile')
+                }
+                else {
+                  Router.push('/profile')
+                }
+              }
+              else if(response.data.role == "client") {
+                Router.push('/search')
+              }
+              else {
+                Router.push('/')
+              }
+              
             }
             else {
-              Router.push('/profile')
+              setErrors({ "total" : response.data.message})
             }
-          }
-          else if(response.data.role == "client") {
-            Router.push('/search')
-          }
-          else {
-            Router.push('/')
-          }
-          
-        }
-        else {
-          setErrors({ "total" : response.data.message})
-        }
-      })
-      .catch((error) => {
-        this.setState({loading: false});
-      })
-      .finally(() => {
-          setSubmitting(false);
-      });
-  }
+          })
+          .catch((error) => {
+            this.setState({loading: false});
+          })
+          .finally(() => {
+              setSubmitting(false);
+          });
+      }
 
-  render() {
-    return (
-      <AuthLayout title={ 'Login' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
-        
-                  <div className="right">
-                    <Formik
-                      initialValues={{ email: '', password: ''}}
-                      validationSchema={loginValidation}
-                      onSubmit={this.handleSubmit}
-                    >
-                      {({
-                        values,
-                        errors,
-                        touched,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        isSubmitting,
-                      }) => (
-                        <form onSubmit={handleSubmit}>
-                            {errors.success && 
-                                    (<p className="success">{errors.success}</p>) }
-                            {errors.total && 
-                                 (<p className="error">{errors.total}</p>) }
-                            <div className="form-group">
-                              <label htmlFor="email">Email</label>
-                              <input
-                                className="form-control"
-                                placeholder="Email"
-                                type="email"
-                                name="email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                              />
-                              {errors.email && touched.email && 
-                              (<p className="error">{errors.email}</p>) }
+    render() {
+        const { artist } = this.state
+        return (
+            <NewLayout title={'Login1'}>
+                <div className="login1">
+                    <div className="container">
+                        <div className="row">
+                            <div className="login_header">
+                                <h3>Sign In</h3>
+                                <h6>Sign into your account via email and password or social account.</h6>
                             </div>
+                            <div className="divider"></div>
+                            <div className="login_content">
+                                <Formik
+                                    initialValues={{ email: '', password: ''}}
+                                    validationSchema={loginValidation}
+                                    onSubmit={this.handleSubmit}
+                                    >
+                                    {({
+                                        values,
+                                        errors,
+                                        touched,
+                                        handleChange,
+                                        handleBlur,
+                                        handleSubmit,
+                                        isSubmitting,
+                                    }) => (
+                                        <form onSubmit={handleSubmit}>
+                                            {errors.success && 
+                                                    (<p className="success">{errors.success}</p>) }
+                                            {errors.total && 
+                                                (<p className="error">{errors.total}</p>) }
+                                            <div className="form-group">
+                                                <label htmlFor="email">Email</label>
+                                                <input
+                                                    className="form-control"
+                                                    placeholder="Email"
+                                                    type="email"
+                                                    name="email"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values.email}
+                                                />
+                                                {errors.email && touched.email && 
+                                                (<p className="error">{errors.email}</p>) }
+                                            </div>
 
-                            <div className="form-group">
-                              <label htmlFor="password">Password</label>
-                              <input
-                                className="form-control"
-                                placeholder="Password"
-                                type="password"
-                                name="password"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.password}
-                              />
-                              {errors.password && touched.password && 
-                              (<p className="error">{errors.password}</p>) }                 
+                                            <div className="form-group">
+                                                <label htmlFor="password">Password</label>
+                                                <input
+                                                    className="form-control"
+                                                    placeholder="Password"
+                                                    type="password"
+                                                    name="password"
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    value={values.password}
+                                                />
+                                                {errors.password && touched.password && 
+                                                (<p className="error">{errors.password}</p>) }                 
+                                            </div>
+
+                                            <div className="form-group">
+                                                <Link href="/forgot_password"><a>Forgot your password?</a></Link>
+                                            </div>
+
+                                        <button 
+                                            type="submit" 
+                                            disabled={isSubmitting}>
+                                            Sign In
+                                        </button>
+                                        </form>
+                                        
+                                    )}
+                                </Formik>
                             </div>
-
-                            <div className="form-group forget-link">
-                              <Link href="/forgot_password"><a>Forgot your password?</a></Link>
+                            <div className="divider"></div>
+                            <div className="login_footer">
+                                <h3>Sign In via Social Account</h3>
+                                <div className="btn_group">
+                                    <button type="button" className="google">
+                                        <i className="fas fa-circle"></i>
+                                        <span>Google</span>
+                                    </button>
+                                    <button type="button" className="facebook">
+                                        <i className="fas fa-circle"></i>
+                                        <span>Facebook</span>
+                                    </button>
+                                </div>
+                                <div className="link">
+                                    <p><span>New to Celeste?</span> &nbsp;Create an account</p>
+                                    <button>Artist Login</button>
+                                </div>
                             </div>
-
-                          <button 
-                            type="submit" 
-                            className="auth-btn" 
-                            disabled={isSubmitting}>
-                            Sign In
-                          </button>
-                        </form>
-                        
-                      )}
-                    </Formik>
-                    <div className="link">
-                      <div className="d-flex justify-content-center links">
-                        Don't have an account? <Link href="/register"><a>Sign Up</a></Link>
-                      </div>
+                        </div>
                     </div>
-                      
-                  </div>
-              
-        {/* <style jsx global>
-        {`
-          
-            .forget-link a {
-              color: #aaaaaa;
-              font-size: 14px;
-              margin-bottom: 10px;
-            }
-
-
-            .forget-link a:hover {
-              color: white;
-            }
-             
-          `}
-          </style>
-
-      <style jsx>{`
-	
-  .right p {
-    margin: 2em 0 1em;
-  }
-
-  input, button {
-    width: calc(100% - 3em);
-    padding: .5em;
-    font-size: 1.3rem;
-    outline: none;
-    margin: 1em;
-  }
-
-   button {
-    width: calc(100% - 2em);
-    margin: 0;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-
-
-
-  @media only screen and (min-width: 1024px) {
-
-    .right {
-      text-align: center;
-      -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-      padding: 0 2em 1.5em;
-      -ms-grid-column-align: center;
-      justify-self: center;
-    }
-
-    .right input {
-      width: 100% !important;
-      margin: 1em 0;
-    }
-
-    .right button {
-      width: 100% !important;
+                </div>
+            </NewLayout>
+        );
     }
   }
-
-  @media only screen and (min-width: 1600px) {
-
-    .right {
-      padding: 0 !important;
-    }
-  }
-
-    `}
-  </style> */}
-
   
-      </AuthLayout>
-    );
-  }
-}
-
-export default LoginPage;
+  export default Login1Page;

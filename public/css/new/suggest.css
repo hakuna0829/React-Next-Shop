@@ -1,0 +1,109 @@
+.suggest .divider {
+	 margin-top: 10px;
+	 margin-bottom: 10px;
+	 border-bottom: 1px solid #ddd;
+}
+ .suggest .inner_suggest {
+	 padding: 0.5rem 1rem;
+}
+ .suggest .inner_suggest .filter_part .filter_btn {
+	 padding: 10px 20px;
+	 border: 1px solid #ddd;
+	 color: black;
+	 background-color: white;
+	 border-radius: 5px;
+	 font-weight: bold;
+	 margin-left: 10px;
+	 margin-right: 10px;
+}
+ .suggest .inner_suggest .artists h3 {
+	 margin-top: 20px;
+	 margin-bottom: 20px;
+}
+ .suggest .inner_suggest .artists .row {
+	 margin-top: 20px;
+	 margin-bottom: 20px;
+}
+ .suggest .inner_suggest .artists .row .card {
+	 border: none;
+}
+ .suggest .inner_suggest .artists .row .card .card-img-top {
+	 border-radius: 5px;
+}
+ .suggest .inner_suggest .artists .row .card .avatar {
+	 width: 90px;
+	 height: 90px;
+	 box-sizing: border-box;
+	 border: 6px solid white;
+	 border-radius: 50%;
+	 position: absolute;
+	 overflow: hidden;
+	 right: 25px;
+	 top: 227px;
+}
+ .suggest .inner_suggest .artists .row .card .avatar img {
+	 width: 90px;
+	 height: 90px;
+	 background-repeat: no-repeat;
+	 background-position: center center;
+}
+ .suggest .inner_suggest .artists .row .card .vetted {
+	 position: absolute;
+	 right: 25px;
+	 top: 306px;
+}
+ .suggest .inner_suggest .artists .row .card .vetted p {
+	 margin-bottom: 0px;
+	 padding: 0px 17px;
+	 background-color: black;
+	 color: white;
+	 border-radius: 25px;
+}
+ .suggest .inner_suggest .artists .row .card .card-body h5 {
+	 color: #7e7e7e;
+	 font-style: italic;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate {
+	 display: flex;
+	 align-items: center;
+	 justify-content: flex-start;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate .igroup {
+	 margin-right: 20px;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate .igroup i {
+	 border-radius: 25px;
+	 color: white;
+	 padding: 8px 12px;
+	 margin-right: 5px;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate .igroup .active {
+	 background-color: black;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate .igroup .inactive {
+	 background-color: #aaa9a9;
+}
+ .suggest .inner_suggest .artists .row .card .card-body .rate h6 {
+	 color: #aaa9a9;
+	 margin-bottom: 0px;
+}
+ .suggest .inner_suggest .pagination {
+	 justify-content: center;
+}
+ .suggest .inner_suggest .pagination .page-item .page-link {
+	 border: none;
+	 color: #7e7e7e;
+	 font-weight: bold;
+	 font-size: 20px;
+	 padding: 10px 17px;
+}
+ .suggest .inner_suggest .pagination .page-item .page-link:hover {
+	 background-color: transparent;
+}
+ .suggest .inner_suggest .pagination .page-item.active .page-link {
+	 font-weight: bold;
+	 border-radius: 25px;
+	 border: 1px solid #7e7e7e;
+	 background-color: transparent;
+}
+ 

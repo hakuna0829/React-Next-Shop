@@ -2,7 +2,7 @@ import React from 'react'
 import App from 'next/app'
 
 
-import css from "../style.css"
+import css from "../public/css/new/login.css"
 
 
 export default class MyApp extends App {

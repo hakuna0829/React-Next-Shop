@@ -1,0 +1,41 @@
+@media (min-width: 768px) {
+    .navbar-brand.abs
+        {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+        }
+}
+.navbar-brand.abs {
+    font-size: 50px;
+    color: black !important;
+    font-weight: bold;
+    top: 10px;
+    z-index: -1;
+}
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 2.375rem;
+      height: 2.375rem;
+      line-height: 2.375rem;
+      text-align: center;
+      pointer-events: none;
+      color: black;
+}
+.navbar .form-group {
+    margin-bottom: 0px;
+}
+.navbar .form-control {
+    color: black;
+    border: none;
+}
+.navbar input::placeholder { 
+    font-weight: bold;
+}

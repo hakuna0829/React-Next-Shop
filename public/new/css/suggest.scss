@@ -1,0 +1,119 @@
+.suggest {
+	.divider {
+		margin-top:10px;
+		margin-bottom: 10px;
+		border-bottom: 1px solid #ddd;
+	}
+	.inner_suggest {
+	    padding: .5rem 1rem;
+		.filter_part {
+	    	.filter_btn {
+	    		padding: 10px 20px;
+	    		border: 1px solid #ddd;
+	    		color: black;
+	    		background-color: white;
+	    		border-radius: 5px;
+	    		font-weight: bold;
+			    margin-left: 10px;
+	    		margin-right: 10px;
+	    	}
+	    }
+	    .artists {
+	    	h3 {
+				margin-top: 20px;
+	    		margin-bottom: 20px;
+	    	}
+	    	.row {
+	    		margin-top: 20px;
+	    		margin-bottom: 20px;
+	    		.card {
+		    		border: none;
+		    		.card-img-top {
+		    		 	border-radius: 5px;
+		    		}
+		    		.avatar {
+		    			width: 90px;
+					    height: 90px;
+					    box-sizing: border-box;
+					    border: 6px solid white;
+					    border-radius: 50%;
+					    position: absolute;
+					    overflow: hidden;
+					    right: 25px;
+					    top: 227px;
+					    img {
+				    	    width: 90px;
+						    height: 90px;
+						    background-repeat: no-repeat;
+						    background-position: center center;
+					    }
+		    		}
+		    		.vetted {
+					    position: absolute;
+					    right: 25px;
+					    top: 306px;
+					    p {
+					    	margin-bottom: 0px;
+						    padding: 0px 17px;
+						    background-color: black;
+						    color: white;
+						    border-radius: 25px;
+					    }
+		    		}
+		    		.card-body {
+		    			h5 {
+		    				color: #7E7E7E;
+		    				font-style: italic;
+		    			}
+		    			.rate {
+		    			    display: flex;
+						    align-items: center;
+						    justify-content: flex-start;
+		    				.igroup {
+		    					margin-right: 20px;
+		    					i {
+								    border-radius: 25px;
+								    color: white;
+							        padding: 8px 12px;
+			    				}
+			    				.active {
+			    					background-color: black;
+			    				}
+			    				.inactive {
+			    					background-color: #AAA9A9;
+			    				}
+		    				}
+		    				h6 {
+		    					color: #AAA9A9;
+		    					margin-bottom: 0px;
+		    				}
+		    			}
+		    		}
+		    	}
+	    	}
+	    }
+	    .pagination {
+		    justify-content: center;
+		    .page-item {
+		    	.page-link {
+		    		border: none;
+		    		color: #7E7E7E;
+		    		font-weight: bold;
+		    		font-size: 20px;
+		    		padding: 10px 17px;
+		    		&:hover {
+		    			background-color: transparent;
+		    		}	
+		    	}
+		    }
+		    .page-item.active {
+		    	.page-link {
+				    font-weight: bold;
+				    border-radius: 25px;
+				    border: 1px solid #7E7E7E;
+				    background-color: transparent;
+		    	}
+		    }
+	    }
+	}
+}
