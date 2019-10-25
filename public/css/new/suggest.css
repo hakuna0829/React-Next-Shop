@@ -27,6 +27,10 @@
  .suggest .inner_suggest .artists .row .card {
 	 border: none;
 }
+
+.suggest .inner_suggest .artists .row .card .card-header{
+	position: relative;
+}
  .suggest .inner_suggest .artists .row .card .card-img-top {
 	 border-radius: 5px;
 }
@@ -39,7 +43,7 @@
 	 position: absolute;
 	 overflow: hidden;
 	 right: 25px;
-	 top: 227px;
+	 bottom: -45px;
 }
  .suggest .inner_suggest .artists .row .card .avatar img {
 	 width: 90px;

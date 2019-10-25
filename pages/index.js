@@ -11,13 +11,13 @@ class SuggestPage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            artist: {}
+            artists: [1,2,3,4,5,6,7,8,9,10,11,12]
         };
 
     }
 
     render() {
-        const { artist } = this.state
+        const { artists } = this.state
         return (
             <NewLayout title={'Suggest'}>
                 <div className="suggest">
@@ -38,284 +38,37 @@ class SuggestPage extends React.Component {
                             <div className="artists">
                                 <h3>Suggested Artists</h3>
                                 <div className="row">
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
+                                    { artists.map((artist, i) => {     
+                                        return (
+                                            <div className="col-md-3">
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
+                                                        <span className="avatar">
+                                                            <img src="/images/new/artist1.png" alt=""/>
+                                                        </span>
                                                     </div>
-                                                    <h6>Brooklyn, NY</h6>
+                                                    
+                                                    <span className="vetted">
+                                                        <p>Vetted</p>
+                                                    </span>
+                                                    <div className="card-body">
+                                                        <h3>Clarie beckham</h3>
+                                                        <h5 className="experience">10 years of experience</h5>
+                                                        <div className="rate">
+                                                            <div className="igroup">
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign inactive"></i>
+                                                            </div>
+                                                            <h6>Brooklyn, NY</h6>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="card">
-                                            <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
-                                            <span className="avatar">
-                                                <img src="/images/new/artist1.png" alt=""/>
-                                            </span>
-                                            <span className="vetted">
-                                                <p>Vetted</p>
-                                            </span>
-                                            <div className="card-body">
-                                                <h3>Clarie beckham</h3>
-                                                <h5 className="experience">10 years of experience</h5>
-                                                <div className="rate">
-                                                    <div className="igroup">
-                                                        <i className="fas fa-dollar-sign active"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                        <i className="fas fa-dollar-sign inactive"></i>
-                                                    </div>
-                                                    <h6>Brooklyn, NY</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        ) 
+                                    })}
                                 </div>
                             </div>
                             <nav aria-label="Page navigation example">
