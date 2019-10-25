@@ -9,7 +9,7 @@ import Layout from '../components/layout';
 
 import constants from '../constants';
 
-import css from "../landing.css"
+//import css from "../landing.css"
 
 class ProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
@@ -78,6 +78,7 @@ class ProfilePage extends React.Component {
             
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
             <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
+            <link rel="stylesheet" type="text/css" href="css/landing.css"></link>
             <div id="student_public">
                 <div className="content">
                     <div className="row">

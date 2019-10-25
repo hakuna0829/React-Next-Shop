@@ -9,7 +9,7 @@ import Layout from '../components/layout';
 
 import constants from '../constants';
 
-import css from "../landing.css"
+//import css from "../landing.css"
 
 class CreateProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
@@ -245,6 +245,7 @@ class CreateProfilePage extends React.Component {
             <main>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="css/air2.global.responsive.12.9.0.min.css" />
+                <link rel="stylesheet" type="text/css" href="css/landing.css"></link>
                 <div className="eo-tabset breadcrumbs col-md-3">
                     <ul  className="nav nav-pills nav-stacked">
                         <li className={step == 0 ? 'active' : 'disabled'}><a ><span  aria-hidden="true" className="glyphicon m-0-left air-icon-draw-tool"></span>

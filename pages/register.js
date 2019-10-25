@@ -8,6 +8,8 @@ import Router from 'next/router';
 import constants from '../constants';
 import NewLayout from '../components/newlayout';
 
+// import css from "../style.css"
+
 const registerValidation = Yup.object().shape({
   first_name: Yup.string()
     .required('First Name is required.'),

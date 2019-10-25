@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import AuthLayout from '../components/authLayout';
+import NewLayout from '../components/newlayout';
 
-import css from "../style.css"
+// import css from "../style.css"
 
 const forgotPwdValidation = Yup.object().shape({
   email: Yup.string()
@@ -42,7 +42,7 @@ class ForgotPasswodPage extends React.Component {
 
   render() {
     return (
-      <AuthLayout title={ 'Forgot Password' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
+      <NewLayout title={ 'Forgot Password' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
 
                   <div className="right">
                     <Formik
@@ -152,7 +152,7 @@ class ForgotPasswodPage extends React.Component {
     `}
   </style> */}
 
-      </AuthLayout>
+      </NewLayout>
     );
   }
 }
