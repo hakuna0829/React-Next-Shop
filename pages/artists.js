@@ -46,14 +46,7 @@ class SuggestPage extends React.Component {
                 <div className="suggest">
                     <div className="divider"></div>
                     <div className="inner_suggest">
-                        <div className="container-fluid">
-                            <div className="filter_part">
-                                <i className="fas fa-filter"></i>
-                                <button className="filter_btn">Location</button>
-                                <button className="filter_btn">Experience</button>
-                                <button className="filter_btn">Rate</button>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div className="divider"></div>
                     <div className="inner_suggest">
@@ -95,26 +88,7 @@ class SuggestPage extends React.Component {
                                 </div>
                             </div>
                             <nav aria-label="Page navigation example">
-                                <ul className="pagination">
-                                    <li className="page-item">
-                                    <a className="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i className="fas fa-chevron-left"></i></span>
-                                    </a>
-                                    </li>
-                                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">4</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">5</a></li>
-                                    <li className="page-item"><a className="page-link" href="#"><i className="fas fa-ellipsis-h"></i></a></li>
-                                    <li className="page-item">
-                                    <a className="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">
-                                            <i className="fas fa-chevron-right"></i>
-                                        </span>
-                                    </a>
-                                    </li>
-                                </ul>
+                                
                             </nav>
                         </div>
                     </div>
