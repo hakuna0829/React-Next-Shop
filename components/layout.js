@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from './header';
 import Footer from './footer';
 
-import css from "../landing.css"
+//import css from "../landing.css"
 
 export default ({ children, title = 'Main' }) => (
   <div>

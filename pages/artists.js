@@ -9,7 +9,7 @@ import Layout from '../components/layout';
 
 import constants from '../constants';
 
-import css from "../landing.css"
+//import css from "../landing.css"
 
 class ArtistsPage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
