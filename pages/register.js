@@ -56,9 +56,16 @@ class RegisterPage extends React.Component {
     render() {
         return (
         <NewLayout title={ 'Register' } leftTitle={'Need Access?'} leftDescription={''}>
-
-                    <div className="right">
-                        <Formik
+          <div className="login1">
+              <div className="container">
+                  <div className="row">
+                      <div className="login_header">
+                          <h3>Sign Up</h3>
+                          <h6>Sign up via email and password.</h6>
+                      </div>
+                      <div className="divider"></div>
+                      <div className="login_content">
+                      <Formik
                         initialValues={{ first_name: '', last_name: '', email: '', role: 'client', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
@@ -162,67 +169,28 @@ class RegisterPage extends React.Component {
                             
                         )}
                         </Formik>
-                        <div className="link">
-                        <div className="d-flex justify-content-center links">
-                            Already have an account? <Link href="/login"><a>Log In</a></Link>
-                        </div>
-                        </div>
-                        
-                    </div>
-
-         {/* <style jsx>{`
-  
-    .right p {
-      margin: 2em 0 1em;
-    }
-
-    input, button {
-      width: calc(100% - 3em);
-      padding: .5em;
-      font-size: 1.3rem;
-      outline: none;
-      margin: 1em;
-    }
-
-     button {
-      width: calc(100% - 2em);
-      margin: 0;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    @media only screen and (min-width: 1024px) {
- 
-      .right {
-        text-align: center;
-        -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-        padding: 0 2em 1.5em;
-        -ms-grid-column-align: center;
-        justify-self: center;
-      }
-
-      .right input {
-        width: 100% !important;
-        margin: 1em 0;
-      }
-
-      .right button {
-        width: 100% !important;
-      }
-    }
-
-    @media only screen and (min-width: 1600px) {
-
-      .right {
-        padding: 0 !important;
-      }
-    }
-
-      `}
-    </style> */}
+                      </div>
+                      <div className="divider"></div>
+                      <div className="login_footer">
+                          <h3>Sign Up via Social Account</h3>
+                          <div className="btn_group">
+                              <button type="button" className="google">
+                                  <i className="fas fa-circle"></i>
+                                  <span>Google</span>
+                              </button>
+                              <button type="button" className="facebook">
+                                  <i className="fas fa-circle"></i>
+                                  <span>Facebook</span>
+                              </button>
+                          </div>
+                          <div className="link">
+                              <p><span>Already has an account?</span> &nbsp;<Link href="/login"><a>Log in</a></Link></p>
+                              <button>Artist Register</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </NewLayout>
         );
     }

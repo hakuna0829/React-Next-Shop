@@ -79,7 +79,7 @@ class Login1Page extends React.Component {
     render() {
         const { artist } = this.state
         return (
-            <NewLayout title={'Login1'}>
+            <NewLayout title={'Login'}>
                 <div className="login1">
                     <div className="container">
                         <div className="row">
