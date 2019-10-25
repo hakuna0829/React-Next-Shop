@@ -53,8 +53,8 @@
 }
  .suggest .inner_suggest .artists .row .card .vetted {
 	 position: absolute;
-	 right: 25px;
-	 top: 306px;
+	 right: 0;
+	 bottom: 0;
 }
  .suggest .inner_suggest .artists .row .card .vetted p {
 	 margin-bottom: 0px;

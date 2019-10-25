@@ -40,18 +40,17 @@ class SuggestPage extends React.Component {
                                 <div className="row">
                                     { artists.map((artist, i) => {     
                                         return (
-                                            <div className="col-md-3">
+                                            <div className="col-lg-3 col-md-6 col-sm-12">
                                                 <div className="card">
                                                     <div className="card-header">
                                                         <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
                                                         <span className="avatar">
                                                             <img src="/images/new/artist1.png" alt=""/>
+                                                            <span className="vetted">
+                                                                <p>Vetted</p>
+                                                            </span>
                                                         </span>
                                                     </div>
-                                                    
-                                                    <span className="vetted">
-                                                        <p>Vetted</p>
-                                                    </span>
                                                     <div className="card-body">
                                                         <h3>Clarie beckham</h3>
                                                         <h5 className="experience">10 years of experience</h5>
