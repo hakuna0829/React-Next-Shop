@@ -3,7 +3,7 @@ import Router from 'next/router';
 import axios from 'axios';
 
 
-import NewLayout from '../components/newLayout';
+import NewLayout from '../components/newlayout';
 
 
 class SuggestPage extends React.Component {
