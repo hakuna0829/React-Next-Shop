@@ -1,25 +1,18 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 
 
-import Layout from '../components/newlayout';
-
+import NewLayout from '../components/newlayout';
 import constants from '../constants';
 
-class ArtistsPage extends React.Component {
-    // static getInitialProps ({ query: { id } }) {
-    //   return { id };
-    // }
+class SuggestPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
             artists: []
         };
-
     }
 
     componentDidMount() {
@@ -45,72 +38,55 @@ class ArtistsPage extends React.Component {
         });
     }
 
-    createTable = () => {
-        
-        let table = []
-    
-        // Outer loop to create parent
-        for (let i = 0; i < 3; i++) {
-          let children = []
-          //Inner loop to create children
-          for (let j = 0; j < 5; j++) {
-            children.push(<td>{`Column ${j + 1}`}</td>)
-          }
-          //Create the parent and add the children
-          table.push(<tr>{children}</tr>)
-        }
-        return table
-      }
-
     render() {
         const { artists } = this.state
+        
         return (
-            <Layout title={'Artists'}>
-            
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
-            <div id="student_public">
-                
-                <div className="content">
-                    <div className="row">
-                        <div className="container">
-                            <div className="header">
-                                <div className="profile">
-                                    <br/>
-                                    <br/>
-                                </div>
+            <NewLayout title={'Suggest'}>
+                <div className="suggest">
+                    <div className="divider"></div>
+                    <div className="inner_suggest">
+                        <div className="container-fluid">
+                            <div className="filter_part">
+                                <i className="fas fa-filter"></i>
+                                <button className="filter_btn">Location</button>
+                                <button className="filter_btn">Experience</button>
+                                <button className="filter_btn">Rate</button>
                             </div>
-                            
-                            <div className="portfolio">
-                                <p className="category">Artists</p>
+                        </div>
+                    </div>
+                    <div className="divider"></div>
+                    <div className="inner_suggest">
+                        <div className="container-fluid">
+                            <div className="artists">
+                                <h3>Suggested Artists</h3>
                                 <div className="row">
                                     { artists.map((artist, i) => {     
                                         return (
-                                            <div className="col s12 m6 l6 xl6 " key={i}>
+                                            <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
-                                                    <div className="card-content">
-                                                        <span className="card-title">
-                                                            <img src="images/1.png" alt=""/>
-                                                            {artist.first_name} {artist.last_name}
+                                                    <div className="card-header">
+                                                        <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
+                                                        <span className="avatar">
+                                                            <img src="/images/new/artist1.png" alt=""/>
+                                                            
                                                         </span>
-                                                        <p>
-                                                            {artist.bio}
-                                                        </p>
-                                                        <p>
-                                                            {artist.work_site}
-                                                        </p>
-                                                        <p>
-                                                            {artist.skills}
-                                                        </p>
-                                                        <p>
-                                                            {artist.labels}
-                                                        </p>
+                                                        <span className="vetted">
+                                                                <p>Vetted</p>
+                                                            </span>
                                                     </div>
-                                                    <div className="card-action">
-                                                        <p className="italic">Location : {artist.location}</p>
-                                                        
-                                                        
-                                                        <p className="italic">Price : {artist.rate}</p>
+                                                    <div className="card-body">
+                                                        <h3>{artist.first_name} {artist.last_name}</h3>
+                                                        <h5 className="experience">{artist.experience} years of experience</h5>
+                                                        <div className="rate">
+                                                            <div className="igroup">
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign active"></i>
+                                                                <i className="fas fa-dollar-sign inactive"></i>
+                                                            </div>
+                                                            <h6>{artist.location}</h6>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,13 +94,34 @@ class ArtistsPage extends React.Component {
                                     })}
                                 </div>
                             </div>
+                            <nav aria-label="Page navigation example">
+                                <ul className="pagination">
+                                    <li className="page-item">
+                                    <a className="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true"><i className="fas fa-chevron-left"></i></span>
+                                    </a>
+                                    </li>
+                                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">4</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">5</a></li>
+                                    <li className="page-item"><a className="page-link" href="#"><i className="fas fa-ellipsis-h"></i></a></li>
+                                    <li className="page-item">
+                                    <a className="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i className="fas fa-chevron-right"></i>
+                                        </span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
-            </div>
-            </Layout>
+            </NewLayout>
         );
     }
   }
   
-  export default ArtistsPage;
+  export default SuggestPage;
