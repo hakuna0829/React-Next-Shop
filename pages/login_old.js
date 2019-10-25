@@ -16,7 +16,7 @@ const loginValidation = Yup.object().shape({
     .required('Password is required.')
 })
 
-import css from "../style.css"
+//import css from "../style.css"
 
 class LoginPage extends React.Component {
 
