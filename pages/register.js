@@ -6,9 +6,7 @@ import axios from 'axios';
 import Router from 'next/router';
 
 import constants from '../constants';
-import AuthLayout from '../components/authLayout';
-
-import css from "../style.css"
+import NewLayout from '../components/newlayout';
 
 const registerValidation = Yup.object().shape({
   first_name: Yup.string()
@@ -55,7 +53,7 @@ class RegisterPage extends React.Component {
 
     render() {
         return (
-        <AuthLayout title={ 'Register' } leftTitle={'Need Access?'} leftDescription={''}>
+        <NewLayout title={ 'Register' } leftTitle={'Need Access?'} leftDescription={''}>
 
                     <div className="right">
                         <Formik
@@ -223,7 +221,7 @@ class RegisterPage extends React.Component {
 
       `}
     </style> */}
-        </AuthLayout>
+        </NewLayout>
         );
     }
 }

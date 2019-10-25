@@ -85,6 +85,12 @@
  .login1 .container .row .login_footer .link p span {
    color: #cdcccc;
 }
+
+.login1 .container .row .login_footer .link p a {
+   color:black;
+   text-decoration: none;
+}
+
  .login1 .container .row .login_footer .link button {
    background-color: white;
    padding: 10px 20px;
