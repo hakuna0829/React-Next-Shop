@@ -110,7 +110,7 @@ class ForgotPasswodPage extends React.Component {
                             </button>
                         </div>
                         <div className="link">
-                            <p><span>Can Log in?</span> &nbsp;<Link href="/register"><a>Back to Login</a></Link></p>
+                            <p><span>Can Log in?</span> &nbsp;<Link href="/login"><a>Back to Login</a></Link></p>
                             <button>Forgot Password</button>
                         </div>
                     </div>

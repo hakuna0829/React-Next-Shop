@@ -5,11 +5,9 @@ import Router from 'next/router';
 import axios from 'axios';
 
 
-import Layout from '../components/layout';
+import Layout from '../components/newlayout';
 
 import constants from '../constants';
-
-//import css from "../landing.css"
 
 class ArtistsPage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
