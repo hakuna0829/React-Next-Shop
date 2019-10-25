@@ -13,11 +13,28 @@ class SuggestPage extends React.Component {
             loading: true,
             artists: [1,2,3,4,5,6,7,8,9,10,11,12]
         };
+    }
 
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData() {
+        let { artists } = this.state
+        artists = artists.map(artist => {
+            return {
+                name : "Claire beckham",
+                year : artist * 7 % 10,
+                rate : artist % 4,
+                location : "Brooklyn, New York"
+            }
+        })
+        this.setState({artists});
     }
 
     render() {
         const { artists } = this.state
+        
         return (
             <NewLayout title={'Suggest'}>
                 <div className="suggest">
@@ -40,20 +57,21 @@ class SuggestPage extends React.Component {
                                 <div className="row">
                                     { artists.map((artist, i) => {     
                                         return (
-                                            <div className="col-lg-3 col-md-6 col-sm-12">
+                                            <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
                                                     <div className="card-header">
                                                         <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
                                                         <span className="avatar">
                                                             <img src="/images/new/artist1.png" alt=""/>
-                                                            <span className="vetted">
+                                                            
+                                                        </span>
+                                                        <span className="vetted">
                                                                 <p>Vetted</p>
                                                             </span>
-                                                        </span>
                                                     </div>
                                                     <div className="card-body">
                                                         <h3>Clarie beckham</h3>
-                                                        <h5 className="experience">10 years of experience</h5>
+                                                        <h5 className="experience">{artist.year} years of experience</h5>
                                                         <div className="rate">
                                                             <div className="igroup">
                                                                 <i className="fas fa-dollar-sign active"></i>

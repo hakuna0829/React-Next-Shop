@@ -31,7 +31,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link href="/">
+                    <Link href="/index">
                         <a className="navbar-brand abs">CELESTE</a>
                     </Link>
                 </div>

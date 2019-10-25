@@ -18,7 +18,7 @@
 }
  .suggest .inner_suggest .artists h3 {
 	 margin-top: 20px;
-	 margin-bottom: 20px;
+	 margin-bottom: 0;
 }
  .suggest .inner_suggest .artists .row {
 	 margin-top: 20px;
@@ -28,13 +28,14 @@
 	 border: none;
 }
 
-.suggest .inner_suggest .artists .row .card .card-header{
+.suggest .inner_suggest .artists .row .card .card-header {
 	position: relative;
+	padding: 0;
 }
- .suggest .inner_suggest .artists .row .card .card-img-top {
+ .suggest .inner_suggest .artists .row .card .card-header .card-img-top {
 	 border-radius: 5px;
 }
- .suggest .inner_suggest .artists .row .card .avatar {
+ .suggest .inner_suggest .artists .row .card .card-header .avatar {
 	 width: 90px;
 	 height: 90px;
 	 box-sizing: border-box;
@@ -45,18 +46,18 @@
 	 right: 25px;
 	 bottom: -45px;
 }
- .suggest .inner_suggest .artists .row .card .avatar img {
+ .suggest .inner_suggest .artists .row .card .card-header .avatar img {
 	 width: 90px;
 	 height: 90px;
 	 background-repeat: no-repeat;
 	 background-position: center center;
 }
- .suggest .inner_suggest .artists .row .card .vetted {
+ .suggest .inner_suggest .artists .row .card .card-header .vetted {
 	 position: absolute;
-	 right: 0;
-	 bottom: 0;
+	 right: 32px;
+	 bottom: -60px;
 }
- .suggest .inner_suggest .artists .row .card .vetted p {
+ .suggest .inner_suggest .artists .row .card .card-header .vetted p {
 	 margin-bottom: 0px;
 	 padding: 0px 17px;
 	 background-color: black;
