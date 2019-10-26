@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import constants from '../constants';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import ProfileForm from '../components/ProfileForm';
 
 class ProfilePage extends React.Component {

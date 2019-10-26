@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import axios from 'axios';
-
+import { Spinner } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import constants from '../constants';
@@ -53,6 +53,7 @@ class SuggestPage extends React.Component {
                         <div className="container-fluid">
                             <div className="artists">
                                 <h3>Suggested Artists</h3>
+                                { loading ? <Spinner animation="border" variant="dark"/> : 
                                 <div className="row">
                                     { artists.map((artist, i) => {     
                                         return (
@@ -86,6 +87,7 @@ class SuggestPage extends React.Component {
                                         ) 
                                     })}
                                 </div>
+                                }
                             </div>
                             <nav aria-label="Page navigation example">
                                 
