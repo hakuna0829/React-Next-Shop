@@ -71,7 +71,7 @@ class UsersPage extends React.Component {
                     <div className="card-body">
                         <div className="table-responsive">
 
-                        { loading ? <Spinner animation="border" /> : 
+                        { loading ? <Spinner animation="border" variant="dark"/> : 
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                 <thead>
                                     <tr>
