@@ -5,7 +5,7 @@ import Router from 'next/router';
 import axios from 'axios';
 
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 
 import constants from '../constants';
 
