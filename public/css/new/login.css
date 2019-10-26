@@ -68,6 +68,9 @@
    border-radius: 25px;
    border: 1px solid #ddd;
 }
+.login1 .container .row .login_footer .btn_group button:first-child {
+   margin-right: 25px;
+}
  .login1 .container .row .login_footer .btn_group .google i {
    color: #de5843;
 }
