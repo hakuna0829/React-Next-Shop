@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import NewLayout from '../components/newlayout';
+import Layout from '../components/Layout';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()
@@ -79,7 +79,7 @@ class Login1Page extends React.Component {
     render() {
         const { artist } = this.state
         return (
-            <NewLayout title={'Login'}>
+            <Layout title={'Login'}>
                 <div className="login1">
                     <div className="container">
                         <div className="row">
@@ -173,7 +173,7 @@ class Login1Page extends React.Component {
                         </div>
                     </div>
                 </div>
-            </NewLayout>
+            </Layout>
         );
     }
   }

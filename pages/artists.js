@@ -3,7 +3,7 @@ import Router from 'next/router';
 import axios from 'axios';
 
 
-import NewLayout from '../components/newlayout';
+import Layout from '../components/Layout';
 import constants from '../constants';
 
 class SuggestPage extends React.Component {
@@ -42,7 +42,7 @@ class SuggestPage extends React.Component {
         const { artists } = this.state
         
         return (
-            <NewLayout title={'Suggest'}>
+            <Layout title={'Suggest'}>
                 <div className="suggest">
                     <div className="divider"></div>
                     <div className="inner_suggest">
@@ -93,7 +93,7 @@ class SuggestPage extends React.Component {
                         </div>
                     </div>
                 </div>
-            </NewLayout>
+            </Layout>
         );
     }
   }

@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import constants from '../constants';
-import NewLayout from '../components/newlayout';
+import Layout from '../components/Layout';
 
 
 const forgotPwdValidation = Yup.object().shape({
@@ -41,7 +41,7 @@ class ForgotPasswodPage extends React.Component {
 
   render() {
     return (
-      <NewLayout title={ 'Forgot Password' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
+      <Layout title={ 'Forgot Password' } leftTitle={'Welcome Back'} leftDescription={'Trouble Logging in?'}>
         <div className="login1">
             <div className="container">
                 <div className="row">
@@ -117,7 +117,7 @@ class ForgotPasswodPage extends React.Component {
                 </div>
             </div>
         </div>
-      </NewLayout>
+      </Layout>
     );
   }
 }

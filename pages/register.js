@@ -6,7 +6,7 @@ import axios from 'axios';
 import Router from 'next/router';
 
 import constants from '../constants';
-import NewLayout from '../components/newlayout';
+import Layout from '../components/Layout';
 
 const registerValidation = Yup.object().shape({
   first_name: Yup.string()
@@ -53,7 +53,7 @@ class RegisterPage extends React.Component {
 
     render() {
         return (
-        <NewLayout title={ 'Register' } leftTitle={'Need Access?'} leftDescription={''}>
+        <Layout title={ 'Register' } leftTitle={'Need Access?'} leftDescription={''}>
           <div className="login1">
               <div className="container">
                   <div className="row">
@@ -189,7 +189,7 @@ class RegisterPage extends React.Component {
                   </div>
               </div>
           </div>
-        </NewLayout>
+        </Layout>
         );
     }
 }
