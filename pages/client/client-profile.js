@@ -5,7 +5,7 @@ import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-import constants from '../constants';
+import constants from '../../constants';
 
 import Layout from '../../components/Layout';
 import ProfileForm from '../../components/ProfileForm';
