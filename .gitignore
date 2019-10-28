@@ -2,3 +2,4 @@
 .idea
 .vscode
 node_modules
+/constants/index.js
