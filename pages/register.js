@@ -33,7 +33,7 @@ class RegisterPage extends React.Component {
             cookie.set("token", response.data.token, {expire: 1})
 
             if(response.data.role == "artist") {
-              Router.push('/createProfile')
+              Router.push('/artist/create-profile')
             }
             if(response.data.role == "client") {
               Router.push('/search')

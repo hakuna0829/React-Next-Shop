@@ -49,7 +49,14 @@ class SearchPage extends React.Component {
                 <div className="suggest">
                     <div className="divider"></div>
                     <div className="inner_suggest">
-                        
+                        <div className="container-fluid">
+                            <div className="filter_part">
+                                <i className="fas fa-filter"></i>
+                                <button className="filter_btn">Location</button>
+                                <button className="filter_btn">Experience</button>
+                                <button className="filter_btn">Rate</button>
+                            </div>
+                        </div>
                     </div>
                     <div className="divider"></div>
                     <div className="inner_suggest">

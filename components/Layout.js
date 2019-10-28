@@ -46,7 +46,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
 
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link href="/profile">
+                            <Link href="/artist/profile">
                                 <a className="nav-link">
                                     <img src="/images/new/user.png" alt="Avatar"/>
                                 </a>

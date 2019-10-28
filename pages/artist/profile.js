@@ -6,10 +6,10 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 
 
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 
-import constants from '../constants';
-import {auth} from '../utils/auth';
+import constants from '../../constants';
+import {auth} from '../../utils/auth';
 
 class ProfilePage extends React.Component {
     static getInitialProps (ctx) {
@@ -59,7 +59,7 @@ class ProfilePage extends React.Component {
         //         console.log('artist/me response', response)
         //         if(response.data.artist.has_profile == false)
         //         {
-        //             Router.push('/createProfile') 
+        //             Router.push('/artist/create-profile') 
         //         }
         //         this.setState({
         //             loading: false,

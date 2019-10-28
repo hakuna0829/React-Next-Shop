@@ -6,11 +6,9 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 
 
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 
-import constants from '../constants';
-
-//import css from "../landing.css"
+import constants from '../../constants';
 
 class CreateProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
@@ -64,7 +62,7 @@ class CreateProfilePage extends React.Component {
           .then((response) => {
             console.log(response)
             if(response.data.auth == true) {
-                Router.push('/profile')
+                Router.push('/artist/profile')
             }
            
           })

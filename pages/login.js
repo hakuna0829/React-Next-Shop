@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-import constants from '../constants';
 import Layout from '../components/Layout';
+import constants from '../constants';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()
@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
       fetchData() {
         let token = cookie.get('token')
         if(token) {
-          Router.push('/profile')
+          Router.push('/artist/profile')
         }
       }
     
@@ -50,10 +50,10 @@ class LoginPage extends React.Component {
               cookie.set("token", response.data.token, { expires: 1 });
               if(response.data.role == "artist") {
                 if(response.data.has_profile == false) {
-                  Router.push('/createProfile')
+                  Router.push('/artist/create-profile')
                 }
                 else {
-                  Router.push('/dashboard')
+                  Router.push('/artist/dashboard')
                 }
               }
               else if(response.data.role == "client") {

@@ -24,18 +24,13 @@ export const auth = ctx => {
             console.log('artist/me response', response)
             if(response.data.artist.has_profile == false)
             {
-                ctx.res.writeHead(302, { Location: '/createProfile' })
+                ctx.res.writeHead(302, { Location: '/artist/create-profile' })
                 ctx.res.end()
             }
-            this.setState({
-                loading: false,
-                artist: response.data.artist
-            });
         })
         .catch((error) => {
             ctx.res.writeHead(302, { Location: '/' })
             ctx.res.end()
-            this.setState({loading: false});
         });
         return
     }
@@ -46,16 +41,11 @@ export const auth = ctx => {
         console.log('artist/me response', response)
         if(response.data.artist.has_profile == false)
         {
-            Router.push('/createProfile') 
+            Router.push('/artist/create-profile') 
         }
-        this.setState({
-            loading: false,
-            artist: response.data.artist
-        });
     })
     .catch((error) => {
         Router.push('/')
-        this.setState({loading: false});
     });
   
     
