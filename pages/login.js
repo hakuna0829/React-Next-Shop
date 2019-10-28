@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
     
       handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
         
-        axios.post(constants.serverUrl + 'api/login', values)
+        axios.post(constants.serverUrl + 'api/auth/login', values)
           .then((response) => {
             console.log('login response', response)
             

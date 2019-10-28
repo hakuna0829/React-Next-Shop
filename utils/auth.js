@@ -19,9 +19,9 @@ export const auth = ctx => {
     }
 
     if (ctx.req) {
-        axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
+        axios.get(constants.serverUrl + 'api/artists/me', { headers: { 'Authorization': token } })
         .then((response) => {
-            console.log('artist/me response', response)
+            console.log('in auth artists/me response', response)
             if(response.data.artist.has_profile == false)
             {
                 ctx.res.writeHead(302, { Location: '/artist/create-profile' })
@@ -36,9 +36,9 @@ export const auth = ctx => {
     }
 
     console.log('client route')
-    axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
+    axios.get(constants.serverUrl + 'api/artists/me', { headers: { 'Authorization': token } })
     .then((response) => {
-        console.log('artist/me response', response)
+        console.log('in auth artists/me response', response)
         if(response.data.artist.has_profile == false)
         {
             Router.push('/artist/create-profile') 

@@ -5,7 +5,6 @@ import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-
 import Layout from '../../components/Layout';
 
 import constants from '../../constants';
@@ -24,28 +23,7 @@ class ProfilePage extends React.Component {
             loading: true,
             artist: {}
         };
-
     }
-
-    // static async getInitialProps({req}){
-    //     if(req){
-    //       // called on server
-
-    //       console.log('server')
-    //     } else {
-    //       // called on client
-    //       console.log('client')
-    //     }
-        
-    //         axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
-    //         .then((response) => {
-    //             console.log('response', response)
-    //             return {
-    //                 artist : response.data.artist
-    //               }
-    //         })
-        
-    // }
 
     componentDidMount() {
        this.fetchData();
@@ -53,24 +31,24 @@ class ProfilePage extends React.Component {
 
     fetchData() {
         let token = cookie.get('token')
-        // this.setState({loading: true}, () => {
-        //     axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
-        //     .then((response) => {
-        //         console.log('artist/me response', response)
-        //         if(response.data.artist.has_profile == false)
-        //         {
-        //             Router.push('/artist/create-profile') 
-        //         }
-        //         this.setState({
-        //             loading: false,
-        //             artist: response.data.artist
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         Router.push('/')
-        //         this.setState({loading: false});
-        //     });
-        // });
+        this.setState({loading: true}, () => {
+            axios.get(constants.serverUrl + 'api/artists/me', { headers: { 'Authorization': token } })
+            .then((response) => {
+                console.log('artists/me response', response)
+                if(response.data.artist.has_profile == false)
+                {
+                    Router.push('/artist/create-profile') 
+                }
+                this.setState({
+                    loading: false,
+                    artist: response.data.artist
+                });
+            })
+            .catch((error) => {
+                Router.push('/')
+                this.setState({loading: false});
+            });
+        });
     }
 
     render() {
@@ -80,44 +58,25 @@ class ProfilePage extends React.Component {
             <Layout title={'Profile'}>
             
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/landing.css"></link>
+            <link rel="stylesheet" type="text/css" href="../css/profile.css"></link>
+            <link rel="stylesheet" type="text/css" href="../css/landing.css"></link>
             <div id="student_public">
                 <div className="content">
                     <div className="row">
                         <div className="container">
                             <div className="header">
                                 <div className="profile">
-                                    <img src="/images/user1.jpg" alt=""/>
+                                    <img src="/images/user7.jpg" alt=""/>
                                     <div className="personal_info">
-                                        <p className="name">{artist.first_name} {artist.last_name}</p>
-                                        <p className="job">Front-end Developer</p>
-                                        <p className="location">{artist.location}</p>
-                                        {/* <button>Connect</button> */}
+                                        <p className="name">{ artist.first_name } { artist.last_name }</p>
+                                        <p className="location">{ artist.location }</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="links">
-                                <div className="row">
-                                    <div className="col s6 m4 l4 xl4">
-                                        <p className="title">Bootcamp</p>
-                                        <p className="link">XYZ Academy</p>
-                                    </div>
-                                    <div className="col s6 m4 l4 xl4">
-                                        <p className="title">Website</p>
-                                        <p className="download">xyzacademy.com</p>
-                                    </div>
-                                    <div className="col s6 m4 l4 xl4">
-                                        <p className="title">LinkedIn</p>
-                                        <p className="link">Not Connected</p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div className="aboutme">
                                 <p className="category">About Me</p>
-                                <p>Hi! Nice to meet you.</p>
-                                <p>I'm a graduated of XYZ Academy, one of the top software development boot camps in the country.
-                                    While I was there, I learned technologies such a Node.js, React, SQL and Postgres</p>
+                                <p>{ artist.bio }</p>
                             </div>
                             <div className="skills">
                                 <p className="category">Skills</p>

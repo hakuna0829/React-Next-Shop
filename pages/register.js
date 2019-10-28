@@ -25,7 +25,7 @@ class RegisterPage extends React.Component {
 
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
 
-      axios.post(constants.serverUrl + 'api/register', values)
+      axios.post(constants.serverUrl + 'api/auth/register', values)
         .then((response) => {
           console.log('register response', response)
           

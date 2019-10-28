@@ -21,7 +21,7 @@ class ForgotPasswodPage extends React.Component {
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
     console.log(values)
 
-    axios.post(constants.serverUrl + 'api/request_password', values)
+    axios.post(constants.serverUrl + 'api/auth/request_password', values)
       .then((response) => {
         console.log(response)
         

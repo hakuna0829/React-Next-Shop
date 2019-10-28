@@ -16,6 +16,7 @@ class GigsPage extends React.Component {
     }
 
     render() {
+        const { pageTitle } = this.state
         return (
             <Layout title={ pageTitle }>
                 <div className="suggest">
