@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 import constants from '../constants';
 import Layout from '../components/Layout';
@@ -18,7 +19,7 @@ const loginValidation = Yup.object().shape({
 
 
 
-class Login1Page extends React.Component {
+class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +34,7 @@ class Login1Page extends React.Component {
       }
     
       fetchData() {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         if(token) {
           Router.push('/profile')
         }
@@ -46,14 +47,13 @@ class Login1Page extends React.Component {
             console.log('login response', response)
             
             if( response.data.auth == true ){
-              //setErrors({ "success" : response.data.message})
-              localStorage.setItem("token", response.data.token)
+              cookie.set("token", response.data.token, { expires: 1 });
               if(response.data.role == "artist") {
                 if(response.data.has_profile == false) {
                   Router.push('/createProfile')
                 }
                 else {
-                  Router.push('/profile')
+                  Router.push('/dashboard')
                 }
               }
               else if(response.data.role == "client") {
@@ -178,4 +178,4 @@ class Login1Page extends React.Component {
     }
   }
   
-  export default Login1Page;
+  export default LoginPage;

@@ -1,8 +1,9 @@
 import React from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
-
+import Rate from '../components/profile/Rate';
 import Layout from '../components/Layout';
 
 
@@ -24,8 +25,8 @@ class SuggestPage extends React.Component {
         artists = artists.map(artist => {
             return {
                 name : "Claire beckham",
-                year : artist * 7 % 10,
-                rate : artist % 4,
+                year : artist * 7 % 10 + 1,
+                rate : artist * 3 % 4 + 1,
                 location : "Brooklyn, New York"
             }
         })
@@ -36,7 +37,7 @@ class SuggestPage extends React.Component {
         const { artists } = this.state
         
         return (
-            <Layout title={'Suggest'}>
+            <Layout title={'Index'}>
                 <div className="suggest">
                     <div className="divider"></div>
                     <div className="inner_suggest">
@@ -73,12 +74,7 @@ class SuggestPage extends React.Component {
                                                         <h3>Clarie beckham</h3>
                                                         <h5 className="experience">{artist.year} years of experience</h5>
                                                         <div className="rate">
-                                                            <div className="igroup">
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign inactive"></i>
-                                                            </div>
+                                                            <Rate rate={+artist.rate}></Rate>
                                                             <h6>Brooklyn, NY</h6>
                                                         </div>
                                                     </div>

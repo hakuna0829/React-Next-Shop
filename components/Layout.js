@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Router from 'next/router';
 import Head from 'next/head';
+import Footer from './Footer';
 
 export default ({ children, title = 'Celeste', leftTitle = '', leftDescription = '' }) => (
   <div>
@@ -58,5 +59,6 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
         </nav>
         {children}
     </div>
+    <Footer></Footer>
   </div>
 );

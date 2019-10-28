@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 
 class Header extends React.Component {
@@ -15,14 +16,14 @@ class Header extends React.Component {
     }
     
     componentDidMount() {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         if(token) {
             this.setState({logged_in : true})
         }
     }
 
     logout() {
-        localStorage.removeItem("token")
+        cookie.remove('token')
         Router.push('/login')
     }
     

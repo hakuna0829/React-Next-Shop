@@ -3,6 +3,7 @@ import { Button, Spinner } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 import Layout from '../../components/Layout';
 
@@ -27,7 +28,7 @@ class UsersPage extends React.Component {
     }
 
     fetchData() {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/users', { headers: { 'Authorization': token } })
             .then((response) => {

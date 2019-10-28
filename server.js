@@ -19,6 +19,10 @@ app.prepare().then(() => {
     cookie: { maxAge: 60000 }
   }));
 
+  server.get("/artists/:id", (req, res) => {
+    console.log('profile page render', req.params.id)
+    return app.render(req, res, "/client/artistProfile", { id: req.params.id })
+  })
 
   server.get('*', (req, res) => {
     return handle(req, res);

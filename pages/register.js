@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import cookie from 'js-cookie';
 import Router from 'next/router';
 
 import constants from '../constants';
@@ -29,7 +30,7 @@ class RegisterPage extends React.Component {
           console.log('register response', response)
           
           if( response.data.auth == true  ){
-            localStorage.setItem("token", response.data.token)
+            cookie.set("token", response.data.token, {expire: 1})
 
             if(response.data.role == "artist") {
               Router.push('/createProfile')

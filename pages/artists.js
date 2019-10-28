@@ -1,12 +1,14 @@
 import React from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 import { Spinner } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
+import Rate from '../components/profile/Rate';
 import constants from '../constants';
 
-class SuggestPage extends React.Component {
+class ArtistsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +22,7 @@ class SuggestPage extends React.Component {
     }
 
     fetchData() {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/artists', { headers: { 'Authorization': token } })
             .then((response) => {
@@ -39,10 +41,10 @@ class SuggestPage extends React.Component {
     }
 
     render() {
-        const { artists } = this.state
+        const { artists, loading } = this.state
         
         return (
-            <Layout title={'Suggest'}>
+            <Layout title={'Artists'}>
                 <div className="suggest">
                     <div className="divider"></div>
                     <div className="inner_suggest">
@@ -73,12 +75,7 @@ class SuggestPage extends React.Component {
                                                         <h3>{artist.first_name} {artist.last_name}</h3>
                                                         <h5 className="experience">{artist.experience} years of experience</h5>
                                                         <div className="rate">
-                                                            <div className="igroup">
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign active"></i>
-                                                                <i className="fas fa-dollar-sign inactive"></i>
-                                                            </div>
+                                                            <Rate rate={+artist.rate}></Rate>
                                                             <h6>{artist.location}</h6>
                                                         </div>
                                                     </div>
@@ -100,4 +97,4 @@ class SuggestPage extends React.Component {
     }
   }
   
-  export default SuggestPage;
+  export default ArtistsPage;

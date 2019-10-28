@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 import constants from '../constants';
 
@@ -28,7 +29,7 @@ class ProfilePage extends React.Component {
     }
 
     fetchData() {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
             .then((response) => {
@@ -46,11 +47,7 @@ class ProfilePage extends React.Component {
         });
     }
 
-    logout() {
-        localStorage.removeItem("token")
-        Router.push('/login')
-    }
-    
+
     render() {
         const { user } = this.state
         return (
@@ -64,7 +61,7 @@ class ProfilePage extends React.Component {
                     </div>
                 </div>
                 <ProfileForm user={user}>
-                    <Button className="submit" onClick={this.logout} >Logout</Button>
+                    
                 </ProfileForm>
                 {/* { user.email } */}
                 

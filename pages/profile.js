@@ -3,18 +3,21 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 
 import Layout from '../components/Layout';
 
 import constants from '../constants';
-
-//import css from "../landing.css"
+import {auth} from '../utils/auth';
 
 class ProfilePage extends React.Component {
-    // static getInitialProps ({ query: { id } }) {
-    //   return { id };
-    // }
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        return { token }
+    }
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -49,25 +52,25 @@ class ProfilePage extends React.Component {
     }
 
     fetchData() {
-        let token = localStorage.getItem("token")
-        this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
-            .then((response) => {
-                console.log('artist/me response', response)
-                if(response.data.artist.has_profile == false)
-                {
-                    Router.push('/createProfile') 
-                }
-                this.setState({
-                    loading: false,
-                    artist: response.data.artist
-                });
-            })
-            .catch((error) => {
-                Router.push('/')
-                this.setState({loading: false});
-            });
-        });
+        let token = cookie.get('token')
+        // this.setState({loading: true}, () => {
+        //     axios.get(constants.serverUrl + 'api/artist/me', { headers: { 'Authorization': token } })
+        //     .then((response) => {
+        //         console.log('artist/me response', response)
+        //         if(response.data.artist.has_profile == false)
+        //         {
+        //             Router.push('/createProfile') 
+        //         }
+        //         this.setState({
+        //             loading: false,
+        //             artist: response.data.artist
+        //         });
+        //     })
+        //     .catch((error) => {
+        //         Router.push('/')
+        //         this.setState({loading: false});
+        //     });
+        // });
     }
 
     render() {

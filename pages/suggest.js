@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 
 import Layout from '../components/Layout';

@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 
 import Layout from '../components/Layout';
@@ -55,11 +56,11 @@ class CreateProfilePage extends React.Component {
     }
     
     saveProfile = () => {
-        let token = localStorage.getItem("token")
+        let token = cookie.get('token')
         let {...artist} = this.state
 
         console.log(artist)
-        axios.post(constants.serverUrl + 'api/artist/create', artist, { headers: { 'Authorization': token } })
+        axios.post(constants.serverUrl + 'api/artists', artist, { headers: { 'Authorization': token } })
           .then((response) => {
             console.log(response)
             if(response.data.auth == true) {

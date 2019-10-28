@@ -4,6 +4,7 @@ import Router from 'next/router';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import cookie from 'js-cookie';
 
 import constants from '../constants';
 import Layout from '../components/Layout';
