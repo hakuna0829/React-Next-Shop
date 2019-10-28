@@ -2,4 +2,5 @@
 .idea
 .vscode
 node_modules
+constants
 /constants/index.js
