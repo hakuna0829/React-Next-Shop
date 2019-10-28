@@ -7,10 +7,10 @@ import cookie from 'js-cookie';
 
 import constants from '../constants';
 
-import Layout from '../components/Layout';
-import ProfileForm from '../components/ProfileForm';
+import Layout from '../../components/Layout';
+import ProfileForm from '../../components/ProfileForm';
 
-class ProfilePage extends React.Component {
+class ClientProfilePage extends React.Component {
     // static getInitialProps ({ query: { id } }) {
     //   return { id };
     // }
@@ -70,4 +70,4 @@ class ProfilePage extends React.Component {
     }
   }
   
-  export default ProfilePage;
+  export default ClientProfilePage;
