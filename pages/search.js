@@ -63,7 +63,7 @@ class SearchPage extends React.Component {
                                             <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <Link href={`artists/${artist.id}`}><a><img src="/images/new/artist2.png" className="card-img-top" alt=""/></a></Link>
+                                                        <Link href={`client/artists/${artist.id}`}><a><img src="/images/new/artist2.png" className="card-img-top" alt=""/></a></Link>
                                                         <span className="avatar">
                                                             <img src="/images/new/artist1.png" alt=""/>
                                                             
