@@ -63,7 +63,7 @@ class ArtistProfilePage extends React.Component {
                         <div className="container">
                             <div className="header">
                                 <div className="profile">
-                                    <img src="/images/user6.jpg" alt=""/>
+                                    <img src={`/images/user${artist.id}.jpg`} alt=""/>
                                     <div className="personal_info">
                                         <h4 className="name">{artist.first_name} {artist.last_name}</h4>
                                         <h5 className="location">{artist.location}</h5>
@@ -90,7 +90,7 @@ class ArtistProfilePage extends React.Component {
                                             </div>
                                             <div className="card-action">
                                                 <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
+                                                {/* <img src="images/eye.svg" alt=""/> */}
                                             </div>
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@ class ArtistProfilePage extends React.Component {
                                             </div>
                                             <div className="card-action">
                                                 <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
+                                                {/* <img src="images/eye.svg" alt=""/> */}
                                             </div>
                                         </div>
                                     </div>

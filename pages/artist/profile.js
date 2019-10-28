@@ -112,7 +112,7 @@ class ProfilePage extends React.Component {
                                             </div>
                                             <div className="card-action">
                                                 <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
+                                                {/* <img src="images/eye.svg" alt=""/> */}
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@ class ProfilePage extends React.Component {
                                             </div>
                                             <div className="card-action">
                                                 <p className="italic">Dogerama & Co</p>
-                                                <img src="images/eye.svg" alt=""/>
+                                                {/* <img src="images/eye.svg" alt=""/> */}
                                             </div>
                                         </div>
                                     </div>

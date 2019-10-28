@@ -42,6 +42,15 @@
    color: #aba1a1;
    text-decoration: underline;
 }
+
+.login1 .container .row .login_content form .error {
+   color: red;
+}
+
+.login1 .container .row .login_content form .success {
+   color: blue;
+}
+
  .login1 .container .row .login_content form button {
    width: 100%;
    background-color: black;

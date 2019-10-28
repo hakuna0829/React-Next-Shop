@@ -25,7 +25,7 @@ class ForgotPasswodPage extends React.Component {
       .then((response) => {
         console.log(response)
         
-        if( response.data.auth == true ){
+        if( response.data.success == true){
           setErrors({ "success" : response.data.message})
         }
         else {
@@ -33,7 +33,7 @@ class ForgotPasswodPage extends React.Component {
         }
       })
       .catch((error) => {
-        this.setState({loading: false});
+        console.log('error', error)
       })
       .finally(() => {
           setSubmitting(false);
