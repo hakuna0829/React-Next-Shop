@@ -6,9 +6,9 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 
 
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 
-import constants from '../../constants';
+import constants from '../../../constants';
 
 class ArtistProfilePage extends React.Component {
     static getInitialProps ({ query: { id } }) {
