@@ -15,6 +15,7 @@ class ArtistProfilePage extends React.Component {
     static getInitialProps (ctx) {
         // Check user's session
         const token = auth(ctx);
+        console.log(ctx)
         let id = ctx.query.id;
         return { token, id }
     }

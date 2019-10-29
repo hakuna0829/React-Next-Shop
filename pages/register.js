@@ -28,14 +28,17 @@ class RegisterPage extends React.Component {
       axios.post(constants.serverUrl + 'api/auth/register', values)
         .then((response) => {
           console.log('register response', response)
+          console.log('register response.data.auth', response.data.auth)
           
           if( response.data.auth == true  ){
-            cookie.set("token", response.data.token, {expire: 1})
-
+            cookie.set("token", response.data.token, { expires : 1 })
+              console.log('response.data.role', response.data.role)
             if(response.data.role == "artist") {
+              console.log('artist')
               Router.push('/artist/create-profile')
             }
             if(response.data.role == "client") {
+              console.log('client')
               Router.push('/search')
             }
           }

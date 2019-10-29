@@ -9,11 +9,14 @@ import cookie from 'js-cookie';
 import Layout from '../../components/Layout';
 
 import constants from '../../constants';
+import {auth} from '../../utils/auth';
 
 class CreateProfilePage extends React.Component {
-    // static getInitialProps ({ query: { id } }) {
-    //   return { id };
-    // }
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        return { token }
+    }
     constructor(props) {
         super(props);
         this.state = {
