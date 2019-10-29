@@ -61,9 +61,9 @@ class SuggestPage extends React.Component {
                                             <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <img src="/images/new/artist2.png" className="card-img-top" alt=""/>
+                                                        <img src="/images/artist2.png" className="card-img-top" alt=""/>
                                                         <span className="avatar">
-                                                            <img src="/images/new/artist1.png" alt=""/>
+                                                            <img src="/images/artist1.png" alt=""/>
                                                             
                                                         </span>
                                                         <span className="vetted">

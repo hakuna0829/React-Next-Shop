@@ -9,12 +9,14 @@ import cookie from 'js-cookie';
 import Layout from '../../../components/Layout';
 
 import constants from '../../../constants';
+import {auth} from '../../../utils/auth';
 
 class ArtistProfilePage extends React.Component {
-    static getInitialProps ({ query: { id } }) {
-        console.log('query id', id)
-        
-        return { id };
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        let id = ctx.query.id;
+        return { token, id }
     }
 
     constructor(props) {
@@ -31,7 +33,7 @@ class ArtistProfilePage extends React.Component {
     }
 
     fetchData() {
-        let token = cookie.get('token')
+        let token = this.props.token
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/artists/' + this.props.id, { headers: { 'Authorization': token } })
             .then((response) => {

@@ -17,6 +17,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
         <link rel="stylesheet" href="/css/navbar.css" />
         <link rel="stylesheet" href="/css/login.css" />
         <link rel="stylesheet" href="/css/suggest.css" />
+        <link rel="stylesheet" href="/css/profile.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
             integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" 
             crossOrigin="anonymous"></link>
@@ -48,7 +49,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
                         <li className="nav-item">
                             <Link href="/artist/profile">
                                 <a className="nav-link">
-                                    <img src="/images/new/user.png" alt="Avatar"/>
+                                    <img src="/images/user.png" alt="Avatar"/>
                                 </a>
                             </Link>
                             

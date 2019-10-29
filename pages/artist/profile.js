@@ -57,79 +57,176 @@ class ProfilePage extends React.Component {
         return (
             <Layout title={'Profile'}>
             
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
-            <link rel="stylesheet" type="text/css" href="../css/profile.css"></link>
-            <link rel="stylesheet" type="text/css" href="../css/landing.css"></link>
-            <div id="student_public">
-                <div className="content">
+            <div className="profile">
+                <div className="profile_back">
+                    <img src="/images/background.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
+                    <span className="profile_avatar">
+                        <img src="/images/artist1.png" alt="User"/>
+                    </span>
+                    <button type="button" className="view">View Work</button>
+                    <button type="button" className="request">Request to Book</button>
+                </div>
+                <div className="profile_content">
                     <div className="row">
-                        <div className="container">
-                            <div className="header">
-                                <div className="profile">
-                                    <img src="/images/user7.jpg" alt=""/>
-                                    <div className="personal_info">
-                                        <p className="name">{ artist.first_name } { artist.last_name }</p>
-                                        <p className="location">{ artist.location }</p>
+                        <div className="col-md-4 intro">
+                            <h1>Ashley Simmons</h1>
+                            <div className="skill_group">
+                                <p className="skill">Skill 1</p>
+                                <p className="skill">Skill 2</p>
+                                <p className="skill">Skill 3</p>
+                            </div>
+                            <div className="location">
+                                <i className="fas fa-map-marker-alt"></i>
+                                <p>Brooklyn, NY USA</p>
+                            </div>
+                            <p className="reply">Usually replies in a couple hours</p>
+                            <div className="booking">
+                                <div className="booking_item">
+                                    <p className="number">457</p>
+                                    <p className="pointer">Bookings</p>
+                                </div>
+                                <div className="booking_item">
+                                    <div className="icon_group">
+                                        <i className="fas fa-dollar-sign active"></i>
+                                        <i className="fas fa-dollar-sign active"></i>
+                                        <i className="fas fa-dollar-sign active"></i>
+                                        <i className="fas fa-dollar-sign inactive"></i>
                                     </div>
+                                    <p className="pointer">Rate</p>
+                                </div>
+                                <div className="booking_item">
+                                    <p className="number">7</p>
+                                    <p className="pointer">Years exp</p>
                                 </div>
                             </div>
-                            
-                            <div className="aboutme">
-                                <p className="category">About Me</p>
-                                <p>{ artist.bio }</p>
+                            <div className="book_link">
+                                <button>
+                                    <a href="">Visit Portfolio Site</a>
+                                </button>
                             </div>
-                            <div className="skills">
-                                <p className="category">Skills</p>
-                                <div className="tags">
-                                    <span className="tag">React</span>
-                                    <span className="tag">Vue</span>
+                            <div className="social_group">
+                                <div className="i_item">
+                                    <i className="fab fa-youtube"></i>
+                                </div>
+                                <div className="i_item">
+                                    <i className="fab fa-instagram"></i>
                                 </div>
                             </div>
-                            <div className="education">
-                                <p className="category">Education</p>
-                                <div className="education_content">
-                                    <p className="degree">B.A. in Computer Science</p>
-                                    <p className="university">Berkley University</p>
-                                    <p className="year">2013-2016</p>
-                                    <p className="normal">After transferring on a scholarship, my two first years were spent working and studying at a boutique
-                                            design agency led by the course director. I was given the opportunity to work on large scale projects
-                                            for the university, local government and private business.</p>
-                                    <p className="normal">From there I started as a part-time remote designer for an environment nonprofits.</p>
+                        </div>
+                        <div className="col-md-7">
+                            <h5>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex eacommodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.
+                            </h5>
+                            <hr/>
+                            <div className="pricing">
+                                <h3>Pricing</h3>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
+                                </div>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
+                                </div>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
                                 </div>
                             </div>
-                            <div className="portfolio">
-                                <p className="category">Portfolio</p>
+                            <hr/>
+                            <div className="products">
+                                <h3>Products Used</h3>
                                 <div className="row">
-                                    <div className="col s12 m6 l6 xl6 ">
+                                    <div className="col-md-3">
                                         <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
-                                            </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                {/* <img src="images/eye.svg" alt=""/> */}
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col s12 m6 l6 xl6">
+                                    <div className="col-md-3">
                                         <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                {/* <img src="images/eye.svg" alt=""/> */}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="instagram">
+                                <div className="instagram_header">
+                                    <i className="fab fa-instagram"></i><h3>Instagram</h3>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
                                         </div>
                                     </div>
                                 </div>

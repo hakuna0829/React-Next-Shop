@@ -7,9 +7,18 @@ import { Spinner } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Rate from '../components/profile/Rate';
+
 import constants from '../constants';
+import {auth} from '../utils/auth';
 
 class SearchPage extends React.Component {
+
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        return { token }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -70,9 +79,9 @@ class SearchPage extends React.Component {
                                             <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <Link href={`client/artists/${artist.id}`}><a><img src="/images/new/artist2.png" className="card-img-top" alt=""/></a></Link>
+                                                        <Link href={`client/artists/${artist.id}`}><a><img src={`/images/user${artist.id}.jpg`} className="card-img-top" alt=""/></a></Link>
                                                         <span className="avatar">
-                                                            <img src="/images/new/artist1.png" alt=""/>
+                                                            <img src="/images/artist1.png" alt=""/>
                                                             
                                                         </span>
                                                         <span className="vetted">
