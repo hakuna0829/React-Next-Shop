@@ -6,8 +6,16 @@ import cookie from 'js-cookie';
 import Rate from '../components/profile/Rate';
 import Layout from '../components/Layout';
 
+import {auth} from '../utils/auth';
 
 class SuggestPage extends React.Component {
+
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        return { token }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
