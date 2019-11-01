@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
 import Layout from '../../components/Layout';
+import Rate from '../../components/profile/Rate';
+import Skills from '../../components/profile/Skills';
 
 import constants from '../../constants';
 import {auth} from '../../utils/auth';
@@ -34,10 +36,14 @@ class ProfilePage extends React.Component {
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/artists/me', { headers: { 'Authorization': token } })
             .then((response) => {
-                console.log('artists/me response', response)
-                if(response.data.artist.has_profile == false)
+                console.log('----- artists/me response', response)
+                console.log('----- role', response.data.artist.role)
+                if(response.data.artist.role == 'client') {
+                    return Router.push('/search')
+                }
+                else if(response.data.artist.has_profile == false)
                 {
-                    Router.push('/artist/create-profile') 
+                    return Router.push('/artist/create-profile') 
                 }
                 this.setState({
                     loading: false,
@@ -52,71 +58,63 @@ class ProfilePage extends React.Component {
     }
 
     render() {
-        const { artist } = this.state
+        const { artist, loading } = this.state
         //const { artist } = this.props;
         return (
             <Layout title={'Profile'}>
-            
+            { loading ? <Spinner animation="border" variant="dark"/> : 
             <div className="profile">
                 <div className="profile_back">
-                    <img src="/images/background.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
+                    <img src="/images/background1.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
                     <span className="profile_avatar">
                         <img src="/images/artist1.png" alt="User"/>
                     </span>
                     <button type="button" className="view">View Work</button>
-                    <button type="button" className="request">Request to Book</button>
                 </div>
                 <div className="profile_content">
                     <div className="row">
                         <div className="col-md-4 intro">
-                            <h1>Ashley Simmons</h1>
-                            <div className="skill_group">
-                                <p className="skill">Skill 1</p>
-                                <p className="skill">Skill 2</p>
-                                <p className="skill">Skill 3</p>
-                            </div>
+                            <h1>{ artist.first_name + " " + artist.last_name }</h1>
+                            <Skills skills={ artist.skills }></Skills>
                             <div className="location">
                                 <i className="fas fa-map-marker-alt"></i>
-                                <p>Brooklyn, NY USA</p>
+                                <p>{ artist.location }</p>
                             </div>
                             <p className="reply">Usually replies in a couple hours</p>
-                            <div className="booking">
-                                <div className="booking_item">
+                            <div className="numbers">
+                                <div className="numbers_item">
                                     <p className="number">457</p>
-                                    <p className="pointer">Bookings</p>
+                                    <p className="title">Bookings</p>
                                 </div>
-                                <div className="booking_item">
-                                    <div className="icon_group">
-                                        <i className="fas fa-dollar-sign active"></i>
-                                        <i className="fas fa-dollar-sign active"></i>
-                                        <i className="fas fa-dollar-sign active"></i>
-                                        <i className="fas fa-dollar-sign inactive"></i>
-                                    </div>
-                                    <p className="pointer">Rate</p>
+                                <div className="numbers_item">
+                                    <Rate rate={+artist.rate} groupClass="icon_group"></Rate>
+                                    <p className="title">Rate</p>
                                 </div>
-                                <div className="booking_item">
-                                    <p className="number">7</p>
-                                    <p className="pointer">Years exp</p>
+                                <div className="numbers_item">
+                                    <p className="number">{ artist.experience }</p>
+                                    <p className="title">Years exp</p>
                                 </div>
                             </div>
                             <div className="book_link">
-                                <button>
-                                    <a href="">Visit Portfolio Site</a>
-                                </button>
+                                <div>
+                                    <Link href={ artist.work_site }><a>Visit Portfolio Site</a></Link>
+                                </div>
                             </div>
                             <div className="social_group">
-                                <div className="i_item">
-                                    <i className="fab fa-youtube"></i>
-                                </div>
-                                <div className="i_item">
-                                    <i className="fab fa-instagram"></i>
-                                </div>
+                                <Link href={ artist.instagram_url }><a>
+                                    <div className="i_item">
+                                        <i className="fab fa-youtube"></i>
+                                    </div>
+                                </a></Link>
+                                <Link href={ artist.instagram_url }><a>
+                                    <div className="i_item">
+                                        <i className="fab fa-instagram"></i>
+                                    </div>
+                                </a></Link>
                             </div>
                         </div>
                         <div className="col-md-7">
-                            <h5>
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex eacommodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.
+                            <h5 dangerouslySetInnerHTML={{__html: artist.bio }}>
                             </h5>
                             <hr/>
                             <div className="pricing">
@@ -235,6 +233,7 @@ class ProfilePage extends React.Component {
                     </div>
                 </div>
             </div>
+            }
             </Layout>
         );
     }

@@ -8,9 +8,9 @@ class Rate extends React.Component {
     }
     
     render() {
-        const {rate} = this.props
+        const {rate, groupClass} = this.props
         return (
-            <div className="igroup">
+            <div className={groupClass ? groupClass : 'igroup' }>
                 <i className={`fas fa-dollar-sign ${rate >= 1 ? 'active' : 'inactive'}`}></i>
                 <i className={`fas fa-dollar-sign ${rate >= 2 ? 'active' : 'inactive'}`}></i>
                 <i className={`fas fa-dollar-sign ${rate >= 3 ? 'active' : 'inactive'}`}></i>

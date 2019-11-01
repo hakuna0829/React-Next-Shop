@@ -81,7 +81,7 @@ class SearchPage extends React.Component {
                                                     <div className="card-header">
                                                         <Link href={`client/artists/${artist.id}`}><a><img src={`/images/user${artist.id}.jpg`} className="card-img-top" alt=""/></a></Link>
                                                         <span className="avatar">
-                                                            <img src="/images/artist1.png" alt=""/>
+                                                            <img src={`/images/user${artist.id}.jpg`} alt=""/>
                                                             
                                                         </span>
                                                         <span className="vetted">

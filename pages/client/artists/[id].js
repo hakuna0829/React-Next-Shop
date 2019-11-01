@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
@@ -7,6 +7,8 @@ import cookie from 'js-cookie';
 
 
 import Layout from '../../../components/Layout';
+import Rate from '../../../components/profile/Rate';
+import Skills from '../../../components/profile/Skills';
 
 import constants from '../../../constants';
 import {auth} from '../../../utils/auth';
@@ -15,10 +17,15 @@ class ArtistProfilePage extends React.Component {
     static getInitialProps (ctx) {
         // Check user's session
         const token = auth(ctx);
-        console.log(ctx)
         let id = ctx.query.id;
         return { token, id }
     }
+
+    // static getInitialProps ({ query: { id } }) {
+    //     console.log('query id', id)
+        
+    //     return { id };
+    // }
 
     constructor(props) {
         super(props);
@@ -53,64 +60,174 @@ class ArtistProfilePage extends React.Component {
     }
 
     render() {
-        const { artist } = this.state
+        const { artist, loading } = this.state
+        //const { artist } = this.props;
         return (
             <Layout title={'Profile'}>
-            
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/profile.css"></link>
-            <link rel="stylesheet" type="text/css" href="css/landing.css"></link>
-            <div id="student_public">
-                <div className="content">
+            { loading ? <Spinner animation="border" variant="dark"/> : 
+            <div className="profile">
+                <div className="profile_back">
+                    <img src="/images/background1.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
+                    <span className="profile_avatar">
+                        <img src={`/images/user${ artist.id }.jpg`} alt="User"/>
+                    </span>
+                    <button type="button" className="view">View Work</button>
+                    <Link href='/client/book/2'><a className="request">Request to Book</a></Link>
+                </div>
+                <div className="profile_content">
                     <div className="row">
-                        <div className="container">
-                            <div className="header">
-                                <div className="profile">
-                                    <img src={`/images/user${artist.id}.jpg`} alt=""/>
-                                    <div className="personal_info">
-                                        <h4 className="name">{artist.first_name} {artist.last_name}</h4>
-                                        <h5 className="location">{artist.location}</h5>
-                                    </div>
+                        <div className="col-md-4 intro">
+                            <h1>{ artist.first_name + " " + artist.last_name }</h1>
+                            <Skills skills={ artist.skills }></Skills>
+                            <div className="location">
+                                <i className="fas fa-map-marker-alt"></i>
+                                <p>{ artist.location }</p>
+                            </div>
+                            <p className="reply">Usually replies in a couple hours</p>
+                            <div className="numbers">
+                                <div className="numbers_item">
+                                    <p className="number">457</p>
+                                    <p className="title">Bookings</p>
+                                </div>
+                                <div className="numbers_item">
+                                    <Rate rate={+artist.rate} groupClass="icon_group"></Rate>
+                                    <p className="title">Rate</p>
+                                </div>
+                                <div className="numbers_item">
+                                    <p className="number">{ artist.experience }</p>
+                                    <p className="title">Years exp</p>
                                 </div>
                             </div>
-                            <div className="aboutme">
-                                <p className="category">About Me</p>
-                                <p>{artist.bio}</p>
+                            <div className="book_link">
+                                <div>
+                                    <Link href={ artist.work_site }><a>Visit Portfolio Site</a></Link>
+                                </div>
                             </div>
-                            
-                            <div className="portfolio">
-                                <p className="category">Portfolio</p>
+                            <div className="social_group">
+                                <Link href={ artist.instagram_url }><a>
+                                    <div className="i_item">
+                                        <i className="fab fa-youtube"></i>
+                                    </div>
+                                </a></Link>
+                                <Link href={ artist.instagram_url }><a>
+                                    <div className="i_item">
+                                        <i className="fab fa-instagram"></i>
+                                    </div>
+                                </a></Link>
+                            </div>
+                        </div>
+                        <div className="col-md-7">
+                            <h5 dangerouslySetInnerHTML={{__html: artist.bio }}>
+                            </h5>
+                            <hr/>
+                            <div className="pricing">
+                                <h3>Pricing</h3>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
+                                </div>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
+                                </div>
+                                <div className="pricing_item">
+                                    <div className="text">
+                                        <p className="bold">Per face</p>
+                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                    </div>
+                                    <p className="price">$250</p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="products">
+                                <h3>Products Used</h3>
                                 <div className="row">
-                                    <div className="col s12 m6 l6 xl6 ">
+                                    <div className="col-md-3">
                                         <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
-                                            </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                {/* <img src="images/eye.svg" alt=""/> */}
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col s12 m6 l6 xl6">
+                                    <div className="col-md-3">
                                         <div className="card">
-                                            <div className="card-content">
-                                                <span className="card-title">
-                                                    Dogs without borders <br/> A case study about borders
-                                                </span>
-                                                <p>
-                                                    What happens when you remove any and all borders from dogs? Let me show you.
-                                                </p>
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
-                                            <div className="card-action">
-                                                <p className="italic">Dogerama & Co</p>
-                                                {/* <img src="images/eye.svg" alt=""/> */}
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                            <div className="card-body">
+                                                <h5 className="card-title">BRIOGEO</h5>
+                                                <p className="card-text">Scalp Revival Charcoal + </p>
+                                                <p className="card-text">Coconut Oil Micro -</p>
+                                                <p className="card-text">exfoliating Shampoo</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="instagram">
+                                <div className="instagram_header">
+                                    <i className="fab fa-instagram"></i><h3>Instagram</h3>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="card">
+                                            <img src="/images/product.png" className="card-img-top" alt="..."/>
                                         </div>
                                     </div>
                                 </div>
@@ -119,6 +236,7 @@ class ArtistProfilePage extends React.Component {
                     </div>
                 </div>
             </div>
+            }
             </Layout>
         );
     }
