@@ -5,7 +5,6 @@ import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-
 import Layout from '../../components/Layout';
 
 import constants from '../../constants';
@@ -21,10 +20,9 @@ class CreateProfilePage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            user: {},
             step: 0,
             max_step: 6,
-
+            picture_file: '',
             picture: '',
             bio: 'Temporary',
             work_site: 'work.com',
@@ -35,16 +33,46 @@ class CreateProfilePage extends React.Component {
             instagram_url: '',
             facebook_url: '',
             linkedin_url: '',
+            social_accounts: [],
             skills: 'html, css',
             labels: 'bootstrap',
             experience: 5,
-            pricing_types: 'Wedding Makeup',
-            prices: 100,
-            work_photos: ''
-        
+            work_photos: [],
+            pricings: [{ 
+                title: "Wedding makeup", 
+                description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt", 
+                price: 100 
+            }]
         };
 
     }
+
+    componentDidMount() {
+        this.fetchData();
+     }
+ 
+     fetchData() {
+         let token = cookie.get('token')
+         this.setState({loading: true}, () => {
+             axios.get(constants.serverUrl + 'api/artists/me', { headers: { 'Authorization': token } })
+             .then((response) => {
+                 console.log('----- artists/me response', response)
+                 console.log('----- role', response.data.artist.role)
+                 if(response.data.artist.role == 'client') {
+                     return Router.push('/search')
+                 }
+                 else if(response.data.artist.has_profile == true)
+                 {
+                     return Router.push('/artist/profile') 
+                 }
+             })
+             .catch((error) => {
+                 console.log(error)
+                 Router.push('/')
+             });
+         });
+    }
+
     gotoStep = (dir) => {
         let step = this.state.step + dir
         if( step < 0)
@@ -64,13 +92,12 @@ class CreateProfilePage extends React.Component {
         axios.post(constants.serverUrl + 'api/artists', artist, { headers: { 'Authorization': token } })
           .then((response) => {
             console.log(response)
-            if(response.data.auth == true) {
-                Router.push('/artist/profile')
-            }
+            Router.push('/artist/profile')
            
           })
           .catch((error) => {
-            this.setState({loading: false});
+            console.log(error)
+            //this.setState({loading: false});
           })
     }
     
@@ -84,19 +111,162 @@ class CreateProfilePage extends React.Component {
         });
     }
 
+    fileSelectedHandler = e => {
+        console.log('file', e.target.files[0]);
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        if(!file)
+            return
+        reader.onloadend = () => {
+            this.setState({
+                picture_file: file.name,
+                picture: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
+    }
+
+    handlePricingTitleChange = idx => evt => {
+        const newPricings = this.state.pricings.map((pricing, sidx) => {
+          if (idx !== sidx) return pricing;
+          return { ...pricing, title: evt.target.value };
+        });
+    
+        this.setState({ pricings: newPricings });
+    };
+    
+    handlePricingPriceChange = idx => evt => {
+        const newPricings = this.state.pricings.map((pricing, sidx) => {
+          if (idx !== sidx) return pricing;
+          return { ...pricing, price: evt.target.value };
+        });
+    
+        this.setState({ pricings: newPricings });
+    };
+    
+    handleAddPricing = () => {
+        this.setState({
+            pricings: this.state.pricings.concat([{ title: "", description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt", price: "" }])
+        });
+    };
+    
+    handleRemovePricing = idx => () => {
+        this.setState({
+            pricings: this.state.pricings.filter((s, sidx) => idx !== sidx)
+        });
+    };
+
+    handleWorkPhotoTitleChange = idx => evt => {
+        const newWorkPhoto = this.state.work_photos.map((photo, sidx) => {
+          if (idx !== sidx) return photo;
+          return { ...photo, title: evt.target.value };
+        });
+    
+        this.setState({ work_photos: newWorkPhoto });
+    };
+
+    handleWorkPhotoDescriptionChange = idx => evt => {
+        const newWorkPhoto = this.state.work_photos.map((photo, sidx) => {
+          if (idx !== sidx) return photo;
+          return { ...photo, description: evt.target.value };
+        });
+    
+        this.setState({ work_photos: newWorkPhoto });
+    };
+    
+    
+    handleWorkPhotoFileChange = (e, idx) => {
+        
+        console.log(idx)
+        console.log(e.target.files[0]);
+        let reader = new FileReader();
+        let file = e.target.files[0];
+
+        if(!file)
+            return
+        reader.onloadend = () => {
+
+            const newWorkPhoto = this.state.work_photos.map((photo, sidx) => {
+                if (idx !== sidx) return photo;
+                return { ...photo, file: file.name, photo: reader.result };
+            });
+          
+            this.setState({ work_photos: newWorkPhoto });
+        }
+
+        reader.readAsDataURL(file)
+    }
+
+    handleAddWorkPhoto = () => {
+        this.setState({
+            work_photos: this.state.work_photos.concat([{ file: "", photo: "", title: "", description: "" }])
+        });
+    };
+    
+    handleRemoveWorkPhoto = idx => () => {
+        this.setState({
+            work_photos: this.state.work_photos.filter((s, sidx) => idx !== sidx)
+        });
+    };
+
+    handleSocialAccountTypeChange = idx => evt => {
+        const newAccounts = this.state.social_accounts.map((account, sidx) => {
+          if (idx !== sidx) return account;
+          return { ...account, type: evt.target.value };
+        });
+    
+        this.setState({ social_accounts: newAccounts });
+    };
+
+    handleSocialAccountLinkChange = idx => evt => {
+        const newAccounts = this.state.social_accounts.map((account, sidx) => {
+          if (idx !== sidx) return account;
+          return { ...account, link: evt.target.value };
+        });
+    
+        this.setState({ social_accounts: newAccounts });
+    };
+
+    handleAddSocialAccount = () => {
+        this.setState({
+            social_accounts: this.state.social_accounts.concat([{ type: "", link: ""}])
+        });
+    };
+    
+    handleRemoveSocialAccount = idx => () => {
+        this.setState({
+            social_accounts: this.state.social_accounts.filter((s, sidx) => idx !== sidx)
+        });
+    };
     
     ProfileStep = () => {
-        let {step} = this.state
+        let {step, picture} = this.state
+
+        let $imagePreview = null;
+        if (picture) {
+            $imagePreview = (<img width="200" height="200" src={picture} />);
+        } else {
+            $imagePreview = (<img width="200" height="200" src={'/images/product.png'} />);
+        }
+
         switch(step) {
           case 0:
             return (
-                <div className="row">
+                <div className="row profile-step">
                     <div className="col-lg-6">
                         <div className="form-group">
                             <label htmlFor="picture" className="control-label">Picture</label> 
-                            <input id="picture" placeholder="picture" type="file" className="form-control" onChange={this.handleChange}
-                                name="picture"
-                                value={this.state.picture}/>
+                            <input id="picture" placeholder="picture" type="file" 
+                                    name="picture"
+                                    className="form-control" onChange={this.fileSelectedHandler}
+                                    accept=".jpg,.jpeg,.png,.bmp"
+                                    value="" 
+                                />
+                            <div className="imgPreview">
+                                {$imagePreview}
+                            </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="bio" className="control-label">Bio</label> 
@@ -153,28 +323,73 @@ class CreateProfilePage extends React.Component {
             );
         case 3:
             return (
-                <div className="row">
-                    <div className="col-lg-6">
-                        <h2> Connect Social Accounts</h2>
-                        <div className="form-group">
-                            <label htmlFor="instagram_url" className="control-label">Instagram</label> 
-                            <input id="instagram_url" placeholder="Instagram" type="text" className="form-control" onChange={this.handleChange}
-                                name="instagram_url"
-                                value={this.state.instagram_url}/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="facebook_url" className="control-label">Facebook</label> 
-                            <input id="facebook_url" placeholder="Facebook" type="text" className="form-control" onChange={this.handleChange}
-                                name="facebook_url"
-                                value={this.state.facebook_url}/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="linkedin_url" className="control-label">Linkedin</label> 
-                            <input id="linkedin_url" placeholder="Linkedin" type="text" className="form-control" onChange={this.handleChange}
-                                name="linkedin_url"
-                                value={this.state.linkedin_url}/>
+                <div>
+                    <div className="row">
+                        <div className="col-lg-4">
+                            <h2> Connect Social Accounts</h2>
+                            <div className="form-group">
+                                <label htmlFor="instagram_url" className="control-label">Instagram</label> 
+                                <input id="instagram_url" placeholder="Instagram" type="text" className="form-control" onChange={this.handleChange}
+                                    name="instagram_url"
+                                    value={this.state.instagram_url}/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="facebook_url" className="control-label">Facebook</label> 
+                                <input id="facebook_url" placeholder="Facebook" type="text" className="form-control" onChange={this.handleChange}
+                                    name="facebook_url"
+                                    value={this.state.facebook_url}/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="linkedin_url" className="control-label">Linkedin</label> 
+                                <input id="linkedin_url" placeholder="Linkedin" type="text" className="form-control" onChange={this.handleChange}
+                                    name="linkedin_url"
+                                    value={this.state.linkedin_url}/>
+                            </div>
                         </div>
                     </div>
+                    {this.state.social_accounts.map((account, idx) => (
+                        <div className="row" key={idx}>
+                            <div className="col-lg-4">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Account #${idx + 1} type`}
+                                        value={account.type}
+                                        onChange={this.handleSocialAccountTypeChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Account #${idx + 1} link`}
+                                        value={account.link}
+                                        onChange={this.handleSocialAccountLinkChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <button
+                                    type="button"
+                                    onClick={this.handleRemoveSocialAccount(idx)}
+                                    className="btn btn-primary"
+                                    >
+                                    Remove Account
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={this.handleAddSocialAccount}
+                        className="small"
+                        className="btn btn-primary"
+                        >
+                        Add Account
+                    </button>
                 </div>
             );
         case 4:
@@ -204,36 +419,130 @@ class CreateProfilePage extends React.Component {
             );
         case 5:
             return (
-                <div className="row">
-                    <div className="col-lg-12">
-                        <h2>Pricing</h2>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="form-group">
-                            <input name="pricing_types" placeholder="Wedding makeup" type="text" className="form-control" onChange={this.handleChange}
-                                value={this.state.pricing_types}/>
+                <div>
+                    <h1>
+                        Price
+                    </h1>
+                    {this.state.pricings.map((pricing, idx) => (
+                        <div className="row" key={idx}>
+                            <div className="col-lg-4">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Pricing #${idx + 1} title`}
+                                        value={pricing.title}
+                                        onChange={this.handlePricingTitleChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Pricing #${idx + 1} price`}
+                                        value={pricing.price}
+                                        onChange={this.handlePricingPriceChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <button
+                                    type="button"
+                                    onClick={this.handleRemovePricing(idx)}
+                                    className="btn btn-primary"
+                                    >
+                                    Remove Pricing
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="col-lg-6">
-                        <div className="form-group">
-                            <input name="prices" placeholder="250$" type="text" className="form-control" onChange={this.handleChange}
-                                value={this.state.prices}/>
-                        </div>
-                    </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={this.handleAddPricing}
+                        className="small"
+                        className="btn btn-primary"
+                        >
+                        Add Pricing
+                    </button>
                 </div>
             );
         case 6:
             return (
-                <div className="row">
-                    <div className="col-lg-6">
-                        <div className="form-group">
-                            <label htmlFor="work_photos" className="control-label">Add Photos of your work</label> 
-                            <input id="work_photos" placeholder="work_photos" type="text" className="form-control" onChange={this.handleChange}
-                                name="work_photos"
-                                value={this.state.work_photos}/>
+                <div>
+                    <h1>
+                        Work Photo
+                    </h1>
+                    {this.state.work_photos.map((work_photo, idx) => (
+                        <div className="row" key={idx}>
+                            <div className="col-lg-3">
+                                <div className="form-group">
+                                    <input
+                                        type="file"
+                                        className="form-control"
+                                        placeholder={`Work Photo #${idx + 1}`}
+                                        onChange={(e) => this.handleWorkPhotoFileChange(e, idx)}
+                                        accept=".jpg,.jpeg,.png,.bmp"
+                                        value="" 
+                                    />
+                                </div>
+                                { work_photo.photo ? 
+                                    <img width="200" height="200" src={work_photo.photo} /> : 
+                                    <img width="200" height="200" src={'/images/product.png'} /> }
+                            </div>
+                            <div className="col-lg-3">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Photo #${idx + 1} title`}
+                                        value={work_photo.title}
+                                        onChange={this.handleWorkPhotoTitleChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Photo #${idx + 1} description`}
+                                        value={work_photo.description}
+                                        onChange={this.handleWorkPhotoDescriptionChange(idx)}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <button
+                                    type="button"
+                                    onClick={this.handleRemoveWorkPhoto(idx)}
+                                    className="btn btn-primary"
+                                    >
+                                    Remove Work Photo
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={this.handleAddWorkPhoto}
+                        className="small"
+                        className="btn btn-primary"
+                        >
+                        Add Work Photo
+                    </button>
                 </div>
+                // <div className="row">
+                //     <div className="col-lg-6">
+                //         <div className="form-group">
+                //             <label htmlFor="work_photos" className="control-label">Add Photos of your work</label> 
+                //             <input id="work_photos" placeholder="work_photos" type="text" className="form-control" onChange={this.handleChange}
+                //                 name="work_photos"
+                //                 value={this.state.work_photos}/>
+                //         </div>
+                //     </div>
+                // </div>
             );
         default:
             return null;
@@ -241,7 +550,7 @@ class CreateProfilePage extends React.Component {
     }
     
     render() {
-        const { user, step } = this.state
+        const { step } = this.state
         return (
             <Layout title={'Profile Initial'}>
             <main>
@@ -285,22 +594,28 @@ class CreateProfilePage extends React.Component {
                     <div className="air-card m-0-top p-0-top-bottom">
                         
                                 {this.ProfileStep()}
-                                <div className="btn-row">
-                                    {/* <a href="/freelancers/#specializedwork_sites" target="_self" className="btn btn-default ellipsis">
-                                        Cancel
-                                    </a> */}
-                                    
-                                    <button className="btn btn-default ellipsis" type="button" onClick={() => {this.gotoStep(-1)}}> Back </button>
-                                    
-                                    { step == 6 ? (<button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>) : ( <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button> ) }
-
-                                    <button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>
-                                </div>
+                                
                             
                         
                     </div>
+                    <div className="btn-row">
+                        {/* <a href="/freelancers/#specializedwork_sites" target="_self" className="btn btn-default ellipsis">
+                            Cancel
+                        </a> */}
+                        <div className="col-md-4">
+                            <button className="btn btn-default ellipsis" type="button" onClick={() => {this.gotoStep(-1)}}> Back </button>
+                        </div>
+                        
+                        <div className="col-md-4">
+                            { step == 6 ? (<button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>) : ( <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.gotoStep(1)}}> Next </button> ) }
+                        </div>
+
+                        <div className="col-md-4">
+                            <button className="btn btn-primary ellipsis" type="submit" onClick={this.saveProfile} > Save </button>
+                        </div>
+                    </div>
                 </div>
-                    <style jsx>{`
+                    <style jsx global>{`
                         main {
                             width: 100%;
                             min-height: 600px;
@@ -329,7 +644,10 @@ class CreateProfilePage extends React.Component {
 
                         .air-card {
                             margin : 0px;
-                            padding-top: 30px;
+                            min-height: 400px;
+                        }
+
+                        .row .profile-step {
                             min-height: 400px;
                         }
 

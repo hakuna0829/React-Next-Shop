@@ -23,7 +23,9 @@ class ProfilePage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            artist: {}
+            artist: {},
+            pricings: {},
+            work_photos: {},
         };
     }
 
@@ -47,18 +49,20 @@ class ProfilePage extends React.Component {
                 }
                 this.setState({
                     loading: false,
-                    artist: response.data.artist
+                    artist: response.data.artist,
+                    pricings: response.data.pricings,
+                    work_photos: response.data.work_photos,
                 });
             })
             .catch((error) => {
+                console.log(error)
                 Router.push('/')
-                this.setState({loading: false});
             });
         });
     }
 
     render() {
-        const { artist, loading } = this.state
+        const { artist, pricings, work_photos, loading } = this.state
         //const { artist } = this.props;
         return (
             <Layout title={'Profile'}>
@@ -67,7 +71,10 @@ class ProfilePage extends React.Component {
                 <div className="profile_back">
                     <img src="/images/background1.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
                     <span className="profile_avatar">
-                        <img src="/images/artist1.png" alt="User"/>
+                        { artist.picture ? 
+                            <img src="/images/artist1.png" alt="User"/> : 
+                            <img src={artist.picture} alt="User"/>
+                        }
                     </span>
                     <button type="button" className="view">View Work</button>
                 </div>
@@ -119,7 +126,16 @@ class ProfilePage extends React.Component {
                             <hr/>
                             <div className="pricing">
                                 <h3>Pricing</h3>
-                                <div className="pricing_item">
+                                {this.state.pricings.map((pricing, idx) => (
+                                    <div className="pricing_item" key={idx}>
+                                        <div className="text">
+                                            <p className="bold">{pricing.title}</p>
+                                            <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                        </div>
+                                        <p className="price">${pricing.price}</p>
+                                    </div>
+                                ))}
+                                {/* <div className="pricing_item">
                                     <div className="text">
                                         <p className="bold">Per face</p>
                                         <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
@@ -139,7 +155,7 @@ class ProfilePage extends React.Component {
                                         <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
                                     </div>
                                     <p className="price">$250</p>
-                                </div>
+                                </div> */}
                             </div>
                             <hr/>
                             <div className="products">

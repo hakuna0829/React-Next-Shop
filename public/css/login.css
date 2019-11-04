@@ -82,9 +82,11 @@
 }
  .login1 .container .row .login_footer .btn_group .google i {
    color: #de5843;
+   margin-right: 5px;
 }
  .login1 .container .row .login_footer .btn_group .facebook i {
    color: #4f73be;
+   margin-right: 5px;
 }
  .login1 .container .row .login_footer .link {
    display: flex;
