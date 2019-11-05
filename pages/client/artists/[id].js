@@ -31,7 +31,9 @@ class ArtistProfilePage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            artist: {}
+            artist: {},
+            pricings: {},
+            work_photos: {},
         };
 
     }
@@ -49,7 +51,9 @@ class ArtistProfilePage extends React.Component {
                 
                 this.setState({
                     loading: false,
-                    artist: response.data.artist
+                    artist: response.data.artist,
+                    pricings: response.data.pricings,
+                    work_photos: response.data.work_photos,
                 });
             })
             .catch((error) => {
@@ -60,7 +64,7 @@ class ArtistProfilePage extends React.Component {
     }
 
     render() {
-        const { artist, loading } = this.state
+        const { artist, pricings, work_photos, loading } = this.state
         //const { artist } = this.props;
         return (
             <Layout title={'Profile'}>
@@ -69,7 +73,10 @@ class ArtistProfilePage extends React.Component {
                 <div className="profile_back">
                     <img src="/images/background1.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
                     <span className="profile_avatar">
-                        <img src={`/images/user${ artist.id }.jpg`} alt="User"/>
+                        { artist.picture != '' ? 
+                            <img src={artist.picture} alt="User"/> :
+                            <img src="/images/artist1.png" alt="User"/>
+                        }
                     </span>
                     <button type="button" className="view">View Work</button>
                     <Link href='/client/book/2'><a className="request">Request to Book</a></Link>
@@ -122,27 +129,15 @@ class ArtistProfilePage extends React.Component {
                             <hr/>
                             <div className="pricing">
                                 <h3>Pricing</h3>
-                                <div className="pricing_item">
-                                    <div className="text">
-                                        <p className="bold">Per face</p>
-                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                {pricings.map((pricing, idx) => (
+                                    <div className="pricing_item" key={idx}>
+                                        <div className="text">
+                                            <p className="bold">{pricing.title}</p>
+                                            <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
+                                        </div>
+                                        <p className="price">${pricing.price}</p>
                                     </div>
-                                    <p className="price">$250</p>
-                                </div>
-                                <div className="pricing_item">
-                                    <div className="text">
-                                        <p className="bold">Per face</p>
-                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
-                                    </div>
-                                    <p className="price">$250</p>
-                                </div>
-                                <div className="pricing_item">
-                                    <div className="text">
-                                        <p className="bold">Per face</p>
-                                        <p className="des">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibheuismod tincidunt</p>
-                                    </div>
-                                    <p className="price">$250</p>
-                                </div>
+                                ))}
                             </div>
                             <hr/>
                             <div className="products">

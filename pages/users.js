@@ -40,7 +40,7 @@ class UsersPage extends React.Component {
                 console.log('users response', response)
                 this.setState({
                     loading: false,
-                    artists: response.data.artists
+                    artists: response.data.users
                 });
                 
             })

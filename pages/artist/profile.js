@@ -71,9 +71,9 @@ class ProfilePage extends React.Component {
                 <div className="profile_back">
                     <img src="/images/background1.png" alt="" style={{height: 'auto', 'width': '100%'}}/>
                     <span className="profile_avatar">
-                        { artist.picture ? 
-                            <img src="/images/artist1.png" alt="User"/> : 
-                            <img src={artist.picture} alt="User"/>
+                        { artist.picture != '' ? 
+                            <img src={artist.picture} alt="User"/> :
+                            <img src="/images/artist1.png" alt="User"/>
                         }
                     </span>
                     <button type="button" className="view">View Work</button>
@@ -126,7 +126,7 @@ class ProfilePage extends React.Component {
                             <hr/>
                             <div className="pricing">
                                 <h3>Pricing</h3>
-                                {this.state.pricings.map((pricing, idx) => (
+                                {pricings.map((pricing, idx) => (
                                     <div className="pricing_item" key={idx}>
                                         <div className="text">
                                             <p className="bold">{pricing.title}</p>

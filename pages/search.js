@@ -53,6 +53,7 @@ class SearchPage extends React.Component {
     render() {
         const { artists, loading } = this.state
         
+        console.log(artists, this.state)
         return (
             <Layout title={'Artists'}>
                 <div className="suggest">
@@ -79,10 +80,18 @@ class SearchPage extends React.Component {
                                             <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <Link href={`client/artists/${artist.id}`}><a><img src={`/images/user${artist.id}.jpg`} className="card-img-top" alt=""/></a></Link>
+                                                        <Link href={`client/artists/${artist.id}`}><a>
+                                                            { artist.picture ? 
+                                                                <img src={artist.picture} className="card-img-top" alt="Work Photo"/> :
+                                                                <img src="/images/user2.jpg" className="card-img-top" alt="Work Photo"/>
+                                                            }
+                                                            </a>
+                                                        </Link>
                                                         <span className="avatar">
-                                                            <img src={`/images/user${artist.id}.jpg`} alt=""/>
-                                                            
+                                                            { artist.picture ? 
+                                                                <img src={artist.picture} alt="Avatar"/> :
+                                                                <img src="/images/user1.jpg" alt="Avatar"/>
+                                                            }
                                                         </span>
                                                         <span className="vetted">
                                                                 <p>Vetted</p>

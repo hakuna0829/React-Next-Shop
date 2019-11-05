@@ -8,12 +8,15 @@ import cookie from 'js-cookie';
 import Layout from '../../components/Layout';
 
 import constants from '../../constants';
-
+import {auth} from '../../utils/auth';
 
 class UsersPage extends React.Component {
-    // static getInitialProps ({ query: { id } }) {
-    //   return { id };
-    // }
+    static getInitialProps (ctx) {
+        // Check user's session
+        const token = auth(ctx);
+        return { token }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,14 +31,14 @@ class UsersPage extends React.Component {
     }
 
     fetchData() {
-        let token = cookie.get('token')
+        const { token } = this.props
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/users', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('users response', response)
                 this.setState({
                     loading: false,
-                    users: response.data.artists
+                    users: response.data.users
                 });
                 
             })
@@ -55,7 +58,18 @@ class UsersPage extends React.Component {
     }
 
     deleteUser = (id) => {
-
+        const { token } = this.props
+        axios.delete(constants.serverUrl + `api/users/${id}`, { headers: { 'Authorization': token } })
+            .then((response) => {
+                let leftUsers = this.state.users.filter(item => item.id != id);
+                this.setState({
+                    users: leftUsers
+                }); 
+            })
+            .catch((error) => {
+                Router.push('/')
+                this.setState({loading: false});
+            });
     }
 
 
