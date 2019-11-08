@@ -1,20 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-import cookie from 'js-cookie';
 
 import Rate from '../components/profile/Rate';
 import Layout from '../components/Layout';
 
-import {auth} from '../utils/auth';
 
-class SuggestPage extends React.Component {
-
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
+class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -42,7 +35,7 @@ class SuggestPage extends React.Component {
     }
 
     render() {
-        const { artists } = this.state
+        //const { artists } = this.state
         
         return (
             <Layout title={'Index'}>
@@ -51,10 +44,7 @@ class SuggestPage extends React.Component {
                     <div className="inner_suggest">
                         <div className="container-fluid">
                             <div className="filter_part">
-                                <i className="fas fa-filter"></i>
-                                <button className="filter_btn">Location</button>
-                                <button className="filter_btn">Experience</button>
-                                <button className="filter_btn">Rate</button>
+                               
                             </div>
                         </div>
                     </div>
@@ -62,64 +52,29 @@ class SuggestPage extends React.Component {
                     <div className="inner_suggest">
                         <div className="container-fluid">
                             <div className="artists">
-                                <h3>Suggested Artists</h3>
-                                <div className="row">
-                                    { artists.map((artist, i) => {     
-                                        return (
-                                            <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <img src="/images/artist2.png" className="card-img-top" alt=""/>
-                                                        <span className="avatar">
-                                                            <img src="/images/artist1.png" alt=""/>
-                                                            
-                                                        </span>
-                                                        <span className="vetted">
-                                                                <p>Vetted</p>
-                                                            </span>
-                                                    </div>
-                                                    <div className="card-body">
-                                                        <h3>Clarie beckham</h3>
-                                                        <h5 className="experience">{artist.year} years of experience</h5>
-                                                        <div className="rate">
-                                                            <Rate rate={+artist.rate}></Rate>
-                                                            <h6>Brooklyn, NY</h6>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ) 
-                                    })}
-                                </div>
+                            
+                                <Link href="/artist/landing">
+                                    <a className="">Become an artist</a>
+                                </Link>
+                                <Link href="/client/login">
+                                    <a className="">Log in</a>
+                                </Link>
+                                <Link href="/client/signup">
+                                    <a className="">Sign Up</a>
+                                </Link>
                             </div>
-                            <nav aria-label="Page navigation example">
-                                <ul className="pagination">
-                                    <li className="page-item">
-                                    <a className="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i className="fas fa-chevron-left"></i></span>
-                                    </a>
-                                    </li>
-                                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">4</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">5</a></li>
-                                    <li className="page-item"><a className="page-link" href="#"><i className="fas fa-ellipsis-h"></i></a></li>
-                                    <li className="page-item">
-                                    <a className="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">
-                                            <i className="fas fa-chevron-right"></i>
-                                        </span>
-                                    </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            
                         </div>
                     </div>
                 </div>
+                <style jsx>{`
+                    .artists a{
+                        margin: 20px;
+                    }
+                `}</style>
             </Layout>
         );
     }
   }
   
-  export default SuggestPage;
+  export default HomePage;

@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-import Layout from '../components/Layout';
-import constants from '../constants';
+import Layout from '../../components/Layout';
+import constants from '../../constants';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()
@@ -49,16 +49,14 @@ class LoginPage extends React.Component {
             
             if( response.data.auth == true ){
               cookie.set("token", response.data.token, { expires: 1 });
+
               if(response.data.role == "artist") {
-                if(response.data.has_profile == false) {
-                  Router.push('/artist/create-profile')
-                }
-                else {
-                  Router.push('/artist/dashboard')
-                }
+                console.log('artist')
+                Router.push('/artist/dashboard')
               }
-              else if(response.data.role == "client") {
-                Router.push('/search')
+              if(response.data.role == "client") {
+                console.log('client')
+                Router.push('/client/dashboard')
               }
               else {
                 Router.push('/')
@@ -71,6 +69,7 @@ class LoginPage extends React.Component {
           })
           .catch((error) => {
             this.setState({loading: false});
+            setErrors({ "total" : error.message})
           })
           .finally(() => {
               setSubmitting(false);
@@ -167,8 +166,8 @@ class LoginPage extends React.Component {
                                     </button>
                                 </div>
                                 <div className="link">
-                                    <p><span>New to Celeste?</span> &nbsp;<Link href="/register"><a>Create an account</a></Link></p>
-                                    <button>Artist Login</button>
+                                    <p><span>New to Celeste?</span> &nbsp;<Link href="/client/signup"><a>Create an account</a></Link></p>
+                                    <button>Client Login</button>
                                 </div>
                             </div>
                         </div>

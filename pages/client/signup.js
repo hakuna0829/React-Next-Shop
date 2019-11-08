@@ -6,14 +6,10 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 import Router from 'next/router';
 
-import constants from '../constants';
-import Layout from '../components/Layout';
+import constants from '../../constants';
+import Layout from '../../components/Layout';
 
 const registerValidation = Yup.object().shape({
-  first_name: Yup.string()
-    .required('First Name is required.'),
-  last_name: Yup.string()
-    .required('Last Name is required.'),
   email: Yup.string()
     .email('Please enter a valid e-mail address.')
     .required('Email is required.'),
@@ -25,21 +21,20 @@ class RegisterPage extends React.Component {
 
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
 
-      axios.post(constants.serverUrl + 'api/auth/register', values)
+      axios.post(constants.serverUrl + 'api/auth/signup', values)
         .then((response) => {
           console.log('register response', response)
-          console.log('register response.data.auth', response.data.auth)
           
           if( response.data.auth == true  ){
             cookie.set("token", response.data.token, { expires : 1 })
-              console.log('response.data.role', response.data.role)
+            
             if(response.data.role == "artist") {
               console.log('artist')
-              Router.push('/artist/create-profile')
+              Router.push('/artist/dashboard')
             }
             if(response.data.role == "client") {
               console.log('client')
-              Router.push('/search')
+              Router.push('/client/dashboard')
             }
           }
           else {
@@ -49,6 +44,7 @@ class RegisterPage extends React.Component {
         })
         .catch((error) => {
           this.setState({loading: false});
+          setErrors({ "total" : err.message})
         })
         .finally(() => {
             setSubmitting(false);
@@ -68,7 +64,7 @@ class RegisterPage extends React.Component {
                       <div className="divider"></div>
                       <div className="login_content">
                       <Formik
-                        initialValues={{ first_name: '', last_name: '', email: '', role: 'client', password: ''}}
+                        initialValues={{ email: '', role: 'client', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
                         >
@@ -86,35 +82,6 @@ class RegisterPage extends React.Component {
                                     (<p className="success">{errors.success}</p>) }
                                 {errors.total && 
                                     (<p className="error">{errors.total}</p>) }
-                                <div className="form-group">
-                                    <label htmlFor="first_name">First Name</label>
-                                    <input
-                                        className="form-control"
-                                        placeholder="First Name"
-                                        type="input"
-                                        name="first_name"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.first_name}
-                                    />
-                                    {errors.first_name && touched.first_name && 
-                                    (<p className="error">{errors.first_name}</p>) }
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="last_name">Last Name</label>
-                                    <input
-                                        className="form-control"
-                                        placeholder="Last Name"
-                                        type="input"
-                                        name="last_name"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.last_name}
-                                    />
-                                    {errors.last_name && touched.last_name && 
-                                    (<p className="error">{errors.last_name}</p>) }
-                                </div>
 
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
@@ -146,21 +113,7 @@ class RegisterPage extends React.Component {
                                     (<p className="error">{errors.password}</p>) }                 
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="role">User Type</label>
-                                    <select 
-                                      className="form-control" 
-                                      name="role" 
-                                      onChange={handleChange}
-                                      onBlur={handleBlur}
-                                      value={values.role}>
-                                      <option value="client">Client</option>
-                                      <option value="artist">Artist</option>
-                                    </select>
-                                    {errors.role && touched.role && 
-                                    (<p className="error">{errors.role}</p>) }
-                                </div>
-
+                                
                             <button 
                                 type="submit" 
                                 className="auth-btn" 
@@ -186,8 +139,8 @@ class RegisterPage extends React.Component {
                               </button>
                           </div>
                           <div className="link">
-                              <p><span>Already has an account?</span> &nbsp;<Link href="/login"><a>Log in</a></Link></p>
-                              <button>Artist Register</button>
+                              <p><span>Already has an account?</span> &nbsp;<Link href="/client/login"><a>Log in</a></Link></p>
+                              <button>Client SignUp</button>
                           </div>
                       </div>
                   </div>

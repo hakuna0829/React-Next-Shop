@@ -22,7 +22,9 @@ class Footer extends React.Component {
 
     logout = () => {
         cookie.remove("token")
-        Router.push('/login')
+        console.log('logout called')
+        this.setState({logged_in : false})
+        Router.push('/')
     }
 
     render() {
