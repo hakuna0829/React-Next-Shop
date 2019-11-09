@@ -64,7 +64,7 @@ class RegisterPage extends React.Component {
                       <div className="divider"></div>
                       <div className="login_content">
                       <Formik
-                        initialValues={{ email: '', role: 'client', password: ''}}
+                        initialValues={{ email: '', role: 'artist', password: ''}}
                         validationSchema={registerValidation}
                         onSubmit={this.handleSubmit}
                         >

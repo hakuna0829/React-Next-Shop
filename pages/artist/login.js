@@ -151,7 +151,7 @@ class LoginPage extends React.Component {
                                     </button>
                                 </div>
                                 <div className="link">
-                                    <p><span>New to Celeste?</span> &nbsp;<Link href="/client/signup"><a>Create an account</a></Link></p>
+                                    <p><span>New to Celeste?</span> &nbsp;<Link href="/artist/signup"><a>Create an account</a></Link></p>
                                     <button>Client Login</button>
                                 </div>
                             </div>

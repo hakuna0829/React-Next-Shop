@@ -1,12 +1,11 @@
 import React from 'react';
-import Router from 'next/router';
 import Link from 'next/link';
 
-import Layout from '../../components/Layout';
-import {auth} from '../../utils/auth';
+import Layout from '../../../components/Layout';
+import {auth} from '../../../utils/auth';
 
 
-class DashboardPage extends React.Component {
+class CreateProfileCheckListPage extends React.Component {
     static getInitialProps (ctx) {
         // Check user's session
         const token = auth(ctx);
@@ -26,16 +25,11 @@ class DashboardPage extends React.Component {
         return (
             <Layout title={'Dashboard'}>
                 <div className="suggest">
-                    <h1> Client Dashboard </h1>
+                    <h1> Create Profile Checklist </h1>
                     <ul>
-                        <Link href={`/client/saved-jobs`}><a className="btn btn-primary">Saved</a></Link>
-                        <Link href={`/client/appointments`}><a className="btn btn-primary">Appointments</a></Link>
-                        <Link href={`/client/messages`}><a className="btn btn-primary">Messages</a></Link>
-
-
-                        <Link href={`/client/account`}><a className="btn btn-success">Account</a></Link>
-                        <Link href={`/client/help`}><a className="btn btn-primary">Help</a></Link>
-                        <Link href={`/artist/dashboard`}><a className="btn btn-success">Become an artist</a></Link>
+                        <Link href={`/artist/create-profile/profile`}><a className="btn btn-primary">Create Your Profile</a></Link>
+                        <Link href={`/artist/create-profile/services`}><a className="btn btn-primary">Set Your Services</a></Link>
+                        <Link href={`/artist/create-profile/policies`}><a className="btn btn-primary">Shop Policies and availability</a></Link>
                     </ul>
                 </div>
                 <style jsx>{`
@@ -60,4 +54,4 @@ class DashboardPage extends React.Component {
     }
   }
   
-  export default DashboardPage;
+  export default CreateProfileCheckListPage;

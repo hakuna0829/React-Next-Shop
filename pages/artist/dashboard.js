@@ -28,13 +28,15 @@ class DashboardPage extends React.Component {
                 <div className="suggest">
                     <h1> Artist Dashboard </h1>
                     <ul>
-                        <Link href={`/artist/gigs`}><a className="btn btn-primary">Upcoming gigs</a></Link>
-                        <Link href={`/artist/past-jobs`}><a className="btn btn-primary">Past jobs</a></Link>
-                        <Link href={`/artist/analytics`}><a className="btn btn-primary">Analytics</a></Link>
-                        <Link href={`/artist/message-center`}><a className="btn btn-primary">Message Center</a></Link>
-                        <Link href={`/artist/balance`}><a className="btn btn-primary">Balance</a></Link>
-                        <Link href={`/artist/profile`}><a className="btn btn-success">Edit/View Profile</a></Link>
-                        <Link href={`/artist/availability`}><a className="btn btn-primary">Availability</a></Link>
+                        <Link href={`/artist/dashboard`}><a className="btn btn-primary">Dashboard</a></Link>
+                        <Link href={`/artist/messages`}><a className="btn btn-primary">Messages</a></Link>
+                        <Link href={`/artist/calendar`}><a className="btn btn-primary">Calendar</a></Link>
+                        <Link href={`/artist/appointments`}><a className="btn btn-primary">Appointments</a></Link>
+                       
+                        <Link href={`/artist/account`}><a className="btn btn-success">Account</a></Link>
+                        {/* <Link href={`/artist/profile`}><a className="btn btn-success">Edit/View Profile</a></Link> */}
+                        <Link href={`/client/dashboard`}><a className="btn btn-success">Celeste for clients</a></Link>
+                        <Link href={`/artist/shop`}><a className="btn btn-primary">Your Shop</a></Link>
                     </ul>
                 </div>
                 <style jsx>{`

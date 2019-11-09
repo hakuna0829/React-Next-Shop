@@ -9,15 +9,16 @@ export const auth = ctx => {
     console.log('auth token check before url', token)
     console.log('pathname', ctx.pathname)
     console.log('query', ctx.query)
+
     if (ctx.req && !token) {
-        ctx.res.writeHead(302, { Location: '/login' })
+        ctx.res.writeHead(302, { Location: '/artist/login' })
         ctx.res.end()
         return
     }
 
     if (!token) {
         
-        Router.push('/login')
+        Router.push('/artist/login')
         return
     }
 
