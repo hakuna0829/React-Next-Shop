@@ -1,15 +1,8 @@
 import React from 'react';
 
 import Layout from '../../components/Layout';
-import {auth} from '../../utils/auth';
-
 
 class AccountPage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
 
     constructor(props) {
         super(props);

@@ -10,6 +10,40 @@ export const auth = ctx => {
     console.log('pathname', ctx.pathname)
     console.log('query', ctx.query)
 
+    let generalRoutes = [
+        '/artist/landing',
+        '/'
+    ]
+
+    let noAuthRoutes = [
+        '/artist/login',
+        '/artist/signup',
+        '/client/login',
+        '/client/signup'
+    ]
+
+    if(generalRoutes.includes(ctx.pathname)) {
+        console.log('general routes')
+        return
+    }
+
+
+    if(noAuthRoutes.includes(ctx.pathname)) { // when there is token, redirect to dashboard
+        console.log('no auth routes')
+        if (ctx.req && token) {
+            ctx.res.writeHead(302, { Location: '/artist/dashboard' })
+            ctx.res.end()
+            return
+        }
+    
+        if (token) {
+            Router.push('/artist/dashboard')
+            return
+        }
+        return
+    }
+
+
     if (ctx.req && !token) {
         ctx.res.writeHead(302, { Location: '/artist/login' })
         ctx.res.end()
@@ -17,7 +51,6 @@ export const auth = ctx => {
     }
 
     if (!token) {
-        
         Router.push('/artist/login')
         return
     }

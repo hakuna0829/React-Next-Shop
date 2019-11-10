@@ -1,6 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 
+import {auth} from '../utils/auth';
 
 import css from "../public/css/login.css"
 
@@ -9,23 +10,25 @@ export default class MyApp extends App {
   
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {}
+    let token = auth(ctx);
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
 
+    pageProps.token = token
     return { pageProps }
   }
 
   state = {
-    name: "Morgan",
+    name: "App",
   }
 
   render () {
     const { Component, pageProps } = this.props
 
     return (
-        <Component {...pageProps} {...this.state}/>
+        <Component {...pageProps}  {...this.state}/>
     )
   }
 }

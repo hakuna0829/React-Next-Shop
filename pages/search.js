@@ -9,15 +9,8 @@ import Layout from '../components/Layout';
 import Rate from '../components/profile/Rate';
 
 import constants from '../constants';
-import {auth} from '../utils/auth';
 
 class SearchPage extends React.Component {
-
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
 
     constructor(props) {
         super(props);

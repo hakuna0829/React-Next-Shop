@@ -5,19 +5,11 @@ import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-
 import Layout from '../components/Layout';
 
 import constants from '../constants';
-import {auth} from '../utils/auth';
-//import css from "../landing.css"
 
 class UsersPage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
     
     constructor(props) {
         super(props);

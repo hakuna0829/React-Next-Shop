@@ -3,24 +3,14 @@ import { Button, Spinner } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-import cookie from 'js-cookie';
-
 
 import Layout from '../../components/Layout';
 import Rate from '../../components/profile/Rate';
 import Skills from '../../components/profile/Skills';
 
 import constants from '../../constants';
-import {auth} from '../../utils/auth';
 
 class ArtistProfilePage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        let id = ctx.query.artist;
-        console.log('artist', id)
-        return { token, id }
-    }
 
     // static getInitialProps ({ query: { id } }) {
     //     console.log('query id', id)

@@ -2,27 +2,21 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-import cookie from 'js-cookie';
+import { Spinner } from 'react-bootstrap';
 
 import Layout from '../../../components/Layout';
 
 import constants from '../../../constants';
-import {auth} from '../../../utils/auth';
 
 
 class CreateProfilePage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
 
     componentDidMount() {
         this.fetchData();
      }
  
      fetchData() {
-         let token = cookie.get('token')
+         let token = this.props.token
          this.setState({loading: true}, () => {
              axios.get(constants.serverUrl + 'api/profiles/me/getProfile', { headers: { 'Authorization': token } })
              .then((response) => {
@@ -81,7 +75,7 @@ class CreateProfilePage extends React.Component {
 
     
     gotoNext = () => {
-        let token = cookie.get('token')
+        let token = this.props.token
         let {...profile} = this.state
 
         axios.put(constants.serverUrl + 'api/profiles/me/updateProfile', profile, { headers: { 'Authorization': token } })
@@ -95,7 +89,7 @@ class CreateProfilePage extends React.Component {
     }
 
     render() {
-        let {avatar} = this.state
+        let {avatar, loading} = this.state
 
         let $imagePreview = null;
         if (avatar) {
@@ -108,6 +102,8 @@ class CreateProfilePage extends React.Component {
             <Layout title={'Create Profile'}>
                 <div className="suggest">
                     <h1> Create Profile </h1>
+
+                    { loading ? <Spinner animation="border" variant="dark"/> : 
                     <div className="row profile-step">
                         <div className="col-lg-6">
                             <div className="form-group">
@@ -137,6 +133,8 @@ class CreateProfilePage extends React.Component {
                             </div>
                         </div>
                     </div>
+                    }
+
                     <div className="page-navs">
                         <Link href={`/artist/create-profile`}><a className="btn btn-secondary">Back</a></Link>
                         

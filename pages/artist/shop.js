@@ -1,27 +1,21 @@
 import React from 'react';
-import Router from 'next/router';
 import Link from 'next/link';
 
 import Layout from '../../components/Layout';
-import {auth} from '../../utils/auth';
 
 
-class BalancePage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
+class AnalyticsPage extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            pageTitle : 'Balance'
+            pageTitle : 'Shop'
         };
 
     }
 
     render() {
-        const { pageTitle } = this.state
+        const {pageTitle} = this.state
         return (
             <Layout title={ pageTitle }>
                 <div className="suggest">
@@ -38,4 +32,4 @@ class BalancePage extends React.Component {
     }
   }
   
-  export default BalancePage;
+  export default AnalyticsPage;

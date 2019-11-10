@@ -1,20 +1,9 @@
 import React from 'react';
-import Router from 'next/router';
-import axios from 'axios';
-import cookie from 'js-cookie';
 
 import Rate from '../components/profile/Rate';
 import Layout from '../components/Layout';
 
-import {auth} from '../utils/auth';
-
 class IndexPage extends React.Component {
-
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
 
     constructor(props) {
         super(props);

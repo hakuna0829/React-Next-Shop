@@ -2,15 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 
 import Layout from '../../../components/Layout';
-import {auth} from '../../../utils/auth';
 
-
-class SelectCategoryPage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
+class WorkPhotoPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -45,4 +38,4 @@ class SelectCategoryPage extends React.Component {
     }
   }
   
-  export default SelectCategoryPage;
+  export default WorkPhotoPage;

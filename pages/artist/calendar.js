@@ -1,21 +1,15 @@
 import React from 'react';
-import Router from 'next/router';
 import Link from 'next/link';
 
 import Layout from '../../components/Layout';
-import {auth} from '../../utils/auth';
 
 
-class MessageCenterPage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
+class BalancePage extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            pageTitle : 'Message Center'
+            pageTitle : 'Calendar'
         };
 
     }
@@ -38,4 +32,4 @@ class MessageCenterPage extends React.Component {
     }
   }
   
-  export default MessageCenterPage;
+  export default BalancePage;

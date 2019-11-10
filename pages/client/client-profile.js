@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
@@ -9,15 +7,9 @@ import Layout from '../../components/Layout';
 import ProfileForm from '../../components/ProfileForm';
 
 import constants from '../../constants';
-import {auth} from '../../utils/auth';
 
 
 class ClientProfilePage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
 
     constructor(props) {
         super(props);

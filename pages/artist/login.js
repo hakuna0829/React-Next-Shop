@@ -39,7 +39,7 @@ class LoginPage extends React.Component {
                 cookie.set("token", response.data.token, { expires: 1 });
 
                 if(response.data.role == "artist") {
-                    Router.push('/artist/dashboard')
+                    Router.push(response.data.profile_completion)
                 }
                 else if(response.data.role == "client") {
                     Router.push('/client/dashboard')

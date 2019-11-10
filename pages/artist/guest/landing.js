@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 
-class ArtistLandingPage extends React.Component {
+class ArtistGuestLandingPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -35,10 +35,6 @@ class ArtistLandingPage extends React.Component {
                     </div>
                 </div>
                 <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                    
                     .artists a{
                         margin: 20px;
                     }
@@ -48,4 +44,4 @@ class ArtistLandingPage extends React.Component {
     }
   }
   
-  export default ArtistLandingPage;
+  export default ArtistGuestLandingPage;

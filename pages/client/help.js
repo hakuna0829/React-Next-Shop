@@ -2,20 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 
 import Layout from '../../components/Layout';
-import {auth} from '../../utils/auth';
 
 
-class GigsPage extends React.Component {
-    static getInitialProps (ctx) {
-        // Check user's session
-        const token = auth(ctx);
-        return { token }
-    }
+class HelpPage extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
-            pageTitle : 'Upcoming Gigs'
+            pageTitle : 'Help'
         };
 
     }
@@ -26,7 +20,7 @@ class GigsPage extends React.Component {
             <Layout title={ pageTitle }>
                 <div className="suggest">
                     <h1> { pageTitle } </h1>
-                    <Link href={`/artist/dashboard`}><a className="btn btn-primary">Go to dashboard</a></Link>
+                    <Link href={`/client/dashboard`}><a className="btn btn-primary">Go to dashboard</a></Link>
                 </div>
                 <style jsx>{`
                     .suggest {
@@ -38,4 +32,4 @@ class GigsPage extends React.Component {
     }
   }
   
-  export default GigsPage;
+  export default HelpPage;

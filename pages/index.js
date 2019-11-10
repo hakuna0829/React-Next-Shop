@@ -40,27 +40,20 @@ class HomePage extends React.Component {
         return (
             <Layout title={'Index'}>
                 <div className="suggest">
-                    <div className="divider"></div>
-                    <div className="inner_suggest">
-                        <div className="container-fluid">
-                            <div className="filter_part">
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div className="divider"></div>
                     <div className="inner_suggest">
                         <div className="container-fluid">
                             <div className="artists">
-                            
+                                <h1>Home</h1>
                                 <Link href="/artist/landing">
-                                    <a className="">Become an artist</a>
+                                    <a className="btn btn-primary">Become an artist</a>
                                 </Link>
+                                
                                 <Link href="/client/login">
-                                    <a className="">Log in</a>
+                                    <a className="btn btn-success">Log in</a>
                                 </Link>
+                                
                                 <Link href="/client/signup">
-                                    <a className="">Sign Up</a>
+                                    <a className="btn btn-primary">Sign Up</a>
                                 </Link>
                             </div>
                             
