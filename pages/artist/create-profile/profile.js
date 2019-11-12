@@ -11,6 +11,19 @@ import constants from '../../../constants';
 
 class CreateProfilePage extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            profile: {},
+            name: '',
+            avatar: '',
+            avatar_filename: '',
+            bio: ''
+        };
+
+    }
+
     componentDidMount() {
         this.fetchData();
      }
@@ -33,20 +46,7 @@ class CreateProfilePage extends React.Component {
              });
          });
      }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            profile: {},
-            name: '',
-            avatar: '',
-            avatar_filename: '',
-            bio: ''
-        };
-
-    }
-
+     
     handleChange = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
