@@ -299,3 +299,13 @@ span.button {
   border-color: #d4eafd;
   font-weight: 600;
 }
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited {
+  color: #1787e0 !important;
+  background-color: #d1e7f9 !important;
+  border-color: #d4eafd !important;
+  font-weight: 600 !important;
+}

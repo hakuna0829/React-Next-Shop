@@ -158,7 +158,7 @@ class CreateProfilePage extends React.Component {
                           <span className="button">
                             <button
                               type="button"
-                              className="btn btn-primary ellipsis btn-block"
+                              className="btn btn-secondary ellipsis btn-block"
                               onClick={() => {
                                 console.log("click delete button")
                               }}
@@ -222,7 +222,7 @@ class CreateProfilePage extends React.Component {
                           <span className="button">
                             <button
                               type="button"
-                              className="btn btn-primary ellipsis btn-block"
+                              className="btn btn-secondary ellipsis btn-block"
                               onClick={() => {
                                 console.log("click Sync");
                               }}
