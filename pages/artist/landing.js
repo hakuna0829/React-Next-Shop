@@ -16,17 +16,17 @@ class ArtistLandingPage extends React.Component {
     render() {
         return (
             <Layout title={'Artist Landing'}>
-                <div class="overall" id="artist-landing">
-                    <div class="content">
-                        <div class="container">
-                            <div class="artist_landing join">
-                                <div class="artist_landing_item">
+                <div className="overall" id="artist-landing">
+                    <div className="content">
+                        <div className="container">
+                            <div className="artist_landing join">
+                                <div className="artist_landing_item">
                                     <h3>Get access to hundreds of new clients</h3>
-                                    <button class="btn btn-primary">Join now</button>
+                                    <button className="btn btn-primary">Join now</button>
                                 </div>
                             </div>
-                            <div class="artist_landing">
-                                <div class="artist_landing_item">
+                            <div className="artist_landing">
+                                <div className="artist_landing_item">
                                     <h3>Marketing content about the benefits of joining as an artist</h3>
                                 </div>
                             </div>
