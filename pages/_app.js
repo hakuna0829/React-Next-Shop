@@ -3,7 +3,7 @@ import App from 'next/app'
 
 import {auth} from '../utils/auth';
 
-import css from "../public/css/login.css"
+import css from "../public/css/app.css"
 
 
 export default class MyApp extends App {
