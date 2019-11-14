@@ -16,32 +16,44 @@ class CreateProfileCheckListPage extends React.Component {
 
     render() {
         return (
-            <Layout title={'Dashboard'}>
-                <div className="suggest">
-                    <h1> Create Profile Checklist </h1>
-                    <ul>
-                        <Link href={`/artist/create-profile/profile`}><a className="btn btn-primary">Create Your Profile</a></Link>
-                        <Link href={`/artist/create-profile/services`}><a className="btn btn-primary">Set Your Services</a></Link>
-                        <Link href={`/artist/create-profile/policies`}><a className="btn btn-primary">Shop Policies and availability</a></Link>
-                    </ul>
+            <Layout title={'Create Profile Checklist'}>
+                <div className="overall" id="profile-checklist">
+                    <div className="container">
+                        <div className="row list-item active">
+                            <div className="col-md-2"></div>
+                            <div className="col-md-5">
+                                <h3>Create your profile</h3>
+                                <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
+                            </div>
+                            <div className="col-md-3 btn-box">
+                                <Link href={`/artist/create-profile/profile`}><a className="btn standard">Start</a></Link>
+                            </div>
+                            <div className="col-md-2"></div>
+                        </div>
+                        <div className="row list-item">
+                            <div className="col-md-2"></div>
+                            <div className="col-md-5">
+                                <h3>Set your services</h3>
+                                <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
+                            </div>
+                            <div className="col-md-3 btn-box">
+                                <Link href={`/artist/create-profile/services`}><a className="btn standard">Start</a></Link>
+                            </div>
+                            <div className="col-md-2"></div>
+                        </div>
+                        <div className="row list-item">
+                            <div className="col-md-2"></div>
+                            <div className="col-md-5">
+                                <h3>Shop policies and availability</h3>
+                                <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
+                            </div>
+                            <div className="col-md-3 btn-box">
+                                <Link href={`/artist/create-profile/policies`}><a className="btn standard">Start</a></Link>
+                            </div>
+                            <div className="col-md-2"></div>
+                        </div>
+                    </div>
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                    ul {
-                        text-align: center;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                    ul a {
-                        display: block;
-                        width: 200px;
-                        margin-bottom: 10px;
-
-                    }    
-                `}</style>
             </Layout>
         );
     }
