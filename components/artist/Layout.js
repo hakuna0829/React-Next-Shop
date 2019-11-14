@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import Header from './Header';
 
-export default ({ children, title = 'Celeste'}) => (
+export default ({ children, title = 'Celeste' }) => (
   <div>
     <Head>
         <title>{ title } | Celeste</title>
@@ -28,7 +27,7 @@ export default ({ children, title = 'Celeste'}) => (
     </Head>
 
     <div>
-        {/* <nav className="navbar navbar-expand-lg navbar-light container">
+        <nav className="navbar navbar-expand-lg navbar-light container">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -55,8 +54,7 @@ export default ({ children, title = 'Celeste'}) => (
                     </li>
                 </ul>
             </div>
-        </nav> */}
-        <Header></Header>
+        </nav>
         {children}
     </div>
   </div>
