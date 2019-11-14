@@ -226,7 +226,7 @@
 }
 
 .profile .container .row {
-  width: 680px;
+  max-width: 680px;
 }
 
 .profile .container .row .form-label {
