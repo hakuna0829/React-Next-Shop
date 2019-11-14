@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
                     <div className="container">
                         <div className="row">
                             <div className="login_header">
-                                <h3>Sign In</h3>
+                                <h3>Client Sign In</h3>
                                 <h6>Sign into your account via email and password or social account.</h6>
                             </div>
                             <div className="divider"></div>
@@ -152,7 +152,7 @@ class LoginPage extends React.Component {
                                 </div>
                                 <div className="link">
                                     <p><span>New to Celeste?</span> &nbsp;<Link href="/client/signup"><a>Create an account</a></Link></p>
-                                    <button>Client Login</button>
+                                    <p><Link href="/artist/login"><a>Artist Login</a></Link></p>
                                 </div>
                             </div>
                         </div>

@@ -17,14 +17,15 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/login.css" />
         <link rel="stylesheet" href="/css/navbar.css" />
         <link rel="stylesheet" href="/css/create-profile.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        {/* <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
             integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" 
-            crossOrigin="anonymous"></link> */}
+            crossOrigin="anonymous"></link>
     </Head>
 
     <div>
@@ -35,7 +36,7 @@ export default ({ children, title = 'Celeste', leftTitle = '', leftDescription =
             <Link href="/artist/landing">
                 <a className="navbar-brand">LOGO</a>
             </Link>
-                        
+
             <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li className="nav-item">

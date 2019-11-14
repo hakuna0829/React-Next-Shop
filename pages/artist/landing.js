@@ -22,7 +22,7 @@ class ArtistLandingPage extends React.Component {
                             <div className="artist_landing join">
                                 <div className="artist_landing_item">
                                     <h3>Get access to hundreds of new clients</h3>
-                                    <button className="btn btn-primary">Join now</button>
+                                    <Link href="/artist/signup"><a className="btn btn-primary">Join now</a></Link>
                                 </div>
                             </div>
                             <div className="artist_landing">
