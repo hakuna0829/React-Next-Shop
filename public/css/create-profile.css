@@ -279,3 +279,23 @@
 span.button {
   width: 125px;
 }
+
+.profile .container .row input::placeholder {
+  color: #1787e0;
+}
+
+.profile .container .row textarea::placeholder {
+  color: #1787e0;
+}
+.profile .page-navs {
+  width: 100%;
+  padding: 0px 15px;
+  margin: 45px 0;
+}
+
+.profile button.btn .btn-blur {
+  color: #1787e0;
+  background-color: #d1e7f9;
+  border-color: #d4eafd;
+  font-weight: 600;
+}

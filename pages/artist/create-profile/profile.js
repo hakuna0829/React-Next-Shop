@@ -89,6 +89,10 @@ class CreateProfilePage extends React.Component {
       });
   };
 
+  handleUploadBtnClick = () => {
+    document.getElementById("avatar").click();
+  }
+
   render() {
     let { avatar, loading } = this.state;
 
@@ -96,7 +100,7 @@ class CreateProfilePage extends React.Component {
     if (avatar) {
       $imagePreview = <img src={avatar} />;
     } else {
-      $imagePreview = <img src={"/images/product.png"} />;
+      $imagePreview = <img src={"/images/profile-avatar.png"} />;
     }
 
     return (
@@ -156,7 +160,7 @@ class CreateProfilePage extends React.Component {
                               type="button"
                               className="btn btn-primary ellipsis btn-block"
                               onClick={() => {
-                                this.gotoNext();
+                                console.log("click delete button")
                               }}
                             >
                               Delete
@@ -165,7 +169,7 @@ class CreateProfilePage extends React.Component {
                               type="button"
                               className="btn btn-primary ellipsis btn-block"
                               onClick={() => {
-                                this.gotoNext();
+                                this.handleUploadBtnClick();
                               }}
                             >
                               Choose file
@@ -187,10 +191,11 @@ class CreateProfilePage extends React.Component {
                       <br />
                       <textarea
                         id="bio"
-                        placeholder="Bio"
+                        placeholder="Type here"
                         className="form-control textarea"
                         onChange={this.handleChange}
                         name="bio"
+                        rows="8"
                         value={this.state.bio}
                       />
                       <p>
@@ -232,23 +237,30 @@ class CreateProfilePage extends React.Component {
                 </div>
               )}
 
-              <div className="page-navs">
-                <Link href={`/artist/create-profile`}>
-                  <a className="btn btn-secondary">Back</a>
-                </Link>
+              <div className="row">
+                <div className="page-navs">
+                  <div className="column-2-space">
 
-                <button
-                  type="button"
-                  className="btn btn-primary ellipsis"
-                  onClick={() => {
-                    this.gotoNext();
-                  }}
-                >
-                  {" "}
-                  Next{" "}
-                </button>
+                    <Link href={`/artist/create-profile`}>
+                      <span className="button">
+                        <a className="btn btn-secondary btn-block">Back</a>
+                      </span>
+                    </Link>
 
-                {/* <Link href={`/artist/create-profile/category`}><a className="btn btn-info">Next</a></Link> */}
+                    <span className="button">
+                      <button
+                        type="button"
+                        className="btn btn-primary ellipsis btn-block"
+                        onClick={() => {
+                          this.gotoNext();
+                        }}
+                      >
+                        {" "}
+                        Next{" "}
+                      </button>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
