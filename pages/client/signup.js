@@ -58,7 +58,7 @@ class RegisterPage extends React.Component {
               <div className="container">
                   <div className="row">
                       <div className="login_header">
-                          <h3>Sign Up</h3>
+                          <h3>Client Sign Up</h3>
                           <h6>Sign up via email and password.</h6>
                       </div>
                       <div className="divider"></div>
@@ -140,7 +140,7 @@ class RegisterPage extends React.Component {
                           </div>
                           <div className="link">
                               <p><span>Already has an account?</span> &nbsp;<Link href="/client/login"><a>Log in</a></Link></p>
-                              <button>Client SignUp</button>
+                              <p><Link href="/artist/signup"><a>Artist Sign Up</a></Link></p>
                           </div>
                       </div>
                   </div>

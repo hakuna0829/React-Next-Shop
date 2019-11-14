@@ -38,7 +38,7 @@ class HomePage extends React.Component {
         //const { artists } = this.state
         
         return (
-            <Layout title={'Index'}>
+            <Layout title={'Guest Homepage'}>
                 <div className="overall" id="artist-landing">
                     <div className="content">
                         <div className="container">
@@ -50,29 +50,6 @@ class HomePage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="suggest">
-                    <div className="inner_suggest">
-                        <div className="container-fluid">
-                            <div className="artists">
-                                <h1>Home</h1>
-                                
-                                <Link href="/client/login">
-                                    <a className="btn btn-success">Log in</a>
-                                </Link>
-                                
-                                <Link href="/client/signup">
-                                    <a className="btn btn-primary">Sign Up</a>
-                                </Link>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <style jsx>{`
-                    .artists a{
-                        margin: 20px;
-                    }
-                `}</style>
             </Layout>
         );
     }
