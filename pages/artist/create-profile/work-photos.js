@@ -14,10 +14,35 @@ class WorkPhotoPage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            images: []
+            images: [],
+            new_images: [],
+            deleted_images: []
         };
 
     }
+
+    componentDidMount() {
+        this.fetchData();
+     }
+ 
+     fetchData() {
+         let token = this.props.token
+         this.setState({loading: true}, () => {
+             axios.get(constants.serverUrl + 'api/profiles/me/getImages', { headers: { 'Authorization': token } })
+             .then((response) => {
+                console.log('images', response)
+
+                this.setState({
+                    loading: false,
+                    images : response.data.images
+                });
+             })
+             .catch((error) => {
+                 console.log(error)
+                 Router.push('/')
+             });
+         });
+     }
 
     filesSelectedHandler = e => {
         
@@ -34,16 +59,16 @@ class WorkPhotoPage extends React.Component {
                 reader.onloadend = () => {
 
 
-                    let images = this.state.images
+                    let new_images = this.state.new_images
 
                     let image = {
                         blob: reader.result,
                         filename: file.name,
                         title: file.name
                     }
-                    images.push(image)
+                    new_images.push(image)
                     this.setState({
-                        images
+                        new_images
                     });
                 }
 
@@ -52,21 +77,47 @@ class WorkPhotoPage extends React.Component {
     }
 
     handleTitleChange = idx => evt => {
-        const newImages = this.state.images.map((image, sidx) => {
+        const Images = this.state.images.map((image, sidx) => {
           if (idx !== sidx) return image;
           return { ...image, title: evt.target.value };
         });
     
-        this.setState({ images: newImages });
+        this.setState({ images: Images });
     };
 
+    handleDeleteImage = idx => evt => {
+        let { images, deleted_images } = this.state
+
+        deleted_images.push(images[idx].id)
+        images.splice(idx, 1)
+        
+        this.setState({ images, deleted_images });
+    };
+
+    handleNewImageTitleChange = idx => evt => {
+        const newImages = this.state.new_images.map((image, sidx) => {
+          if (idx !== sidx) return image;
+          return { ...image, title: evt.target.value };
+        });
+    
+        this.setState({ new_images: newImages });
+    };
+
+    handleNewImageDeleteImage = idx => evt => {
+        let { new_images } = this.state
+
+        new_images.splice(idx, 1)
+        
+        this.setState({ new_images });
+    };
+    
     gotoNext = () => {
         let token = this.props.token
-        let {...profile} = this.state
+        let {images, new_images, deleted_images} = this.state
 
-        axios.post(constants.serverUrl + 'api/profiles/me/createImages', profile, { headers: { 'Authorization': token } })
+        axios.post(constants.serverUrl + 'api/profiles/me/createImages', {images, new_images, deleted_images}, { headers: { 'Authorization': token } })
           .then((response) => {
-            //Router.push('/artist/create-profile/service')
+            Router.push('/artist/create-profile/services')
           })
           .catch((error) => {
             console.log(error)
@@ -75,10 +126,11 @@ class WorkPhotoPage extends React.Component {
     }
 
     render() {
-        let {images} = this.state
+        let {loading, images, new_images} = this.state
 
         return (
             <Layout title={'Work Photos'}>
+                { loading ? <Spinner animation="border" variant="dark"/> : 
                 <div className="suggest">
                     <h1> Work Photos </h1>
                     <h2> Select Images </h2>
@@ -100,7 +152,7 @@ class WorkPhotoPage extends React.Component {
                         
                         <div className="col-sm-4" key={idx}>
                             <div className="form-group">
-                                <img width="200" height="200" src={image.blob} />
+                                <img width="200" height="200" src={image.image} />
                             </div>
                             <div className="form-group">
                                 <input
@@ -110,6 +162,39 @@ class WorkPhotoPage extends React.Component {
                                         value={image.title}
                                         onChange={this.handleTitleChange(idx)}
                                     />
+                            </div>
+                            <div className="form-group">
+                                <button
+                                        className="form-control btn btn-danger"
+                                        onClick={this.handleDeleteImage(idx)}>
+                                        Delete
+                                </button>
+                            </div>
+                        </div>
+                    
+                    ))}
+
+                    {new_images.map((image, idx) => (
+                        
+                        <div className="col-sm-4" key={idx}>
+                            <div className="form-group">
+                                <img width="200" height="200" src={image.blob} />
+                            </div>
+                            <div className="form-group">
+                                <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder={`Title`}
+                                        value={image.title}
+                                        onChange={this.handleNewImageTitleChange(idx)}
+                                    />
+                            </div>
+                            <div className="form-group">
+                                <button
+                                        className="form-control btn btn-danger"
+                                        onClick={this.handleNewImageDeleteImage(idx)}>
+                                        Delete
+                                </button>
                             </div>
                         </div>
                     
@@ -121,6 +206,7 @@ class WorkPhotoPage extends React.Component {
                         <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.gotoNext()}}> Next </button>
                     </div>
                 </div>
+                }
                 <style jsx>{`
                     .suggest {
                         text-align: center;
@@ -129,6 +215,7 @@ class WorkPhotoPage extends React.Component {
                         margin-right: 30px;
                     }
                 `}</style>
+                
             </Layout>
         );
     }
