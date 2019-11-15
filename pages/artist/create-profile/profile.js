@@ -91,7 +91,7 @@ class CreateProfilePage extends React.Component {
 
   handleUploadBtnClick = () => {
     document.getElementById("avatar").click();
-  }
+  };
 
   render() {
     let { avatar, loading } = this.state;
@@ -108,13 +108,14 @@ class CreateProfilePage extends React.Component {
         <div className="profile">
           <div className="container">
             <div className="row">
-              <h3> Tell us about you </h3>
+              
               {loading ? (
                 <Spinner animation="border" variant="dark" />
               ) : (
                 <div className="row profile-step">
                   <div className="col-lg-12">
                     <div className="form-group">
+                      <h3> Tell us about you </h3>
                       <label htmlFor="name" className="form-label">
                         Shop Name
                       </label>
@@ -160,7 +161,7 @@ class CreateProfilePage extends React.Component {
                               type="button"
                               className="btn btn-secondary ellipsis btn-block"
                               onClick={() => {
-                                console.log("click delete button")
+                                console.log("click delete button");
                               }}
                             >
                               Delete
@@ -198,6 +199,7 @@ class CreateProfilePage extends React.Component {
                         rows="8"
                         value={this.state.bio}
                       />
+                      <br/>
                       <p>
                         Keep it brief. Clients are more likely to read shorter
                         bios.
@@ -237,29 +239,26 @@ class CreateProfilePage extends React.Component {
                 </div>
               )}
 
-              <div className="row">
-                <div className="page-navs">
-                  <div className="column-2-space">
-
-                    <Link href={`/artist/create-profile`}>
-                      <span className="button">
-                        <a className="btn btn-secondary btn-block">Back</a>
-                      </span>
-                    </Link>
-
+              <div className="page-navs">
+                <div className="column-2-space">
+                  <Link href={`/artist/create-profile`}>
                     <span className="button">
-                      <button
-                        type="button"
-                        className="btn btn-primary ellipsis btn-block"
-                        onClick={() => {
-                          this.gotoNext();
-                        }}
-                      >
-                        {" "}
-                        Next{" "}
-                      </button>
+                      <a className="btn btn-secondary btn-block">Back</a>
                     </span>
-                  </div>
+                  </Link>
+
+                  <span className="button">
+                    <button
+                      type="button"
+                      className="btn btn-primary ellipsis btn-block"
+                      onClick={() => {
+                        this.gotoNext();
+                      }}
+                    >
+                      {" "}
+                      Next{" "}
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>

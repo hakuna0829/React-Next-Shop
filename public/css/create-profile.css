@@ -223,10 +223,12 @@
   flex-direction: column;
   height: 100%;
   align-items: center;
+  padding: 0 15px;
 }
 
 .profile .container .row {
   max-width: 680px;
+  margin: 0;
 }
 
 .profile .container .row .form-label {
