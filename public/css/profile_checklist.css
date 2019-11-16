@@ -24,6 +24,7 @@
     background-color: #1787e0;
     color: white;
     font-weight: bold;
+    display: block;
 }
 #profile-checklist .list-item h3 {
     color: #acd4f4;
