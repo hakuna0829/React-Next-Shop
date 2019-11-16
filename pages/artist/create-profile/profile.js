@@ -76,6 +76,7 @@ class CreateProfilePage extends React.Component {
     let token = this.props.token;
     let { ...profile } = this.state;
 
+    console.log('profile', profile)
     axios
       .put(constants.serverUrl + "api/profiles/me/updateProfile", profile, {
         headers: { Authorization: token }

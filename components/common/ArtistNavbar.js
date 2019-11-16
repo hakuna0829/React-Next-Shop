@@ -1,10 +1,12 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Link from 'next/link';
 import Router from 'next/router';
+import axios from 'axios';
 import cookie from 'js-cookie';
 
 
-class Header extends React.Component {
+class ArtistNavbar extends React.Component {
 
     constructor(props) {
         super(props);
@@ -34,33 +36,27 @@ class Header extends React.Component {
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <Link href="/artist/landing">
-                <a className="navbar-brand">LOGO</a>
-            </Link>
-
+            <a className="navbar-brand" href="#">LOGO</a>
+            
             <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li className="nav-item">
-                        <Link href="/artist/landing">
-                            <a className="nav-link">Become an artist</a>
-                        </Link>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i className="fas fa-user"></i>
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a className="dropdown-item" href="#">
+                                <p>Account</p>
+                            </a>
+                            <a className="dropdown-item" href="#">
+                                <p>Help</p>
+                            </a>
+                            <a className="dropdown-item" href="#">
+                                <p>Celeste for clients</p>
+                            </a>
+                            <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
+                        </div>
                     </li>
-                    <li className="nav-item">
-                        <Link href="/artist/login">
-                            <a className="nav-link">Log in</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link href="/artist/signup">
-                            <a className="nav-link">Sign Up</a>
-                        </Link>
-                    </li>
-
-                   
-                    { logged_in ? <li className="nav-item">
-                        <a className="nav-link" href="#" onClick={this.logout}>Logout</a>
-                    </li> : '' }
-                    
                 </ul>
             </div>
         </nav>
@@ -68,4 +64,4 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default ArtistNavbar;
