@@ -92,7 +92,7 @@ class GuestNavbar extends React.Component {
         <SignupModal 
             show={this.state.showSignUp}
             onClose={this.showSignUpModal} 
-            showLogin={this.showLoginWallModal}           
+            showLoginWall={this.showLoginWallModal}           
         >
           This message from modal.
         </SignupModal>

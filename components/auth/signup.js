@@ -26,6 +26,10 @@ export default class SignupModal extends React.Component {
     this.props.onClose && this.props.onClose(e);
   };
 
+  showLoginWall = e => {
+    this.onClose(e);
+    this.props.showLoginWall(e);
+  };
   handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
     axios
       .post(constants.serverUrl + "api/auth/signup", values)
@@ -62,9 +66,7 @@ export default class SignupModal extends React.Component {
       <div>
         <Modal show={this.props.show} centered>
           <Modal.Header>
-            <Modal.Title>
-              Sign up
-            </Modal.Title>
+            <Modal.Title>Sign up</Modal.Title>
             <span
               className="closebutton"
               onClick={e => {
@@ -79,13 +81,13 @@ export default class SignupModal extends React.Component {
               initialValues={{
                 email: "",
                 password: "",
-                role: 'artist',
+                role: "artist",
                 repassword: "",
                 agreeTerm: false,
                 newsletter: false
               }}
               validate={values => {
-                console.log('values', values)
+                console.log("values", values);
                 let errors = {};
                 if (values.email === "") {
                   errors.email = "Email is required";
@@ -102,7 +104,7 @@ export default class SignupModal extends React.Component {
 
                 if (values.password != values.repassword) {
                   errors.repassword =
-                    "Password must be 3 characters at minimum";
+                    "Confirm password must be same with password";
                 }
 
                 if (values.agreeTerm == false) {
@@ -123,6 +125,10 @@ export default class SignupModal extends React.Component {
                 isSubmitting
               }) => (
                 <Form onSubmit={handleSubmit}>
+                  {errors.success && (
+                    <p className="success">{errors.success}</p>
+                  )}
+                  {errors.total && <p className="error">{errors.total}</p>}
                   <div className="row">
                     <div className="form-group col-md-12">
                       <Field
@@ -132,7 +138,13 @@ export default class SignupModal extends React.Component {
                         className={`form-control ${
                           touched.email && errors.email ? "is-invalid" : ""
                         }`}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.email}
                       />
+                      {errors.email && touched.email && (
+                        <p className="error">{errors.email}</p>
+                      )}
                       <ErrorMessage
                         component="div"
                         name="email"
@@ -193,12 +205,11 @@ export default class SignupModal extends React.Component {
                         />
                         <span className="form-control checkmark"></span>
                         <ErrorMessage
-                        component="div"
-                        name="agreeTerm"
-                        className="invalid-feedback"
-                      />
+                          component="div"
+                          name="agreeTerm"
+                          className="invalid-feedback"
+                        />
                       </label>
-                     
                     </div>
                     <div className="form-group col-md-12">
                       <label className="checkbox_container">
@@ -208,7 +219,7 @@ export default class SignupModal extends React.Component {
                           className="form-Control"
                           name="newsletter"
                         />
-                        <span className="form-control checkmark"></span>                                              
+                        <span className="form-control checkmark"></span>
                       </label>
                     </div>
                     <div className="form-group col-md-12">
@@ -228,7 +239,7 @@ export default class SignupModal extends React.Component {
                       <p>
                         Already have an account?{" "}
                         <Link href="/client/login">
-                          <a>
+                          <a onClick={this.showLoginWall}>
                             <b>Log in</b>
                           </a>
                         </Link>
@@ -241,20 +252,6 @@ export default class SignupModal extends React.Component {
           </ModalBody>
         </Modal>
       </div>
-      // <Modal.Dialog centered size="lg">
-      //   <Modal.Header closeButton>
-      //     <Modal.Title>Modal title</Modal.Title>
-      //   </Modal.Header>
-
-      //   <Modal.Body>
-      //     <p>Modal body text goes here.</p>
-      //   </Modal.Body>
-
-      //   <Modal.Footer>
-      //     <Button variant="secondary" onClick={(e) => { this.onClose(e) }}>Close</Button>
-      //     <Button variant="primary">Save changes</Button>
-      //   </Modal.Footer>
-      // </Modal.Dialog>
     );
   }
 }
