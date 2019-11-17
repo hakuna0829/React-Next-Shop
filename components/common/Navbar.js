@@ -5,27 +5,27 @@ import cookie from 'js-cookie';
 
 import ArtistNavbar from './ArtistNavbar';
 import GuestNavbar from './GuestNavbar';
+import AdminNavbar from './AdminNavbar';
 
 class Navbar extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            logged_in: false,
-        };
-    }
-    
-    componentDidMount() {
+    printNavbar() {
         let token = cookie.get('token')
-        if(token) {
-            this.setState({logged_in : true})
+        let role = cookie.get('role')
+
+        if(!token) {
+            return (<GuestNavbar></GuestNavbar>)
         }
+        else if(role == 'super_admin' || 'admin') {
+            return (<AdminNavbar></AdminNavbar>)
+        }
+        else
+            return (<ArtistNavbar></ArtistNavbar>)
     }
     
   render() {
-      const {logged_in} = this.state
     return (
-        logged_in ? (<ArtistNavbar></ArtistNavbar>) : (<GuestNavbar></GuestNavbar>)
+        this.printNavbar()
     );
   }
 }
