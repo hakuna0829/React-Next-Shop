@@ -1,18 +1,27 @@
 import React from 'react';
-import Link from 'next/link';
+import Router from 'next/router';
+import axios from 'axios';
 
 import Layout from '../../../components/Layout';
 
+import constants from '../../../constants';
 
 class CompletePage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            loading: true,
-            artist: {}
-        };
+    }
 
+    changePublicState = (is_public) => {
+        let token = this.props.token
+
+        axios.put(constants.serverUrl + 'api/profiles/me/updatePublicState', { is_public }, { headers: { 'Authorization': token } })
+          .then((response) => {
+            Router.push('/artist/dashboard')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
     }
 
     render() {
@@ -21,8 +30,8 @@ class CompletePage extends React.Component {
                 <div className="suggest">
                     <h1> Complete </h1>
                     <div className="page-navs">
-                        <Link href={`/artist/dashboard`}><a className="btn btn-secondary">Go Public</a></Link>
-                        <Link href={`/artist/dashboard`}><a className="btn btn-info">Stay Private</a></Link>
+                        <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.changePublicState(true)}}> Go Public </button>
+                        <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.changePublicState(false)}}> Stay Private </button>
                     </div>
                 </div>
                 <style jsx>{`

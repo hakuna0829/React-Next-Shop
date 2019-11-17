@@ -212,8 +212,8 @@ class SelectCategoryPage extends React.Component {
                     
 
                         <div className="page-navs">
-                            <Link href={`/artist/create-profile/`}><a className="btn btn-secondary">Back</a></Link>
-                            <Link href={`/artist/create-profile/policies`}><a className="btn btn-info">Done</a></Link>
+                            <Link href={`/artist/create-profile/profile-complete`}><a className="btn btn-secondary">Back</a></Link>
+                            <Link href={`/artist/create-profile/service-complete`}><a className="btn btn-info">Done</a></Link>
                         </div>
                     </div>
                      )}

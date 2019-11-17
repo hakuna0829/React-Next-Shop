@@ -64,7 +64,8 @@ class WorkPhotoPage extends React.Component {
                     let image = {
                         blob: reader.result,
                         filename: file.name,
-                        title: file.name
+                        title: file.name,
+                        description: ''
                     }
                     new_images.push(image)
                     this.setState({
@@ -117,7 +118,7 @@ class WorkPhotoPage extends React.Component {
 
         axios.post(constants.serverUrl + 'api/profiles/me/createImages', {images, new_images, deleted_images}, { headers: { 'Authorization': token } })
           .then((response) => {
-            Router.push('/artist/create-profile/services')
+            Router.push('/artist/create-profile/profile-complete')
           })
           .catch((error) => {
             console.log(error)
@@ -131,7 +132,7 @@ class WorkPhotoPage extends React.Component {
         return (
             <Layout title={'Work Photos'}>
                 { loading ? <Spinner animation="border" variant="dark"/> : 
-                <div className="suggest">
+                <div className="profile">
                     <h1> Work Photos </h1>
                     <h2> Select Images </h2>
                     <div className="row">
@@ -207,15 +208,6 @@ class WorkPhotoPage extends React.Component {
                     </div>
                 </div>
                 }
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                    .page-navs a {
-                        margin-right: 30px;
-                    }
-                `}</style>
-                
             </Layout>
         );
     }

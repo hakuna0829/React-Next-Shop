@@ -3,8 +3,7 @@ import Link from 'next/link';
 
 import Layout from '../../../components/Layout';
 
-
-class SelectCategoryPage extends React.Component {
+class CreateProfileCheckListPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,31 +16,29 @@ class SelectCategoryPage extends React.Component {
 
     render() {
         return (
-            <Layout title={'How it works'}>
-                <div className="profile" id="profile-checklist">
+            <Layout title={'Create Profile Checklist'}>
+                <div className="overall" id="profile-checklist">
                     <div className="container">
-                        <h1>How it works</h1>
                         <div className="list-item active">
                             <div className="description">
-                                <h3>1 Clients find you</h3>
+                                <h3>Create your profile</h3>
                                 <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
                             </div>
+                            <div className="right-span"><i className="fas fa-check-circle"></i></div>
+                        </div>
+                        <div className="list-item active">
+                            <div className="description">
+                                <h3>Set your services</h3>
+                                <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
+                            </div>
+                            <div className="right-span"><Link href={`/artist/create-profile/services`}><a className="btn standard">Start</a></Link></div>
                         </div>
                         <div className="list-item">
                             <div className="description">
-                                <h3>2 They send you an appointment request</h3>
+                                <h3>Shop policies and availability</h3>
                                 <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
                             </div>
-                        </div>
-                        <div className="list-item">
-                            <div className="description">
-                                <h3>3 You get notified</h3>
-                                <p>Tell your clients a little about yourself and why your passionate about makeup. Your bio gives clients a chance to get to know you better</p>
-                            </div>
-                        </div>
-                        <div className="page-navs">
-                            <Link href={`/artist/create-profile/service-complete`}><a className="btn btn-secondary">Back</a></Link>
-                            <Link href={`/artist/create-profile/availability`}><a className="btn btn-secondary">Next</a></Link>
+                            <div className="right-span"></div>
                         </div>
                     </div>
                 </div>
@@ -50,4 +47,4 @@ class SelectCategoryPage extends React.Component {
     }
   }
   
-  export default SelectCategoryPage;
+  export default CreateProfileCheckListPage;

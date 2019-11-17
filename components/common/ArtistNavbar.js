@@ -10,27 +10,16 @@ class ArtistNavbar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            logged_in: false,
-        };
     }
     
-    componentDidMount() {
-        let token = cookie.get('token')
-        if(token) {
-            this.setState({logged_in : true})
-        }
-    }
 
     logout = () => {
         cookie.remove("token")
         console.log('logout called')
-        this.setState({logged_in : false})
         Router.push('/')
     }
     
   render() {
-      const {logged_in} = this.state
     return (
         <nav className="navbar navbar-expand-lg navbar-light container">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +43,7 @@ class ArtistNavbar extends React.Component {
                             <a className="dropdown-item" href="#">
                                 <p>Celeste for clients</p>
                             </a>
-                            <a className="dropdown-item" href="#" onClick={this.logout}>Logout</a>
+                            <a className="dropdown-item" href="#" onClick={this.logout}><p>Logout</p></a>
                         </div>
                     </li>
                 </ul>

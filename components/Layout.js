@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import ArtistNavbar from './common/ArtistNavbar';
-import GuestNavbar from './common/GuestNavbar';
+import Navbar from './common/Navbar';
 
 export default ({ children, title = 'Celeste'}) => (
   <div>
@@ -30,7 +29,7 @@ export default ({ children, title = 'Celeste'}) => (
     </Head>
 
     <div>
-        <ArtistNavbar></ArtistNavbar>
+        <Navbar></Navbar>
         {children}
     </div>
   </div>
