@@ -4,12 +4,7 @@ import Router from "next/router";
 import cookie from "js-cookie";
 import SignupModal from "../auth/signup";
 
-<<<<<<< HEAD
 class GuestNavbar extends React.Component {
-    
-  render() {
-=======
-class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,16 +27,9 @@ class Header extends React.Component {
     });
   };
 
-  logout = () => {
-    cookie.remove("token");
-    console.log("logout called");
-    this.setState({ logged_in: false });
-    Router.push("/");
-  };
 
   render() {
     const { logged_in } = this.state;
->>>>>>> 279c33a7cf822ed768a3ddbdfaf205a005e1a5cd
     return (
       <nav className="navbar navbar-expand-lg navbar-light container">
         <button
@@ -80,20 +68,6 @@ class Header extends React.Component {
               </Link>
             </li>
 
-<<<<<<< HEAD
-                </ul>
-            </div>
-        </nav>
-=======
-            {logged_in ? (
-              <li className="nav-item">
-                <a className="nav-link" href="#" onClick={this.logout}>
-                  Logout
-                </a>
-              </li>
-            ) : (
-              ""
-            )}
           </ul>
         </div>
         <SignupModal 
@@ -103,7 +77,6 @@ class Header extends React.Component {
           This message from modal.
         </SignupModal>
       </nav>
->>>>>>> 279c33a7cf822ed768a3ddbdfaf205a005e1a5cd
     );
   }
 }

@@ -29,11 +29,7 @@ export default ({ children, title = 'Celeste'}) => (
     </Head>
 
     <div>
-<<<<<<< HEAD
         <Navbar></Navbar>
-=======
-        <GuestNavbar></GuestNavbar>
->>>>>>> 279c33a7cf822ed768a3ddbdfaf205a005e1a5cd
         {children}
     </div>
   </div>
