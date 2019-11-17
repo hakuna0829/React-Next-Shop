@@ -20,7 +20,7 @@ const registerValidation = Yup.object().shape({
 class RegisterPage extends React.Component {
 
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
-alert('s');return;
+
       axios.post(constants.serverUrl + 'api/auth/signup', values)
         .then((response) => {
           

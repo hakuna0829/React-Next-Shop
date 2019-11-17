@@ -30,7 +30,7 @@ export default ({ children, title = 'Celeste'}) => (
     </Head>
 
     <div>
-        <ArtistNavbar></ArtistNavbar>
+        <GuestNavbar></GuestNavbar>
         {children}
     </div>
   </div>
