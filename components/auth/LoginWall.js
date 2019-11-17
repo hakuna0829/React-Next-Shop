@@ -25,6 +25,10 @@ export default class LoginWallModal extends React.Component {
     this.props.onClose && this.props.onClose(e);
   };
 
+  showLoginModal = (e) => {
+    this.onClose(e)
+    this.props.showLogin(e);  
+  }
   showSignUp = (e) => {
     this.onClose(e)
     this.props.showSignUp(e);
@@ -55,11 +59,11 @@ export default class LoginWallModal extends React.Component {
                 <button className="btn btn-primary btn-block">
                   Log in with facebook
                 </button>
-                <Link href="/client/login">
-                  <button className="btn btn-primary btn-block">
-                    Log in with email
-                  </button>
-                </Link>
+               
+                <button className="btn btn-primary btn-block" onClick={this.showLoginModal}>
+                Log in with email
+                </button>
+               
               </div>
 
               <div className="form-group col-md-12">

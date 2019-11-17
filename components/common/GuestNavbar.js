@@ -4,14 +4,16 @@ import Router from "next/router";
 import cookie from "js-cookie";
 import LoginWallModal from "../auth/LoginWall";
 import SignupModal from "../auth/signup";
+import LoginModal from "../auth/login";
 
 class GuestNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       logged_in: false,
-      showSignUp: false,
-      showLoginWallModal: false
+      showLoginWallModal: false,
+      showLoginModal: false,
+      showSignUp: false
     };
   }
 
@@ -26,7 +28,18 @@ class GuestNavbar extends React.Component {
     this.setState({
       ...this.state,
       showLoginWallModal: !this.state.showLoginWallModal,
-      showSignUp: false
+      showSignUp: false,
+      showLoginModal: false,
+    });
+    console.log("login Wall", this.state.showLoginWallModal)
+  };
+
+  showLoginModal = () => {
+    this.setState({
+      ...this.state,
+      showLoginModal: !this.state.showLoginModal,
+      showSignUp: false,
+      showLoginWallModal: false
     });
     console.log("login Wall", this.state.showLoginWallModal)
   };
@@ -35,7 +48,8 @@ class GuestNavbar extends React.Component {
     this.setState({
       ...this.state,
       showSignUp: !this.state.showSignUp ,
-      showLoginWallModal: false
+      showLoginWallModal: false,
+      showLoginModal: false
     });
     console.log("Signup modal", this.state.showSignUp)
   };
@@ -68,9 +82,9 @@ class GuestNavbar extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/artist/login">
+              {/* <Link href="/artist/login"> */}
                 <a className="nav-link" onClick={this.showLoginWallModal}>Log in</a>
-              </Link>
+              {/* </Link> */}
             </li>
             <li className="nav-item">
               {/* <Link href="/artist/signup"> */}
@@ -87,8 +101,15 @@ class GuestNavbar extends React.Component {
             show={this.state.showLoginWallModal}
             onClose={this.showLoginWallModal}
             showSignUp={this.showSignUpModal}
+            showLogin={this.showLoginModal}
         >          
         </LoginWallModal>
+        <LoginModal 
+            show={this.state.showLoginModal}
+            onClose={this.showLoginModal}
+            showSignUp={this.showSignUpModal}
+        >          
+        </LoginModal>
         <SignupModal 
             show={this.state.showSignUp}
             onClose={this.showSignUpModal} 
