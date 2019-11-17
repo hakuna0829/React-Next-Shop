@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Router from "next/router";
 import cookie from "js-cookie";
 
 class AdminNavbar extends React.Component {
@@ -57,7 +58,7 @@ class AdminNavbar extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="#">
+              <Link href="/">
                 <a className="nav-link" onClick={this.logout}>
                     Logout
                 </a>

@@ -79,6 +79,7 @@ export default class SignupModal extends React.Component {
               initialValues={{
                 email: "",
                 password: "",
+                role: 'artist',
                 repassword: "",
                 role: 'artist',
                 agreeTerm: false,
