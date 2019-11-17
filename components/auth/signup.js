@@ -7,23 +7,12 @@ import {
   ModalFooter,
   Button
 } from "react-bootstrap";
-import styles from "./styles.css";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import "./styles.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import cookie from "js-cookie";
 import Router from "next/router";
-
 import constants from "../../constants";
-import Layout from "../../components/Layout";
-
-const registerValidation = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter a valid e-mail address.")
-    .required("Email is required."),
-  password: Yup.string().required("Password is required."),
-  repassword: Yup.string().required("Confrim password is required.")
-});
 
 export default class SignupModal extends React.Component {
   constructor(props) {
@@ -38,7 +27,6 @@ export default class SignupModal extends React.Component {
   };
 
   handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
-    alert('s');return;
     axios
       .post(constants.serverUrl + "api/auth/signup", values)
       .then(response => {
@@ -69,126 +57,189 @@ export default class SignupModal extends React.Component {
     if (!this.props.show) {
       return null;
     }
-
+    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
-      <Formik
-        initialValues={{ email: "", role: "artist", password: "", repassword: "" }}
-        validationSchema={registerValidation}
-        onSubmit={this.handleSubmit}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Modal show={this.props.show} centered>
-              <Modal.Header>
-                <Modal.Title id="contained-modal-title-vcenter">
-                  Sign up
-                </Modal.Title>
-                <span
-                  className="closebutton"
-                  onClick={e => {
-                    this.onClose(e);
-                  }}
-                >
-                  X
-                </span>
-                {errors.success && <p className="success">{errors.success}</p>}
-                {errors.total && <p className="error">{errors.total}</p>}
-              </Modal.Header>
-              <ModalBody>
-                <div className="row">
-                  <div className="form-group col-md-12">
-                    <input
-                      id="sign_email"
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      name="email"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.email}
-                    />
-                    {errors.email && touched.email && (
-                      <p className="error">{errors.email}</p>
-                    )}
+      <div>
+        <Modal show={this.props.show} centered>
+          <Modal.Header>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Sign up
+            </Modal.Title>
+            <span
+              className="closebutton"
+              onClick={e => {
+                this.onClose(e);
+              }}
+            >
+              X
+            </span>
+          </Modal.Header>
+          <ModalBody>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+                repassword: "",
+                agreeTerm: false,
+                newsletter: false
+              }}
+              validate={values => {
+                console.log('values', values)
+                let errors = {};
+                if (values.email === "") {
+                  errors.email = "Email is required";
+                } else if (!emailTest.test(values.email)) {
+                  errors.email = "Invalid email address format";
+                }
+                if (values.password === "") {
+                  errors.password = "Password is required";
+                }
+
+                if (values.repassword === "") {
+                  errors.repassword = "Confirm Password is required";
+                }
+
+                if (values.password != values.repassword) {
+                  errors.repassword =
+                    "Password must be 3 characters at minimum";
+                }
+
+                if (values.agreeTerm == false) {
+                  errors.agreeTerm =
+                    "You must select the agree terms and conditions";
+                }
+                return errors;
+              }}
+              onSubmit={this.handleSubmit}
+            >
+              {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting
+              }) => (
+                <Form onSubmit={handleSubmit}>
+                  <div className="row">
+                    <div className="form-group col-md-12">
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="Enter email"
+                        className={`form-control ${
+                          touched.email && errors.email ? "is-invalid" : ""
+                        }`}
+                      />
+                      <ErrorMessage
+                        component="div"
+                        name="email"
+                        className="invalid-feedback"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="form-group col-md-12">
-                    <input
-                      id="sign_pwd"
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                    />
-                    {errors.password && touched.password && (
-                      <p className="error">{errors.password}</p>
-                    )}
+                  <div className="row">
+                    <div className="form-group col-md-12">
+                      <Field
+                        type="password"
+                        name="password"
+                        placeholder="Enter password"
+                        className={`form-control ${
+                          touched.password && errors.password
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                      />
+                      <ErrorMessage
+                        component="div"
+                        name="password"
+                        className="invalid-feedback"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="form-group col-md-12">
-                    <input
-                      type="password"
-                      onChange={this.handleChangeRePwd}
-                      className="form-control"
-                      name="repassword"
-                      placeholder="Confirm Password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.repassword}
-                    />
-                    {errors.repassword && touched.repassword && (
-                      <p className="error">{errors.repassword}</p>
-                    )}
+                  <div className="row">
+                    <div className="form-group col-md-12">
+                      <Field
+                        type="password"
+                        name="repassword"
+                        placeholder="Enter Confirm password"
+                        className={`form-control ${
+                          touched.repassword && errors.repassword
+                            ? "is-invalid"
+                            : ""
+                        }`}
+                      />
+                      <ErrorMessage
+                        component="div"
+                        name="repassword"
+                        className="invalid-feedback"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="form-group col-md-12 ">
-                    <input type="checkbox" className="" name="agreeTerm" />I
-                    agree to the terms and conditions
+                  <div className="row">
+                    <div className=" col-md-12 ">
+                      <label className="checkbox_container">
+                        agree to the terms and conditions
+                        <Field
+                          type="checkbox"
+                          name="agreeTerm"
+                          className={`form-control  ${
+                            touched.agreeTerm && errors.agreeTerm
+                              ? "is-invalid"
+                              : ""
+                          }`}
+                        />
+                        <span className="form-control checkmark"></span>
+                        <ErrorMessage
+                        component="div"
+                        name="agreeTerm"
+                        className="invalid-feedback"
+                      />
+                      </label>
+                     
+                    </div>
+                    <div className="form-group col-md-12">
+                      <label className="checkbox_container">
+                        Sign me up for the newsletter
+                        <input
+                          type="checkbox"
+                          className="form-Control"
+                          name="newsletter"
+                        />
+                        <span className="form-control checkmark"></span>                                              
+                      </label>
+                    </div>
+                    <div className="form-group col-md-12">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-block"
+                        disabled={isSubmitting}
+                      >
+                        {" "}
+                        Sign Up
+                      </button>
+                    </div>
                   </div>
-                  <div className="form-group col-md-12">
-                    <input type="checkbox" className="" name="newsletter" />
-                    <label>Sign me up for the newsletter</label>
+
+                  <div className="row bottomCenter">
+                    <div className="">
+                      <p>
+                        Already have an account?{" "}
+                        <Link href="/client/login">
+                          <a>
+                            <b>Log in</b>
+                          </a>
+                        </Link>
+                      </p>
+                    </div>
                   </div>
-                  <div className="form-group col-md-12">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-block"
-                      
-                    > Sign Up
-                    </button>                    
-                  </div>
-                </div>
-                <div className="row bottomCenter">
-                  <div className="">
-                    <p>
-                      Already have an account?{" "}
-                      <Link href="/client/login">
-                        <a>
-                          <b>Log in</b>
-                        </a>
-                      </Link>
-                    </p>
-                  </div>
-                </div>
-              </ModalBody>
-            </Modal>
-          </form>
-        )}
-      </Formik>
+                </Form>
+              )}
+            </Formik>
+          </ModalBody>
+        </Modal>
+      </div>
       // <Modal.Dialog centered size="lg">
       //   <Modal.Header closeButton>
       //     <Modal.Title>Modal title</Modal.Title>
