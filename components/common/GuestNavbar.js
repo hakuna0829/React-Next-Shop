@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Router from "next/router";
 import cookie from "js-cookie";
+import LoginWallModal from "../auth/LoginWall";
 import SignupModal from "../auth/signup";
 
 class GuestNavbar extends React.Component {
@@ -9,7 +10,8 @@ class GuestNavbar extends React.Component {
     super(props);
     this.state = {
       logged_in: false,
-      showSignUp: false
+      showSignUp: false,
+      showLoginWallModal: false
     };
   }
 
@@ -20,11 +22,22 @@ class GuestNavbar extends React.Component {
     }
   }
 
+  showLoginWallModal = () => {
+    this.setState({
+      ...this.state,
+      showLoginWallModal: !this.state.showLoginWallModal,
+      showSignUp: false
+    });
+    console.log("login Wall", this.state.showLoginWallModal)
+  };
+
   showSignUpModal = () => {
     this.setState({
       ...this.state,
-      showSignUp: !this.state.showSignUp
+      showSignUp: !this.state.showSignUp ,
+      showLoginWallModal: false
     });
+    console.log("Signup modal", this.state.showSignUp)
   };
 
 
@@ -56,7 +69,7 @@ class GuestNavbar extends React.Component {
             </li>
             <li className="nav-item">
               <Link href="/artist/login">
-                <a className="nav-link">Log in</a>
+                <a className="nav-link" onClick={this.showLoginWallModal}>Log in</a>
               </Link>
             </li>
             <li className="nav-item">
@@ -70,9 +83,16 @@ class GuestNavbar extends React.Component {
 
           </ul>
         </div>
+        <LoginWallModal 
+            show={this.state.showLoginWallModal}
+            onClose={this.showLoginWallModal}
+            showSignUp={this.showSignUpModal}
+        >          
+        </LoginWallModal>
         <SignupModal 
             show={this.state.showSignUp}
-            onClose={this.showSignUpModal}
+            onClose={this.showSignUpModal} 
+            showLogin={this.showLoginWallModal}           
         >
           This message from modal.
         </SignupModal>

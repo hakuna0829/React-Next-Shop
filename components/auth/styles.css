@@ -110,6 +110,7 @@ input::placeholder {
 span.closebutton {
   cursor: pointer;
   font-weight: 600;
+  margin-top: -20px;
 }
 
 .agreeterm {

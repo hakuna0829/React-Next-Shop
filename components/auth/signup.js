@@ -62,7 +62,7 @@ export default class SignupModal extends React.Component {
       <div>
         <Modal show={this.props.show} centered>
           <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Title>
               Sign up
             </Modal.Title>
             <span
@@ -80,6 +80,7 @@ export default class SignupModal extends React.Component {
                 email: "",
                 password: "",
                 repassword: "",
+                role: 'artist',
                 agreeTerm: false,
                 newsletter: false
               }}
