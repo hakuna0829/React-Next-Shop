@@ -60,12 +60,12 @@ class GuestNavbar extends React.Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/artist/signup">
+              {/* <Link href="/artist/signup"> */}
                 {/* <a className="nav-link">Sign Up</a> */}
                 <a className="nav-link" onClick={this.showSignUpModal}>
-                Sign Up
-              </a>
-              </Link>
+                    Sign Up
+                </a>
+              {/* </Link> */}
             </li>
 
           </ul>

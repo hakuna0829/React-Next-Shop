@@ -207,8 +207,7 @@ export default class SignupModal extends React.Component {
                           className="form-Control"
                           name="newsletter"
                         />
-                        <span className="form-control checkmark"></span>                        
-                      />
+                        <span className="form-control checkmark"></span>                                              
                       </label>
                     </div>
                     <div className="form-group col-md-12">
