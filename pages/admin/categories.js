@@ -9,12 +9,12 @@ import Layout from '../../components/Layout';
 
 import constants from '../../constants';
 
-class UsersPage extends React.Component {
+class CategorysPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            users: []
+            categories: []
         };
 
     }
@@ -26,12 +26,12 @@ class UsersPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/users', { headers: { 'Authorization': token } })
+            axios.get(constants.serverUrl + 'api/profiles/categories', { headers: { 'Authorization': token } })
             .then((response) => {
-                console.log('users response', response)
+                console.log('categories response', response)
                 this.setState({
                     loading: false,
-                    users: response.data.users
+                    categories: response.data.categories
                 });
                 
             })
@@ -42,21 +42,17 @@ class UsersPage extends React.Component {
         });
     }
 
-    editUser = (id) => {
+    editCategory = (id) => {
 
     }
 
-    resetPassword = (id) => {
-
-    }
-
-    deleteUser = (id) => {
+    deleteCategory = (id) => {
         const { token } = this.props
-        axios.delete(constants.serverUrl + `api/users/${id}`, { headers: { 'Authorization': token } })
+        axios.delete(constants.serverUrl + `api/profiles/categories/${id}`, { headers: { 'Authorization': token } })
             .then((response) => {
-                let leftUsers = this.state.users.filter(item => item.id != id);
+                let leftCategories = this.state.categories.filter(item => item.id != id);
                 this.setState({
-                    users: leftUsers
+                    categories: leftCategories
                 }); 
             })
             .catch((error) => {
@@ -67,13 +63,13 @@ class UsersPage extends React.Component {
 
 
     render() {
-        const { users, loading } = this.state
+        const { categories, loading } = this.state
         return (
-            <Layout title={'Users'}>
+            <Layout title={'Categorys'}>
             <div className="container-fluid">
                 <div className="card mb-3">
                     <div className="card-header">
-                        <i className="fas fa-table"></i> &nbsp; Users
+                        <i className="fas fa-table"></i>&nbsp;Categories
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
@@ -83,23 +79,23 @@ class UsersPage extends React.Component {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    { users.map((user, i) => {
+                                    { categories.map((category, i) => {
                                         return (
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{user.email}</td>
-                                            <td>{user.role}</td>
+                                            <td>{category.name}</td>
+                                            <td>{category.description}</td>
                                             <td>
                                                 
-                                                <a className="btn btn-primary" onClick={() => this.editUser(user.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
-                                                {/* <a className="btn btn-info" onClick={() => this.resetPassword(user.id)}><i className="fas fa-key"></i> Reset Password</a>  */}
-                                                <a className="btn btn-danger" onClick={() => this.deleteUser(user.id)}><i className="fas fa-trash-alt"></i> Delete</a>
+                                                <a className="btn btn-primary" onClick={() => this.editCategory(category.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
+                                                {/* <a className="btn btn-info" onClick={() => this.resetPassword(category.id)}><i className="fas fa-key"></i> Reset Password</a>  */}
+                                                <a className="btn btn-danger" onClick={() => this.deleteCategory(category.id)}><i className="fas fa-trash-alt"></i> Delete</a>
                                             </td>
                                         </tr>
                                         ) 
@@ -117,4 +113,4 @@ class UsersPage extends React.Component {
     }
   }
   
-  export default UsersPage;
+  export default CategorysPage;
