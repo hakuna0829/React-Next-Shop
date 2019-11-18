@@ -311,3 +311,67 @@ span.button {
   border-color: #d4eafd !important;
   font-weight: 600 !important;
 }
+
+.profile .row .description {
+  margin: 20px 0;
+}
+
+.profile .row .categorySubTitle {
+  font-weight: 700;
+  margin: 0px 0 15px 0;
+}
+
+.profile .row .categoryList div.item {
+  /* border: solid 2px #d9eefa; */
+  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile .row .categoryList div.item .active {
+  border-color: #1787e0;
+}
+
+/* The custom check container for profile categor*/
+.cat_container {
+  /* display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px; */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hide the browser's default checkbox */
+.cat_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.cat_container .checkmark {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px; */
+  padding: 10px 15px;
+  background-color: #fff;
+  color: #1787e0;
+  border: solid 2px #d9eefa;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.cat_container:hover input ~ .checkmark {
+  background-color: #1787e0;
+  color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.cat_container input:checked ~ .checkmark {
+  background-color: #fff;
+  border: solid #1787e0 2px;
+}
