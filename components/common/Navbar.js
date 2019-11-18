@@ -16,7 +16,7 @@ class Navbar extends React.Component {
         if(!token) {
             return (<GuestNavbar></GuestNavbar>)
         }
-        else if(role == 'super_admin' || 'admin') {
+        else if(role == 'super_admin' || role == 'admin') {
             return (<AdminNavbar></AdminNavbar>)
         }
         else
