@@ -9,10 +9,11 @@ import AdminNavbar from './AdminNavbar';
 
 class Navbar extends React.Component {
 
+
     printNavbar() {
         let token = cookie.get('token')
         let role = cookie.get('role')
-
+        console.log('printNavbar', token, role)
         if(!token) {
             return (<GuestNavbar></GuestNavbar>)
         }

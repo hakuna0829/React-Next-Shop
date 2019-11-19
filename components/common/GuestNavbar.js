@@ -59,6 +59,11 @@ class GuestNavbar extends React.Component {
     const { logged_in } = this.state;
     return (
       <nav className="navbar navbar-expand-lg navbar-light container">
+        
+        <Link href="/artist/landing">
+          <a className="navbar-brand">LOGO</a>
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -70,9 +75,6 @@ class GuestNavbar extends React.Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <Link href="/artist/landing">
-          <a className="navbar-brand">LOGO</a>
-        </Link>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">

@@ -7,8 +7,8 @@ import constants from '../constants';
 export const auth = ctx => {
     const { token } = nextCookie(ctx)
     console.log('auth token check before url', token)
-    console.log('pathname', ctx.pathname)
-    console.log('query', ctx.query)
+    //console.log('pathname', ctx.pathname)
+    //console.log('query', ctx.query)
 
     let generalRoutes = [
         '/artist/landing',
@@ -23,13 +23,13 @@ export const auth = ctx => {
     ]
 
     if(generalRoutes.includes(ctx.pathname)) {
-        console.log('general routes')
+        //console.log('general routes')
         return
     }
 
 
     if(noAuthRoutes.includes(ctx.pathname)) { // when there is token, redirect to dashboard
-        console.log('no auth routes')
+        //console.log('no auth routes')
         if (ctx.req && token) {
             ctx.res.writeHead(302, { Location: '/artist/dashboard' })
             ctx.res.end()
