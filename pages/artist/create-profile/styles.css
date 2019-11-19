@@ -1,5 +1,5 @@
 .profile p {
-  margin-bottom: 0px;
+  /* margin-bottom: 0px; */
 }
 .profile .profile_back {
   position: relative;
@@ -255,7 +255,7 @@
 .profile .container .row .column-2-start {
   display: flex;
   justify-content: flex-start;
-  padding: 25px 0px;
+  padding: 0 0 25px 0px;
 }
 .profile .container .row .column-2-start img {
   border-radius: 15px;
@@ -268,13 +268,13 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin-left: 25px;
+  margin-left: 45px;
 }
 .profile .container .row .column-2-start .button-group button {
   margin-bottom: 8px;
 }
 
-.profile .container .row .column-2-start input.hidden {
+.profile .container .row input[type="file"].hidden {
   display: none;
 }
 
@@ -310,6 +310,7 @@ span.button {
   background-color: #d1e7f9 !important;
   border-color: #d4eafd !important;
   font-weight: 600 !important;
+  cursor: pointer;
 }
 
 .profile .row .description {
@@ -374,4 +375,73 @@ span.button {
 .cat_container input:checked ~ .checkmark {
   background-color: #fff;
   border: solid #1787e0 2px;
+}
+
+.profile .uploadImageList .item {
+  text-align: center;
+}
+.profile .uploadImageList .item i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+}
+.profile .uploadImageList .title {
+  width: 200px;
+  margin: 0 auto;
+  display: flex;
+}
+.profile .uploadImageList .title i {
+  margin: 11px 8px 0px 0px;
+  font-size: 2rem;
+  /* -webkit-transform: rotate(45deg); */
+  transform: rotate(-30deg);
+}
+.profile .uploadImageList .delete {
+  width: 200px;
+  margin: 0 auto;
+}
+
+/* profile complete page */
+#profile-checklist .list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #acd4f4;
+}
+
+#profile-checklist .list-item .description {
+  margin-right: 15px;
+}
+#profile-checklist .list-item h3 {
+  font-weight: bold;
+}
+#profile-checklist .list-item .right-span {
+  min-width: 90px;
+  text-align: right;
+}
+
+#profile-checklist .list-item .right-span .btn {
+  background-color: #acd4f4;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+}
+#profile-checklist .list-item .right-span i {
+  color: #acd4f4;
+  font-weight: bold;
+  font-size: 48px;
+}
+#profile-checklist .list-item.active {
+  color: #1787e0;
+}
+#profile-checklist .list-item.active .right-span .btn {
+  background-color: #1787e0;
+}
+#profile-checklist .list-item.active .right-span i {
+  color: #1787e0;
+}
+
+#profile-checklist .container .row {
+  display: block !important;
 }

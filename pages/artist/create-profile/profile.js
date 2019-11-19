@@ -202,9 +202,7 @@ class CreateProfilePage extends React.Component {
                       <br/>
                       <p>
                         Keep it brief. Clients are more likely to read shorter
-                        bios.
-                      </p>
-                      <p>
+                        bios.<br />                     
                         Don't sweat the details. You'll be able to outline your
                         policies and prices in a later step.
                       </p>
