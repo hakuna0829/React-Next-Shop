@@ -451,3 +451,53 @@ span.button {
 #profile-checklist .container .row {
   display: block !important;
 }
+
+/* service page */
+
+.profile div.service {
+  border: solid #acd4f4 2px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.profile div.service .item {
+  padding: 20px 20px;
+}
+
+.profile div.service .item .body {
+  padding: 0px;
+  width: calc(100% - 125px);
+}
+
+.profile div.service .item .body p {
+  display: -webkit-box;
+  height: 50px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.625;
+}
+.profile div.service .item .action {
+  padding: 0px;
+  max-width: 125px;
+}
+.profile div.service .item .action label {
+  cursor: pointer;
+}
+.profile div.service .item .action .center {
+  text-align: center;
+  cursor: pointer;
+}
+
+.profile div.service .item .action .center .hidden {
+  display: none;
+}
+
+.profile div.service .details .left_detail {
+  margin-right: 25px;
+}
+
+.hidden {
+  display: none;
+}
