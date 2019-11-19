@@ -30,6 +30,11 @@ class AdminNavbar extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light container">
+        
+        <Link href="/">
+          <a className="navbar-brand">LOGO</a>
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -41,9 +46,6 @@ class AdminNavbar extends React.Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <Link href="/">
-          <a className="navbar-brand">LOGO</a>
-        </Link>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -55,6 +57,21 @@ class AdminNavbar extends React.Component {
             <li className="nav-item">
               <Link href="/admin/categories">
                 <a className="nav-link">Categories</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/admin/images">
+                <a className="nav-link">Images</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/admin/services">
+                <a className="nav-link">Services</a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/admin/policies">
+                <a className="nav-link">Policies</a>
               </Link>
             </li>
             <li className="nav-item">

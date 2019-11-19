@@ -16,6 +16,7 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx)
     }
 
+    console.log('pageprops', pageProps)
     pageProps.token = token
     return { pageProps }
   }

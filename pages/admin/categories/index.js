@@ -1,13 +1,23 @@
 import React from 'react';
-import { Button, Spinner } from 'react-bootstrap';
+import {
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Button,
+    Spinner
+  } from "react-bootstrap";
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-import Layout from '../../components/Layout';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-import constants from '../../constants';
+import Layout from '../../../components/Layout';
+
+import constants from '../../../constants';
 
 class CategorysPage extends React.Component {
     constructor(props) {
@@ -26,7 +36,7 @@ class CategorysPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/profiles/categories', { headers: { 'Authorization': token } })
+            axios.get(constants.serverUrl + 'api/categories', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('categories response', response)
                 this.setState({
@@ -43,12 +53,14 @@ class CategorysPage extends React.Component {
     }
 
     editCategory = (id) => {
-
+        Router.push('/admin/categories/' + id)
     }
 
     deleteCategory = (id) => {
+        if( confirm("Are you sure?") == false)
+            return
         const { token } = this.props
-        axios.delete(constants.serverUrl + `api/profiles/categories/${id}`, { headers: { 'Authorization': token } })
+        axios.delete(constants.serverUrl + `api/categories/${id}`, { headers: { 'Authorization': token } })
             .then((response) => {
                 let leftCategories = this.state.categories.filter(item => item.id != id);
                 this.setState({
@@ -73,7 +85,13 @@ class CategorysPage extends React.Component {
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
-
+                            <div>
+                                <div className="col-lg-4">
+                                    <Link href={`/admin/categories/add`}>
+                                        <a className="btn btn-primary">Add</a>
+                                    </Link>
+                                </div>
+                            </div>
                         { loading ? <Spinner animation="border" variant="dark"/> : 
                             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                                 <thead>
@@ -92,10 +110,9 @@ class CategorysPage extends React.Component {
                                             <td>{category.name}</td>
                                             <td>{category.description}</td>
                                             <td>
-                                                
-                                                <a className="btn btn-primary" onClick={() => this.editCategory(category.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
+                                                <a className="btn btn-primary" href="#" onClick={() => this.editCategory(category.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
                                                 {/* <a className="btn btn-info" onClick={() => this.resetPassword(category.id)}><i className="fas fa-key"></i> Reset Password</a>  */}
-                                                <a className="btn btn-danger" onClick={() => this.deleteCategory(category.id)}><i className="fas fa-trash-alt"></i> Delete</a>
+                                                <a className="btn btn-danger" href="#"  onClick={() => this.deleteCategory(category.id)}><i className="fas fa-trash-alt"></i> Delete</a>
                                             </td>
                                         </tr>
                                         ) 

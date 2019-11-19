@@ -36,7 +36,8 @@ export default class SignupModal extends React.Component {
       .then(response => {
         if (response.data.auth == true) {
           cookie.set("token", response.data.token, { expires: 1 });
-
+          cookie.set("role", response.data.role, { expires: 1 });
+          
           if (response.data.role == "artist") {
             Router.push("/artist/create-profile");
           } else if (response.data.role == "client") {
