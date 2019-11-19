@@ -186,7 +186,7 @@ class WorkPhotoPage extends React.Component {
                         <i className="fas fa-trash-alt" onClick={this.handleDeleteImage(idx)}></i>
                       </div>
                       <div className="form-group title">
-                        <i class="fas fa-bookmark"></i>
+                        <i className="fas fa-bookmark"></i>
                         <input
                           type="text"
                           className="form-control"
@@ -205,7 +205,7 @@ class WorkPhotoPage extends React.Component {
                         <i className="fas fa-trash-alt" onClick={this.handleNewImageDeleteImage(idx)}></i>
                       </div>
                       <div className="form-group title">
-                      <i class="fas fa-bookmark"></i>
+                      <i className="fas fa-bookmark"></i>
                         <input
                           type="text"
                           className="form-control"

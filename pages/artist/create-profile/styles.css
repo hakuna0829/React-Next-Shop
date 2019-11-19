@@ -375,6 +375,12 @@ span.button {
 .cat_container input:checked ~ .checkmark {
   background-color: #fff;
   border: solid #1787e0 2px;
+  color: #1787e0;
+}
+.cat_container:hover input:checked ~ .checkmark {
+  background-color: #1787e0;
+  border: solid #1787e0 2px;
+  color: #fff;
 }
 
 .profile .uploadImageList .item {
