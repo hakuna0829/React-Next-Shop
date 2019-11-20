@@ -5,7 +5,6 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-import styles from "./styles.css";
 
 class WorkPhotoPage extends React.Component {
   constructor(props) {

@@ -65,7 +65,7 @@ export default class SignupModal extends React.Component {
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
       <div>
-        <Modal show={this.props.show} centered>
+        <Modal show={this.props.show} onHide={this.props.onClose} centered>
           <Modal.Header>
             <Modal.Title>Sign up</Modal.Title>
             <span
@@ -74,7 +74,7 @@ export default class SignupModal extends React.Component {
                 this.onClose(e);
               }}
             >
-              X
+              <i className="fas fa-times"></i>
             </span>
           </Modal.Header>
           <ModalBody>
@@ -239,7 +239,7 @@ export default class SignupModal extends React.Component {
                     <div className="">
                       <p>
                         Already have an account?{" "}
-                        <a onClick={this.showLoginWall}>
+                        <a href="#" onClick={this.showLoginWall}>
                           <b>Log in</b>
                         </a>
                       </p>

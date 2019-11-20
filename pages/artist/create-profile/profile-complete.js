@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
-import styles from "./styles.css";
 
 class CreateProfileCheckListPage extends React.Component {
   constructor(props) {

@@ -41,7 +41,7 @@ export default class LoginWallModal extends React.Component {
 
     return (
       <div>
-        <Modal show={this.props.show} centered>
+        <Modal show={this.props.show} onHide={this.props.onClose}  centered>
           <Modal.Header>
             <Modal.Title>Log in to continue</Modal.Title>
             <span
@@ -50,7 +50,7 @@ export default class LoginWallModal extends React.Component {
                 this.onClose(e);
               }}
             >
-              X
+              <i className="fas fa-times"></i>
             </span>
           </Modal.Header>
           <ModalBody>

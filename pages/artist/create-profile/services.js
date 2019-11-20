@@ -5,7 +5,7 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-import styles from "./styles.css";
+import NewServiceModal from "./newService";
 
 class SelectCategoryPage extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class SelectCategoryPage extends React.Component {
         time_unit: "",
         location: ""
       },
+      showNewModal: false,
       services: []
     };
   }
@@ -29,6 +30,14 @@ class SelectCategoryPage extends React.Component {
   componentDidMount() {
     this.fetchData();
   }
+
+  showNewServiceModal = () => {
+    this.setState({
+      ...this.state,
+      showNewModal: !this.state.showNewModal      
+    });
+    console.log("new modal", this.state.showNewModal)
+  };
 
   fetchData() {
     let token = this.props.token;
@@ -143,6 +152,12 @@ class SelectCategoryPage extends React.Component {
 
     return (
       <Layout title={"Services"}>
+          <NewServiceModal 
+            show={this.state.showNewModal}
+            onClose={this.showNewServiceModal} 
+            
+        >          
+        </NewServiceModal>
         <div className="profile">
           {loading ? (
             <Spinner animation="border" variant="dark" />
@@ -159,9 +174,7 @@ class SelectCategoryPage extends React.Component {
                       <button
                         type="button"
                         className="btn btn-primary ellipsis btn-block"
-                        onClick={() => {
-                          this.handleUploadBtnClick();
-                        }}
+                        onClick={this.showNewServiceModal}
                       >
                         New Service
                       </button>
@@ -203,7 +216,7 @@ class SelectCategoryPage extends React.Component {
                     </div>
 
                     <div className="details hidden">
-                      <div className=" row column-2-space">
+                      <div className=" row column-2-start">
                         <div className="left_detail">
                           <h6>Max number of people:</h6>
                           <p>3</p>
@@ -380,7 +393,7 @@ class SelectCategoryPage extends React.Component {
               </div>
             </div>
           )}
-        </div>
+        </div>        
       </Layout>
     );
   }
