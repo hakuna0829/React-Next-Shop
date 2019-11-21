@@ -23,7 +23,8 @@ class SelectCategoryPage extends React.Component {
         location: ""
       },
       showNewModal: false,
-      services: []
+      services: [],
+      data:[]
     };
   }
 
@@ -34,9 +35,9 @@ class SelectCategoryPage extends React.Component {
   showNewServiceModal = () => {
     this.setState({
       ...this.state,
-      showNewModal: !this.state.showNewModal      
+      showNewModal: !this.state.showNewModal
     });
-    console.log("new modal", this.state.showNewModal)
+    console.log("new modal", this.state.showNewModal);
   };
 
   fetchData() {
@@ -51,7 +52,8 @@ class SelectCategoryPage extends React.Component {
 
           this.setState({
             loading: false,
-            services: response.data.services
+            services: response.data.services,
+            data:response.data
           });
         })
         .catch(error => {
@@ -98,11 +100,7 @@ class SelectCategoryPage extends React.Component {
     }
 
     var detailPanel = itemPanel.childNodes[1];
-    console.log(itemPanel)
-    console.log(detailPanel)
-    console.log(detailPanel.classList)
-    detailPanel.classList.toggle('hidden');
-    //detailPanel.getElementsByClassName('detail').classList.toggle("hidden");
+    detailPanel.classList.toggle("hidden");
   };
 
   addService = () => {
@@ -148,21 +146,22 @@ class SelectCategoryPage extends React.Component {
   deleteService = idx => {};
 
   render() {
-    let { loading, services, new_service } = this.state;
-
+    let { loading, data, services, new_service } = this.state;
+    let {token} = this.props;
     return (
       <Layout title={"Services"}>
-          <NewServiceModal 
-            show={this.state.showNewModal}
-            onClose={this.showNewServiceModal} 
-            
-        >          
-        </NewServiceModal>
         <div className="profile">
           {loading ? (
             <Spinner animation="border" variant="dark" />
           ) : (
             <div className="container">
+              <NewServiceModal
+                show={this.state.showNewModal}
+                onClose={this.showNewServiceModal}
+                services={data}
+                token={token}
+              ></NewServiceModal>
+              { console.log("old service", data) }
               <div className="row">
                 <div className="column-2-space col-sm-12">
                   <div className="imgPreview">
@@ -393,7 +392,7 @@ class SelectCategoryPage extends React.Component {
               </div>
             </div>
           )}
-        </div>        
+        </div>
       </Layout>
     );
   }

@@ -1,9 +1,7 @@
-.profile p {
-  /* margin-bottom: 0px; */
-}
 .profile .profile_back {
   position: relative;
 }
+
 .profile .profile_back img {
   height: auto;
   width: 100%;
@@ -503,10 +501,16 @@ span.button {
 }
 
 input,
-textarea,
 select {
   border-color: #acd4f4 !important;
-  border-width: 2px;
+  border-width: 2px !important;
+  color: #1787e0 !important;
+  height: calc(2.5em + 0.75rem + 2px) !important;
+}
+
+textarea {
+  border-color: #acd4f4 !important;
+  border-width: 2px !important;
   color: #1787e0 !important;
 }
 

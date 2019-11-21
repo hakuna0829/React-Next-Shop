@@ -2,10 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-
 import Rate from '../components/profile/Rate';
 import Layout from '../components/Layout';
-
 
 class HomePage extends React.Component {
 
