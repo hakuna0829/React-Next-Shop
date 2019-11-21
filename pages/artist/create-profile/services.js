@@ -12,19 +12,9 @@ class SelectCategoryPage extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      new_service: {
-        name: "",
-        description: "",
-        max_number_of_people: "",
-        base_price: "",
-        extra_per_person: "",
-        time: "",
-        time_unit: "",
-        location: ""
-      },
       showNewModal: false,
       services: [],
-      data:[]
+      data: []
     };
   }
 
@@ -53,7 +43,7 @@ class SelectCategoryPage extends React.Component {
           this.setState({
             loading: false,
             services: response.data.services,
-            data:response.data
+            data: response.data
           });
         })
         .catch(error => {
@@ -62,18 +52,6 @@ class SelectCategoryPage extends React.Component {
         });
     });
   }
-
-  handleNewServiceChange = e => {
-    let { new_service } = this.state;
-
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    console.log(new_service);
-    new_service[name] = value;
-    this.setState({ new_service });
-  };
 
   handleEditServiceChange = e => {
     const target = e.target;
@@ -103,51 +81,70 @@ class SelectCategoryPage extends React.Component {
     detailPanel.classList.toggle("hidden");
   };
 
-  addService = () => {
+  addService = newService => {
     let token = this.props.token;
-    let { services, new_service } = this.state;
-
-    console.log(new_service);
-    axios
-      .post(
-        constants.serverUrl + "api/profiles/me/createService",
-        new_service,
-        { headers: { Authorization: token } }
-      )
-      .then(response => {
-        services.push(new_service);
-
-        new_service = {
-          name: "",
-          description: "",
-          max_number_of_people: "",
-          base_price: "",
-          extra_per_person: "",
-          time: "",
-          time_unit: "",
-          location: ""
-        };
-
-        this.setState({
-          services,
-          new_service
-        });
-      })
-      .catch(error => {
-        console.log(error);
-        //this.setState({loading: false});
-      });
+    let { services } = this.state;
+    console.log("parent newservice", newService);
+    services.push(newService);
+    this.setState({ services });
   };
+
+  getLocation(id) {
+    let location = "";
+    if (id != null) {
+      location = this.state.data.locations.filter(item => {
+        return item.id == id;
+      })[0].name;
+    }
+    return location;
+  }
+
+  getTime(id) {
+    let sTime = "";
+    if (id != null) {
+      sTime = this.state.data.durations.filter(item => {
+        return item.id == id;
+      })[0].name;
+    }
+
+    return sTime;
+  }
 
   editService = idx => {
     console.log(idx);
   };
 
-  deleteService = idx => {};
+  deleteService = id => {
+    console.log("id", id);
+
+    let token = this.props.token;
+    this.setState({ loading: true }, () => {
+      axios
+        .delete(
+          constants.serverUrl + "api/profiles/me/deleteService",
+          { headers: { Authorization: token } ,
+          data:{
+            id: id
+          }}
+        )
+        .then(response => {
+          console.log("service delete", response);
+          let services = this.state.services.filter(item => item.id != id);
+          this.setState({
+            services: services,
+            loading: false
+          }); 
+        })
+        .catch(error => {
+          console.log(error);
+          //Router.push("/");
+        });
+    });
+  };
 
   render() {
-    let { loading, data, services, new_service } = this.state;
-    let {token} = this.props;
+    let { loading, data, services } = this.state;
+    let { token } = this.props;
     return (
       <Layout title={"Services"}>
         <div className="profile">
@@ -160,8 +157,9 @@ class SelectCategoryPage extends React.Component {
                 onClose={this.showNewServiceModal}
                 services={data}
                 token={token}
+                addService={this.addService}
               ></NewServiceModal>
-              { console.log("old service", data) }
+              {console.log("old service", data)}
               <div className="row">
                 <div className="column-2-space col-sm-12">
                   <div className="imgPreview">
@@ -180,86 +178,83 @@ class SelectCategoryPage extends React.Component {
                     </span>
                   </div>
                 </div>
-                <div className="row service">
-                  <div className="item">
-                    <div className=" row column-2-space">
-                      <div className="body">
-                        <h6>Bridal Makeup - 800</h6>
-                        <p>
-                          Tell your clients a little about yourself and why your
-                          passionate about makeup. Your bio gives clients a
-                          chance to get to know you better.
-                        </p>
-                      </div>
-                      <div className="action  ">
-                        <div className="column-2-space">
-                          <label>
-                            <b>Edit</b>
-                          </label>
-                          &nbsp;&nbsp;
-                          <label>
-                            <b>Remove</b>
-                          </label>
-                        </div>
-                        <div className="center">
-                          <label
-                            onClick={e => {
-                              this.toggleDetails(e, "a");
-                            }}
-                          >
-                            <i className="fas fa-chevron-down"></i>
-                            <i className="fas fa-chevron-up hidden"></i>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="details hidden">
-                      <div className=" row column-2-start">
-                        <div className="left_detail">
-                          <h6>Max number of people:</h6>
-                          <p>3</p>
-                          <h6>Max number of people:</h6>
-                          <p>3</p>
-                          <h6>Max number of people:</h6>
-                          <p>3</p>
-                        </div>
-                        <div className="">
-                          <h6>Location:</h6>
-                          <p>Client home or venue</p>
-
-                          <h6>Location:</h6>
-                          <p>Client home or venue</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 {services.map((service, idx) => (
-                  <div className="row col-sm-12" key={idx}>
-                    <div className="col-sm-12">
-                      <div className="form-group">{service.name}</div>
-                    </div>
-                    <div className="col-sm-6">
-                      <button
-                        className="form-control btn btn-primary"
-                        onClick={this.editService(idx)}
-                      >
-                        Edit
-                      </button>
-                    </div>
-                    <div className="col-sm-6">
-                      <button
-                        className="form-control btn btn-danger"
-                        onClick={this.deleteService(idx)}
-                      >
-                        Delete
-                      </button>
+                  // <div className="row col-sm-12" key={idx}>
+                  //   <div className="col-sm-12">
+                  //     <div className="form-group">{service.name}</div>
+                  //   </div>
+                  //   <div className="col-sm-6">
+                  //     <button
+                  //       className="form-control btn btn-primary"
+                  //       onClick={this.editService(idx)}
+                  //     >
+                  //       Edit
+                  //     </button>
+                  //   </div>
+                  //   <div className="col-sm-6">
+                  //     <button
+                  //       className="form-control btn btn-danger"
+                  //       onClick={this.deleteService(idx)}
+                  //     >
+                  //       Delete
+                  //     </button>
+                  //   </div>
+                  // </div>
+                  <div className="row service" key={idx}>
+                    <div className="item col-sm-12">
+                      <div className=" row column-2-space">
+                        <div className="body">
+                          <h6>{service.name}</h6>
+                          <p>{service.description}</p>
+                        </div>
+                        <div className="action  ">
+                          <div className="column-2-space">
+                            <label>
+                              <b>Edit</b>
+                            </label>
+                            &nbsp;&nbsp;
+                            <label>
+                              <b onClick={() => this.deleteService(service.id)}>
+                                Remove
+                              </b>
+                            </label>
+                          </div>
+                          <div className="center">
+                            <label
+                              onClick={e => {
+                                this.toggleDetails(e, "a");
+                              }}
+                            >
+                              <i className="fas fa-chevron-down"></i>
+                              <i className="fas fa-chevron-up hidden"></i>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="details hidden">
+                        <div className=" row column-2-start">
+                          <div className="left_detail">
+                            <h6>Max number of people:</h6>
+                            <p>{service.max_number_of_people}</p>
+                            <h6>Extra per person:</h6>
+                            <p>{service.extra_per_person}</p>
+                            <h6>Base Price:</h6>
+                            <p>{service.base_price}</p>
+                          </div>
+                          <div className="">
+                            <h6>Location:</h6>
+                            <p>{this.getLocation(service.location_id)}</p>
+                            <h6>Time:</h6>
+                            <p>{this.getTime(service.duration_id)}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
-
+                {/* 
                 <div className="row ">
                   <div className="col-lg-12">
                     <div className="form-group">
@@ -379,15 +374,21 @@ class SelectCategoryPage extends React.Component {
                       Add Service
                     </button>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="page-navs">
-                  <Link href={`/artist/create-profile/profile-complete`}>
-                    <a className="btn btn-secondary">Back</a>
-                  </Link>
-                  <Link href={`/artist/create-profile/service-complete`}>
-                    <a className="btn btn-info">Done</a>
-                  </Link>
+                  <div className="column-2-space">
+                    <Link href={`/artist/create-profile/profile-complete`}>
+                      <span className="button">
+                        <a className="btn btn-secondary btn-block">Back</a>
+                      </span>
+                    </Link>
+                    <Link href={`/artist/create-profile/service-complete`}>
+                      <span className="button">
+                        <a className="btn btn-primary btn-block">Done</a>
+                      </span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

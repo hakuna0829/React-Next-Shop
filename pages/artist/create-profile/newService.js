@@ -17,9 +17,9 @@ const serviceValidation = Yup.object().shape({
   name : Yup.string().required("Name is required."),
   description : Yup.string().required("Description is required."),
   max_number_of_people: Yup.string().required("Max people num is required."),
-  time: Yup.string().required("Service Time is required."),
-  time_unit: Yup.string().required("Per Person is required."),
-  location: Yup.string().required("Service place is required."),
+  duration_id: Yup.string().required("Service Time is required."),
+  duration_unit_id: Yup.string().required("Per Person is required."),
+  location_id: Yup.string().required("Service place is required."),
   base_price: Yup.string().required("Base price is required."),
   extra_per_person: Yup.string().required("Extra per person is required.")
 });
@@ -35,9 +35,9 @@ export default class NewServiceModal extends React.Component {
         max_number_of_people: "",
         base_price: "",
         extra_per_person: "",
-        time: "",
-        time_unit: "",
-        location: ""
+        duration_id: "",
+        duration_unit_id: "",
+        location_id: ""
       },
       modalShow: false,
       services: [],
@@ -57,18 +57,6 @@ export default class NewServiceModal extends React.Component {
     this.props.onClose && this.props.onClose(e);
   };
 
-  // NewService Action
-  handleNewServiceChange = e => {
-    let { new_service } = this.state;
-
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    console.log(new_service);
-    new_service[name] = value;
-    this.setState({ new_service });
-  };
   // Edit service action
   handleEditServiceChange = e => {
     const target = e.target;
@@ -94,7 +82,7 @@ export default class NewServiceModal extends React.Component {
         { headers: { Authorization: token } }
       )
       .then(response => {
-        
+        this.props.addService(values);
       })
       .catch(error => {
         this.setState({ loading: false });
@@ -180,9 +168,9 @@ export default class NewServiceModal extends React.Component {
               base_price:"",
               extra_per_person:"",
               max_number_of_people:"",
-              time:'',
-              time_unit:'',
-              location:''              
+              duration_id:'',
+              duration_unit_id:'',
+              location_id:''              
              }}
               validationSchema={serviceValidation}
               onSubmit={this.handleSubmit}
@@ -322,10 +310,10 @@ export default class NewServiceModal extends React.Component {
                           How long will this service take?
                         </label>
                         <Field
-                          name="time"
+                          name="duration_id"
                           component="select"
                           className={`form-control ${
-                            touched.time && errors.time
+                            touched.duration_id && errors.duration_id
                               ? "is-invalid"
                               : ""
                           }`}
@@ -336,17 +324,17 @@ export default class NewServiceModal extends React.Component {
                         </Field>
                         <ErrorMessage
                           component="div"
-                          name="time"
+                          name="duration_id"
                           className="invalid-feedback"
                         />
                       </div>
                       <div className="form-group col-md-6">
                         <label>&nbsp;</label>
                         <Field
-                          name="time_unit"
+                          name="duration_unit_id"
                           component="select"
                           className={`form-control ${
-                            touched.time_unit && errors.time_unit
+                            touched.duration_unit_id && errors.duration_unit_id
                               ? "is-invalid"
                               : ""
                           }`}
@@ -357,7 +345,7 @@ export default class NewServiceModal extends React.Component {
                         </Field>
                         <ErrorMessage
                           component="div"
-                          name="time_unit"
+                          name="duration_unit_id"
                           className="invalid-feedback"
                         />
                       </div>
@@ -370,10 +358,10 @@ export default class NewServiceModal extends React.Component {
                           Where will this service happen?
                         </label>
                         <Field
-                          name="location"
+                          name="location_id"
                           component="select"
                           className={`form-control ${
-                            touched.location && errors.location
+                            touched.location_id && errors.location_id
                               ? "is-invalid"
                               : ""
                           }`}
@@ -384,7 +372,7 @@ export default class NewServiceModal extends React.Component {
                         </Field>
                         <ErrorMessage
                           component="div"
-                          name="location"
+                          name="location_id"
                           className="invalid-feedback"
                         />
                       </div>
