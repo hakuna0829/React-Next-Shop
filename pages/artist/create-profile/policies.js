@@ -67,16 +67,16 @@ class PoliciesPage extends React.Component {
     
         console.log('save policy', policy)
 
-        let a = {...policy}
+        let params = {...policy}
         
         try {
             if(this.state.created) {
-                let policy = await axios.put(constants.serverUrl + "api/profiles/me/updatePolicy", {...policy}, {
+                let policy = await axios.put(constants.serverUrl + "api/profiles/me/updatePolicy", params, {
                             headers: { Authorization: token }
                         })
             }
             else {
-                let policy = await axios.post(constants.serverUrl + "api/profiles/me/createPolicy", {...policy}, {
+                let policy = await axios.post(constants.serverUrl + "api/profiles/me/createPolicy", params, {
                             headers: { Authorization: token }
                         })
             }
