@@ -143,9 +143,6 @@ export default class SignupModal extends React.Component {
                         onBlur={handleBlur}
                         value={values.email}
                       />
-                      {errors.email && touched.email && (
-                        <p className="error">{errors.email}</p>
-                      )}
                       <ErrorMessage
                         component="div"
                         name="email"
