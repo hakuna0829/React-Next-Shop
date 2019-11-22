@@ -23,27 +23,62 @@ class ArtistNavbar extends React.Component {
     return (
         <nav className="navbar navbar-expand-lg navbar-light container">
             
-            <a className="navbar-brand" href="#">LOGO</a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <Link href="/">
+                <a className="navbar-brand">LOGO</a>
+            </Link>
+            <button
+                className="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span className="navbar-toggler-icon"></span>
             </button>
             
             <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li className="nav-item">
+                        <Link href="/artist/dashboard">
+                            <a className="nav-link">Dashboard</a>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link href="/artist/messages">
+                            <a className="nav-link">Messages</a>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link href="/artist/calendar">
+                            <a className="nav-link">Calendar</a>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link href="/artist/appointments">
+                            <a className="nav-link">Appointments</a>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link href="/artist/shop">
+                            <a className="nav-link">Your shop</a>
+                        </Link>
+                    </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i className="fas fa-user"></i>
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#">
-                                <p>Account</p>
-                            </a>
-                            <a className="dropdown-item" href="#">
-                                <p>Help</p>
-                            </a>
-                            <a className="dropdown-item" href="#">
-                                <p>Celeste for clients</p>
-                            </a>
+                            <Link href="/artist/account">
+                                <a className="dropdown-item"><p>Account</p></a>
+                            </Link>
+                            <Link href="/help">
+                                <a className="dropdown-item"><p>Help</p></a>
+                            </Link>
+                            <Link href="/client/dashboard">
+                                <a className="dropdown-item"><p>Celeste for clients</p></a>
+                            </Link>
                             <a className="dropdown-item" href="#" onClick={this.logout}><p>Logout</p></a>
                         </div>
                     </li>
