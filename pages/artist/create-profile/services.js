@@ -5,14 +5,19 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-import NewServiceModal from "./newService";
+import ServiceModal from "./newService";
+import ConfirmModal from "./confirmModal"
 
 class SelectCategoryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      showNewModal: false,
+      showModal: false,
+      showConfirmModal: false,
+      editId: null,
+      delId:null,
+      mode: "new",
       services: [],
       data: []
     };
@@ -22,13 +27,31 @@ class SelectCategoryPage extends React.Component {
     this.fetchData();
   }
 
-  showNewServiceModal = () => {
+  showSpinner = () => {
     this.setState({
       ...this.state,
-      showNewModal: !this.state.showNewModal
+      loading: !this.state.loading
     });
-    console.log("new modal", this.state.showNewModal);
+  }
+  showServiceModal = (mode, editId = null) => {
+    this.setState({
+      ...this.state,
+      showModal: !this.state.showModal,
+      mode: mode,
+      editId: editId      
+    });
+    console.log("new modal", this.state.showModal);
   };
+
+  showConfirmModal = ( delId = null) => {
+    this.setState({
+      ...this.state,
+      showConfirmModal: !this.state.showConfirmModal,
+      delId: delId      
+    });
+    console.log("new modal", this.state.showConfirmModal);
+  };
+
 
   fetchData() {
     let token = this.props.token;
@@ -87,6 +110,7 @@ class SelectCategoryPage extends React.Component {
     console.log("parent newservice", newService);
     services.push(newService);
     this.setState({ services });
+    this.setState({showModal:false});
   };
 
   getLocation(id) {
@@ -110,30 +134,43 @@ class SelectCategoryPage extends React.Component {
     return sTime;
   }
 
-  editService = idx => {
-    console.log(idx);
+  editService = service => {
+    this.setState(state => {
+      const list = state.services.map(item => {
+        if(item.id == service.id){
+          Object.entries(service).forEach(([key, value]) => {
+               item[key] = value;
+          });
+        }
+      });
+      return {
+        list,
+      };     
+    });
+    this.setState({showModal:false});
+    console.log('updated service',this.state.services);   
+
   };
 
-  deleteService = id => {
+  deleteService = () => {
     console.log("id", id);
-
+    let id = this.state.delId;
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .delete(
-          constants.serverUrl + "api/profiles/me/deleteService",
-          { headers: { Authorization: token } ,
-          data:{
+        .delete(constants.serverUrl + "api/profiles/me/deleteService", {
+          headers: { Authorization: token },
+          data: {
             id: id
-          }}
-        )
+          }
+        })
         .then(response => {
           console.log("service delete", response);
           let services = this.state.services.filter(item => item.id != id);
           this.setState({
             services: services,
             loading: false
-          }); 
+          });
         })
         .catch(error => {
           console.log(error);
@@ -152,13 +189,6 @@ class SelectCategoryPage extends React.Component {
             <Spinner animation="border" variant="dark" />
           ) : (
             <div className="container">
-              <NewServiceModal
-                show={this.state.showNewModal}
-                onClose={this.showNewServiceModal}
-                services={data}
-                token={token}
-                addService={this.addService}
-              ></NewServiceModal>
               {console.log("old service", data)}
               <div className="row">
                 <div className="column-2-space col-sm-12">
@@ -171,7 +201,7 @@ class SelectCategoryPage extends React.Component {
                       <button
                         type="button"
                         className="btn btn-primary ellipsis btn-block"
-                        onClick={this.showNewServiceModal}
+                        onClick={() => this.showServiceModal("new")}
                       >
                         New Service
                       </button>
@@ -180,27 +210,6 @@ class SelectCategoryPage extends React.Component {
                 </div>
 
                 {services.map((service, idx) => (
-                  // <div className="row col-sm-12" key={idx}>
-                  //   <div className="col-sm-12">
-                  //     <div className="form-group">{service.name}</div>
-                  //   </div>
-                  //   <div className="col-sm-6">
-                  //     <button
-                  //       className="form-control btn btn-primary"
-                  //       onClick={this.editService(idx)}
-                  //     >
-                  //       Edit
-                  //     </button>
-                  //   </div>
-                  //   <div className="col-sm-6">
-                  //     <button
-                  //       className="form-control btn btn-danger"
-                  //       onClick={this.deleteService(idx)}
-                  //     >
-                  //       Delete
-                  //     </button>
-                  //   </div>
-                  // </div>
                   <div className="row service" key={idx}>
                     <div className="item col-sm-12">
                       <div className=" row column-2-space">
@@ -211,11 +220,17 @@ class SelectCategoryPage extends React.Component {
                         <div className="action  ">
                           <div className="column-2-space">
                             <label>
-                              <b>Edit</b>
+                              <b
+                                onClick={() =>
+                                  this.showServiceModal("edit", service.id)
+                                }
+                              >
+                                Edit
+                              </b>
                             </label>
                             &nbsp;&nbsp;
                             <label>
-                              <b onClick={() => this.deleteService(service.id)}>
+                              <b onClick={() => this.showConfirmModal(service.id)}>
                                 Remove
                               </b>
                             </label>
@@ -254,138 +269,17 @@ class SelectCategoryPage extends React.Component {
                     </div>
                   </div>
                 ))}
-                {/* 
-                <div className="row ">
-                  <div className="col-lg-12">
-                    <div className="form-group">
-                      <label htmlFor="name" className="control-label">
-                        name
-                      </label>
-                      <input
-                        id="name"
-                        placeholder="name"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="name"
-                        value={new_service.name}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="description" className="control-label">
-                        description
-                      </label>
-                      <textarea
-                        id="description"
-                        placeholder="description"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="description"
-                        value={new_service.description}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label
-                        htmlFor="max_number_of_people"
-                        className="control-label"
-                      >
-                        max_number_of_people
-                      </label>
-                      <input
-                        id="max_number_of_people"
-                        placeholder="max_number_of_people"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="max_number_of_people"
-                        value={new_service.max_number_of_people}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="base_price" className="control-label">
-                        base_price
-                      </label>
-                      <input
-                        id="base_price"
-                        placeholder="base_price"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="base_price"
-                        value={new_service.base_price}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label
-                        htmlFor="extra_per_person"
-                        className="control-label"
-                      >
-                        extra_per_person
-                      </label>
-                      <input
-                        id="extra_per_person"
-                        placeholder="extra_per_person"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="extra_per_person"
-                        value={new_service.extra_per_person}
-                      />
-                    </div>
-                    <label>How long will this take?</label>
-                    <div className="form-group">
-                      <label htmlFor="time" className="control-label">
-                        time
-                      </label>
-                      <input
-                        id="time"
-                        placeholder="time"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="time"
-                        value={new_service.time}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="time_unit" className="control-label">
-                        Time Unit
-                      </label>
-                      <input
-                        id="time_unit"
-                        placeholder="time_unit"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="time_unit"
-                        value={new_service.time_unit}
-                      />
-                    </div>
-                    <label>Where will this happen?</label>
-                    <div className="form-group">
-                      <label htmlFor="location" className="control-label">
-                        Time Unit
-                      </label>
-                      <input
-                        id="location"
-                        placeholder="location"
-                        className="form-control"
-                        onChange={this.handleNewServiceChange}
-                        name="location"
-                        value={new_service.location}
-                      />
-                    </div>
-
-                    <button className="btn btn-info" onClick={this.addService}>
-                      Add Service
-                    </button>
-                  </div>
-                </div> */}
-
+               
                 <div className="page-navs">
                   <div className="column-2-space">
                     <Link href={`/artist/create-profile/profile-complete`}>
                       <span className="button">
-                        <a className="btn btn-secondary btn-block">Back</a>
+                        <a href="#" className="btn btn-secondary btn-block">Back</a>
                       </span>
                     </Link>
                     <Link href={`/artist/create-profile/service-complete`}>
                       <span className="button">
-                        <a className="btn btn-primary btn-block">Done</a>
+                        <a href="#" className="btn btn-primary btn-block">Done</a>
                       </span>
                     </Link>
                   </div>
@@ -393,6 +287,23 @@ class SelectCategoryPage extends React.Component {
               </div>
             </div>
           )}
+          <ServiceModal
+            show={this.state.showModal}
+            onClose={this.showServiceModal}
+            services={data}
+            token={token}
+            editId={this.state.editId}
+            mode={this.state.mode}
+            action={
+              this.state.mode == "new" ? this.addService : this.editService
+            }           
+          ></ServiceModal>
+          <ConfirmModal
+           show={this.state.showConfirmModal}
+           onClose={this.showConfirmModal}
+           action={this.deleteService}          
+          >
+          </ConfirmModal>
         </div>
       </Layout>
     );
