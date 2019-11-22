@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import axios from 'axios';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Tab, Tabs } from 'react-bootstrap';
 
 import Layout from '../../components/Layout';
 
@@ -18,15 +18,16 @@ class AccountPage extends React.Component {
             name: '',
             avatar: '',
             avatar_filename: '',
-            bio: ''
+            bio: '',
+            preferences: [],
         };
     }
 
     componentDidMount() {
-        this.fetchData();
+        this.fetchAccountData();
      }
  
-     fetchData() {
+    fetchAccountData() {
          let token = this.props.token
          this.setState({loading: true}, () => {
              axios.get(constants.serverUrl + 'api/profiles/me/getProfile', { headers: { 'Authorization': token } })
@@ -43,8 +44,40 @@ class AccountPage extends React.Component {
                  Router.push('/')
              });
          });
-     }
-     
+    }
+
+    fetchEmailData() {
+        let token = this.props.token
+        this.setState({loading: true}, () => {
+            axios.get(constants.serverUrl + 'api/preferences/me/email', { headers: { 'Authorization': token } })
+            .then((response) => {
+               console.log('me response', response)
+
+               this.setState({
+                   loading: false,
+                   ...response.data
+               });
+            })
+            .catch((error) => {
+                console.log(error)
+                Router.push('/')
+            });
+        });
+   }
+    
+     handleSelect = (key) => {
+         console.log('key', key)
+        if (key === 'account') {
+            this.fetchAccountData();
+        }
+        else if(key === 'payment') {
+
+        }
+        else if(key === 'email') {
+            this.fetchEmailData();
+        }
+    }
+
     handleChange = (e) => {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -54,6 +87,29 @@ class AccountPage extends React.Component {
             [name]: value
         });
     }
+
+    saveEmailPreference = () => {
+        let token = this.props.token;
+        let { preferences } = this.state;
+
+        let data = preferences.map(item => {
+            return { id: item.id, checked: item.checked };
+        });
+        axios
+        .put(
+            constants.serverUrl + "api/preferences/me/email",
+            { preferences: data },
+            { headers: { Authorization: token } }
+        )
+        .then(response => {
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+    
 
     fileSelectedHandler = e => {
         let reader = new FileReader();
@@ -83,8 +139,17 @@ class AccountPage extends React.Component {
           })
     }
 
+    handlePreferenceChange = (e, index) => {
+        const target = e.target;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+    
+        let { preferences } = this.state;
+        preferences[index].checked = value;
+        this.setState({ preferences });
+    };
+
     render() {
-        let {avatar, loading} = this.state
+        let {avatar, loading, preferences} = this.state
 
         let $imagePreview = null;
         if (avatar) {
@@ -95,71 +160,83 @@ class AccountPage extends React.Component {
 
         return (
             <Layout title={'Account'}>
-                <div className="suggest">
+                <div className="profile">
+                    <div className="container">
                     <h1> Artist Account </h1>
-                    
-                    <ul className="nav nav-tabs" id="myTab" role="tablist">
-                        <li className="nav-item">
-                            <a className="nav-link active" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="true">Account Settings</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Payment methods</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email</a>
-                        </li>
-                        </ul>
-                        <div className="tab-content" id="myTabContent">
-                        <div className="tab-pane fade show active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                            { loading ? <Spinner animation="border" variant="dark"/> : 
-                            <div >
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label htmlFor="name" className="control-label">Name</label> 
-                                            <input id="name" placeholder="Name" className="form-control" onChange={this.handleChange}
-                                                name="name"
-                                                type="text"
-                                                value={this.state.name}/>
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="avatar" className="control-label">Profile Picture</label> 
-                                            <input id="avatar" placeholder="avatar" type="file" 
-                                                    name="avatar"
-                                                    className="form-control" onChange={this.fileSelectedHandler}
-                                                    accept=".jpg,.jpeg,.png,.bmp"
-                                                    value="" 
-                                                />
-                                            <div className="imgPreview">
-                                                {$imagePreview}
+                    <Tabs defaultActiveKey="account" onSelect={this.handleSelect}>
+                        <Tab eventKey="account" title="Account Settings">
+                            <div>
+                                { loading ? <Spinner animation="border" variant="dark"/> : 
+                                <div >
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label htmlFor="name" className="control-label">Name</label> 
+                                                <input id="name" placeholder="Name" className="form-control" onChange={this.handleChange}
+                                                    name="name"
+                                                    type="text"
+                                                    value={this.state.name}/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="avatar" className="control-label">Profile Picture</label> 
+                                                <input id="avatar" placeholder="avatar" type="file" 
+                                                        name="avatar"
+                                                        className="form-control" onChange={this.fileSelectedHandler}
+                                                        accept=".jpg,.jpeg,.png,.bmp"
+                                                        value="" 
+                                                    />
+                                                <div className="imgPreview">
+                                                    {$imagePreview}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="bio" className="control-label">Bio</label> 
-                                            <textarea id="bio" placeholder="Bio" className="form-control" onChange={this.handleChange}
-                                                name="bio"
-                                                value={this.state.bio}/>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.saveProfile()}}> Save </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.saveProfile()}}> Save </button>
+                                }
+                            </div>
+                        
+                        </Tab>
+                        <Tab eventKey="payment" title="Payment method">
+                            Payment method
+                        </Tab>
+                        <Tab eventKey="email" title="Email Preference">
+                        { loading ? <Spinner animation="border" variant="dark"/> : 
+                            <div className="row col-md-4 categoryList">
+                            
+                                {preferences.map((preference, idx) => (
+                                    <div className="item" key={idx}>
+                                    <label className="cat_container">
+                                        <input 
+                                            type="checkbox" 
+                                            checked={preference.checked} 
+                                            className="form-control"
+                                            onChange={e => this.handlePreferenceChange(e, idx)}
+                                        />
+                                        <div className="checkmark">{preference.name}</div> 
+                                    </label>                          
                                     </div>
-                                </div>
+                                ))}
+                                <button
+                                    type="button"
+                                    className="btn btn-primary ellipsis btn-block"
+                                    onClick={this.saveEmailPreference}
+                                >
+                                    Save
+                                </button>
                             </div>
                             }
-                        </div>
-                        <div className="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">Add/Remove payment methods</div>
-                        <div className="tab-pane fade" id="email" role="tabpanel" aria-labelledby="email-tab">Email Preferences </div>
+                            
+                        </Tab>
+                    </Tabs>
+                    
                     </div>
-
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                `}</style>
+                
             </Layout>
         );
     }
