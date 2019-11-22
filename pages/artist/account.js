@@ -19,6 +19,9 @@ class AccountPage extends React.Component {
             avatar: '',
             avatar_filename: '',
             bio: '',
+            new_email: '',
+            confirm_email: '',
+            password: '',
             preferences: [],
         };
     }
@@ -165,11 +168,12 @@ class AccountPage extends React.Component {
                     <h1> Artist Account </h1>
                     <Tabs defaultActiveKey="account" onSelect={this.handleSelect}>
                         <Tab eventKey="account" title="Account Settings">
-                            <div>
+                            <h2> Profile </h2>
+                            <div className="row">
                                 { loading ? <Spinner animation="border" variant="dark"/> : 
                                 <div >
                                     <div className="row">
-                                        <div className="col-md-6">
+                                        <div className="col-md-12">
                                             <div className="form-group">
                                                 <label htmlFor="name" className="control-label">Name</label> 
                                                 <input id="name" placeholder="Name" className="form-control" onChange={this.handleChange}
@@ -199,17 +203,53 @@ class AccountPage extends React.Component {
                                 </div>
                                 }
                             </div>
-                        
+                            <h2> Email </h2>
+                            <div className="row">
+                                { loading ? <Spinner animation="border" variant="dark"/> : 
+                                <div >
+                                    <div className="row">
+                                        <div className="col-md-12">
+                                            <div className="form-group">
+                                                <label htmlFor="new_email" className="control-label">New Email</label> 
+                                                <input id="new_email" placeholder="New Email" className="form-control" onChange={this.handleChange}
+                                                    name="new_email"
+                                                    type="text"
+                                                    value={this.state.new_email}/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="confirm_email" className="control-label">Confirm Email</label> 
+                                                <input id="confirm_email" placeholder="Confirm Email" className="form-control" onChange={this.handleChange}
+                                                    name="confirm_email"
+                                                    type="text"
+                                                    value={this.state.confirm_email}/>
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="password" className="control-label">Password</label> 
+                                                <input id="password" placeholder="Password" className="form-control" onChange={this.handleChange}
+                                                    name="password"
+                                                    type="password"
+                                                    value={this.state.password}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.changeEmail()}}> Save </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            </div>
                         </Tab>
                         <Tab eventKey="payment" title="Payment method">
                             Payment method
                         </Tab>
                         <Tab eventKey="email" title="Email Preference">
                         { loading ? <Spinner animation="border" variant="dark"/> : 
-                            <div className="row col-md-4 categoryList">
+                            <div className="row categoryList">
                             
                                 {preferences.map((preference, idx) => (
-                                    <div className="item" key={idx}>
+                                    <div className="col-md-12 item" key={idx}>
                                     <label className="cat_container">
                                         <input 
                                             type="checkbox" 
@@ -223,7 +263,7 @@ class AccountPage extends React.Component {
                                 ))}
                                 <button
                                     type="button"
-                                    className="btn btn-primary ellipsis btn-block"
+                                    className="btn btn-primary ellipsis"
                                     onClick={this.saveEmailPreference}
                                 >
                                     Save
