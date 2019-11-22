@@ -270,6 +270,7 @@
 .profile .container .row {
   max-width: 680px;
   margin: 0;
+  width: 100%;
 }
 
 .profile .container .row .form-label {
@@ -326,6 +327,7 @@
 
 span.button {
   width: 125px;
+  cursor: pointer;
 }
 
 .profile .container .row input::placeholder {
@@ -338,7 +340,7 @@ span.button {
 
 .profile .page-navs {
   width: 100%;
-  padding: 0px 15px;
+  /* padding: 0px 15px; */
   margin: 45px 0;
 }
 
@@ -601,4 +603,40 @@ div.modal .column-2-space {
 
 .profile .btn-primary {
   color: #fff !important;
+}
+
+.profile .row .nopadding {
+  padding: 0px !important;
+}
+
+.profile .row .divider15 {
+  margin-bottom: 15px;
+}
+
+.profile .row .rightSpace15 {
+  padding-right: 15px !important;
+}
+
+.profile .lineNo {
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.profile .subTitle3 {
+  font-weight: 700;
+  /* font-size: 1.1rem; */
+}
+
+.profile .detail.leftSpace25 {
+  margin-left: 25px;
+
+}
+
+.profile .container .smallrow {
+  max-width: 530px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center
 }
