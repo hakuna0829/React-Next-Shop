@@ -290,6 +290,7 @@
 .profile .container .row .column-2-space {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .profile .container .row .column-2-space .rightButton {
@@ -328,6 +329,12 @@
 span.button {
   width: 125px;
   cursor: pointer;
+}
+
+span.button.confirm {
+  width: 125px;
+  cursor: pointer;
+  margin: 0 15px;
 }
 
 .profile .container .row input::placeholder {
@@ -415,19 +422,19 @@ span.button {
 }
 
 /* On mouse-over, add a grey background color */
-.cat_container:hover input~.checkmark {
+.cat_container:hover input ~ .checkmark {
   background-color: #1787e0;
   color: #fff;
 }
 
 /* When the checkbox is checked, add a blue background */
-.cat_container input:checked~.checkmark {
+.cat_container input:checked ~ .checkmark {
   background-color: #fff;
   border: solid #1787e0 2px;
   color: #1787e0;
 }
 
-.cat_container:hover input:checked~.checkmark {
+.cat_container:hover input:checked ~ .checkmark {
   background-color: #1787e0;
   border: solid #1787e0 2px;
   color: #fff;
@@ -629,7 +636,6 @@ div.modal .column-2-space {
 
 .profile .detail.leftSpace25 {
   margin-left: 25px;
-
 }
 
 .profile .container .smallrow {
@@ -638,11 +644,39 @@ div.modal .column-2-space {
   width: 100%;
   text-align: center;
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 
 select.police_select {
   width: 100%;
   border-radius: 5px;
+}
 
+.profile .templateOut {
+  padding: 0px;
+  margin-bottom: 15px;
+}
+
+.profile .templateInner {
+  border: solid 2px #acd4f4;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile .templateInner label {
+  vertical-align: middle;
+  margin: 0 10px 0 0;
+  font-weight: 600;
+}
+
+.profile .templateInner i {
+  font-size: 1.5rem;
+}
+
+.profile .templateInner .column-2-space {
+  padding: 0 20px;
 }

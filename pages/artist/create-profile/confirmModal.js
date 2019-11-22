@@ -53,19 +53,23 @@ export default class ConfirmModal extends React.Component {
             </Modal.Header>
             <ModalBody>
               <div className="row">
-                <div className="form-group col-md-12">
+                <div className="column-2-space">
+                <span className="button confirm">
                   <button
                     onClick={() => this.handleYes()}
                     className="btn btn-danger btn-block"                
                   >                
                     Yes
                   </button>
+                  </span>
+                  <span className="button confirm">
                   <button
                     onClick={() => this.onClose()}
                     className="btn btn-primary btn-block"                
                   >                
                     No
                   </button>
+                  </span>
                 </div>
               </div>
             </ModalBody>

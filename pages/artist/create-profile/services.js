@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
 import ServiceModal from "./newService";
-import ConfirmModal from "./confirmModal"
+import ConfirmModal from "./confirmModal";
 
 class SelectCategoryPage extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class SelectCategoryPage extends React.Component {
       showModal: false,
       showConfirmModal: false,
       editId: null,
-      delId:null,
+      delId: null,
       mode: "new",
       services: [],
       data: []
@@ -32,26 +32,25 @@ class SelectCategoryPage extends React.Component {
       ...this.state,
       loading: !this.state.loading
     });
-  }
+  };
   showServiceModal = (mode, editId = null) => {
     this.setState({
       ...this.state,
       showModal: !this.state.showModal,
       mode: mode,
-      editId: editId      
+      editId: editId
     });
     console.log("new modal", this.state.showModal);
   };
 
-  showConfirmModal = ( delId = null) => {
+  showConfirmModal = (delId = null) => {
     this.setState({
       ...this.state,
       showConfirmModal: !this.state.showConfirmModal,
-      delId: delId      
+      delId: delId
     });
     console.log("new modal", this.state.showConfirmModal);
   };
-
 
   fetchData() {
     let token = this.props.token;
@@ -87,8 +86,8 @@ class SelectCategoryPage extends React.Component {
   };
 
   toggleDetails = (e, id) => {
-    var downArrow = e.currentTarget.childNodes[0];
-    var upArrow = e.currentTarget.childNodes[1];
+    var downArrow = e.currentTarget.childNodes[0].childNodes[0];
+    var upArrow = e.currentTarget.childNodes[0].childNodes[1];
     var itemPanel = e.currentTarget.closest(".item");
 
     if (downArrow.classList.contains("hidden")) {
@@ -110,7 +109,7 @@ class SelectCategoryPage extends React.Component {
     console.log("parent newservice", newService);
     services.push(newService);
     this.setState({ services });
-    this.setState({showModal:false});
+    this.setState({ showModal: false });
   };
 
   getLocation(id) {
@@ -137,19 +136,18 @@ class SelectCategoryPage extends React.Component {
   editService = service => {
     this.setState(state => {
       const list = state.services.map(item => {
-        if(item.id == service.id){
+        if (item.id == service.id) {
           Object.entries(service).forEach(([key, value]) => {
-               item[key] = value;
+            item[key] = value;
           });
         }
       });
       return {
-        list,
-      };     
+        list
+      };
     });
-    this.setState({showModal:false});
-    console.log('updated service',this.state.services);   
-
+    this.setState({ showModal: false });
+    console.log("updated service", this.state.services);
   };
 
   deleteService = () => {
@@ -230,17 +228,22 @@ class SelectCategoryPage extends React.Component {
                             </label>
                             &nbsp;&nbsp;
                             <label>
-                              <b onClick={() => this.showConfirmModal(service.id)}>
+                              <b
+                                onClick={() =>
+                                  this.showConfirmModal(service.id)
+                                }
+                              >
                                 Remove
                               </b>
                             </label>
                           </div>
-                          <div className="center">
-                            <label
-                              onClick={e => {
-                                this.toggleDetails(e, "a");
-                              }}
-                            >
+                          <div
+                            className="center"
+                            onClick={e => {
+                              this.toggleDetails(e, "a");
+                            }}
+                          >
+                            <label>
                               <i className="fas fa-chevron-down"></i>
                               <i className="fas fa-chevron-up hidden"></i>
                             </label>
@@ -269,21 +272,47 @@ class SelectCategoryPage extends React.Component {
                     </div>
                   </div>
                 ))}
-               
+
+                {/* start service tempate  */}
+                <h6> Try starting with one of these services </h6>
+                <div className="row column-2-space">
+                  {data.templates.map((template, idx) => {
+                    console.log(template);
+                    return (
+                      <div className="col-md-5 templateOut">
+                        <div className="templateInner">
+                          <div className="column-2-space ">
+                            <div>
+                              <label> {template.name} - ${template.base_price} </label>
+                            </div>
+                            <i className="fas fa-plus-circle"></i>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}                  
+                </div>
+              {/* end service tempate  */}
+              {/* start footer  */}
                 <div className="page-navs">
                   <div className="column-2-space">
                     <Link href={`/artist/create-profile/profile-complete`}>
                       <span className="button">
-                        <a href="#" className="btn btn-secondary btn-block">Back</a>
+                        <a href="#" className="btn btn-secondary btn-block">
+                          Back
+                        </a>
                       </span>
                     </Link>
                     <Link href={`/artist/create-profile/service-complete`}>
                       <span className="button">
-                        <a href="#" className="btn btn-primary btn-block">Done</a>
+                        <a href="#" className="btn btn-primary btn-block">
+                          Done
+                        </a>
                       </span>
                     </Link>
                   </div>
                 </div>
+                {/* end footer  */}
               </div>
             </div>
           )}
@@ -296,14 +325,13 @@ class SelectCategoryPage extends React.Component {
             mode={this.state.mode}
             action={
               this.state.mode == "new" ? this.addService : this.editService
-            }           
+            }
           ></ServiceModal>
           <ConfirmModal
-           show={this.state.showConfirmModal}
-           onClose={this.showConfirmModal}
-           action={this.deleteService}          
-          >
-          </ConfirmModal>
+            show={this.state.showConfirmModal}
+            onClose={this.showConfirmModal}
+            action={this.deleteService}
+          ></ConfirmModal>
         </div>
       </Layout>
     );
