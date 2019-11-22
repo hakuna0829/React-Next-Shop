@@ -70,7 +70,7 @@ class SelectCategoryPage extends React.Component {
                 <div className="page-navs">
                   <div className="column-2-space">
                     <span className="button">
-                      <Link href={`/artist/create-profile/service-complete`}>
+                      <Link href={`/artist/create-profile/policies`}>
                         <a className="btn btn-secondary btn-block">Back</a>
                       </Link>
                     </span>

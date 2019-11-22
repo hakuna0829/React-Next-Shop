@@ -640,3 +640,9 @@ div.modal .column-2-space {
   display: flex;
   justify-content: center
 }
+
+select.police_select {
+  width: 100%;
+  border-radius: 5px;
+
+}

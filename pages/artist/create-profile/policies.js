@@ -170,21 +170,37 @@ class PoliciesPage extends React.Component {
                 <div className="row divider15"></div>
                 <div className="row">
                   <label>How far will you travel for the booking?</label>
-                  <input
+                  {/* <input
                     id="travel_distance_id"
                     placeholder="travel_distance_id"
                     className="form-control"
                     onChange={this.handleChange}
                     name="travel_distance_id"
                     value={policy.travel_distance_id}
-                  />
+                  /> */}
+                  <select
+                    id="travel_distance_id"
+                    className="police_select"
+                    onChange={this.handleChange}
+                    name="travel_distance_id"
+                    value={policy.travel_distance_id}
+                  >
+                    <option value=""></option>
+                    {distances.map(item => {
+                      return (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
               </div>
 
               <div className="row">
                 <div className="page-navs">
                   <div className="column-2-space">
-                    <Link href={`/artist/create-profile`}>
+                    <Link href={`/artist/create-profile/service-complete`}>
                       <span className="button">
                         <a className="btn btn-secondary btn-block">Back</a>
                       </span>
