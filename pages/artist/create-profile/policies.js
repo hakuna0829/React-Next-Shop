@@ -101,8 +101,11 @@ class PoliciesPage extends React.Component {
                     <Spinner animation="border" variant="dark" />
                         ) : (
                     <div className="container">
-                        <h1> Policies </h1>
+                        <div className="row">
+                        <h3> Policies </h3>
                         <h2> Where is your home or studio? </h2>
+                        </div>
+                        
   
 
                         <div className="row">
