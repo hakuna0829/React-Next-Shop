@@ -1,41 +1,147 @@
+$main_color:#1787e0;
+$second_color:#d9eefa;
+$white-color:#fff;
+$danger_color:red;
+
 body {
-    color: #1787e0;
+    color: $main_color
 }
 
 #artist-landing {
-    font-family: sans-serif;
+    .artist_landing {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .artist_landing_item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h3 {
+                color: $main_color;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .join {
+        background-color: $second_color;
+    }
+
 }
 
-#artist-landing .artist_landing {
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+p {
+    .error {
+        color: $danger_color;
+    }
 }
 
-#artist-landing .artist_landing .artist_landing_item {
-    text-align: center;
-}
-
-#artist-landing .artist_landing .artist_landing_item h3 {
-    color: #1787e0;
-    font-weight: bold;
-}
-
-#artist-landing .artist_landing .artist_landing_item button {
-    background-color: #1787e0;
-    margin-top: 10px;
-    padding: 2% 5%;
-}
-
-#artist-landing .artist_landing.join {
-    background-color: #d9eefa;
-}
-
-p.error {
-    color: red;
-}
 
 .nav-link {
     cursor: pointer;
+}
+
+div {
+    .button {
+        width: 125px;
+        cursor: pointer;
+    }
+}
+
+
+.category_list {
+    margin: 35px 0px;
+    display: flex;
+    justify-content: center;
+
+    div.button {
+        width: 200px;
+        cursor: pointer;
+        margin-bottom: 15px;
+    }
+
+    .btn-light {
+        color: $main_color;
+        background-color: $white-color;
+        border-color: $main_color;
+        border-radius: 10px;
+        text-align: left;
+        padding: 10px 0px;
+
+        i {
+            padding-left: 10px;
+        }
+
+    }
+
+
+
+}
+
+.makeup_list {
+    margin: 35px 0px;
+    display: flex;
+    justify-content: center;
+
+    .heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .right_all {
+            position: relative;
+            top: 0.5rem;
+        }
+
+    }
+
+}
+
+div.carousel_main {
+    width: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+
+
+    i {
+        font-size: 2rem;
+    }
+
+    .card {
+        border-width: 0px;
+
+        img {
+            border-radius: 8px;
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .name {
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            i {
+                font-size: 1rem;
+            }
+        }
+
+        .location {
+            font-size: smaller;
+
+            i {
+                font-size: 0.8rem;
+            }
+        }
+
+        .appointment {
+            font-size: smaller;
+        }
+
+    }
 }

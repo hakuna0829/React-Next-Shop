@@ -2,12 +2,8 @@ body {
   color: #1787e0;
 }
 
-#artist-landing {
-  font-family: sans-serif;
-}
-
 #artist-landing .artist_landing {
-  height: 500px;
+  height: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -21,6 +17,16 @@ body {
 
 #artist-landing .artist_landing .artist_landing_item {
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #artist-landing .artist_landing .artist_landing_item h3 {
@@ -28,21 +34,121 @@ body {
   font-weight: bold;
 }
 
-#artist-landing .artist_landing .artist_landing_item button {
-  background-color: #1787e0;
-  margin-top: 10px;
-  padding: 2% 5%;
-}
-
-#artist-landing .artist_landing.join {
+#artist-landing .join {
   background-color: #d9eefa;
 }
 
-p.error {
+p .error {
   color: red;
 }
 
 .nav-link {
   cursor: pointer;
+}
+
+div .button {
+  width: 125px;
+  cursor: pointer;
+}
+
+.category_list {
+  margin: 35px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.category_list div.button {
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.category_list .btn-light {
+  color: #1787e0;
+  background-color: #fff;
+  border-color: #1787e0;
+  border-radius: 10px;
+  text-align: left;
+  padding: 10px 0px;
+}
+
+.category_list .btn-light i {
+  padding-left: 10px;
+}
+
+.makeup_list {
+  margin: 35px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.makeup_list .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.makeup_list .heading .right_all {
+  position: relative;
+  top: 0.5rem;
+}
+
+div.carousel_main {
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+div.carousel_main i {
+  font-size: 2rem;
+}
+
+div.carousel_main .card {
+  border-width: 0px;
+}
+
+div.carousel_main .card img {
+  border-radius: 8px;
+}
+
+div.carousel_main .card .title {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+div.carousel_main .card .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+div.carousel_main .card .name i {
+  font-size: 1rem;
+}
+
+div.carousel_main .card .location {
+  font-size: smaller;
+}
+
+div.carousel_main .card .location i {
+  font-size: 0.8rem;
+}
+
+div.carousel_main .card .appointment {
+  font-size: smaller;
 }
 /*# sourceMappingURL=index.css.map */
