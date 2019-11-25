@@ -68,8 +68,8 @@ class ServicesPage extends React.Component {
                                         <th>Max Number of People</th>
                                         <th>Base Price</th>
                                         <th>Extra Per Person</th>
-                                        <th>Time</th>
-                                        <th>Time Unit</th>
+                                        <th>Duration</th>
+                                        <th>Duration Unit</th>
                                         <th>Location</th>
                                         {/* <th>Actions</th> */}
                                     </tr>
@@ -85,9 +85,9 @@ class ServicesPage extends React.Component {
                                             <td>{service.max_number_of_people}</td>
                                             <td>{service.base_price}</td>
                                             <td>{service.extra_per_person}</td>
-                                            <td>{service.time}</td>
-                                            <td>{service.time_unit}</td>
-                                            <td>{service.location}</td>
+                                            <td>{service.duration_id}</td>
+                                            <td>{service.duration_unit_id}</td>
+                                            <td>{service.location_id}</td>
                                             {/* <td>
                                                 <a className="btn btn-primary" onClick={() => this.editService(service.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
                                                 <a className="btn btn-danger" onClick={() => this.deleteService(service.id)}><i className="fas fa-trash-alt"></i> Delete</a>

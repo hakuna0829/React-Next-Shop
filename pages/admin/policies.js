@@ -81,9 +81,9 @@ class PoliciesPage extends React.Component {
                                             <td>{policy.address1}</td>
                                             <td>{policy.address2}</td>
                                             <td>{policy.city}</td>
-                                            <td>{policy.state_id}</td>
+                                            <td>{policy.state}</td>
                                             <td>{policy.zip}</td>
-                                            <td>{policy.travel_distance}</td>
+                                            <td>{policy.travel_distance_id}</td>
                                             {/* <td>
                                                 <a className="btn btn-primary" onClick={() => this.editPolicy(policy.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
                                                 <a className="btn btn-danger" onClick={() => this.deletePolicy(policy.id)}><i className="fas fa-trash-alt"></i> Delete</a>
