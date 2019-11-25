@@ -92,15 +92,15 @@ const Carousel = () => {
             {/* {item } */}
             <img src={`/images/${item}`} />
             <span className="title">
-              BRIDAL <i class="fas fa-circle"></i> COSTUME
+              BRIDAL <i className="fas fa-circle"></i> COSTUME
             </span>
 
             <span className="name">
               Mylah Morales&nbsp;
-              <i class="fas fa-calendar-check"></i>
+              <i className="fas fa-calendar-check"></i>
             </span>
             <span className="location">
-              <i class="far fa-paper-plane"></i>&nbsp; brooklyn, NY
+              <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
             </span>
             <span className="appointment">160 appointment, $$</span>
           </div>
