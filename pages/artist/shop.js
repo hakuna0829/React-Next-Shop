@@ -88,8 +88,8 @@ class ShopProfilePage extends React.Component {
                                     <div className="instagram">
                                         <div className="sub_inst layout">
                                             <div className="left_span">
-                                                <p>Name:</p>
-                                                <p>Makeup by Mylah Morales</p>
+                                                <p>Instagram:</p>
+                                                <p>@MylahMorales</p>
                                             </div>
                                             <div className="right_span">
                                                 <button className="btn btn-primary">Edit</button>

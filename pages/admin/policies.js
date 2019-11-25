@@ -31,9 +31,14 @@ class PoliciesPage extends React.Component {
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/policies', { headers: { 'Authorization': token } })
             .then((response) => {
+
+                response.data.policies.map((policy, i) => {
+                    policy.distance = response.data.distances.find(item => item.id == policy.travel_distance_id)
+                })
+
                 this.setState({
                     loading: false,
-                    policies: response.data.policies
+                    ...response.data
                 });
                 
             })
@@ -83,7 +88,7 @@ class PoliciesPage extends React.Component {
                                             <td>{policy.city}</td>
                                             <td>{policy.state}</td>
                                             <td>{policy.zip}</td>
-                                            <td>{policy.travel_distance_id}</td>
+                                            <td>{policy.distance ? policy.distance.name : ''}</td>
                                             {/* <td>
                                                 <a className="btn btn-primary" onClick={() => this.editPolicy(policy.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
                                                 <a className="btn btn-danger" onClick={() => this.deletePolicy(policy.id)}><i className="fas fa-trash-alt"></i> Delete</a>

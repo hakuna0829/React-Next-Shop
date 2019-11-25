@@ -17,7 +17,10 @@ class ServicesPage extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            services: []
+            services: [],
+            durations: [],
+            duration_units: [],
+            locations: []
         };
 
     }
@@ -31,9 +34,15 @@ class ServicesPage extends React.Component {
         this.setState({loading: true}, () => {
             axios.get(constants.serverUrl + 'api/services', { headers: { 'Authorization': token } })
             .then((response) => {
+
+                response.data.services.map((service, i) => {
+                    service.duration = response.data.durations.find(item => item.id == service.duration_id)
+                    service.duration_unit = response.data.duration_units.find(item => item.id == service.duration_unit_id)
+                    service.location = response.data.locations.find(item => item.id == service.location_id)
+                })
                 this.setState({
                     loading: false,
-                    services: response.data.services
+                    ...response.data
                 });
                 
             })
@@ -45,7 +54,7 @@ class ServicesPage extends React.Component {
     }
 
     render() {
-        const { services, loading } = this.state
+        const { loading, services } = this.state
 
         return (
             <Layout title={'Services'}>
@@ -85,9 +94,9 @@ class ServicesPage extends React.Component {
                                             <td>{service.max_number_of_people}</td>
                                             <td>{service.base_price}</td>
                                             <td>{service.extra_per_person}</td>
-                                            <td>{service.duration_id}</td>
-                                            <td>{service.duration_unit_id}</td>
-                                            <td>{service.location_id}</td>
+                                            <td>{service.duration ? service.duration.name : ''}</td>
+                                            <td>{service.duration_unit ? service.duration_unit.name : ''}</td>
+                                            <td>{service.location ? service.location.name : ''}</td>
                                             {/* <td>
                                                 <a className="btn btn-primary" onClick={() => this.editService(service.id)}><i className="fas fa-pencil-alt"></i> Edit</a> 
                                                 <a className="btn btn-danger" onClick={() => this.deleteService(service.id)}><i className="fas fa-trash-alt"></i> Delete</a>
