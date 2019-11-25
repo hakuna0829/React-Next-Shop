@@ -38,6 +38,117 @@ body {
   background-color: #d9eefa;
 }
 
+#artist-landing .category_list {
+  margin: 35px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#artist-landing .category_list div.button {
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+#artist-landing .category_list .btn-light {
+  color: #1787e0;
+  background-color: #fff;
+  border-color: #1787e0;
+  border-radius: 10px;
+  text-align: left;
+  padding: 10px 0px;
+}
+
+#artist-landing .category_list .btn-light i {
+  padding-left: 10px;
+}
+
+#artist-landing .makeup_list {
+  margin: 35px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#artist-landing .makeup_list .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+#artist-landing .makeup_list .heading .right_all {
+  position: relative;
+  top: 0.5rem;
+}
+
+#artist-landing div.carousel_main {
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+#artist-landing div.carousel_main i {
+  font-size: 2rem;
+}
+
+#artist-landing div.carousel_main .card {
+  border-width: 0px;
+  height: 350px;
+}
+
+#artist-landing div.carousel_main .card img {
+  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+}
+
+#artist-landing div.carousel_main .card .title {
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+#artist-landing div.carousel_main .card .title i {
+  font-size: 0.1rem;
+  vertical-align: middle;
+  margin-top: -0.1rem;
+}
+
+#artist-landing div.carousel_main .card .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+#artist-landing div.carousel_main .card .name i {
+  font-size: 1rem;
+}
+
+#artist-landing div.carousel_main .card .location {
+  font-size: smaller;
+}
+
+#artist-landing div.carousel_main .card .location i {
+  font-size: 0.8rem;
+}
+
+#artist-landing div.carousel_main .card .appointment {
+  font-size: smaller;
+}
+
 p .error {
   color: red;
 }
@@ -49,106 +160,5 @@ p .error {
 div .button {
   width: 125px;
   cursor: pointer;
-}
-
-.category_list {
-  margin: 35px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.category_list div.button {
-  width: 200px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-.category_list .btn-light {
-  color: #1787e0;
-  background-color: #fff;
-  border-color: #1787e0;
-  border-radius: 10px;
-  text-align: left;
-  padding: 10px 0px;
-}
-
-.category_list .btn-light i {
-  padding-left: 10px;
-}
-
-.makeup_list {
-  margin: 35px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.makeup_list .heading {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.makeup_list .heading .right_all {
-  position: relative;
-  top: 0.5rem;
-}
-
-div.carousel_main {
-  width: 100%;
-  padding: 0 30px;
-  margin: 0 auto;
-}
-
-div.carousel_main i {
-  font-size: 2rem;
-}
-
-div.carousel_main .card {
-  border-width: 0px;
-}
-
-div.carousel_main .card img {
-  border-radius: 8px;
-}
-
-div.carousel_main .card .title {
-  font-weight: 500;
-  font-size: 0.8rem;
-}
-
-div.carousel_main .card .name {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-div.carousel_main .card .name i {
-  font-size: 1rem;
-}
-
-div.carousel_main .card .location {
-  font-size: smaller;
-}
-
-div.carousel_main .card .location i {
-  font-size: 0.8rem;
-}
-
-div.carousel_main .card .appointment {
-  font-size: smaller;
 }
 /*# sourceMappingURL=index.css.map */
