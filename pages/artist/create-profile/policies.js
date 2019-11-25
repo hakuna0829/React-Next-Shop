@@ -33,7 +33,7 @@ class PoliciesPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/profiles/me/getPolicy", {
+        .get(constants.serverUrl + "api/policies/me", {
           headers: { Authorization: token }
         })
         .then(response => {
@@ -74,7 +74,7 @@ class PoliciesPage extends React.Component {
     try {
       if (this.state.created) {
         let policy = await axios.put(
-          constants.serverUrl + "api/profiles/me/updatePolicy",
+          constants.serverUrl + "api/policies/me",
           params,
           {
             headers: { Authorization: token }
@@ -82,7 +82,7 @@ class PoliciesPage extends React.Component {
         );
       } else {
         let policy = await axios.post(
-          constants.serverUrl + "api/profiles/me/createPolicy",
+          constants.serverUrl + "api/policies/me",
           params,
           {
             headers: { Authorization: token }

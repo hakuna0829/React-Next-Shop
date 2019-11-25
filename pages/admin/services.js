@@ -88,7 +88,7 @@ class ServicesPage extends React.Component {
                                         return (
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{service.user_id}</td>
+                                            <td>{service.username}</td>
                                             <td>{service.name}</td>
                                             <td>{service.description}</td>
                                             <td>{service.max_number_of_people}</td>
