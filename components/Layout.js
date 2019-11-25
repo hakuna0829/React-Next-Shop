@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Navbar from './common/Navbar';
 import '../public/sass/index.scss';
 import '../public/sass/login.scss';
+import '../public/sass/auth_modal.scss';
 import '../public/sass/navbar.scss';
 import '../public/sass/profile.scss';
 import '../public/sass/account.scss';
