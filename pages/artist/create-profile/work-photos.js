@@ -25,7 +25,7 @@ class WorkPhotoPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/profiles/me/getImages", {
+        .get(constants.serverUrl + "api/images/me", {
           headers: { Authorization: token }
         })
         .then(response => {
@@ -117,8 +117,8 @@ class WorkPhotoPage extends React.Component {
     let { images, new_images, deleted_images } = this.state;
 
     axios
-      .post(
-        constants.serverUrl + "api/profiles/me/createImages",
+      .put(
+        constants.serverUrl + "api/images/me",
         { images, new_images, deleted_images },
         { headers: { Authorization: token } }
       )

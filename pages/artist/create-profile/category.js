@@ -24,7 +24,7 @@ class SelectCategoryPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/profiles/me/getCategories", {
+        .get(constants.serverUrl + "api/categories/me", {
           headers: { Authorization: token }
         })
         .then(response => {
@@ -60,7 +60,7 @@ class SelectCategoryPage extends React.Component {
     });
     axios
       .put(
-        constants.serverUrl + "api/profiles/me/updateCategories",
+        constants.serverUrl + "api/categories/me",
         { categories: data },
         { headers: { Authorization: token } }
       )

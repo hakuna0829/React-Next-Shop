@@ -82,7 +82,7 @@ class PoliciesPage extends React.Component {
                                         return (
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{policy.user_id}</td>
+                                            <td>{policy.username}</td>
                                             <td>{policy.address1}</td>
                                             <td>{policy.address2}</td>
                                             <td>{policy.city}</td>

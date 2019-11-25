@@ -71,7 +71,7 @@ class ImagesPage extends React.Component {
                                         return (
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{image.user_id}</td>
+                                            <td>{image.username}</td>
                                             <td>{image.title}</td>
                                             <td>{image.description}</td>
                                             <td><img style={{width: '40px', height: '40px'}} src={image.image} alt="work image" /></td>
