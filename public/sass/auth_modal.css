@@ -3,15 +3,20 @@
   border-color: #b7d5ee;
   line-height: 2.5em;
 } */
-
 .container label {
   font-size: 16px;
 }
 
 .bottomCenter {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .modal-header {
@@ -25,6 +30,18 @@ input[type="password"] {
   border: solid 2px #b7d5ee !important;
   color: #1787e0 !important;
   height: calc(2.5em + 0.75rem + 2px);
+}
+
+input::-webkit-input-placeholder {
+  color: #1787e0 !important;
+}
+
+input:-ms-input-placeholder {
+  color: #1787e0 !important;
+}
+
+input::-ms-input-placeholder {
+  color: #1787e0 !important;
 }
 
 input::placeholder {
@@ -100,9 +117,9 @@ input::placeholder {
   border: solid #1787e0;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 .checkbox_container label {
   font-size: 16px;
 }
@@ -116,3 +133,4 @@ span.closebutton {
 .agreeterm {
   width: 100% !important;
 }
+/*# sourceMappingURL=auth_modal.css.map */

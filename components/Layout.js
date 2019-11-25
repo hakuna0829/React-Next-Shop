@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import Navbar from './common/Navbar';
+import '../public/sass/index.scss';
+import '../public/sass/login.scss';
+import '../public/sass/navbar.scss';
+import '../public/sass/profile.scss';
+import '../public/sass/account.scss';
+import '../public/sass/shop_profile.scss';
 
 export default ({ children, title = 'Celeste'}) => (
   <div>
@@ -15,12 +21,6 @@ export default ({ children, title = 'Celeste'}) => (
         <meta name="robots" content="all,follow" />
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/index.css" />
-        <link rel="stylesheet" href="/css/login.css" />
-        <link rel="stylesheet" href="/css/navbar.css" />
-        <link rel="stylesheet" href="/css/profile.css" />
-        <link rel="stylesheet" href="/css/account.css" />
-        <link rel="stylesheet" href="/css/shop_profile.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

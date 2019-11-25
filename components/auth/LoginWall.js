@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Button
 } from "react-bootstrap";
-import "./styles.css";
+// import "./styles.css";
 import SignupModal from "../auth/signup";
 import Router from "next/router";
 

@@ -7,7 +7,7 @@ import {
   ModalFooter,
   Button
 } from "react-bootstrap";
-import "./styles.css";
+import "../../public/sass/login.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import cookie from "js-cookie";

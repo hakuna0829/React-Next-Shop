@@ -1,6 +1,11 @@
 // next.config.js
 const withCSS = require('@zeit/next-css')
-module.exports = withCSS({
+const withSass = require('@zeit/next-sass')
+
+// module.exports = withCSS({
+//   /* config options here */
+//   cssModules: false
+// })
+module.exports = withSass({
   /* config options here */
-  cssModules: false
 })
