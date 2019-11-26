@@ -79,16 +79,20 @@ const MultiCarousel = () => {
         requestToChangeActive={value => {
           setActiveItemIndex(value);
         }}
-        rightChevron={<i className="right-chevron fas fa-chevron-circle-right"></i>}
-        leftChevron={<i className="left-chevron fas fa-chevron-circle-left"></i>}
+        rightChevron={
+          <i className="right-chevron fas fa-chevron-circle-right"></i>
+        }
+        leftChevron={
+          <i className="left-chevron fas fa-chevron-circle-left"></i>
+        }
       >
         {Array.from(file_data).map((item, i) => (
-          <div
-            key={i}
-            className={`card ${i}`}            
-          >
+          <div key={i} className={`card ${i}`}>
             {/* {item } */}
             <img src={`/images/${item}`} />
+            <span className="bookmark">
+              <i class="far fa-bookmark"></i>
+            </span>
             <span className="title">
               BRIDAL <i className="fas fa-circle"></i> COSTUME
             </span>
