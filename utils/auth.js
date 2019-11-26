@@ -45,13 +45,13 @@ export const auth = ctx => {
 
 
     if (ctx.req && !token) {
-        ctx.res.writeHead(302, { Location: '/artist/login' })
+        ctx.res.writeHead(302, { Location: '/' })
         ctx.res.end()
         return
     }
 
     if (!token) {
-        Router.push('/artist/login')
+        Router.push('/')
         return
     }
 
