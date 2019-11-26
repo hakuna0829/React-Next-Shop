@@ -42,7 +42,7 @@ class AccountPage extends React.Component {
     fetchAccountData() {
          let token = this.props.token
          this.setState({loading: true}, () => {
-             axios.get(constants.serverUrl + 'api/profiles/me/getProfile', { headers: { 'Authorization': token } })
+             axios.get(constants.serverUrl + 'api/users/me/profile', { headers: { 'Authorization': token } })
              .then((response) => {
                 console.log('me response', response)
 
@@ -124,7 +124,7 @@ class AccountPage extends React.Component {
         let token = this.props.token
         let {...profile} = this.state
 
-        axios.put(constants.serverUrl + 'api/profiles/me/updateProfile', profile, { headers: { 'Authorization': token } })
+        axios.put(constants.serverUrl + 'api/users/me/profile', profile, { headers: { 'Authorization': token } })
           .then((response) => {
           })
           .catch((error) => {

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Layout from "../../../components/Layout";
 
-class SelectCategoryPage extends React.Component {
+class HowItWorksPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -120,4 +120,4 @@ class SelectCategoryPage extends React.Component {
   }
 }
 
-export default SelectCategoryPage;
+export default HowItWorksPage;

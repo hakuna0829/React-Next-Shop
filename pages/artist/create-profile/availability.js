@@ -8,7 +8,7 @@ import Layout from '../../../components/Layout';
 
 import constants from '../../../constants';
 
-class SelectCategoryPage extends React.Component {
+class AvailabilityPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -54,7 +54,7 @@ class SelectCategoryPage extends React.Component {
 
          let token = this.props.token
          this.setState({loading: true}, () => {
-             axios.get(constants.serverUrl + 'api/profiles/me/getAvailability', { headers: { 'Authorization': token } })
+             axios.get(constants.serverUrl + 'api/availability/me', { headers: { 'Authorization': token } })
              .then((response) => {
                 console.log('get policy', response)
 
@@ -73,32 +73,31 @@ class SelectCategoryPage extends React.Component {
     render() {
         return (
             <Layout title={'Availability'}>
-                <div className="suggest">
-                    <h1> Availability </h1>
-                    {this.state.res.map((item, idx) => (
-                         <div className="item" key={idx}>
-                           <label className="cat_container">
-                             
-                             <img src={item}></img> 
-                         </label>                          
+                <div className="profile">
+                    <div className="container">
+                        <h1> Availability </h1>
+                        {this.state.res.map((item, idx) => (
+                            <div className="item" key={idx}>
+                            <label className="cat_container">
+                                <img src={item}></img> 
+                            </label>                          
+                            </div>
+                        ))}
+                        <div className="page-navs">
+                            <div className="column-2-space">
+                            <span className="button">
+                                <Link href={`/artist/create-profile/how-it-works`}><a className="btn btn-primary ellipsis">Back</a></Link>
+                            </span>
+                            <span className="button">
+                                <Link href={`/artist/create-profile/complete`}><a className="btn btn-primary ellipsis">Next</a></Link>
+                            </span>
+                            </div>
                         </div>
-                      ))}
-                    <div className="page-navs">
-                        <Link href={`/artist/create-profile/how-it-works`}><a className="btn btn-secondary">Back</a></Link>
-                        <Link href={`/artist/create-profile/complete`}><a className="btn btn-info">Next</a></Link>
                     </div>
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                    .page-navs a {
-                        margin-right: 30px;
-                    }
-                `}</style>
             </Layout>
         );
     }
   }
   
-  export default SelectCategoryPage;
+  export default AvailabilityPage;
