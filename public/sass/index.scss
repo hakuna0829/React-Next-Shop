@@ -67,7 +67,7 @@ body {
 
     }
 
-    .makeup_list {
+    .carousel_list {
         margin: 35px 0px;
         display: flex;
         justify-content: center;
@@ -89,17 +89,31 @@ body {
 
     div.carousel_main {
         width: 100%;
-        padding: 0 30px;
+        padding: 0 20px;
         margin: 0 auto;
-
 
         i {
             font-size: 2rem;
         }
 
+        // alwaysShowChevrons={false}
+        div {
+            div {
+                i.right-chevron {
+                    margin-left: 42px;
+                }
+
+                .left-chevron {
+                    margin-right: 42px;
+                }
+
+
+            }
+        }
+
         .card {
             border-width: 0px;
-            height: 350px;
+            height: 300px;
 
             img {
                 border-radius: 8px;
@@ -142,6 +156,48 @@ body {
         }
     }
 
+    .artist_spotlight {
+        background-color: #f3f9fd;
+        width: 100%;
+        padding: 50px;
+
+        .photo_name_area {
+            display: flex;
+            margin: 20px 0;
+
+            .artist_photo {
+                margin-right: 20px;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50px;
+                }
+            }
+
+            .artist_name {
+                display: flex;
+                align-items: center;
+
+                div {
+                    h2 {
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                    }
+
+                    span {
+                        font-size: 0.7rem;
+                        vertical-align: top;
+
+                        i {
+                            font-size: 0.1rem;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 p {

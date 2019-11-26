@@ -4,11 +4,11 @@ import ItemsCarousel from "react-items-carousel";
 const noOfItems = 7;
 const noOfCards = 4;
 const chevronWidth = 30;
+const gutter = 12; //space between each cards
 
 const Carousel = () => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [noOfCards, setNoOfCards] = useState(4);
-
 
   const isClient = typeof window === "object";
 
@@ -17,10 +17,11 @@ const Carousel = () => {
       width: isClient ? window.innerWidth : undefined,
       height: isClient ? window.innerHeight : undefined
     };
-  }  
+  }
   const [windowSize, setWindowSize] = useState(getSize);
+
   useEffect(() => {
-      console.log("123", isClient)
+    console.log("123", isClient);
     if (!isClient) {
       return false;
     }
@@ -36,10 +37,10 @@ const Carousel = () => {
         setNoOfCards(3);
       } else if (size.width >= 992 && size.width < 1200) {
         setNoOfCards(4);
-      }else{
+      } else {
         setNoOfCards(4);
       }
-    }    
+    }
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -60,34 +61,31 @@ const Carousel = () => {
   return (
     <div className="carousel_main">
       <ItemsCarousel
-        infiniteLoop={true}
-        gutter={10}
-        activePosition={"center"}
+        requestToChangeActive={setActiveItemIndex}
+        activeItemIndex={activeItemIndex}
+        numberOfCards={noOfCards}
+        gutter={gutter}
+        outsideChevron
         chevronWidth={chevronWidth}
+        infiniteLoop={true}
+        activePosition={"center"}
         disableSwipe={false}
-        alwaysShowChevrons={false}
         numberOfCards={noOfCards}
         slidesToScroll={1}
-        outsideChevron={true}
-        showSlither={true}
-        firstAndLastGutter={true}
-        activeItemIndex={activeItemIndex}
+        outsideChevron={false}
+        // showSlither={true}
+        // firstAndLastGutter={true}
+        // alwaysShowChevrons={false}
         requestToChangeActive={value => {
           setActiveItemIndex(value);
         }}
-        rightChevron={<i className="fas fa-chevron-circle-right"></i>}
-        leftChevron={<i className="fas fa-chevron-circle-left"></i>}
+        rightChevron={<i className="right-chevron fas fa-chevron-circle-right"></i>}
+        leftChevron={<i className="left-chevron fas fa-chevron-circle-left"></i>}
       >
         {Array.from(file_data).map((item, i) => (
           <div
             key={i}
-            className={`card ${i}`}
-            style={
-              {
-                //   height: 390
-                //   width:230
-              }
-            }
+            className={`card ${i}`}            
           >
             {/* {item } */}
             <img src={`/images/${item}`} />
@@ -99,9 +97,11 @@ const Carousel = () => {
               Mylah Morales&nbsp;
               <i className="fas fa-calendar-check"></i>
             </span>
+
             <span className="location">
               <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
             </span>
+
             <span className="appointment">160 appointment, $$</span>
           </div>
         ))}

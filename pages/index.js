@@ -56,32 +56,57 @@ class HomePage extends React.Component {
               <div className="category_list row">
                 <div className="button col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <img src="./images/leftPattern.png" width="40px" height="40px"></img> Wedding
+                    <img
+                      src="./images/leftPattern.png"
+                      width="40px"
+                      height="40px"
+                    ></img>{" "}
+                    Wedding
                   </button>
                 </div>
                 <div className="button   col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                  <img src="./images/makeup_3.png" width="40px" height="40px"></img> Prom
+                    <img
+                      src="./images/makeup_3.png"
+                      width="40px"
+                      height="40px"
+                    ></img>{" "}
+                    Prom
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Lessons
+                    <img
+                      src="./images/sky_thumbnail.jpg"
+                      width="40px"
+                      height="40px"
+                    ></img>{" "}
+                    Lessons
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Photoshoot
+                    <img
+                      src="./images/sky_thumbnail.jpg"
+                      width="40px"
+                      height="40px"
+                    ></img>{" "}
+                    Photoshoot
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Natural look
+                    <img
+                      src="./images/sky_thumbnail.jpg"
+                      width="40px"
+                      height="40px"
+                    ></img>{" "}
+                    Natural look
                   </button>
                 </div>
               </div>
 
-              <div className="makeup_list row">
+              <div className="carousel_list row">
                 {/* heading start */}
                 <div className="row heading col-sm-12">
                   <div className="title">
@@ -89,17 +114,75 @@ class HomePage extends React.Component {
                   </div>
                   <div className="right_all">
                     <span>
-                      See all&nbsp;<i className="fas fa-arrow-right"></i>
+                      <a href="#">See all</a>&nbsp;
+                      <i className="fas fa-arrow-right"></i>
                     </span>
                   </div>
-                  
                 </div>
                 {/* heading end */}
                 {/* carousel start */}
                 <div className="row col-sm-12">
-                    <Carousel></Carousel>
+                  <Carousel></Carousel>
                 </div>
                 {/* carousel end */}
+              </div>
+
+              <div className="carousel_list row">
+                {/* heading start */}
+                <div className="row heading col-sm-12">
+                  <div className="title">
+                    <h3>Wedding makeup artists near Brooklyn</h3>
+                  </div>
+                  <div className="right_all">
+                    <span>
+                      <a href="#">See all</a>&nbsp;
+                      <i className="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+                {/* heading end */}
+                {/* carousel start */}
+                <div className="row col-sm-12">
+                  <Carousel></Carousel>
+                </div>
+                {/* carousel end */}
+              </div>
+
+              <div className="artist_spotlight">
+                <div className="row">
+                  <div className="col-sm-6">
+                    <h3>Artist Spotlight</h3>
+                    <div className="photo_name_area">
+                      <div className="artist_photo">
+                        <img src="./images/makeup_1.jpg" width="30" />
+                      </div>
+                      <div className="artist_name">
+                        <div>
+                          <h2>Mylah Morales</h2>
+                          <span>
+                            BRIDAL <i className="fas fa-circle"></i> COSTUME
+                          </span>
+                        </div>
+                      </div>                      
+                    </div>
+                    <div className="description">
+                        <p>
+                          do beautiful, flawlessly blended work on all ages,
+                          skin types and skin colors at an affordable price. I
+                          am not trying to exploit you just because you're
+                          getting married!
+                        </p>
+                        <p>
+                          I love being a part of someone's special day and the
+                          pressure that comes with it. Its so unbelievably
+                          satisfying to have someone look at their own
+                          reflection and be so happy they want to cry because of
+                          my work.
+                        </p>
+                      </div>
+                  </div>
+                  <div className="col-sm-6">Carousel</div>
+                </div>
               </div>
             </div>
           </div>
