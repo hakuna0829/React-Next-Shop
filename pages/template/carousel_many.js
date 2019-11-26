@@ -6,7 +6,7 @@ const noOfCards = 4;
 const chevronWidth = 30;
 const gutter = 12; //space between each cards
 
-const Carousel = () => {
+const MultiCarousel = () => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [noOfCards, setNoOfCards] = useState(4);
 
@@ -110,4 +110,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default MultiCarousel;

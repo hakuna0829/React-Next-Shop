@@ -4,7 +4,8 @@ import Router from "next/router";
 import axios from "axios";
 import Rate from "../components/profile/Rate";
 import Layout from "../components/Layout";
-import Carousel from "./template/carousel";
+import MultiCarousel from "./template/carousel_many";
+import SingleCarousel from "./template/carousel_single";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -122,7 +123,7 @@ class HomePage extends React.Component {
                 {/* heading end */}
                 {/* carousel start */}
                 <div className="row col-sm-12">
-                  <Carousel></Carousel>
+                  <MultiCarousel></MultiCarousel>
                 </div>
                 {/* carousel end */}
               </div>
@@ -143,7 +144,7 @@ class HomePage extends React.Component {
                 {/* heading end */}
                 {/* carousel start */}
                 <div className="row col-sm-12">
-                  <Carousel></Carousel>
+                  <MultiCarousel></MultiCarousel>
                 </div>
                 {/* carousel end */}
               </div>
@@ -181,7 +182,9 @@ class HomePage extends React.Component {
                         </p>
                       </div>
                   </div>
-                  <div className="col-sm-6">Carousel</div>
+                  <div className="col-sm-6">
+                   
+                  </div>
                 </div>
               </div>
             </div>
