@@ -56,27 +56,27 @@ class HomePage extends React.Component {
               <div className="category_list row">
                 <div className="button col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <i className="fas fa-magic mr-1"></i> Wedding
+                    <img src="./images/leftPattern.png" width="40px" height="40px"></img> Wedding
                   </button>
                 </div>
                 <div className="button   col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <i className="fas fa-magic mr-1"></i> Prom
+                  <img src="./images/makeup_3.png" width="40px" height="40px"></img> Prom
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <i className="fas fa-magic mr-1"></i> Lessons
+                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Lessons
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <i className="fas fa-magic mr-1"></i> Photoshoot
+                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Photoshoot
                   </button>
                 </div>
                 <div className="button  col-md-4 col-lg-2">
                   <button className="btn btn-light btn-block">
-                    <i className="fas fa-magic mr-1"></i> Natural look
+                  <img src="./images/sky_thumbnail.jpg" width="40px" height="40px"></img> Natural look
                   </button>
                 </div>
               </div>

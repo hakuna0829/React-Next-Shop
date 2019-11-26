@@ -3,7 +3,7 @@ import ItemsCarousel from "react-items-carousel";
 
 const noOfItems = 7;
 const noOfCards = 4;
-const chevronWidth = 60;
+const chevronWidth = 30;
 
 const Carousel = () => {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -92,15 +92,15 @@ const Carousel = () => {
             {/* {item } */}
             <img src={`/images/${item}`} />
             <span className="title">
-              BRIDAL <i class="fas fa-circle"></i> COSTUME
+              BRIDAL <i className="fas fa-circle"></i> COSTUME
             </span>
 
             <span className="name">
               Mylah Morales&nbsp;
-              <i class="fas fa-calendar-check"></i>
+              <i className="fas fa-calendar-check"></i>
             </span>
             <span className="location">
-              <i class="far fa-paper-plane"></i>&nbsp; brooklyn, NY
+              <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
             </span>
             <span className="appointment">160 appointment, $$</span>
           </div>
