@@ -35,6 +35,20 @@ class HomePage extends React.Component {
 
   render() {
     //const { artists } = this.state
+    const file_data = [
+      "user4.jpg",
+      "user5.png",
+      "user9.jpg",
+      "makeup_1.jpg",
+      "makeup_3.png",
+      "lowerRight.png",
+      "user4.jpg",
+      "user5.png",
+      "user9.jpg",
+      "makeup_1.jpg",
+      "makeup_3.png",
+      "lowerRight.png"
+    ];
 
     return (
       <Layout title={"Guest Homepage"}>
@@ -161,32 +175,120 @@ class HomePage extends React.Component {
                         <div>
                           <h2>Mylah Morales</h2>
                           <span>
-                            BRIDAL <i className="fas fa-circle"></i> COSTUME
+                            BRIDAL <b>&#183;</b> COSTUME
                           </span>
                         </div>
-                      </div>                      
+                      </div>
                     </div>
                     <div className="description">
-                        <p>
-                          do beautiful, flawlessly blended work on all ages,
-                          skin types and skin colors at an affordable price. I
-                          am not trying to exploit you just because you're
-                          getting married!
-                        </p>
-                        <p>
-                          I love being a part of someone's special day and the
-                          pressure that comes with it. Its so unbelievably
-                          satisfying to have someone look at their own
-                          reflection and be so happy they want to cry because of
-                          my work.
-                        </p>
-                      </div>
+                      <p>
+                        do beautiful, flawlessly blended work on all ages, skin
+                        types and skin colors at an affordable price. I am not
+                        trying to exploit you just because you're getting
+                        married!
+                      </p>
+                      <p>
+                        I love being a part of someone's special day and the
+                        pressure that comes with it. Its so unbelievably
+                        satisfying to have someone look at their own reflection
+                        and be so happy they want to cry because of my work.
+                      </p>
+                    </div>
                   </div>
                   <div className="col-sm-6">
-                   
+                    <SingleCarousel></SingleCarousel>
                   </div>
                 </div>
               </div>
+
+              <div className="available_artist">
+                {/* heading start */}
+                <div className="row heading col-sm-12">
+                  <div className="title">
+                    <h3>Featured makeup artists near Brooklyn</h3>
+                  </div>
+                  <div className="right_all">
+                    <span>
+                      <a href="#">See all</a>&nbsp;
+                      <i className="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+                {/* heading end */}
+
+                {/*  */}
+                <ul className="cardlist">
+                  {Array.from(file_data).map((item, i) => (
+                    <li key={i} className={`card ${i}`}>
+                      {/* {item } */}
+                      <img src={`/images/${item}`} />
+                      <span className="bookmark">
+                        <i class="far fa-bookmark"></i>
+                      </span>
+                      <span className="title">
+                        BRIDAL <b>&#183;</b> COSTUME
+                      </span>
+
+                      <span className="name">
+                        Mylah Morales&nbsp;
+                        <i className="fas fa-calendar-check"></i>
+                      </span>
+
+                      <span className="location">
+                        <i className="far fa-paper-plane"></i>&nbsp; brooklyn,
+                        NY
+                      </span>
+
+                      <span className="appointment">160 appointment, $$</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="makeup_lessons">
+                {/* heading start */}
+                <div className="row heading col-sm-12">
+                  <div className="title">
+                    <h3>Makeup lessons near Brooklyn</h3>
+                  </div>
+                  <div className="right_all">
+                    <span>
+                      <a href="#">See all</a>&nbsp;
+                      <i className="fas fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </div>
+                {/* heading end */}
+
+                {/*  */}
+                <ul className="cardlist">
+                  {Array.from(file_data).map((item, i) => (
+                    <li key={i} className={`card ${i}`}>
+                      {/* {item } */}
+                      <img src={`/images/${item}`} />
+                      <span className="bookmark">
+                        <i class="far fa-bookmark"></i>
+                      </span>
+                      <span className="title">
+                        BRIDAL <b>&#183;</b> COSTUME
+                      </span>
+
+                      <span className="name">
+                        Mylah Morales&nbsp;
+                        <i className="fas fa-calendar-check"></i>
+                      </span>
+
+                      <span className="location">
+                        <i className="far fa-paper-plane"></i>&nbsp; brooklyn,
+                        NY
+                      </span>
+
+                      <span className="appointment">160 appointment, $$</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
             </div>
           </div>
         </div>
