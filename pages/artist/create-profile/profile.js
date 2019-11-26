@@ -27,7 +27,7 @@ class CreateProfilePage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/profiles/me/getProfile", {
+        .get(constants.serverUrl + "api/users/me/profile", {
           headers: { Authorization: token }
         })
         .then(response => {
@@ -76,7 +76,7 @@ class CreateProfilePage extends React.Component {
 
     console.log('profile', profile)
     axios
-      .put(constants.serverUrl + "api/profiles/me/updateProfile", profile, {
+      .put(constants.serverUrl + "api/users/me/profile", profile, {
         headers: { Authorization: token }
       })
       .then(response => {

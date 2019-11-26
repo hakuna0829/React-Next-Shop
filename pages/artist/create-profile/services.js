@@ -8,7 +8,7 @@ import constants from "../../../constants";
 import ServiceModal from "./newService";
 import ConfirmModal from "./confirmModal";
 
-class SelectCategoryPage extends React.Component {
+class ServicesPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -279,7 +279,7 @@ class SelectCategoryPage extends React.Component {
                   {data.templates.map((template, idx) => {
                     console.log(template);
                     return (
-                      <div className="col-md-5 templateOut">
+                      <div className="col-md-5 templateOut" key={idx}>
                         <div className="templateInner">
                           <div className="column-2-space ">
                             <div>
@@ -338,4 +338,4 @@ class SelectCategoryPage extends React.Component {
   }
 }
 
-export default SelectCategoryPage;
+export default ServicesPage;
