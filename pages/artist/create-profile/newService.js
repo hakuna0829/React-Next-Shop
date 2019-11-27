@@ -81,7 +81,7 @@ export default class ServiceModal extends React.Component {
     let { services } = this.state;
 
     axios
-      .post(constants.serverUrl + "api/profiles/me/createService", values, {
+      .post(constants.serverUrl + "api/services/me/createService", values, {
         headers: { Authorization: token }
       })
       .then(response => {
@@ -107,7 +107,7 @@ export default class ServiceModal extends React.Component {
 
     //return;
     axios
-      .put(constants.serverUrl + "api/profiles/me/updateService", values, {
+      .put(constants.serverUrl + "api/services/me/updateService", values, {
         headers: { Authorization: token }
       })
       .then(response => {

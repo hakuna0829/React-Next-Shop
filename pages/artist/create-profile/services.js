@@ -56,7 +56,7 @@ class ServicesPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/profiles/me/getServices", {
+        .get(constants.serverUrl + "api/services/me/getServices", {
           headers: { Authorization: token }
         })
         .then(response => {
@@ -156,7 +156,7 @@ class ServicesPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .delete(constants.serverUrl + "api/profiles/me/deleteService", {
+        .delete(constants.serverUrl + "api/services/me/deleteService", {
           headers: { Authorization: token },
           data: {
             id: id
