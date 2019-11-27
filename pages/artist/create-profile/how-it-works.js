@@ -1,20 +1,30 @@
 import React from "react";
 import Link from "next/link";
-
 import Layout from "../../../components/Layout";
+import ProgressBar from "../../template/progress_bar";
 
 class HowItWorksPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      artist: {}
+      artist: {},
+      percent:40
     };
   }
 
   render() {
+    let { percent } = this.state;
+
     return (
       <Layout title={"How it works"}>
+         {/* start progress bar  */}
+         <div className="container">
+          <div className="row">
+            <ProgressBar value={percent}></ProgressBar>
+          </div>
+        </div>
+        {/* end progress bar  */}
         <div className="profile">
           <div className="container" id="profile-checklist">
             <div className="row">

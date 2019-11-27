@@ -3,10 +3,9 @@ import Link from "next/link";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-
 import Layout from "../../../components/Layout";
-
 import constants from "../../../constants";
+import ProgressBar from "../../template/progress_bar";
 
 class PoliciesPage extends React.Component {
   constructor(props) {
@@ -19,8 +18,9 @@ class PoliciesPage extends React.Component {
         city: "",
         state: "",
         zip: "",
-        travel_distance_id: ""
+        travel_distance_id: "",        
       },
+      percent:10,
       created: false
     };
   }
@@ -96,12 +96,19 @@ class PoliciesPage extends React.Component {
   };
 
   render() {
-    let { loading, policy, distances } = this.state;
+    let { loading, policy, distances, percent } = this.state;
 
     console.log(this.state);
 
     return (
       <Layout title={"Policies"}>
+         {/* start progress bar  */}
+         <div className="container">
+          <div className="row">
+            <ProgressBar value={percent}></ProgressBar>
+          </div>
+        </div>
+        {/* end progress bar  */}
         <div className="profile">
           {loading ? (
             <Spinner animation="border" variant="dark" />

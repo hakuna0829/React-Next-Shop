@@ -53,8 +53,7 @@ class CreateProfilePage extends React.Component {
     this.setState({
       ...this.state,
       showConfirmModal: !this.state.showConfirmModal
-    });
-    console.log("new modal", this.state.showConfirmModal);
+    });   
   };
 
   handleChange = e => {
