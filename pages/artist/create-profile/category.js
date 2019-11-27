@@ -5,13 +5,14 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-
+import ProgressBar from "../../template/progress_bar";
 
 class SelectCategoryPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
+      percent : 67,
       categories: []
     };
   }
@@ -73,10 +74,20 @@ class SelectCategoryPage extends React.Component {
   };
 
   render() {
-    let { loading, categories } = this.state;
+    let { loading, categories, percent } = this.state;
 
     return (
       <Layout title={"Select Categories"}>
+        {/* start progress bar  */}
+        <div className="container">
+          <div className="row">
+            <ProgressBar
+             value={percent}
+            ></ProgressBar>
+          </div>
+        </div>
+        {/* end progress bar  */}
+
         <div className="profile">
           <div className="container">
             <div className="row">

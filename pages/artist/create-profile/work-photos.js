@@ -5,7 +5,7 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-
+import ProgressBar from "../../template/progress_bar";
 class WorkPhotoPage extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +13,8 @@ class WorkPhotoPage extends React.Component {
       loading: true,
       images: [],
       new_images: [],
-      deleted_images: []
+      deleted_images: [],
+      percent:90
     };
   }
 
@@ -132,10 +133,20 @@ class WorkPhotoPage extends React.Component {
   };
 
   render() {
-    let { loading, images, new_images } = this.state;
+    let { loading, images, new_images, percent } = this.state;
 
     return (
       <Layout title={"Work Photos"}>
+        {/* start progress bar  */}
+        <div className="container">
+          <div className="row">
+            <ProgressBar
+             value={percent}
+            ></ProgressBar>
+          </div>
+        </div>
+        {/* end progress bar  */}
+
         <div className="profile">
           <div className="container">
             {loading ? (

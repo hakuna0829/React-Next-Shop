@@ -5,6 +5,7 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
+import ProgressBar from "../../template/progress_bar";
 
 class CreateProfilePage extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class CreateProfilePage extends React.Component {
       name: "",
       avatar: "",
       avatar_filename: "",
-      bio: ""
+      bio: "",
+      percent:33
     };
   }
 
@@ -74,7 +76,7 @@ class CreateProfilePage extends React.Component {
     let token = this.props.token;
     let { ...profile } = this.state;
 
-    console.log('profile', profile)
+    console.log("profile", profile);
     axios
       .put(constants.serverUrl + "api/users/me/profile", profile, {
         headers: { Authorization: token }
@@ -88,12 +90,16 @@ class CreateProfilePage extends React.Component {
       });
   };
 
+  handleDelete = () => {
+    console.log("click delete button");
+  };
+
   handleUploadBtnClick = () => {
     document.getElementById("avatar").click();
   };
 
   render() {
-    let { avatar, loading } = this.state;
+    let { avatar, loading, percent } = this.state;
 
     let $imagePreview = null;
     if (avatar) {
@@ -104,10 +110,20 @@ class CreateProfilePage extends React.Component {
 
     return (
       <Layout title={"Create Profile"}>
+        {/* start progress bar  */}
+        <div className="container">
+          <div className="row">
+            <ProgressBar
+             value={percent}
+            ></ProgressBar>
+          </div>
+        </div>
+        {/* end progress bar  */}
+
+        {/* start profile page */}
         <div className="profile">
           <div className="container">
             <div className="row">
-              
               {loading ? (
                 <Spinner animation="border" variant="dark" />
               ) : (
@@ -160,7 +176,7 @@ class CreateProfilePage extends React.Component {
                               type="button"
                               className="btn btn-secondary ellipsis btn-block"
                               onClick={() => {
-                                console.log("click delete button");
+                                this.handleDelete();
                               }}
                             >
                               Delete
@@ -198,10 +214,11 @@ class CreateProfilePage extends React.Component {
                         rows="8"
                         value={this.state.bio}
                       />
-                      <br/>
+                      <br />
                       <p>
                         Keep it brief. Clients are more likely to read shorter
-                        bios.<br />                     
+                        bios.
+                        <br />
                         Don't sweat the details. You'll be able to outline your
                         policies and prices in a later step.
                       </p>
