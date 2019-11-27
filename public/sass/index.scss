@@ -437,11 +437,10 @@ body {
     }
 }
 
-p {
-    .error {
-        color: $danger_color;
-    }
+p.error {
+    color: $danger_color;
 }
+
 
 
 .nav-link {
