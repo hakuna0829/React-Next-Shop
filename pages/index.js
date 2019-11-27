@@ -195,7 +195,7 @@ class HomePage extends React.Component {
                       </p>
                     </div>
                   </div>
-                  <div className="col-sm-6">
+                  <div className="col-sm-6 single_carousel">
                     <SingleCarousel></SingleCarousel>
                   </div>
                 </div>

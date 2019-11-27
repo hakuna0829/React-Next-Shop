@@ -99,15 +99,38 @@ body {
         // alwaysShowChevrons={false}
         div {
             div {
-                i.right-chevron {
-                    margin-left: 42px;
+                .chevron {
+                    color: #f8f9fa;
+                    font-size: 2rem;
+                    padding: 10px 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: #1787e0;
+                    border-radius: 25px;
+                    border: 0px;
+                    line-height: 0;
+                    font-family: "Ionicons";
+                    line-height: .7;
+                    display: inline-block;
+                    outline: none;
+                }
+
+                .right-chevron {
+
+                    margin-left: 20px;
+                }
+
+                .right-chevron::before {
+                    content: "\F3D3";
                 }
 
                 .left-chevron {
-                    margin-right: 42px;
+                    margin-right: 20px;
                 }
 
-
+                .left-chevron::before {
+                    content: "\F3D2";
+                }
             }
         }
 
@@ -204,6 +227,60 @@ body {
                             font-size: 0.1rem;
                             vertical-align: middle;
                         }
+                    }
+                }
+            }
+        }
+
+        .single_carousel {
+            .image-gallery-swipe {
+                padding: 0 100px;
+
+            }
+
+            .image-gallery-slide-wrapper {
+
+                .image-gallery-left-nav::before,
+                .image-gallery-right-nav::before {
+                    color: white;
+                    text-shadow: none;
+                    transition: none;
+                }
+
+                .image-gallery-left-nav,
+                .image-gallery-right-nav {
+                    color: #f8f9fa;
+                    font-size: 2rem;
+                    padding: 10px 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: #1787e0;
+                    border-radius: 25px;
+                    outline: none;
+                }
+
+                .image-gallery-slide {
+                    border-radius: 15px;
+
+                    img {
+                        width: 100%;
+                        height: 300px;
+                        border-radius: 15px;
+                    }
+                }
+            }
+
+            .image-gallery-thumbnails-wrapper {
+                .image-gallery-thumbnails {
+                    .image-gallery-thumbnail {
+                        display: inline-block;
+                        border: 3px solid transparent;
+                        transition: border .3s ease-out;
+                        width: 70px;
+                    }
+
+                    .image-gallery-thumbnail.active {
+                        border: 3px solid #1787e0;
                     }
                 }
             }

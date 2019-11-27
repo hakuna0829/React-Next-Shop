@@ -80,10 +80,11 @@ const MultiCarousel = () => {
           setActiveItemIndex(value);
         }}
         rightChevron={
-          <i className="right-chevron fas fa-chevron-circle-right"></i>
+          // <i className="right-chevron fas fa-chevron-circle-right"></i>
+          <button type="button" class="chevron right-chevron" ></button>
         }
         leftChevron={
-          <i className="left-chevron fas fa-chevron-circle-left"></i>
+          <button type="button" class="chevron left-chevron" ></button>          
         }
       >
         {Array.from(file_data).map((item, i) => (
