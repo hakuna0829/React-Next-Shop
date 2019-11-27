@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
 import ServiceModal from "./newService";
-import ConfirmModal from "./confirmModal";
+import ConfirmModal from "../../template/confirmModal";
 
 class ServicesPage extends React.Component {
   constructor(props) {
@@ -331,6 +331,7 @@ class ServicesPage extends React.Component {
             show={this.state.showConfirmModal}
             onClose={this.showConfirmModal}
             action={this.deleteService}
+            title="Are you sure to remove this service?"
           ></ConfirmModal>
         </div>
       </Layout>

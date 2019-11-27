@@ -28,7 +28,7 @@ export default class ConfirmModal extends React.Component {
 
   render() {
     let { loading } = this.state;
-    let { show, onClose } = this.props;
+    let { show, onClose, title } = this.props;
 
     if (!show) {
       return null;
@@ -41,7 +41,7 @@ export default class ConfirmModal extends React.Component {
         ) : (
           <Modal show={show} onHide={onClose} centered>
             <Modal.Header>
-              <Modal.Title>Are you sure to remove this service?</Modal.Title>
+              <Modal.Title>{title}</Modal.Title>
               <span
                 className="closebutton"
                 onClick={e => {

@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
 import ProgressBar from "../../template/progress_bar";
-
+import ConfirmModal from "../../template/confirmModal";
 class CreateProfilePage extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,8 @@ class CreateProfilePage extends React.Component {
       avatar: "",
       avatar_filename: "",
       bio: "",
-      percent:33
+      percent: 33,
+      showConfirmModal: false
     };
   }
 
@@ -46,6 +47,15 @@ class CreateProfilePage extends React.Component {
         });
     });
   }
+
+  showConfirmModal = () => {
+    if (this.state.avatar == "") return;
+    this.setState({
+      ...this.state,
+      showConfirmModal: !this.state.showConfirmModal
+    });
+    console.log("new modal", this.state.showConfirmModal);
+  };
 
   handleChange = e => {
     const target = e.target;
@@ -92,6 +102,25 @@ class CreateProfilePage extends React.Component {
 
   handleDelete = () => {
     console.log("click delete button");
+    let token = this.props.token;
+    this.setState({ loading: true }, () => {
+      axios
+        .delete(constants.serverUrl + "api/users/me/deleteAvatar", {
+          headers: { Authorization: token }
+        })
+        .then(response => {
+          console.log("remove response", response);
+
+          this.setState({
+            loading: false,
+            avatar: ""
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          Router.push("/");
+        });
+    });
   };
 
   handleUploadBtnClick = () => {
@@ -113,9 +142,7 @@ class CreateProfilePage extends React.Component {
         {/* start progress bar  */}
         <div className="container">
           <div className="row">
-            <ProgressBar
-             value={percent}
-            ></ProgressBar>
+            <ProgressBar value={percent}></ProgressBar>
           </div>
         </div>
         {/* end progress bar  */}
@@ -176,7 +203,7 @@ class CreateProfilePage extends React.Component {
                               type="button"
                               className="btn btn-secondary ellipsis btn-block"
                               onClick={() => {
-                                this.handleDelete();
+                                this.showConfirmModal();
                               }}
                             >
                               Delete
@@ -286,6 +313,12 @@ class CreateProfilePage extends React.Component {
             margin-right: 30px;
           }
         `}</style>
+        <ConfirmModal
+          show={this.state.showConfirmModal}
+          onClose={this.showConfirmModal}
+          action={this.handleDelete}
+          title="Are you sure to remove your picture?"
+        ></ConfirmModal>
       </Layout>
     );
   }
