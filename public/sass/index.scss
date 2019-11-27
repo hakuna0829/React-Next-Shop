@@ -40,6 +40,7 @@ body {
             width: 200px;
             cursor: pointer;
             margin-bottom: 15px;
+            padding: 0 3px;
         }
 
         .btn-light {
@@ -234,7 +235,9 @@ body {
 
         .single_carousel {
             .image-gallery-swipe {
-                padding: 0 100px;
+                // padding: 0 100px;
+                width: 90%;
+                padding-left: 10%;
 
             }
 
@@ -259,15 +262,20 @@ body {
                     outline: none;
                 }
 
-                .image-gallery-slide {
+                .image-gallery-slides {
                     border-radius: 15px;
 
-                    img {
-                        width: 100%;
-                        height: 300px;
+                    .image-gallery-slide {
                         border-radius: 15px;
+
+                        img {
+                            width: 100%;
+                            height: 300px;
+                            // border-radius: 15px;
+                        }
                     }
                 }
+
             }
 
             .image-gallery-thumbnails-wrapper {
@@ -303,8 +311,7 @@ body {
             padding: 0 4px;
 
             .card {
-                width: 158px;
-                margin: 5px 5px 5px 0;
+                width: 100%;
                 height: 300px;
                 border-width: 0px;
 
@@ -374,8 +381,8 @@ body {
             padding: 0 4px;
 
             .card {
-                width: 158px;
-                margin: 5px 5px 5px 0;
+                width: 100%;
+                // margin: 5px 5px 5px 0;
                 height: 300px;
                 border-width: 0px;
 

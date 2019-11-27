@@ -81,10 +81,10 @@ const MultiCarousel = () => {
         }}
         rightChevron={
           // <i className="right-chevron fas fa-chevron-circle-right"></i>
-          <button type="button" class="chevron right-chevron" ></button>
+          <button type="button" className="chevron right-chevron" ></button>
         }
         leftChevron={
-          <button type="button" class="chevron left-chevron" ></button>          
+          <button type="button" className="chevron left-chevron" ></button>          
         }
       >
         {Array.from(file_data).map((item, i) => (
@@ -92,7 +92,7 @@ const MultiCarousel = () => {
             {/* {item } */}
             <img src={`/images/${item}`} />
             <span className="bookmark">
-              <i class="far fa-bookmark"></i>
+              <i className="far fa-bookmark"></i>
             </span>
             <span className="title">
               BRIDAL <i className="fas fa-circle"></i> COSTUME

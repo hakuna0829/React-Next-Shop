@@ -219,11 +219,11 @@ class HomePage extends React.Component {
                 {/*  */}
                 <ul className="cardlist">
                   {Array.from(file_data).map((item, i) => (
-                    <li key={i} className={`card ${i}`}>
+                    <li key={i} className={`card ${i} col-lg-2 col-md-4`}>
                       {/* {item } */}
                       <img src={`/images/${item}`} />
                       <span className="bookmark">
-                        <i class="far fa-bookmark"></i>
+                        <i className="far fa-bookmark"></i>
                       </span>
                       <span className="title">
                         BRIDAL <b>&#183;</b> COSTUME
@@ -263,11 +263,11 @@ class HomePage extends React.Component {
                 {/*  */}
                 <ul className="cardlist">
                   {Array.from(file_data).map((item, i) => (
-                    <li key={i} className={`card ${i}`}>
+                    <li key={i} className={`card ${i} col-md-4 col-lg-2`}>
                       {/* {item } */}
                       <img src={`/images/${item}`} />
                       <span className="bookmark">
-                        <i class="far fa-bookmark"></i>
+                        <i className="far fa-bookmark"></i>
                       </span>
                       <span className="title">
                         BRIDAL <b>&#183;</b> COSTUME
