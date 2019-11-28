@@ -1,5 +1,6 @@
 $main_color:#1787e0;
 $second_color:#8bc3ef;
+$nav_border_color:#d9eefa;
 $placeholder_color:#74b7ec;
 $white_color:#fff;
 $danger_color:red;
@@ -8,6 +9,10 @@ $danger_color:red;
     border-bottom: 1px solid $main_color;
     padding: 0px 10px;
     min-height: 52px;
+    position: sticky;
+    top: 0;
+    background-color: $white_color;
+    z-index: 1000;
 
     a {
         text-decoration: none;
@@ -18,22 +23,33 @@ $danger_color:red;
         color: $main_color;
     }
 
-    .has-search .form-control {
-        padding-left: 2.375rem;
-        height: calc(1.5em + 0.75rem + 2px) !important;
+    .navbar-toggler-icon {
+        height: 1em;
+        width: 1em;
     }
 
-    .has-search .form-control-feedback {
-        position: absolute;
-        z-index: 2;
-        display: block;
-        width: 2.375rem;
-        height: 2.375rem;
-        line-height: 2.375rem;
-        text-align: center;
-        pointer-events: none;
-        color: $placeholder_color;
+    .has-search {
+        padding: 0px;
+
+        .form-control {
+            padding-left: 2.375rem;
+            height: calc(1.5em + 0.75rem + 2px) !important;
+        }
+
+        .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: $placeholder_color;
+        }
     }
+
+
 
     .navbar-nav {
         .nav-link {
@@ -54,11 +70,13 @@ $danger_color:red;
         }
 
         .dropdown-menu {
-            left: -100%;
+            left: -208%;
             padding: 0px;
             margin: 0px;
+            margin-bottom: 10px;
             border-radius: 0px;
-            border: 1px solid $second_color;
+            border: 1px solid $nav_border_color;
+            border-color: transparent;
 
 
             .dropdown-item {
@@ -71,16 +89,20 @@ $danger_color:red;
                 }
 
                 p {
-                    border-bottom: 1px solid $main_color;
-                    padding: 16px 0px;
+                    border-bottom: 1px solid $nav_border_color;
+                    padding: 0.5rem 0;
                     margin-bottom: 0px;
                     color: $main_color;
                     font-weight: bold;
                     background-color: $white_color;
                 }
 
+                &:first-child p {
+                    border-top: 1px solid $nav_border_color;
+                }
+
                 &:last-child p {
-                    border-bottom: 0px;
+                    // border-bottom: 0px;
                 }
             }
         }
