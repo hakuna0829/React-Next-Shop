@@ -304,14 +304,6 @@ class CreateProfilePage extends React.Component {
             </div>
           </div>
         </div>
-        <style jsx>{`
-          .suggest {
-            text-align: center;
-          }
-          .page-navs a {
-            margin-right: 30px;
-          }
-        `}</style>
         <ConfirmModal
           show={this.state.showConfirmModal}
           onClose={this.showConfirmModal}

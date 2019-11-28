@@ -18,15 +18,10 @@ class MessagesPage extends React.Component {
         const { pageTitle } = this.state
         return (
             <Layout title={ pageTitle }>
-                <div className="suggest">
+                <div className="profile">
                     <h1> { pageTitle } </h1>
                     <Link href={`/client/dashboard`}><a className="btn btn-primary">Go to dashboard</a></Link>
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                `}</style>
             </Layout>
         );
     }

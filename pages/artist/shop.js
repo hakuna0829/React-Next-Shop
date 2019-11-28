@@ -1,35 +1,87 @@
 import React from 'react';
 import Link from 'next/link';
-
+import Router from "next/router";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
 import Layout from '../../components/Layout';
-
+import constants from "../../constants";
 
 class ShopProfilePage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            pageTitle : 'Shop Profile'
+            pageTitle : 'Shop Profile',
+            user: {
+                policy: {},
+                services: [],
+                categories: [],
+                images: []
+            }
         };
 
     }
 
+    componentDidMount() {
+        this.fetchData();
+    }
+    
+    fetchData() {
+        let token = this.props.token;
+        this.setState({ loading: true }, () => {
+          axios
+            .get(constants.serverUrl + "api/users/me/shop", {
+              headers: { Authorization: token }
+            })
+            .then(response => {
+              console.log("categories", response);
+    
+              this.setState({
+                loading: false,
+                ...response.data
+              });
+            })
+            .catch(error => {
+              console.log(error);
+              Router.push("/");
+            });
+        });
+      }
+
+    invertPublicState = () => {
+        let is_public = !this.state.user.is_public
+        let token = this.props.token;
+    
+        axios
+          .put(
+            constants.serverUrl + "api/users/me/updatePublicState",
+            { is_public },
+            { headers: { Authorization: token } }
+          )
+          .then(response => {
+            this.fetchData()
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      };
+
     render() {
-        const { pageTitle } = this.state
+        const { pageTitle, user } = this.state
         return (
             <Layout title={ pageTitle }>
-                <div className="account">
+                <div className="account profile">
                     <div className="container">
                         <div className="row">
                             <div className="intro">
                                 <div className="sub_intro">
                                     <img src={"/images/profile-avatar.png"} alt=""/>
                                     <div className="name">
-                                        <h4>Makeup by Mylah Morales</h4>
-                                        <p>Public</p>
+                                        <h4>{user.name}</h4>
+                                        <p>{ user.is_public ? 'Public' : 'Private' }</p>
                                     </div>
                                 </div>
-                                <button className="btn btn-primary">View profile</button>
+                                <Link href="/artist/profile"><a className="btn btn-primary">View Profile</a></Link>
                             </div>
                             <ul className="nav nav-tabs" role="tablist">
                                 <li className="nav-item">
@@ -53,24 +105,24 @@ class ShopProfilePage extends React.Component {
                             <div className="tab-content">
                                 <div className="tab-pane active" id="tabs-1" role="tabpanel">
                                     <div className="shop layout">
-                                        <p>Your shop is currently Public</p>
-                                        <button className="btn btn-primary">Go Private</button>
+                                        <p>Your shop is currently { user.is_public ? 'Public' : 'Private' }</p>
+                                        <button className="btn btn-primary" onClick={this.invertPublicState}>Go { user.is_public ? 'Private' : 'Public' }</button>
                                     </div>
                                     <div className="divider"></div>
                                     <div className="bio">
                                         <div className="sub_bio layout">
                                             <div className="left_span">
                                                 <p>Name:</p>
-                                                <p>Makeup by Mylah Morales</p>
+                                                <p>{user.name}</p>
                                             </div>
                                             <div className="right_span">
-                                                <button className="btn btn-primary">Edit</button>
+                                                <Link href="/artist/create-profile/profile"><a className="btn btn-primary">Edit</a></Link>
                                             </div>
                                         </div>
                                         <div className="sub_bio layout">
                                             <div className="left_span">
                                                 <p>Bio:</p>
-                                                <p>Anny Chow provides on location makeup and hair service for bridal or any special occasion.</p>
+                                                <p>{user.bio}</p>
                                             </div>
                                             <div className="right_span"></div>
                                         </div>
@@ -79,10 +131,17 @@ class ShopProfilePage extends React.Component {
                                     <div className="category">
                                         <div className="sub_cat layout">
                                             <p>Categories</p>
-                                            <button className="btn btn-primary">Edit</button>
+                                            <Link href="/artist/create-profile/category"><a className="btn btn-primary">Edit</a></Link>
                                         </div>
-                                        <button type="button" className="btn btn-outline-primary">Photo shoots</button>
-                                        <button type="button" className="btn btn-outline-primary">Costume</button>
+                                        <div className="categoryList">
+                                            {user.categories.map((category, idx) => (
+                                                <div className="item" key={idx}>
+                                                <label className="cat_container">
+                                                    <div className="checkmark active">{category.name}</div> 
+                                                </label>                          
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                     <div className="divider"></div>
                                     <div className="instagram">

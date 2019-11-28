@@ -18,7 +18,7 @@ class DashboardPage extends React.Component {
     render() {
         return (
             <Layout title={'Dashboard'}>
-                <div className="suggest">
+                <div className="profile">
                     <h1> Client Dashboard </h1>
                     <ul>
                         <Link href={`/client/saved-jobs`}><a className="btn btn-primary">Saved</a></Link>
@@ -31,23 +31,6 @@ class DashboardPage extends React.Component {
                         <Link href={`/artist/dashboard`}><a className="btn btn-success">Become an artist</a></Link>
                     </ul>
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                    ul {
-                        text-align: center;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                    ul a {
-                        display: block;
-                        width: 200px;
-                        margin-bottom: 10px;
-
-                    }    
-                `}</style>
             </Layout>
         );
     }

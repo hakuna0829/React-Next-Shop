@@ -152,14 +152,6 @@ class SelectCategoryPage extends React.Component {
           </div>
         </div>
 
-        <style jsx>{`
-          .suggest {
-            text-align: center;
-          }
-          .page-navs a {
-            margin-right: 30px;
-          }
-        `}</style>
       </Layout>
     );
   }

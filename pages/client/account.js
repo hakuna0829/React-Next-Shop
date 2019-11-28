@@ -96,7 +96,7 @@ class AccountPage extends React.Component {
 
         return (
             <Layout title={'Account'}>
-                <div className="suggest">
+                <div className="profile">
                     <h1> Artist Account </h1>
                     
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -156,11 +156,6 @@ class AccountPage extends React.Component {
                     </div>
 
                 </div>
-                <style jsx>{`
-                    .suggest {
-                        text-align: center;
-                    }
-                `}</style>
             </Layout>
         );
     }
