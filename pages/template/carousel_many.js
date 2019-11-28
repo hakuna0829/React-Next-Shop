@@ -21,7 +21,6 @@ const MultiCarousel = () => {
   const [windowSize, setWindowSize] = useState(getSize);
 
   useEffect(() => {
-    console.log("123", isClient);
     if (!isClient) {
       return false;
     }
@@ -45,10 +44,7 @@ const MultiCarousel = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount and unmount
-
-  console.log("width", windowSize);
-  console.log("size", noOfCards);
-
+    
   const file_data = [
     "user4.jpg",
     "user5.png",
