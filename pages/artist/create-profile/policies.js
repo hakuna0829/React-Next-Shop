@@ -103,7 +103,7 @@ class PoliciesPage extends React.Component {
     return (
       <Layout title={"Policies"}>
          {/* start progress bar  */}
-         <div className="container">
+         <div className="container progress_bar">
           <div className="row">
             <ProgressBar value={percent}></ProgressBar>
           </div>

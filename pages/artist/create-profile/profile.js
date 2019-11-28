@@ -139,7 +139,7 @@ class CreateProfilePage extends React.Component {
     return (
       <Layout title={"Create Profile"}>
         {/* start progress bar  */}
-        <div className="container">
+        <div className="container progress_bar">
           <div className="row">
             <ProgressBar value={percent}></ProgressBar>
           </div>

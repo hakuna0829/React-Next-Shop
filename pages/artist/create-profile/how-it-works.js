@@ -19,7 +19,7 @@ class HowItWorksPage extends React.Component {
     return (
       <Layout title={"How it works"}>
          {/* start progress bar  */}
-         <div className="container">
+         <div className="container progress_bar">
           <div className="row">
             <ProgressBar value={percent}></ProgressBar>
           </div>

@@ -138,7 +138,7 @@ class WorkPhotoPage extends React.Component {
     return (
       <Layout title={"Work Photos"}>
         {/* start progress bar  */}
-        <div className="container">
+        <div className="container progress_bar">
           <div className="row">
             <ProgressBar
              value={percent}
