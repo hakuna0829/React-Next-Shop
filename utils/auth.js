@@ -12,7 +12,9 @@ export const auth = ctx => {
 
     let generalRoutes = [
         '/artist/landing',
-        '/'
+        '/',
+        '/artist-profile',
+        '/search',
     ]
 
     let noAuthRoutes = [
@@ -22,8 +24,9 @@ export const auth = ctx => {
         '/client/signup'
     ]
 
-    if(generalRoutes.includes(ctx.pathname)) {
+    if(generalRoutes.includes(ctx.pathname) || ctx.pathname.startsWith('/search')) {
         //console.log('general routes')
+        console.log('general')
         return
     }
 
