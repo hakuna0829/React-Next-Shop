@@ -77,7 +77,7 @@ class GuestNavbar extends React.Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <div className="col-md-12 col-lg-8 has-search">
+          <div className="col-md-12 col-lg-4 has-search">
             <span className="fa fa-search form-control-feedback"></span>
             <input type="text" className="form-control" placeholder="Artist near Brooklyn, NY" />
           </div>
