@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import ItemsCarousel from "react-items-carousel";
 
 const noOfItems = 7;
@@ -44,7 +45,7 @@ const MultiCarousel = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount and unmount
-    
+
   const file_data = [
     "user4.jpg",
     "user5.png",
@@ -77,34 +78,38 @@ const MultiCarousel = () => {
         }}
         rightChevron={
           // <i className="right-chevron fas fa-chevron-circle-right"></i>
-          <button type="button" className="chevron right-chevron" ></button>
+          <button type="button" className="chevron right-chevron"></button>
         }
         leftChevron={
-          <button type="button" className="chevron left-chevron" ></button>          
+          <button type="button" className="chevron left-chevron"></button>
         }
       >
         {Array.from(file_data).map((item, i) => (
-          <div key={i} className={`card ${i}`}>
-            {/* {item } */}
-            <img src={`/images/${item}`} />
-            <span className="bookmark">
-              <i className="far fa-bookmark"></i>
-            </span>
-            <span className="title">
-              BRIDAL <i className="fas fa-circle"></i> COSTUME
-            </span>
+          <Link href={`/search/artist/${i}`} key={i}>
+            <div  className={`card ${i}`}>
+              {/* {item } */}
 
-            <span className="name">
-              Mylah Morales&nbsp;
-              <i className="fas fa-calendar-check"></i>
-            </span>
+              <img src={`/images/${item}`} />
 
-            <span className="location">
-              <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
-            </span>
+              <span className="bookmark">
+                <i className="far fa-bookmark"></i>
+              </span>
+              <span className="title">
+                BRIDAL <i className="fas fa-circle"></i> COSTUME
+              </span>
 
-            <span className="appointment">160 appointment, $$</span>
-          </div>
+              <span className="name">
+                Mylah Morales&nbsp;
+                <i className="fas fa-calendar-check"></i>
+              </span>
+
+              <span className="location">
+                <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
+              </span>
+
+              <span className="appointment">160 appointment, $$</span>
+            </div>
+          </Link>
         ))}
       </ItemsCarousel>
     </div>

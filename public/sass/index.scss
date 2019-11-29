@@ -14,8 +14,6 @@ body {
 }
 
 #artist-landing {
-
-
     .container {
         padding-left: 0px;
         padding-right: 0px;
@@ -151,6 +149,7 @@ body {
         .card {
             border-width: 0px;
             height: 300px;
+            cursor: pointer;
 
             img {
                 border-radius: 8px;
@@ -447,6 +446,14 @@ body {
 
         }
 
+    }
+}
+
+
+#artist-profile {
+    .container {
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 

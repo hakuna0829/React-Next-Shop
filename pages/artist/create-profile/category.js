@@ -12,7 +12,7 @@ class SelectCategoryPage extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      percent : 67,
+      percent: 67,
       categories: []
     };
   }
@@ -81,9 +81,7 @@ class SelectCategoryPage extends React.Component {
         {/* start progress bar  */}
         <div className="container progress_bar">
           <div className="row">
-            <ProgressBar
-             value={percent}
-            ></ProgressBar>
+            <ProgressBar value={percent}></ProgressBar>
           </div>
         </div>
         {/* end progress bar  */}
@@ -98,7 +96,7 @@ class SelectCategoryPage extends React.Component {
                   <div className="row">
                     <h3> What kind of work do you do? </h3>
                   </div>
-                  <div className="row description">  
+                  <div className="row description">
                     <p className="categorySubTitle">Categories</p>
                     <p>
                       What kinds of makeup do you do? Categories affect how you
@@ -106,44 +104,43 @@ class SelectCategoryPage extends React.Component {
                       featured on.
                     </p>
                   </div>
-                  <div className="row" >
+                  <div className="row">
                     <div className="row categoryList">
                       {categories.map((category, idx) => (
-                         <div className="item" key={idx}>
-                           <label className="cat_container">
-                             <input 
-                                 type="checkbox" 
-                                 checked={category.checked} 
-                                 className="form-control"
-                                 onChange={e => this.handleCategoryChange(e, idx)}
-                             />
-                             <div className="checkmark">{category.name}</div> 
-                         </label>                          
+                        <div className="item" key={idx}>
+                          <label className="cat_container">
+                            <input
+                              type="checkbox"
+                              checked={category.checked}
+                              className="form-control"
+                              onChange={e => this.handleCategoryChange(e, idx)}
+                            />
+                            <div className="checkmark">{category.name}</div>
+                          </label>
                         </div>
                       ))}
                     </div>
                     <div className="page-navs">
-                        <div className="column-2-space">
+                      <div className="column-2-space">
                         <Link href={`/artist/create-profile/profile`}>
-                        <span className="button">
+                          <span className="button">
                             <a className="btn btn-secondary btn-block">Back</a>
-                            </span>
+                          </span>
                         </Link>
                         <span className="button">
-                        <button
+                          <button
                             type="button"
                             className="btn btn-primary ellipsis btn-block"
                             onClick={() => {
-                            this.gotoNext();
+                              this.gotoNext();
                             }}
-                        >
-                            {" "}
-                            Next{" "}
-                        </button>
+                          >
+                            Next
+                          </button>
                         </span>
 
                         {/* <Link href={`/artist/create-profile/work-photos`}><a className="btn btn-info">Next</a></Link> */}
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -151,7 +148,6 @@ class SelectCategoryPage extends React.Component {
             </div>
           </div>
         </div>
-
       </Layout>
     );
   }
