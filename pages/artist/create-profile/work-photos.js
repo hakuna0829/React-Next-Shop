@@ -4,8 +4,10 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
+import EditWorkPhotos from "../../../components/artist/EditWorkPhotos";
 import constants from "../../../constants";
 import ProgressBar from "../../template/progress_bar";
+
 class WorkPhotoPage extends React.Component {
   constructor(props) {
     super(props);
@@ -146,6 +148,7 @@ class WorkPhotoPage extends React.Component {
           </div>
         </div>
         {/* end progress bar  */}
+        <EditWorkPhotos token={this.props.token} mode="create"></EditWorkPhotos>
 
         <div className="profile">
           <div className="container">

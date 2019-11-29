@@ -161,8 +161,7 @@ class CreateProfilePage extends React.Component {
                         Shop Name
                       </label>
                       <p>
-                        This is how clients will see your shop listed. Yu can
-                        sue your business name or just your name.
+                        This is how clients will see your shop listed. You can use your business name or just your name.
                       </p>
                       <input
                         id="name"

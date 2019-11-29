@@ -181,13 +181,30 @@ class ShopProfilePage extends React.Component {
                                     </div>
                                 </div>
                                 <div className="tab-pane" id="tabs-2" role="tabpanel">
-                                    <p>Policies</p>
+                                    <div className="bio">
+                                        <div className="sub_bio layout">
+                                            <div className="left_span">
+                                                <p>Your studio:</p>
+                                                <p>{user.name}</p>
+                                            </div>
+                                            <div className="right_span">
+                                                <Link href="/artist/create-profile/policies"><a className="btn btn-primary">Edit</a></Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="divider"></div>
                                 </div>
                                 <div className="tab-pane" id="tabs-3" role="tabpanel">
-                                    <p>Photos</p>
+                                    <div className="shop layout">
+                                        <p>42 photos uploaded</p>
+                                        <Link href="/artist/create-profile/work-photos"><a className="btn btn-primary">Edit Photos</a></Link>
+                                    </div>
                                 </div>
                                 <div className="tab-pane" id="tabs-4" role="tabpanel">
-                                    Services
+                                    <div className="shop layout">
+                                        <p>5 services offered</p>
+                                        <Link href="/artist/create-profile/services"><a className="btn btn-primary">Edit Services</a></Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ const file_data = [
 
 const ArtistProfile = props => {
   // const [percent, setValue] = useState(props.query);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   console.log(props);
   return (

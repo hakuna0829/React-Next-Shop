@@ -71,40 +71,44 @@ export default function EditCategory(props) {
     };
 
     return (
-        <div>
-        { loading ? <Spinner animation="border" variant="dark" /> : 
-        <div>
+        <div className="profile">
+          <div className="container">
             <div className="row">
-            <h3> What kind of work do you do? </h3>
-            </div>
-            <div className="row description">  
-                <p className="categorySubTitle">Categories</p>
-                <p>
-                    What kinds of makeup do you do? Categories affect how you
-                    show on search results and which pages your shop will get
-                    featured on.
-                </p>
-            </div>
-            <div className="row" >
-                <div className="categoryList">
-                    {categories.map((category, idx) => (
-                        <div className="item" key={idx}>
-                        <label className="cat_container">
-                            <input 
-                                type="checkbox" 
-                                checked={category.checked} 
-                                className="form-control"
-                                onChange={e => handleCategoryChange(e, idx)}
-                            />
-                            <div className="checkmark">{category.name}</div> 
-                        </label>                          
+                { loading ? <Spinner animation="border" variant="dark" /> : 
+                <div>
+                    <div className="row">
+                    <h3> What kind of work do you do? </h3>
                     </div>
-                    ))}
+                    <div className="row description">  
+                        <p className="categorySubTitle">Categories</p>
+                        <p>
+                            What kinds of makeup do you do? Categories affect how you
+                            show on search results and which pages your shop will get
+                            featured on.
+                        </p>
+                    </div>
+                    <div className="row" >
+                        <div className="categoryList">
+                            {categories.map((category, idx) => (
+                                <div className="item" key={idx}>
+                                <label className="cat_container">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={category.checked} 
+                                        className="form-control"
+                                        onChange={e => handleCategoryChange(e, idx)}
+                                    />
+                                    <div className="checkmark">{category.name}</div> 
+                                </label>                          
+                            </div>
+                            ))}
+                        </div>
+                    </div>
+                    <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
                 </div>
+                }
             </div>
-            <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
-        </div>
-        }
+          </div>
         </div>
     )
 }
