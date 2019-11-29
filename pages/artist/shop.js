@@ -131,7 +131,7 @@ class ShopProfilePage extends React.Component {
                                     <div className="category">
                                         <div className="sub_cat layout">
                                             <p>Categories</p>
-                                            <Link href="/artist/create-profile/category"><a className="btn btn-primary">Edit</a></Link>
+                                            <Link href="/artist/edit/category"><a className="btn btn-primary">Edit</a></Link>
                                         </div>
                                         <div className="categoryList">
                                             {user.categories.map((category, idx) => (
