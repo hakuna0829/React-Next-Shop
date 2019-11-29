@@ -2,9 +2,14 @@ $main_color:#1787e0;
 $second_color:#d9eefa;
 $white-color:#fff;
 $danger_color:red;
+$border_color:#b7d5ee;
 
 body {
     color: $main_color;
+
+    .btn-primary {
+        background-color: $main_color;
+    }
 
 }
 
@@ -451,9 +456,182 @@ body {
 
 
 #artist-profile {
+    .loader {
+        font-size: 2rem;
+        text-align: center;
+    }
+
     .container {
         padding-left: 0px;
         padding-right: 0px;
+        position: relative;
+
+        .body {
+            width: 100%;
+
+            .top_banner {
+                display: flex;
+                position: relative;
+
+                button {
+                    border: none !important;
+                    width: 100% !important;
+                    padding: 0px !important;
+                    background: transparent !important;
+                    text-align: inherit !important;
+                    cursor: pointer !important;
+                    display: block !important;
+                    margin-top: 0px !important;
+                    margin-bottom: 0px !important;
+                    margin-right: 2px;
+
+                    .banner_item {
+                        padding-top: 133.333%;
+                        position: relative !important;
+                        background-position: 50% 50% !important;
+                        background-repeat: no-repeat !important;
+                        border: solid 2px $border_color;
+
+                        .cover_image {
+                            -webkit-box-pack: center !important;
+                            -ms-flex-pack: center !important;
+                            -webkit-box-align: center !important;
+                            -ms-flex-align: center !important;
+                            position: absolute !important;
+                            top: 0px !important;
+                            bottom: 0px !important;
+                            left: 0px !important;
+                            right: 0px !important;
+                            display: -webkit-box !important;
+                            display: -moz-box !important;
+                            display: -ms-flexbox !important;
+                            display: -webkit-flex !important;
+                            display: flex !important;
+                            -webkit-align-items: center !important;
+                            align-items: center !important;
+                            -webkit-justify-content: center !important;
+                            justify-content: center !important;
+
+                            img {
+                                height: 100% !important;
+                                width: 100% !important;
+                                position: static !important;
+                                top: 0px !important;
+                                bottom: 0px !important;
+                                left: 0px !important;
+                                right: 0px !important;
+                            }
+                        }
+                    }
+
+                    &:last-child div {
+                        margin-right: 0px
+                    }
+                }
+
+                .left_top_menu {
+                    position: absolute;
+                    top: 35px;
+                    left: 20px;
+
+                    i {
+                        font-size: 1.5rem;
+                        color: $main_color;
+                    }
+
+                    .dropdown-setting-menu {
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        z-index: 2;
+                        float: left;
+                        min-width: 10rem;
+                        padding: .5rem 0;
+                        margin: .125rem 0 0;
+                        font-size: 1rem;
+                        color: #212529;
+                        text-align: left;
+                        list-style: none;
+                        background-color: #fff;
+                        background-clip: padding-box;
+                        border: 1px solid rgba(0, 0, 0, .15);
+                        border-radius: .25rem;
+
+                        .dropdown-item {
+                            display: block;
+                            width: 100%;
+                            padding: .25rem 1.5rem;
+                            clear: both;
+                            font-weight: 400;
+                            color: $main_color;
+                            text-align: inherit;
+                            white-space: nowrap;
+                            background-color: transparent;
+                            border: 0;
+                            cursor: pointer;
+
+
+                            p {
+                                margin-bottom: 0px;
+                                padding: 0.35rem 0;
+                            }
+
+                            &:last-child p {
+                                border-top: solid $border_color 1px;
+                            }
+                        }
+
+
+                    }
+
+                }
+
+                .left_bottom_menu {
+                    position: absolute;
+                    bottom: 35px;
+                    left: 20px;
+
+                    i {
+                        font-size: 1.5rem;
+                        color: $main_color;
+                    }
+
+                }
+
+                .right_top_menu {
+                    position: absolute;
+                    top: 35px;
+                    right: 20px;
+                    display: flex;
+
+                    div {
+                        margin-right: 15px;
+
+                        i {
+                            font-size: 1.5rem;
+                            color: $main_color;
+                        }
+                    }
+                }
+            }
+
+            .profile_body {
+                display: flex;
+                justify-content: center;
+
+                .profile_body_contanier {
+                    padding: 10px 30px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+            }
+        }
+
+
+
+
     }
 }
 
