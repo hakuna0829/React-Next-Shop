@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../../components/Layout";
 import EditWorkPhotos from "../../../components/artist/EditWorkPhotos";
-import ProgressBar from "../../template/progress_bar";
+import ProgressBar from "../../../components/common/progress_bar";
 
 export default function WorkPhotoPage(props) {
   const percent = 67
