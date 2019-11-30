@@ -4,8 +4,9 @@ import Router from "next/router";
 import axios from "axios";
 import Rate from "../components/profile/Rate";
 import Layout from "../components/Layout";
-import MultiCarousel from "./template/carousel_many";
-import SingleCarousel from "./template/carousel_single";
+import MultiCarousel from "../components/artist/carousel_many";
+import SingleCarousel from "../components/common/carousel_single";
+import ArtistList from "../components/artist/List";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -205,7 +206,7 @@ class HomePage extends React.Component {
                 {/* heading start */}
                 <div className="row heading col-sm-12">
                   <div className="title">
-                    <h3>Featured makeup artists near Brooklyn</h3>
+                    <h3>Artists available today near Brooklyn</h3>
                   </div>
                   <div className="right_all">
                     <span>
@@ -217,32 +218,9 @@ class HomePage extends React.Component {
                 {/* heading end */}
 
                 {/*  */}
-                <ul className="cardlist">
-                  {Array.from(file_data).map((item, i) => (
-                    <li key={i} className={`card ${i} col-lg-2 col-md-4`}>
-                      {/* {item } */}
-                      <img src={`/images/${item}`} />
-                      <span className="bookmark">
-                        <i className="far fa-bookmark"></i>
-                      </span>
-                      <span className="title">
-                        BRIDAL <b>&#183;</b> COSTUME
-                      </span>
-
-                      <span className="name">
-                        Mylah Morales&nbsp;
-                        <i className="fas fa-calendar-check"></i>
-                      </span>
-
-                      <span className="location">
-                        <i className="far fa-paper-plane"></i>&nbsp; brooklyn,
-                        NY
-                      </span>
-
-                      <span className="appointment">160 appointment, $$</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="cardlist">
+                  <ArtistList></ArtistList>                  
+                </div>
               </div>
 
               <div className="makeup_lessons">
@@ -261,34 +239,10 @@ class HomePage extends React.Component {
                 {/* heading end */}
 
                 {/*  */}
-                <ul className="cardlist">
-                  {Array.from(file_data).map((item, i) => (
-                    <li key={i} className={`card ${i} col-md-4 col-lg-2`}>
-                      {/* {item } */}
-                      <img src={`/images/${item}`} />
-                      <span className="bookmark">
-                        <i className="far fa-bookmark"></i>
-                      </span>
-                      <span className="title">
-                        BRIDAL <b>&#183;</b> COSTUME
-                      </span>
-
-                      <span className="name">
-                        Mylah Morales&nbsp;
-                        <i className="fas fa-calendar-check"></i>
-                      </span>
-
-                      <span className="location">
-                        <i className="far fa-paper-plane"></i>&nbsp; brooklyn,
-                        NY
-                      </span>
-
-                      <span className="appointment">160 appointment, $$</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="cardlist">
+                  <ArtistList></ArtistList>        
+                </div>
               </div>
-
             </div>
           </div>
         </div>

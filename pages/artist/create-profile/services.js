@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
 import ServiceModal from "./newService";
-import ConfirmModal from "../../template/confirmModal";
+import ConfirmModal from "../../../components/common/confirmModal";
 
 class ServicesPage extends React.Component {
   constructor(props) {

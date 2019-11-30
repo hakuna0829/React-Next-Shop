@@ -30,7 +30,7 @@ const MultiCarousel = () => {
       setWindowSize(getSize());
       let size = getSize();
       if (size.width < 576) {
-        setNoOfCards(1);
+        setNoOfCards(2);
       } else if (size.width >= 576 && size.width < 768) {
         setNoOfCards(2);
       } else if (size.width >= 768 && size.width < 992) {
@@ -70,9 +70,6 @@ const MultiCarousel = () => {
         numberOfCards={noOfCards}
         slidesToScroll={1}
         outsideChevron={false}
-        // showSlither={true}
-        // firstAndLastGutter={true}
-        // alwaysShowChevrons={false}
         requestToChangeActive={value => {
           setActiveItemIndex(value);
         }}
@@ -86,28 +83,30 @@ const MultiCarousel = () => {
       >
         {Array.from(file_data).map((item, i) => (
           <Link href={`/search/artist/${i}`} key={i}>
-            <div  className={`card ${i}`}>
+            <div className={`card ${i}`}>
               {/* {item } */}
-
-              <img src={`/images/${item}`} />
-
+              <div className="card_item">
+                <div className="cover_image">
+                  <img src={`/images/${item}`} />
+                </div>               
+              </div>
               <span className="bookmark">
-                <i className="far fa-bookmark"></i>
-              </span>
-              <span className="title">
-                BRIDAL <i className="fas fa-circle"></i> COSTUME
-              </span>
+                  <i className="far fa-bookmark"></i>
+                </span>
+                <span className="title">
+                  BRIDAL <b>&#183;</b>  COSTUME
+                </span>
 
-              <span className="name">
-                Mylah Morales&nbsp;
-                <i className="fas fa-calendar-check"></i>
-              </span>
+                <span className="name">
+                  Mylah Morales&nbsp;
+                  <i className="fas fa-calendar-check"></i>
+                </span>
 
-              <span className="location">
-                <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
-              </span>
+                <span className="location">
+                  <i className="far fa-paper-plane"></i>&nbsp; brooklyn, NY
+                </span>
 
-              <span className="appointment">160 appointment, $$</span>
+                <span className="appointment">160 appointment, $$</span>
             </div>
           </Link>
         ))}

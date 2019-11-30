@@ -192,7 +192,7 @@ class PoliciesPage extends React.Component {
                     name="travel_distance_id"
                     value={policy.travel_distance_id}
                   >
-                    <option value=""></option>
+                    <option disabled={true} value=""></option>
                     {distances.map(item => {
                       return (
                         <option key={item.id} value={item.id}>
