@@ -1,14 +1,48 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../../components/Layout";
-import Loader from "../../template/loader";
+import Loader from "../../../components/common/loader";
+import DatePicker from "react-datepicker";
+import axios from "axios";
+import constants from "../../../constants";
+import {
+  getQueryStringValue,
+  setQueryStringValue
+} from "../../../components/common/QueryString";
+import "react-datepicker/src/stylesheets/datepicker.scss";
+
 const file_data = ["user4.jpg", "user5.png", "user9.jpg"];
+const instagram = ["user4.jpg", "user5.png", "user9.jpg","user4.jpg", "user5.png", "user9.jpg"];
+const services = [
+  "Bridal makeup",
+  "Prom",
+  "Makeup lessons",
+  "Photo shoot",
+  "Other event"
+];
 
 const ArtistProfile = props => {
   // const [percent, setValue] = useState(props.query);
   const [loading, setLoading] = useState(false);
   const [isSetting, setIsSetting] = useState(false);
-
+  const [startDate, setStartDate] = useState(new Date());
+  const [artistId, setArtistId] = useState(props.id);
   const handleSetting = event => setIsSetting(!isSetting);
+  // console.log(props.match.params.id);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    axios
+      .get(constants.serverUrl + "api/search/artist/" + 22) //+ artistId
+      .then(response => {
+        //setLoading(false);
+        console.log(response);
+      })
+      .catch(error => {
+        //setLoading(false)
+        console.log(error);
+        //   Router.push("/");
+      });
+  }, []);
 
   console.log(props);
   return (
@@ -80,8 +114,113 @@ const ArtistProfile = props => {
 
               <div className="profile_body">
                 <div className="profile_body_contanier row">
-                  <div className="left_content col-md-8">left</div>
-                  <div className="right_panel col-md-4">right</div>
+                  <div className="left_content col-md-8">
+                    <div className="photo_name_area">
+                      <div className="artist_photo">
+                        <img src="/images/makeup_1.jpg" width="30" />
+                      </div>
+                      <div className="artist_name">
+                        <div>
+                          <span>
+                            BRIDAL <b>&#183;</b> COSTUME
+                          </span>
+                          <h2>Mylah Morales</h2>
+                          <span className="name">
+                            Mylah Morales&nbsp;
+                            <i className="fas fa-calendar-check"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="about">
+                      <h3>About</h3>
+                      <span>Booked: 160times</span>
+                      <br></br>
+                      <span>Price: $$$</span>
+                      <br></br>
+                      <span>
+                        <i className="fas fa-calendar-check"></i> Backed by
+                        Celeste
+                      </span>
+                      <p>
+                        Anny Chow provides on location makeup and hair service
+                        for bridal or any special occasion. Her studio is
+                        located in Sunset Park, Brooklyn for bridal consultation
+                        and makeup/hair trial.
+                      </p>
+                      <br></br>
+
+                      <p>Policies:</p>
+                      <p>
+                        Will come to your home or venue<br></br>
+                        Will see you in studio<br></br>
+                        Will travel for destination events<br></br>
+                      </p>
+                    </div>
+
+                    <div className="instagram">
+                      <h3>From Instagram</h3>
+                      <div className="sub_title">
+                        <label>
+                          <b>@MylahMorales</b>
+                        </label>
+                        <label>
+                          <b>More</b>
+                        </label>
+                      </div>
+                      <div className="imagelist row">
+                        {Array.from(instagram).map((item, i) => (
+                          <div className="col-sm-6 col-md-6 col-lg-4 item" key={i}>
+                            <div className="cover_image">
+                              <div>
+                                <img src={`/images/${item}`}  />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="services">
+                      {/*  start loop for services */}
+                      {Array.from(services).map((item, i) => (
+                        <div key={i}>
+                          <div className="header">
+                            <b>{item}</b>
+                            <span>
+                              <b>$800</b>
+                            </span>
+                          </div>
+                          <div className="description">
+                            <p>
+                              Anny Chow provides on location makeup and hair
+                              service for bridal or any special occasion.
+                            </p>
+                            <span>Starting cost</span>
+                          </div>
+                        </div>
+                      ))}
+
+                      {/* end loop for services */}
+                    </div>
+                  </div>
+                  <div className="right_panel col-md-4">
+                    <div className="cover_date">
+                      <div className="date_input">
+                        <DatePicker
+                          selected={startDate}
+                          onChange={date => setStartDate(date)}
+                          locale="en-GB"
+                          placeholderText=""
+                        />
+                        <i className="far fa-calendar-alt"></i>
+                      </div>
+                      <button className="btn btn-primary btn-block">
+                        Schedule
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,7 +232,7 @@ const ArtistProfile = props => {
 };
 
 ArtistProfile.getInitialProps = ({ query: { id } }) => {
-  return { id }
-}
+  return { id };
+};
 
 export default ArtistProfile;
