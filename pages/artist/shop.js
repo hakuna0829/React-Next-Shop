@@ -203,7 +203,7 @@ class ShopProfilePage extends React.Component {
                                 <div className="tab-pane" id="tabs-4" role="tabpanel">
                                     <div className="shop layout">
                                         <p>5 services offered</p>
-                                        <Link href="/artist/create-profile/services"><a className="btn btn-primary">Edit Services</a></Link>
+                                        <Link href="/artist/edit/services"><a className="btn btn-primary">Edit Services</a></Link>
                                     </div>
                                 </div>
                             </div>

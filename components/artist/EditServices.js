@@ -106,13 +106,15 @@ export default function EditServices(props) {
     let editService = service => {
       console.log('edited', service)
       const list = services.map(item => {
-        console.log(item.id)
+        console.log(item.id, service.id)
         if (item.id == service.id) {
           Object.entries(service).forEach(([key, value]) => {
             item[key] = value;
           });
         }
+        return item;
       });
+      console.log(list)
       setServices(list)
       setIsModalVisible(false)
 
@@ -185,7 +187,6 @@ export default function EditServices(props) {
     };
 
     return (
-      
         <div className="profile">
           {loading ? (
             <Spinner animation="border" variant="dark" />
@@ -297,6 +298,7 @@ export default function EditServices(props) {
                 </div>
               {/* end service tempate  */}
               
+              <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
               </div>
             </div>
           )}
@@ -317,8 +319,7 @@ export default function EditServices(props) {
             action={deleteService}
             title="Are you sure to remove this service?"
           ></ConfirmModal>
-          <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
+          
         </div>
-      
     );
 }

@@ -5,8 +5,9 @@ import EditServices from "../../../components/artist/EditServices";
 export default function ServicesPage(props){
     return (
         <Layout title={"Services"}>
-          <EditServices token={props.token} mode="create"></EditServices>
+            <EditServices token={props.token} mode="edit"></EditServices>
         </Layout>
     );
+
 }
 
