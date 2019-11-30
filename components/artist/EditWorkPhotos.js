@@ -14,7 +14,7 @@ export default function EditWorkPhotos(props) {
     const  [deleted_images, setDeleteImages] = useState([])
 
     const backLinks = {
-        'create' : '/artist/create-profile/profile',
+        'create' : '/artist/create-profile/category',
         'edit' : '/artist/shop'
     }
 
@@ -40,72 +40,69 @@ export default function EditWorkPhotos(props) {
     }, []);
 
     let filesSelectedHandler = e => {
-        let files = e.target.files;
-    
-        for (let i = 0; i < files.length; i++) {
-          let reader = new FileReader();
-          let file = files[i];
-    
-          console.log(file);
-          if (file) {
-            reader.readAsDataURL(file);
-    
-            reader.onloadend = () => {
-              let new_images = this.state.new_images;
-    
-              let image = {
-                blob: reader.result,
-                filename: file.name,
-                title: file.name,
-                description: ""
-              };
-              new_images.push(image);
-              this.setState({
-                new_images
-              });
+      let files = e.target.files;
+  
+      for (let i = 0; i < files.length; i++) {
+        let reader = new FileReader();
+        let file = files[i];
+  
+        console.log(file);
+        if (file) {
+          reader.readAsDataURL(file);
+  
+          reader.onloadend = () => {
+  
+            let image = {
+              blob: reader.result,
+              filename: file.name,
+              title: file.name,
+              description: ""
             };
-          }
+            
+            let addedNewImages = [...new_images, image]
+            setNewImages(addedNewImages)
+            
+          };
         }
-      };
+      }
+    };
+  
+    let handleUploadBtnClick = () => {
+      document.getElementById("images").click();
+    };
     
-     let handleUploadBtnClick = () => {
-        document.getElementById("images").click();
-      };
+    let handleTitleChange = (idx, evt) => {
+      const Images = images.map((image, sidx) => {
+        if (idx !== sidx) return image;
+        return { ...image, title: evt.target.value };
+      });
+      
+      setImages(Images)
+    };
     
-      let  handleTitleChange = idx => evt => {
-        const Images = images.map((image, sidx) => {
-          if (idx !== sidx) return image;
-          return { ...image, title: evt.target.value };
-        });
-        
-        setImages(Images)
-      };
-    
-      let  handleDeleteImage = idx => evt => {
-        
-        deleted_images.push(images[idx].id);
+    let handleDeleteImage = idx => evt => {
+      //deleted_images.push(images[idx].id);
 
-        setDeleteImages(deleted_images)
+      setDeleteImages([images[idx].id, ...deleted_images])
+      let id = images[idx].id
 
-        images.splice(idx, 1);
+      setImages(images.filter(image => image.id !== id))
+    };
     
-        setImages(images)
-      };
-    
-      let  handleNewImageTitleChange = idx => evt => {
-        const newImages = new_images.map((image, sidx) => {
-          if (idx !== sidx) return image;
-          return { ...image, title: evt.target.value };
-        });
-    
-        setNewImages(newImages)
-      };
-    
-      let  handleNewImageDeleteImage = idx => evt => {
-        new_images.splice(idx, 1);
-    
-        setNewImages(new_images)
-      };
+    let handleNewImageTitleChange = (idx , evt) => {
+      const newImages = new_images.map((image, sidx) => {
+        if (idx !== sidx) return image;
+        return { ...image, title: evt.target.value };
+      });
+
+      setNewImages(newImages)
+    };
+  
+    let handleNewImageDeleteImage = idx  => {
+      new_images.splice(idx, 1)
+
+      setNewImages([...new_images])
+    };
     
 
 
@@ -160,9 +157,7 @@ export default function EditWorkPhotos(props) {
                         <button
                             type="button"
                             className="btn btn-primary ellipsis btn-block"
-                            onClick={() => {
-                            handleUploadBtnClick();
-                            }}
+                            onClick={handleUploadBtnClick}
                         >
                             Choose files
                         </button>
@@ -175,7 +170,7 @@ export default function EditWorkPhotos(props) {
                         <div className=" form-group col-sm-12 col-md-6 col-lg-4" key={idx}>
                         <div className="form-group item">
                             <img width="200" height="200" src={image.image} />
-                            <i className="fas fa-trash-alt" onClick={handleDeleteImage(idx)}></i>
+                            <i className="fas fa-trash-alt" onClick={() => handleDeleteImage(idx)}></i>
                         </div>
                         <div className="form-group title">
                             <i className="fas fa-bookmark"></i>
@@ -184,8 +179,8 @@ export default function EditWorkPhotos(props) {
                             className="form-control"
                             placeholder={`Title`}
                             value={image.title}
-                            onChange={handleTitleChange(idx)}
-                            />
+                            onChange={(evt) => handleTitleChange(idx, evt)}
+                            /> 
                         </div>                      
                         </div>
                     ))}
@@ -194,33 +189,18 @@ export default function EditWorkPhotos(props) {
                         <div className="form-group col-sm-12 col-md-6 col-lg-4" key={idx}>
                         <div className="form-group item">
                             <img width="200" height="200" src={image.blob} />
-                            <i className="fas fa-trash-alt" onClick={handleNewImageDeleteImage(idx)}></i>
+                            <i className="fas fa-trash-alt" onClick={() => handleNewImageDeleteImage(idx)}></i>
                         </div>
                         <div className="form-group title">
                         <i className="fas fa-bookmark"></i>
                             <input
-                            type="text"
-                            className="form-control"
-                            placeholder={`Title`}
-                            value={image.title}
-                            onChange={handleNewImageTitleChange(idx)}
+                              type="text"
+                              className="form-control"
+                              placeholder={`Title`}
+                              value={image.title}
+                              onChange={(evt) => handleNewImageTitleChange(idx, evt)}
                             />
-                            {/* <input
-                            type="text"
-                            className="form-control"
-                            placeholder={`Title`}
-                            value={image.title}
-                            onChange={this.handleNewImageTitleChange(idx)}
-                            /> */}
                         </div>
-                        {/* <div className="form-group delete">
-                            <button
-                            className="form-control btn btn-danger"
-                            onClick={this.handleNewImageDeleteImage(idx)}
-                            >
-                            Delete
-                            </button>
-                        </div> */}
                         </div>
                     ))}
                     </div>

@@ -7,6 +7,7 @@ import Layout from "../../../components/Layout";
 import constants from "../../../constants";
 import ServiceModal from "./newService";
 import ConfirmModal from "../../template/confirmModal";
+import EditServices from "../../../components/artist/EditServices";
 
 class ServicesPage extends React.Component {
   constructor(props) {
@@ -23,159 +24,153 @@ class ServicesPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.fetchData();
-  }
+  // componentDidMount() {
+  //   this.fetchData();
+  // }
 
-  showSpinner = () => {
-    this.setState({
-      ...this.state,
-      loading: !this.state.loading
-    });
-  };
-  showServiceModal = (mode, editId = null) => {
-    this.setState({
-      ...this.state,
-      showModal: !this.state.showModal,
-      mode: mode,
-      editId: editId
-    });
-    console.log("new modal", this.state.showModal);
-  };
+  // showServiceModal = (mode, editId = null) => {
+  //   this.setState({
+  //     ...this.state,
+  //     showModal: !this.state.showModal,
+  //     mode: mode,
+  //     editId: editId
+  //   });
+  //   console.log("new modal", this.state.showModal);
+  // };
 
-  showConfirmModal = (delId = null) => {
-    this.setState({
-      ...this.state,
-      showConfirmModal: !this.state.showConfirmModal,
-      delId: delId
-    });
-    console.log("new modal", this.state.showConfirmModal);
-  };
+  // showConfirmModal = (delId = null) => {
+  //   this.setState({
+  //     ...this.state,
+  //     showConfirmModal: !this.state.showConfirmModal,
+  //     delId: delId
+  //   });
+  //   console.log("new modal", this.state.showConfirmModal);
+  // };
 
-  fetchData() {
-    let token = this.props.token;
-    this.setState({ loading: true }, () => {
-      axios
-        .get(constants.serverUrl + "api/services/me/getServices", {
-          headers: { Authorization: token }
-        })
-        .then(response => {
-          console.log("services", response);
+  // fetchData() {
+  //   let token = this.props.token;
+  //   this.setState({ loading: true }, () => {
+  //     axios
+  //       .get(constants.serverUrl + "api/services/me/getServices", {
+  //         headers: { Authorization: token }
+  //       })
+  //       .then(response => {
+  //         console.log("services", response);
 
-          this.setState({
-            loading: false,
-            services: response.data.services,
-            data: response.data
-          });
-        })
-        .catch(error => {
-          console.log(error);
-          Router.push("/");
-        });
-    });
-  }
+  //         this.setState({
+  //           loading: false,
+  //           services: response.data.services,
+  //           data: response.data
+  //         });
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //         Router.push("/");
+  //       });
+  //   });
+  // }
 
-  handleEditServiceChange = e => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
+  // handleEditServiceChange = e => {
+  //   const target = e.target;
+  //   const value = target.type === "checkbox" ? target.checked : target.value;
+  //   const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
-  };
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
-  toggleDetails = (e, id) => {
-    var downArrow = e.currentTarget.childNodes[0].childNodes[0];
-    var upArrow = e.currentTarget.childNodes[0].childNodes[1];
-    var itemPanel = e.currentTarget.closest(".item");
+  // toggleDetails = (e, id) => {
+  //   var downArrow = e.currentTarget.childNodes[0].childNodes[0];
+  //   var upArrow = e.currentTarget.childNodes[0].childNodes[1];
+  //   var itemPanel = e.currentTarget.closest(".item");
 
-    if (downArrow.classList.contains("hidden")) {
-      // do some stuff
-      downArrow.classList.remove("hidden");
-      upArrow.classList.add("hidden");
-    } else {
-      downArrow.classList.add("hidden");
-      upArrow.classList.remove("hidden");
-    }
+  //   if (downArrow.classList.contains("hidden")) {
+  //     // do some stuff
+  //     downArrow.classList.remove("hidden");
+  //     upArrow.classList.add("hidden");
+  //   } else {
+  //     downArrow.classList.add("hidden");
+  //     upArrow.classList.remove("hidden");
+  //   }
 
-    var detailPanel = itemPanel.childNodes[1];
-    detailPanel.classList.toggle("hidden");
-  };
+  //   var detailPanel = itemPanel.childNodes[1];
+  //   detailPanel.classList.toggle("hidden");
+  // };
 
-  addService = newService => {
-    let token = this.props.token;
-    let { services } = this.state;
-    console.log("parent newservice", newService);
-    services.push(newService);
-    this.setState({ services });
-    this.setState({ showModal: false });
-  };
+  // addService = newService => {
+  //   let token = this.props.token;
+  //   let { services } = this.state;
+  //   console.log("parent newservice", newService);
+  //   services.push(newService);
+  //   this.setState({ services });
+  //   this.setState({ showModal: false });
+  // };
 
-  getLocation(id) {
-    let location = "";
-    if (id != null) {
-      location = this.state.data.locations.filter(item => {
-        return item.id == id;
-      })[0].name;
-    }
-    return location;
-  }
+  // getLocation(id) {
+  //   let location = "";
+  //   if (id != null) {
+  //     location = this.state.data.locations.filter(item => {
+  //       return item.id == id;
+  //     })[0].name;
+  //   }
+  //   return location;
+  // }
 
-  getTime(id) {
-    let sTime = "";
-    if (id != null) {
-      sTime = this.state.data.durations.filter(item => {
-        return item.id == id;
-      })[0].name;
-    }
+  // getTime(id) {
+  //   let sTime = "";
+  //   if (id != null) {
+  //     sTime = this.state.data.durations.filter(item => {
+  //       return item.id == id;
+  //     })[0].name;
+  //   }
 
-    return sTime;
-  }
+  //   return sTime;
+  // }
 
-  editService = service => {
-    this.setState(state => {
-      const list = state.services.map(item => {
-        if (item.id == service.id) {
-          Object.entries(service).forEach(([key, value]) => {
-            item[key] = value;
-          });
-        }
-      });
-      return {
-        list
-      };
-    });
-    this.setState({ showModal: false });
-    console.log("updated service", this.state.services);
-  };
+  // editService = service => {
+  //   this.setState(state => {
+  //     const list = state.services.map(item => {
+  //       if (item.id == service.id) {
+  //         Object.entries(service).forEach(([key, value]) => {
+  //           item[key] = value;
+  //         });
+  //       }
+  //     });
+  //     return {
+  //       list
+  //     };
+  //   });
+  //   this.setState({ showModal: false });
+  //   console.log("updated service", this.state.services);
+  // };
 
-  deleteService = () => {
-    console.log("id", id);
-    let id = this.state.delId;
-    let token = this.props.token;
-    this.setState({ loading: true }, () => {
-      axios
-        .delete(constants.serverUrl + "api/services/me/deleteService", {
-          headers: { Authorization: token },
-          data: {
-            id: id
-          }
-        })
-        .then(response => {
-          console.log("service delete", response);
-          let services = this.state.services.filter(item => item.id != id);
-          this.setState({
-            services: services,
-            loading: false
-          });
-        })
-        .catch(error => {
-          console.log(error);
-          //Router.push("/");
-        });
-    });
-  };
+  // deleteService = () => {
+  //   console.log("id", id);
+  //   let id = this.state.delId;
+  //   let token = this.props.token;
+  //   this.setState({ loading: true }, () => {
+  //     axios
+  //       .delete(constants.serverUrl + "api/services/me/deleteService", {
+  //         headers: { Authorization: token },
+  //         data: {
+  //           id: id
+  //         }
+  //       })
+  //       .then(response => {
+  //         console.log("service delete", response);
+  //         let services = this.state.services.filter(item => item.id != id);
+  //         this.setState({
+  //           services: services,
+  //           loading: false
+  //         });
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //         //Router.push("/");
+  //       });
+  //   });
+  // };
 
   render() {
     let { loading, data, services } = this.state;
@@ -183,13 +178,14 @@ class ServicesPage extends React.Component {
     return (
       <Layout title={"Services"}>
         <div className="profile">
+          <EditServices token={this.props.token} mode="create"></EditServices>
           {loading ? (
             <Spinner animation="border" variant="dark" />
           ) : (
             <div className="container">
               {console.log("old service", data)}
               <div className="row">
-                <div className="column-2-space col-sm-12">
+                {/* <div className="column-2-space col-sm-12">
                   <div className="imgPreview">
                     <h3> Services </h3>
                     <h6> What services do you offer? </h6>
@@ -205,9 +201,9 @@ class ServicesPage extends React.Component {
                       </button>
                     </span>
                   </div>
-                </div>
+                </div> */}
 
-                {services.map((service, idx) => (
+                {/* {services.map((service, idx) => (
                   <div className="row service" key={idx}>
                     <div className="item col-sm-12">
                       <div className=" row column-2-space">
@@ -271,7 +267,7 @@ class ServicesPage extends React.Component {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))} */}
 
                 {/* start service tempate  */}
                 <h6> Try starting with one of these services </h6>

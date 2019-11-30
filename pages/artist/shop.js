@@ -197,7 +197,7 @@ class ShopProfilePage extends React.Component {
                                 <div className="tab-pane" id="tabs-3" role="tabpanel">
                                     <div className="shop layout">
                                         <p>42 photos uploaded</p>
-                                        <Link href="/artist/create-profile/work-photos"><a className="btn btn-primary">Edit Photos</a></Link>
+                                        <Link href="/artist/edit/work-photos"><a className="btn btn-primary">Edit Photos</a></Link>
                                     </div>
                                 </div>
                                 <div className="tab-pane" id="tabs-4" role="tabpanel">

@@ -92,4 +92,8 @@ const ArtistProfile = props => {
   );
 };
 
+ArtistProfile.getInitialProps = ({ query: { id } }) => {
+  return { id }
+}
+
 export default ArtistProfile;

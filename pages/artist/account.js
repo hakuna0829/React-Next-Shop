@@ -101,7 +101,9 @@ class AccountPage extends React.Component {
     }
 
     
-
+    handleUploadBtnClick = () => {
+        document.getElementById("avatar").click();
+    };
     
 
     fileSelectedHandler = e => {
@@ -246,110 +248,128 @@ class AccountPage extends React.Component {
                         <div className="row">
                             <Tabs defaultActiveKey="account" onSelect={this.handleSelect}>
                                 <Tab eventKey="account" title="Account Settings">
-                                    <h2> Profile </h2>
-                                    <div className="row">
-                                        { loading ? <Spinner animation="border" variant="dark"/> : 
-                                        <div >
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <label htmlFor="name" className="control-label">Name</label> 
-                                                        <input id="name" placeholder="Name" className="form-control" onChange={this.handleChange}
-                                                            name="name"
-                                                            type="text"
-                                                            value={this.state.name}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="avatar" className="control-label">Profile Picture</label> 
-                                                        <input id="avatar" placeholder="avatar" type="file" 
-                                                                name="avatar"
-                                                                className="form-control" onChange={this.fileSelectedHandler}
-                                                                accept=".jpg,.jpeg,.png,.bmp"
-                                                                value="" 
-                                                            />
-                                                        <div className="imgPreview">
-                                                            {$imagePreview}
+                                    <div className="my_profile">
+                                        <h2> Profile </h2>
+                                        <div className="row">
+                                            { loading ? <Spinner animation="border" variant="dark"/> : 
+                                            <div className="inner_profile">
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <label htmlFor="name" className="control-label">Name</label> 
+                                                            <input id="name" placeholder="Name" className="form-control" onChange={this.handleChange}
+                                                                name="name"
+                                                                type="text"
+                                                                value={this.state.name}/>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="avatar" className="control-label">Profile Picture</label> 
+                                                            <input id="avatar" placeholder="avatar" type="file" 
+                                                                    name="avatar"
+                                                                    className="form-control hidden" onChange={this.fileSelectedHandler}
+                                                                    accept=".jpg,.jpeg,.png,.bmp"
+                                                                    value="" 
+                                                                />
+                                                            <div className="imgPreview">
+                                                                <span className="image">{$imagePreview}</span>
+                                                                <span className="button">
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-primary ellipsis btn-block"
+                                                                        onClick={() => {
+                                                                        this.handleUploadBtnClick();
+                                                                        }}
+                                                                    >
+                                                                        Choose files
+                                                                    </button>
+                                                                </span> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.saveProfile()}}> Save </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <button type="button" className="btn btn-primary ellipsis" onClick={() => {this.saveProfile()}}> Save </button>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="email">
+                                        <h2> Email </h2>
+                                        <div className="row">
+                                            <div className="inner_email">
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <label htmlFor="new_email" className="control-label">New Email</label> 
+                                                            <input id="new_email" placeholder="New Email" className="form-control" onChange={this.handleEmailFormChange}
+                                                                name="new_email"
+                                                                type="text"
+                                                                value={emailModel.new_email}/>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="confirm_email" className="control-label">Confirm Email</label> 
+                                                            <input id="confirm_email" placeholder="Confirm Email" className="form-control" onChange={this.handleEmailFormChange}
+                                                                name="confirm_email"
+                                                                type="text"
+                                                                value={emailModel.confirm_email}/>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="password" className="control-label">Password</label> 
+                                                            <input id="password" placeholder="Password" className="form-control" onChange={this.handleEmailFormChange}
+                                                                name="password"
+                                                                type="password"
+                                                                value={emailModel.password}/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <button type="button" className="btn btn-primary ellipsis" onClick={this.changeEmail}> Save </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        }
                                     </div>
-                                    <h2> Email </h2>
-                                    <div className="row">
-                                        <div >
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <label htmlFor="new_email" className="control-label">New Email</label> 
-                                                        <input id="new_email" placeholder="New Email" className="form-control" onChange={this.handleEmailFormChange}
-                                                            name="new_email"
-                                                            type="text"
-                                                            value={emailModel.new_email}/>
+                                    <div className="password">
+                                        <h2> Password </h2>
+                                        <div className="row">
+                                            <div className="inner_password">
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        <span>Don't know your password?     </span>
+                                                        <button type="button" className="btn btn-primary ellipsis" onClick={this.resetPassword}> Reset Password </button>
                                                     </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="confirm_email" className="control-label">Confirm Email</label> 
-                                                        <input id="confirm_email" placeholder="Confirm Email" className="form-control" onChange={this.handleEmailFormChange}
-                                                            name="confirm_email"
-                                                            type="text"
-                                                            value={emailModel.confirm_email}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="password" className="control-label">Password</label> 
-                                                        <input id="password" placeholder="Password" className="form-control" onChange={this.handleEmailFormChange}
-                                                            name="password"
-                                                            type="password"
-                                                            value={emailModel.password}/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <button type="button" className="btn btn-primary ellipsis" onClick={this.changeEmail}> Save </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h2> Password </h2>
-                                    <div className="row">
-                                        <div >
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    Don't know your password? <button type="button" className="btn btn-primary ellipsis" onClick={this.resetPassword}> Reset Password </button>
-                                                </div>
-                                                <div className="col-md-12">
-                                                    <div className="form-group">
-                                                        <label htmlFor="current_password" className="control-label">Current Password</label> 
-                                                        <input id="current_password" placeholder="Current Password" className="form-control" onChange={this.handlePasswordFormChange}
-                                                            name="current_password"
-                                                            type="text"
-                                                            value={passwordModel.current_password}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="new_password" className="control-label">New Password</label> 
-                                                        <input id="new_password" placeholder="New Password" className="form-control" onChange={this.handlePasswordFormChange}
-                                                            name="new_password"
-                                                            type="text"
-                                                            value={passwordModel.new_password}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="confirm_new_password" className="control-label">Confirm New Password</label> 
-                                                        <input id="confirm_new_password" placeholder="Confirm New Password" className="form-control" onChange={this.handlePasswordFormChange}
-                                                            name="confirm_new_password"
-                                                            type="password"
-                                                            value={passwordModel.confirm_new_password}/>
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <label htmlFor="current_password" className="control-label">Current Password</label> 
+                                                            <input id="current_password" placeholder="Current Password" className="form-control" onChange={this.handlePasswordFormChange}
+                                                                name="current_password"
+                                                                type="text"
+                                                                value={passwordModel.current_password}/>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="new_password" className="control-label">New Password</label> 
+                                                            <input id="new_password" placeholder="New Password" className="form-control" onChange={this.handlePasswordFormChange}
+                                                                name="new_password"
+                                                                type="text"
+                                                                value={passwordModel.new_password}/>
+                                                        </div>
+                                                        <div className="form-group">
+                                                            <label htmlFor="confirm_new_password" className="control-label">Confirm New Password</label> 
+                                                            <input id="confirm_new_password" placeholder="Confirm New Password" className="form-control" onChange={this.handlePasswordFormChange}
+                                                                name="confirm_new_password"
+                                                                type="password"
+                                                                value={passwordModel.confirm_new_password}/>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <button type="button" className="btn btn-primary ellipsis" onClick={this.changePassword}> Save </button>
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <button type="button" className="btn btn-primary ellipsis" onClick={this.changePassword}> Save </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
