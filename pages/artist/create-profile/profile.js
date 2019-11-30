@@ -5,8 +5,8 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-import ProgressBar from "../../template/progress_bar";
-import ConfirmModal from "../../template/confirmModal";
+import ProgressBar from "../../../components/common/progress_bar";
+import ConfirmModal from "../../../components/common/ConfirmModal";
 class CreateProfilePage extends React.Component {
   constructor(props) {
     super(props);

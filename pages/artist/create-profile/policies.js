@@ -5,7 +5,7 @@ import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import constants from "../../../constants";
-import ProgressBar from "../../template/progress_bar";
+import ProgressBar from "../../../components/common/progress_bar";
 
 class PoliciesPage extends React.Component {
   constructor(props) {

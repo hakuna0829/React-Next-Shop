@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
-import ProgressBar from "../../template/progress_bar";
+import ProgressBar from "../../../components/common/progress_bar";
 
 class HowItWorksPage extends React.Component {
   constructor(props) {
