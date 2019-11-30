@@ -253,7 +253,7 @@ export default class ServiceModal extends React.Component {
                                 : ""
                             }`}
                           >
-                            <option value=""></option>
+                            <option value="" disabled={true}></option>
                             <option value="1">1 person</option>
                             <option value="10">10 persons</option>
                             <option value="25">25 persons</option>
@@ -329,7 +329,7 @@ export default class ServiceModal extends React.Component {
                                 : ""
                             }`}
                           >
-                            <option value=""></option>
+                            <option value="" disabled={true}></option>
                             {services.durations.map(item => {
                               return (
                                 <option key={item.id} value={item.id}>
@@ -356,7 +356,7 @@ export default class ServiceModal extends React.Component {
                                 : ""
                             }`}
                           >
-                            <option value=""></option>
+                            <option value="" disabled={true}></option>
                             {services.duration_units.map(item => {
                               return (
                                 <option key={item.id} value={item.id}>
@@ -388,7 +388,7 @@ export default class ServiceModal extends React.Component {
                                 : ""
                             }`}
                           >
-                            <option value=""></option>
+                            <option value="" disabled={true}></option>
                             {services.locations.map(item => {
                               return (
                                 <option value={item.id} key={item.id}>
