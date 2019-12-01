@@ -2,6 +2,11 @@ body {
   color: #1787e0;
 }
 
+/* Hidden placeholder */
+select option[disabled]:first-child {
+	display: none;
+}
+
 #artist-landing .artist_landing {
   height: 300px;
   display: -webkit-box;

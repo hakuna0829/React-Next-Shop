@@ -48,6 +48,49 @@ class ShopProfilePage extends React.Component {
         });
       }
 
+    toggleDetails = (e, id) => {
+        var downArrow = e.currentTarget.childNodes[0].childNodes[0];
+        var upArrow = e.currentTarget.childNodes[0].childNodes[1];
+        var itemPanel = e.currentTarget.closest(".item");
+    
+        if (downArrow.classList.contains("hidden")) {
+          // do some stuff
+          downArrow.classList.remove("hidden");
+          upArrow.classList.add("hidden");
+        } else {
+          downArrow.classList.add("hidden");
+          upArrow.classList.remove("hidden");
+        }
+    
+        var detailPanel = itemPanel.childNodes[1];
+        detailPanel.classList.toggle("hidden");
+    };
+
+    getLocation = (id) => {
+        let location = "";
+        if (id != null) {
+  
+          let location = this.state.user.locations.find(item => {
+            return item.id == id;
+          });
+  
+          return location ? location.name : ''
+        }
+        return location;
+    }
+    
+    getTime = (id) => {
+        let sTime = "";
+        if (id != null) {
+          let sTime = this.state.user.durations.find(item => {
+            return item.id == id;
+          })
+          return sTime ? sTime.name : '';
+        }
+    
+        return sTime;
+    }
+
     invertPublicState = () => {
         let is_public = !this.state.user.is_public
         let token = this.props.token;
@@ -116,7 +159,7 @@ class ShopProfilePage extends React.Component {
                                                 <p>{user.name}</p>
                                             </div>
                                             <div className="right_span">
-                                                <Link href="/artist/create-profile/profile"><a className="btn btn-primary">Edit</a></Link>
+                                                <Link href="/artist/edit/profile"><a className="btn btn-primary">Edit</a></Link>
                                             </div>
                                         </div>
                                         <div className="sub_bio layout">
@@ -185,25 +228,112 @@ class ShopProfilePage extends React.Component {
                                         <div className="sub_bio layout">
                                             <div className="left_span">
                                                 <p>Your studio:</p>
-                                                <p>{user.name}</p>
+                                                <p>{user.policy.address1} {user.policy.address2}</p>
+                                                <p>{user.policy.city}, {user.policy.state} {user.policy.zip}</p>
+                                                &nbsp;
+                                                <p>You will travel up to {user.policy.travel_distance_id} for appointments</p>
                                             </div>
                                             <div className="right_span">
-                                                <Link href="/artist/create-profile/policies"><a className="btn btn-primary">Edit</a></Link>
+                                                <Link href="/artist/edit/policies">
+                                                    <a className="btn btn-primary">Edit</a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="divider"></div>
+                                    <div className="bio">
+                                        <div className="sub_bio layout">
+                                            <div className="left_span">
+                                                <p>Appointments must be made at least 1 day in advance</p>
+                                                &nbsp;
+                                                <p>Allow appointments to be scheduled up to 60 rolling days from today</p>
+                                            </div>
+                                            <div className="right_span">
+                                                <Link href="/artist/create-profile/availability">
+                                                    <a className="btn btn-primary">Edit</a>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="tab-pane" id="tabs-3" role="tabpanel">
                                     <div className="shop layout">
                                         <p>42 photos uploaded</p>
                                         <Link href="/artist/edit/work-photos"><a className="btn btn-primary">Edit Photos</a></Link>
                                     </div>
+                                    <div className="shop layout">
+                                        <p>Your account is set to sync photos from Instagram</p>
+                                        <button className="btn btn-primary">Pause Syncing</button>
+                                    </div>
+                                    <div className="shop layout">
+                                        <div className="uploadImageList">
+                                            {user.images.map((image, idx) => (
+                                                <div className="form-group col-sm-12 col-md-6 col-lg-4" key={idx}>
+                                                    <div className="form-group item">
+                                                        <img width="200" height="200" src={image.image} />
+                                                    </div>
+                                                    <div className="form-group title">
+                                                        <i className="fas fa-bookmark"></i>
+                                                        {image.title}
+                                                    </div>                      
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="tab-pane" id="tabs-4" role="tabpanel">
                                     <div className="shop layout">
-                                        <p>5 services offered</p>
+                                        <p>{user.services.length} services offered</p>
                                         <Link href="/artist/edit/services"><a className="btn btn-primary">Edit Services</a></Link>
+                                    </div>
+                                    <div className="shop layout">
+                                    {user.services.map((service, idx) => (
+                                        <div className="row service" key={idx}>
+                                            <div className="item col-sm-12">
+                                            <div className=" row column-2-space">
+                                                <div className="body">
+                                                <h6>{service.name}</h6>
+                                                <p>{service.description}</p>
+                                                </div>
+                                                <div className="action  ">
+                                                <div className="column-2-space">
+                                                    
+                                                </div>
+                                                <div
+                                                    className="center"
+                                                    onClick={e => {
+                                                    this.toggleDetails(e, "a");
+                                                    }}
+                                                >
+                                                    <label>
+                                                    <i className="fas fa-chevron-down"></i>
+                                                    <i className="fas fa-chevron-up hidden"></i>
+                                                    </label>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="details hidden">
+                                                <div className=" row column-2-start">
+                                                <div className="left_detail">
+                                                    <h6>Max number of people:</h6>
+                                                    <p>{service.max_number_of_people}</p>
+                                                    <h6>Extra per person:</h6>
+                                                    <p>{service.extra_per_person}</p>
+                                                    <h6>Base Price:</h6>
+                                                    <p>{service.base_price}</p>
+                                                </div>
+                                                <div className="">
+                                                    <h6>Location:</h6>
+                                                    <p>{this.getLocation(service.location_id)}</p>
+                                                    <h6>Time:</h6>
+                                                    <p>{this.getTime(service.duration_id)}</p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
