@@ -1,39 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Layout from "../../components/Layout";
 
-import Layout from '../../components/Layout';
+export default function ClientDashboardPage(props) {
+  const pageTitle = "Client Dashboard"
 
-
-class DashboardPage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            artist: {}
-        };
-
-    }
-
-    render() {
-        return (
-            <Layout title={'Dashboard'}>
-                <div className="profile">
-                    <h1> Client Dashboard </h1>
-                    <ul>
-                        {/* <Link href={`/client/saved-jobs`}><a className="btn btn-primary">Saved</a></Link>
-                        <Link href={`/client/appointments`}><a className="btn btn-primary">Appointments</a></Link>
-                        <Link href={`/client/messages`}><a className="btn btn-primary">Messages</a></Link>
-
-
-                        <Link href={`/client/account`}><a className="btn btn-success">Account</a></Link>
-                        <Link href={`/client/help`}><a className="btn btn-primary">Help</a></Link>
-                        <Link href={`/artist/dashboard`}><a className="btn btn-success">Become an artist</a></Link> */}
-                    </ul>
+    return (
+        <Layout title={ pageTitle }>
+            <div className="profile">
+                <div className="container">
+                    <h1> { pageTitle }</h1>
                 </div>
-            </Layout>
-        );
-    }
-  }
-  
-  export default DashboardPage;
+            </div>
+        </Layout>
+    );
+}

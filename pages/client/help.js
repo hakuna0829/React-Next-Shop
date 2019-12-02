@@ -1,30 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Layout from "../../components/Layout";
 
-import Layout from '../../components/Layout';
+export default function HelpPage(props) {
+  const pageTitle = "Client Help"
 
-
-class HelpPage extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            pageTitle : 'Help'
-        };
-
-    }
-
-    render() {
-        const { pageTitle } = this.state
-        return (
-            <Layout title={ pageTitle }>
-                <div className="profile">
-                    <h1> { pageTitle } </h1>
-                    <Link href={`/client/dashboard`}><a className="btn btn-primary">Go to dashboard</a></Link>
+    return (
+        <Layout title={ pageTitle }>
+            <div className="profile">
+                <div className="container">
+                    <h1> { pageTitle }</h1>
                 </div>
-            </Layout>
-        );
-    }
-  }
-  
-  export default HelpPage;
+            </div>
+        </Layout>
+    );
+}

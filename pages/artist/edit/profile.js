@@ -3,8 +3,10 @@ import Layout from "../../../components/Layout";
 import EditProfile from "../../../components/artist/EditProfile";
 
 export default function CreateProfile(props) {
+  const pageTitle = "Edit Profile"
+
   return (
-    <Layout title={"Profile"}>
+    <Layout title={ pageTitle }>
       <EditProfile token={props.token} mode="edit"></EditProfile>
     </Layout>
   );

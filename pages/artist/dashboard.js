@@ -1,33 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Layout from "../../components/Layout";
 
-import Layout from '../../components/Layout';
+export default function ArtistDashboardPage(props) {
+  const pageTitle = "Artist Dashboard"
 
-
-class DashboardPage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            pageTitle : 'Artist Dashboard',
-            loading: true,
-            artist: {}
-        };
-
-    }
-
-    render() {
-        const { pageTitle } = this.state
-        return (
-            <Layout title={ pageTitle }>
-                <div className="profile">
-                    <div className="container">
-                        <h1> { pageTitle }</h1>
-                    </div>
+    return (
+        <Layout title={ pageTitle }>
+            <div className="profile">
+                <div className="container">
+                    <h1> { pageTitle }</h1>
                 </div>
-            </Layout>
-        );
-    }
-  }
-  
-  export default DashboardPage;
+            </div>
+        </Layout>
+    );
+}

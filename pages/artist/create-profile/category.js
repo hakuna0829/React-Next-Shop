@@ -4,10 +4,11 @@ import EditCategory from "../../../components/artist/EditCategory";
 import ProgressBar from "../../../components/common/progress_bar";
 
 export default function SelectCategoryPage(props) {
+  const pageTitle = "Select Categories"
   const percent = 67
 
   return (
-    <Layout title={"Select Categories"}>
+    <Layout title={ pageTitle }>
 
       {/* start progress bar  */}
       <div className="container progress_bar">

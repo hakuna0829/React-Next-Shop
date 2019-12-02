@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../../components/Layout";
+import Layout from "../components/Layout";
 
-export default function CalendarPage(props) {
-  const pageTitle = "Calendar"
+export default function HelpPage(props) {
+  const pageTitle = "Message Center"
 
     return (
         <Layout title={ pageTitle }>

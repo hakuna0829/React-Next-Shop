@@ -3,10 +3,10 @@ import Layout from "../../../components/Layout";
 import EditWorkPhotos from "../../../components/artist/EditWorkPhotos";
 
 export default function EditWorkPhotoPage(props) {
-  const percent = 67
+  const pageTitle = "Edit Work Photos"
 
   return (
-    <Layout title={"Work Photos"}>
+    <Layout title={ pageTitle }>
       <EditWorkPhotos token={props.token} mode="edit"></EditWorkPhotos>
     </Layout>
   );
