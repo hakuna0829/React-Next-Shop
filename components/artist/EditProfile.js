@@ -24,6 +24,7 @@ export default function EditCategory(props) {
         'create' : '/artist/create-profile',
         'edit' : '/artist/shop'
     }
+    
     useEffect(() => {
         let token = props.token;
         setLoading(true)
@@ -76,7 +77,7 @@ export default function EditCategory(props) {
         if (profile.avatar == "") return;
         
         setIsConfirmModalVisible(!isConfirmModalVisible)
-      };
+    };
     
     let handleChange = e => {
         const target = e.target;
@@ -157,56 +158,56 @@ export default function EditCategory(props) {
                         </div>
                         <br />
                         <div className="form-group">
-                        <label htmlFor="avatar" className="form-label">
-                            Profile Picture
-                        </label>
-                        <p>
-                            Add a picture of yourself to help your clients get to
-                            know you better.
-                        </p>
-                        <div className="column-2-start">
-                            <div className="imgPreview">
-                                { profile.avatar ? 
-                                    (<img src={profile.avatar} />)
-                                :
-                                    ( <img src={"/images/profile-avatar.png"} />)
-                                }    
-                            </div>
-                            <div className="button-group">
-                            <input
-                                id="avatar"
-                                placeholder="avatar"
-                                type="file"
-                                name="avatar"
-                                className="form-control hidden"
-                                onChange={fileSelectedHandler}
-                                accept=".jpg,.jpeg,.png,.bmp"
-                                value=""
-                            />
+                            <label htmlFor="avatar" className="form-label">
+                                Profile Picture
+                            </label>
+                            <p>
+                                Add a picture of yourself to help your clients get to
+                                know you better.
+                            </p>
+                            <div className="column-2-start">
+                                <div className="imgPreview">
+                                    { profile.avatar ? 
+                                        (<img src={profile.avatar} />)
+                                    :
+                                        ( <img src={"/images/profile-avatar.png"} />)
+                                    }    
+                                </div>
+                                <div className="button-group">
+                                <input
+                                    id="avatar"
+                                    placeholder="avatar"
+                                    type="file"
+                                    name="avatar"
+                                    className="form-control hidden"
+                                    onChange={fileSelectedHandler}
+                                    accept=".jpg,.jpeg,.png,.bmp"
+                                    value=""
+                                />
 
-                            <span className="button">
-                                <button
-                                type="button"
-                                className="btn btn-secondary ellipsis btn-block"
-                                onClick={() => {
-                                    toggleConfirmModal();
-                                }}
-                                >
-                                Delete
-                                </button>
-                                <button
-                                type="button"
-                                className="btn btn-primary ellipsis btn-block"
-                                onClick={() => {
-                                    handleUploadBtnClick();
-                                }}
-                                >
-                                Choose file
-                                </button>
-                            </span>
-                            <p>Must be a .png or .jpg file smaller than 100MB</p>
+                                <span className="button">
+                                    <button
+                                    type="button"
+                                    className="btn btn-secondary ellipsis btn-block"
+                                    onClick={() => {
+                                        toggleConfirmModal();
+                                    }}
+                                    >
+                                    Delete
+                                    </button>
+                                    <button
+                                    type="button"
+                                    className="btn btn-primary ellipsis btn-block"
+                                    onClick={() => {
+                                        handleUploadBtnClick();
+                                    }}
+                                    >
+                                    Choose file
+                                    </button>
+                                </span>
+                                <p>Must be a .png or .jpg file smaller than 100MB</p>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div className="form-group">
                         <label htmlFor="bio" className="form-label">
