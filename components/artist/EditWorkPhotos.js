@@ -177,7 +177,7 @@ export default function EditWorkPhotos(props) {
                             <input
                             type="text"
                             className="form-control"
-                            placeholder={`Title`}
+                            placeholder={`Add a caption`}
                             value={image.title}
                             onChange={(evt) => handleTitleChange(idx, evt)}
                             /> 

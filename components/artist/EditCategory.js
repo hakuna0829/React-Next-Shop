@@ -98,7 +98,7 @@ export default function EditCategory(props) {
                                         className="form-control"
                                         onChange={e => handleCategoryChange(e, idx)}
                                     />
-                                    <div className="checkmark">{category.name}</div> 
+                                    <div className="checkmark"><b>{category.name}</b></div> 
                                 </label>                          
                             </div>
                             ))}

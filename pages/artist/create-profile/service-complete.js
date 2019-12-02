@@ -56,7 +56,7 @@ class CreateProfileCheckListPage extends React.Component {
                 </p>
               </div>
               <div className="right-span">
-              <Link href={`/artist/create-profile/policies`}><a className="btn standard">Start</a></Link>
+              <Link href={`/artist/create-profile/policies`}><a className="btn btn-block standard">Start</a></Link>
               </div>
             </div>
             </div>

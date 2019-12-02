@@ -1,3 +1,11 @@
+$primary_color:#1787e0;
+$light_primary_colr:#6fb5eb;
+$text_color:#2890e2;
+$second_color:#8bc3ef;
+$placeholder_color:#74b7ec;
+$white_color:#fff;
+$danger_color:red;
+
 .profile .profile_back {
     position: relative;
 }
@@ -459,6 +467,7 @@ span.button.confirm {
     top: 10px;
     right: 10px;
     font-size: 2rem;
+    color: $placeholder_color;
 }
 
 .profile .uploadImageList .title {
@@ -469,9 +478,10 @@ span.button.confirm {
 
 .profile .uploadImageList .title i {
     margin: 11px 8px 0px 0px;
-    font-size: 2rem;
+    font-size: 1.7rem;
     /* -webkit-transform: rotate(45deg); */
     transform: rotate(-30deg);
+    color: $placeholder_color;
 }
 
 .profile .uploadImageList .delete {

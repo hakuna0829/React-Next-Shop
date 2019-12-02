@@ -15,7 +15,7 @@ body {
 
 /* Hidden placeholder */
 select option[disabled]:first-child {
-	display: none;
+    display: none;
 }
 
 .progress_bar {
@@ -159,6 +159,7 @@ select option[disabled]:first-child {
         .card {
             border: none;
             position: relative;
+            cursor: pointer;
 
             div.card_item {
                 padding-top: 133.33%;
@@ -441,11 +442,6 @@ select option[disabled]:first-child {
                     }
                 }
             }
-
-
-
-
-
         }
 
     }
