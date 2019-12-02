@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ItemsCarousel from "react-items-carousel";
 
-const noOfItems = 7;
 const noOfCards = 4;
 const chevronWidth = 30;
 const gutter = 12; //space between each cards
@@ -74,7 +73,6 @@ const MultiCarousel = () => {
           setActiveItemIndex(value);
         }}
         rightChevron={
-          // <i className="right-chevron fas fa-chevron-circle-right"></i>
           <button type="button" className="chevron right-chevron"></button>
         }
         leftChevron={
