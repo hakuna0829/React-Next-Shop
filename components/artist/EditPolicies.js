@@ -3,7 +3,6 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
-
 import StepButtons from "./StepButtons";
 
 export default function EditCategory(props) {

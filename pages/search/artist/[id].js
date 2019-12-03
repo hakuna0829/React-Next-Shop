@@ -4,14 +4,22 @@ import Loader from "../../../components/common/loader";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import constants from "../../../constants";
-import {
-  getQueryStringValue,
-  setQueryStringValue
-} from "../../../components/common/QueryString";
 import "react-datepicker/src/stylesheets/datepicker.scss";
+import ShareModal from "../../../components/artist/ShareModal";
+import GalleryModal from "../../../components/artist/GalleryModal";
+import LoginWallModal from "../../../components/auth/LoginWall";
+import LoginModal from "../../../components/auth/login";
+import SignupModal from "../../../components/auth/signup";
 
 const file_data = ["user4.jpg", "user5.png", "user9.jpg"];
-const instagram = ["user4.jpg", "user5.png", "user9.jpg","user4.jpg", "user5.png", "user9.jpg"];
+const instagram = [
+  "user4.jpg",
+  "user5.png",
+  "user9.jpg",
+  "user4.jpg",
+  "user5.png",
+  "user9.jpg"
+];
 const services = [
   "Bridal makeup",
   "Prom",
@@ -27,6 +35,12 @@ const ArtistProfile = props => {
   const [startDate, setStartDate] = useState(new Date());
   const [artistId, setArtistId] = useState(props.id);
   const handleSetting = event => setIsSetting(!isSetting);
+  const [isGuest, setIsGuest] = useState(true);
+  const [isShareModalVisible, setIsShareModalVisible] = useState(false);
+  const [isGalleryModalVisible, setIsGalleryModalVisible] = useState(false);
+  const [isLoginWallModalVisible, setIsLoginWallModalVisible] = useState(false);
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
   // console.log(props.match.params.id);
 
   useEffect(() => {
@@ -43,6 +57,48 @@ const ArtistProfile = props => {
         //   Router.push("/");
       });
   }, []);
+
+  let toggleShareModal = () => {
+    // if (profile.avatar == "") return;
+    setIsShareModalVisible(!isShareModalVisible);
+  };
+
+  let toggleGalleryMdoal = () => {
+    setIsGalleryModalVisible(!isGalleryModalVisible);
+    
+  };
+
+ let toggleLoginWallMdoal = () => {
+    setIsLoginWallModalVisible(!isLoginWallModalVisible);
+    setIsLoginModalVisible(false);
+    setIsSignupModalVisible(false);
+  };
+  let toggleLoginMdoal = () => {
+    setIsLoginModalVisible(!isLoginModalVisible);
+    setIsLoginWallModalVisible(false);
+    setIsSignupModalVisible(false);
+  };
+
+  let toggleSignupMdoal = () => {
+    setIsSignupModalVisible(!isSignupModalVisible);
+    setIsLoginModalVisible(false);
+    setIsLoginWallModalVisible(false);
+  };
+
+  let chatWindow = () => {
+    console.log("chat window");
+  };
+
+  let handleClickComment = () => {
+    if(isGuest){
+      toggleLoginWallMdoal();
+    }else{
+      chatWindow();
+    }
+  }
+  let handleShare = () => {
+    console.log("click share item");
+  };
 
   console.log(props);
   return (
@@ -95,7 +151,11 @@ const ArtistProfile = props => {
 
                 <div className="right_top_menu">
                   <div>
-                    <button>
+                    <button
+                      onClick={() => {
+                        toggleShareModal();
+                      }}
+                    >
                       <i className="fas fa-cloud-upload-alt"></i>
                     </button>
                   </div>
@@ -105,7 +165,7 @@ const ArtistProfile = props => {
                     </button>
                   </div>
                   <div>
-                    <button>
+                    <button onClick={() => {handleClickComment();}}>
                       <i className="far fa-comment"></i>
                     </button>
                   </div>
@@ -171,10 +231,13 @@ const ArtistProfile = props => {
                       </div>
                       <div className="imagelist row">
                         {Array.from(instagram).map((item, i) => (
-                          <div className="col-sm-6 col-md-6 col-lg-4 item" key={i}>
+                          <div
+                            className="col-sm-6 col-md-6 col-lg-4 item"
+                            key={i}
+                          >
                             <div className="cover_image">
                               <div>
-                                <img src={`/images/${item}`}  />
+                                <img src={`/images/${item}`} />
                               </div>
                             </div>
                           </div>
@@ -227,6 +290,29 @@ const ArtistProfile = props => {
           </div>
         )}
       </div>
+      <ShareModal
+        show={isShareModalVisible}
+        onClose={toggleShareModal}
+        action={handleShare}
+      ></ShareModal>
+      <LoginWallModal
+        show={isLoginWallModalVisible}
+        onClose={toggleLoginWallMdoal}   
+        showSignUp={toggleSignupMdoal}
+        showLogin={toggleLoginMdoal}     
+      ></LoginWallModal>
+      <LoginModal 
+            show={isLoginModalVisible}
+            onClose={toggleLoginMdoal}
+            showSignUp={toggleSignupMdoal}
+        >          
+        </LoginModal>
+        <SignupModal 
+            show={isSignupModalVisible}
+            onClose={toggleSignupMdoal} 
+            showLoginWall={toggleLoginWallMdoal}           
+        >          
+        </SignupModal>
     </Layout>
   );
 };

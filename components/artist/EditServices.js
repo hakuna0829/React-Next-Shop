@@ -3,7 +3,6 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
-
 import StepButtons from "./StepButtons";
 import ServiceModal from "./ServiceModal";
 import ConfirmModal from "../common/ConfirmModal";
@@ -162,8 +161,6 @@ export default function EditServices(props) {
     let showConfirmModal = (delId = null) => {
       setIsConfirmModalVisible(!isConfirmModalVisible)
       setDelId(delId)
-      
-      console.log("new modal", isConfirmModalVisible);
     };
 
     let save = async () => {

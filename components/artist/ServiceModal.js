@@ -45,10 +45,9 @@ export default class ServiceModal extends React.Component {
     if (nextProps.mode == "edit") {
       this.setState({ loading: true });
       this.getServiceByID(nextProps.editId);
-    }else{
+    } else {
       this.setState({ loading: false });
     }
-    
   }
   // Modal Action
 
@@ -66,12 +65,11 @@ export default class ServiceModal extends React.Component {
         headers: { Authorization: token }
       })
       .then(response => {
-        
         this.setState({ service: response.data.service });
         this.setState({ loading: false });
       })
       .catch(error => {
-        this.setState({ loading: false });        
+        this.setState({ loading: false });
       })
       .finally(() => {});
   };
@@ -134,7 +132,7 @@ export default class ServiceModal extends React.Component {
 
   render() {
     //let data = this.props.services;
-    let { service , loading} = this.state;
+    let { service, loading } = this.state;
     let { show, onClose, mode, services } = this.props;
 
     if (!this.props.show) {
@@ -412,7 +410,6 @@ export default class ServiceModal extends React.Component {
                           className="btn btn-primary btn-block"
                           disabled={isSubmitting}
                         >
-                          {" "}
                           Save
                         </button>
                       </div>

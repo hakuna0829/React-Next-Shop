@@ -14,9 +14,10 @@ export default function StepButtons(props) {
                 </span>
                 <span className="button">
                     <button
-                        type="button"
+                        type={props.type ? "submit" : "button" }
                         className="btn btn-primary ellipsis btn-block"
                         onClick={props.save}
+                        disabled={props.disabled}
                     >
                         { props.mode == 'create' ? 'Next' : 'Save' }
                     </button>
