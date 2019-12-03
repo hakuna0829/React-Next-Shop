@@ -11,6 +11,20 @@ body {
         background-color: $main_color;
     }
 
+    .container {
+        .top_padding_content {
+            height: 100vh;
+            padding-top: 5%;
+            background-color: white;
+            color: #1787e0;
+            // display: flex;
+            // justify-content: center;
+        }
+    }
+
+    .link {
+        cursor: pointer;
+    }
 }
 
 /* Hidden placeholder */
@@ -21,6 +35,158 @@ select option[disabled]:first-child {
 .progress_bar {
     position: sticky;
     top: 5.56%;
+}
+
+
+//
+.carousel_list {
+    margin: 35px 0px;
+    display: flex;
+    justify-content: center;
+
+    .heading {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        .right_all {
+            position: relative;
+            top: 0.5rem;
+        }
+
+    }
+
+}
+
+div.carousel_main {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    i {
+        font-size: 2rem;
+    }
+
+    // alwaysShowChevrons={false}
+    div {
+        div {
+            .chevron {
+                color: #f8f9fa;
+                font-size: 2rem;
+                padding: 10px 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: #1787e0;
+                border-radius: 25px;
+                border: 0px;
+                line-height: 0;
+                font-family: "Ionicons";
+                line-height: .7;
+                display: inline-block;
+                outline: none;
+            }
+
+            .right-chevron {
+
+                margin-left: 20px;
+            }
+
+            .right-chevron::before {
+                content: "\F3D3";
+            }
+
+            .left-chevron {
+                margin-right: 20px;
+            }
+
+            .left-chevron::before {
+                content: "\F3D2";
+            }
+        }
+    }
+
+    .card {
+        border: none;
+        position: relative;
+        cursor: pointer;
+
+        div.card_item {
+            padding-top: 133.33%;
+            position: relative !important;
+            background-position: 50% 50% !important;
+            background-repeat: no-repeat !important;
+            // border: solid 2px #b7d5ee;
+
+            .cover_image {
+                -webkit-box-pack: center !important;
+                -webkit-box-align: center !important;
+                position: absolute !important;
+                top: 0px !important;
+                bottom: 0px !important;
+                left: 0px !important;
+                right: 0px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                img {
+                    height: 100% !important;
+                    width: 100% !important;
+                    position: static !important;
+                    top: 0px !important;
+                    bottom: 0px !important;
+                    left: 0px !important;
+                    right: 0px !important;
+                    object-fit: cover;
+                    border-radius: 8px;
+                }
+            }
+
+        }
+
+        .bookmark {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+
+            i {
+                font-size: 1.4rem;
+            }
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 0.8rem;
+
+            i {
+                font-size: 0.1rem;
+                vertical-align: middle;
+                margin-top: -0.1rem;
+            }
+        }
+
+        .name {
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            i {
+                font-size: 1rem;
+            }
+        }
+
+        .location {
+            font-size: smaller;
+
+            i {
+                font-size: 0.8rem;
+            }
+        }
+
+        .appointment {
+            font-size: smaller;
+        }
+    }
 }
 
 #artist-landing {
@@ -89,155 +255,7 @@ select option[disabled]:first-child {
 
     }
 
-    .carousel_list {
-        margin: 35px 0px;
-        display: flex;
-        justify-content: center;
 
-        .heading {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin-bottom: 15px;
-
-            .right_all {
-                position: relative;
-                top: 0.5rem;
-            }
-
-        }
-
-    }
-
-    div.carousel_main {
-        width: 100%;
-        padding: 0 20px;
-        margin: 0 auto;
-
-        i {
-            font-size: 2rem;
-        }
-
-        // alwaysShowChevrons={false}
-        div {
-            div {
-                .chevron {
-                    color: #f8f9fa;
-                    font-size: 2rem;
-                    padding: 10px 15px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background-color: #1787e0;
-                    border-radius: 25px;
-                    border: 0px;
-                    line-height: 0;
-                    font-family: "Ionicons";
-                    line-height: .7;
-                    display: inline-block;
-                    outline: none;
-                }
-
-                .right-chevron {
-
-                    margin-left: 20px;
-                }
-
-                .right-chevron::before {
-                    content: "\F3D3";
-                }
-
-                .left-chevron {
-                    margin-right: 20px;
-                }
-
-                .left-chevron::before {
-                    content: "\F3D2";
-                }
-            }
-        }
-
-        .card {
-            border: none;
-            position: relative;
-            cursor: pointer;
-
-            div.card_item {
-                padding-top: 133.33%;
-                position: relative !important;
-                background-position: 50% 50% !important;
-                background-repeat: no-repeat !important;
-                // border: solid 2px #b7d5ee;
-
-                .cover_image {
-                    -webkit-box-pack: center !important;
-                    -webkit-box-align: center !important;
-                    position: absolute !important;
-                    top: 0px !important;
-                    bottom: 0px !important;
-                    left: 0px !important;
-                    right: 0px !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-
-                    img {
-                        height: 100% !important;
-                        width: 100% !important;
-                        position: static !important;
-                        top: 0px !important;
-                        bottom: 0px !important;
-                        left: 0px !important;
-                        right: 0px !important;
-                        object-fit: cover;
-                        border-radius: 8px;
-                    }
-                }
-
-            }
-
-            .bookmark {
-                position: absolute;
-                top: 10px;
-                right: 20px;
-
-                i {
-                    font-size: 1.4rem;
-                }
-            }
-
-            .title {
-                font-weight: 500;
-                font-size: 0.8rem;
-
-                i {
-                    font-size: 0.1rem;
-                    vertical-align: middle;
-                    margin-top: -0.1rem;
-                }
-            }
-
-            .name {
-                font-size: 1.2rem;
-                font-weight: 600;
-
-                i {
-                    font-size: 1rem;
-                }
-            }
-
-            .location {
-                font-size: smaller;
-
-                i {
-                    font-size: 0.8rem;
-                }
-            }
-
-            .appointment {
-                font-size: smaller;
-            }
-        }
-    }
 
     .artist_spotlight {
         background-color: #f3f9fd;
@@ -662,7 +680,7 @@ select option[disabled]:first-child {
                                     position: relative;
 
                                     .cover_image {
-                                        padding-top: 66.6667%;
+                                        padding-top: 133.33%;
 
                                         div {
                                             -webkit-box-pack: center !important;
@@ -772,5 +790,37 @@ div {
     .button {
         width: 125px;
         cursor: pointer;
+    }
+}
+
+// Modal
+.modal-body {
+    margin-bottom: 15px;
+
+    .share_list {
+        .item {
+            cursor: pointer;
+        }
+    }
+}
+
+.full-screen-modal {
+    .modal-dialog {
+        position: fixed;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+
+        .modal-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border: 2px solid #3c7dcf;
+            border-radius: 0;
+            box-shadow: none;
+        }
     }
 }

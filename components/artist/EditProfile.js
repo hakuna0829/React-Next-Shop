@@ -3,7 +3,6 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
-
 import StepButtons from "./StepButtons";
 import ConfirmModal from "../common/ConfirmModal";
 
@@ -136,11 +135,12 @@ export default function EditCategory(props) {
     return (
         <div className="profile">
             <div className="container">
-                <div className="row">
+               
                 {loading ? (
                     <Spinner animation="border" variant="dark" />
                 ) : (
-                    <div className="row profile-step">
+                    <div className="row">
+                    <div className="profile-step">
                     <div className="col-lg-12">
                         <div className="form-group">
                         <h3> Tell us about you </h3>
@@ -269,18 +269,19 @@ export default function EditCategory(props) {
                         </div>
                     </div>
                     </div>
+                    <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
+                    </div>
                 )}
 
-                <StepButtons save={save} mode={props.mode} backLink={backLinks[props.mode]}></StepButtons>
+                
                 </div>
                 <ConfirmModal
                     show={isConfirmModalVisible}
                     onClose={toggleConfirmModal}
                     action={handleDelete}
                     title="Are you sure to remove your picture?"
-                ></ConfirmModal>
-                
-            </div>
+                ></ConfirmModal>               
+            
         </div>
         
     )

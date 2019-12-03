@@ -1,9 +1,7 @@
 import React from "react";
 import Router from "next/router";
 import axios from "axios";
-
 import Layout from "../../../components/Layout";
-
 import constants from "../../../constants";
 
 class CompletePage extends React.Component {

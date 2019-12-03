@@ -1,5 +1,4 @@
 import react, { useState } from "react";
-import Link from "next/link";
 import {
   Modal,
   ModalHeader,
@@ -7,9 +6,6 @@ import {
   ModalFooter,
   Button
 } from "react-bootstrap";
-// import "./styles.css";
-import SignupModal from "../auth/signup";
-import Router from "next/router";
 
 export default class LoginWallModal extends React.Component {
   constructor(props) {

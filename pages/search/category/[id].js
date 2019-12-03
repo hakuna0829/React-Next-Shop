@@ -1,69 +1,185 @@
-import React from 'react';
-import { Button, Spinner } from 'react-bootstrap';
-import Link from 'next/link';
-import Router from 'next/router';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Button, Spinner } from "react-bootstrap";
+import Link from "next/link";
+import Router from "next/router";
+import axios from "axios";
+import constants from "../../../constants";
+import Layout from "../../../components/Layout";
+import MultiCarousel from "../../../components/artist/carousel_many";
 
-import constants from '../../../constants';
+const CategorySearchPage = props => {
+  console.log(props);
 
-import Layout from '../../../components/Layout';
+  const [loading, setLoading] = useState(false);
+  const [catId, setCatId] = useState(props.id);
+  const [category, setCategory] = useState({
+    created_at: null,
+    deleted_at: null,
+    description: "",
+    id: 0,
+    name: "",
+    updated_at: null
+  });
 
-class CategorySearchPage extends React.Component {
+  const handleSetting = event => setIsSetting(!isSetting);
 
-    static getInitialProps ({ query: { id } }) {
-        console.log('query id', id)
-        
-        return { id };
-    }
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log(props.id);
+    console.log("fetch");
+    setLoading(true);
+    // this.setState({loading: true}, () => {
+    axios
+      .get(constants.serverUrl + "api/search/category/" + props.id)
+      .then(response => {
+        console.log("response", response);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            artist: {},
-            pricings: {},
-            work_photos: {},
-        };
+        setLoading(false);
+        console.log(response.data.category);
+        setCategory(response.data.category);
+        // category.push(response.data.category)
+      })
+      .catch(error => {
+        // Router.push("/");
+        setLoading(false);
+      });
+  }, []);
+  console.log(category);
+  return (
+    <Layout title={"Category Search"}>
+      <div className="container">
+        <div className="top_padding_content">
+          <div className="row"></div>
+          <center><h3>"{category.name}" makeup artists in Brooklyn </h3></center>
+          <div className="carousel_list row">
+            {/* heading start */}
+            <div className="row heading col-sm-12">
+              <div className="title">
+                <h3>Featured {category.name} artists in Brooklyn</h3>
+              </div>
+              <div className="right_all">
+                <span>
+                  <a href="#">See all</a>&nbsp;
+                  <i className="fas fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
+            {/* heading end */}
+            {/* carousel start */}
+            <div className="row col-sm-12">
+              <MultiCarousel></MultiCarousel>
+            </div>
+            {/* carousel end */}
+          </div>
 
-    }
+          <div className="carousel_list row">
+            {/* heading start */}
+            <div className="row heading col-sm-12">
+              <div className="title">
+                <h3>Most popular {category.name} makeup artists in Brooklyn</h3>
+              </div>
+              <div className="right_all">
+                <span>
+                  <a href="#">See all</a>&nbsp;
+                  <i className="fas fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
+            {/* heading end */}
+            {/* carousel start */}
+            <div className="row col-sm-12">
+              <MultiCarousel></MultiCarousel>
+            </div>
+            {/* carousel end */}
+          </div>
 
-    componentDidMount() {
-       this.fetchData();
-    }
+          <div className="carousel_list row">
+            {/* heading start */}
+            <div className="row heading col-sm-12">
+              <div className="title">
+                <h3>Most affordable {category.name} makeup artists in Brooklyn</h3>
+              </div>
+              <div className="right_all">
+                <span>
+                  <a href="#">See all</a>&nbsp;
+                  <i className="fas fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
+            {/* heading end */}
+            {/* carousel start */}
+            <div className="row col-sm-12">
+              <MultiCarousel></MultiCarousel>
+            </div>
+            {/* carousel end */}
+          </div>
 
-    fetchData() {
-        console.log( this.props.id)
-        console.log('fetch')
-        this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/search/category/' + this.props.id )
-            .then((response) => {
-                console.log('response', response)
-                
-                this.setState({
-                    loading: false,
-                    ...response.data
-                });
-            })
-            .catch((error) => {
-                Router.push('/')
-                this.setState({loading: false});
-            });
-        });
-    }
+        </div>
+      </div>
+    </Layout>
+  );
+};
 
-    render() {
-        const { artist, pricings, loading } = this.state
-        //const { artist } = this.props;
-        return (
-            <Layout title={'Category Search'}>
-                <div className="profile">
-                    <div className="container">
-                        <h1> Category Search Results </h1>
-                    </div> 
-                </div>
-            </Layout>
-        );
-    }
-  }
-  
-  export default CategorySearchPage;
+CategorySearchPage.getInitialProps = ({ query: { id } }) => {
+  return { id };
+};
+
+// class CategorySearchPage extends React.Component {
+
+//     static getInitialProps ({ query: { id } }) {
+//         console.log('query id', id)
+
+//         return { id };
+//     }
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             loading: true,
+//             artist: {},
+//             pricings: {},
+//             work_photos: {},
+//         };
+
+//     }
+
+//     componentDidMount() {
+//        this.fetchData();
+//     }
+
+//     fetchData() {
+//         console.log( this.props.id)
+//         console.log('fetch')
+//         this.setState({loading: true}, () => {
+//             axios.get(constants.serverUrl + 'api/search/category/' + this.props.id )
+//             .then((response) => {
+//                 console.log('response', response)
+
+//                 this.setState({
+//                     loading: false,
+//                     ...response.data
+//                 });
+//             })
+//             .catch((error) => {
+//                 Router.push('/')
+//                 this.setState({loading: false});
+//             });
+//         });
+//     }
+
+//     render() {
+//         const { artist, pricings, loading } = this.state
+//         //const { artist } = this.props;
+//         return (
+//             <Layout title={'Category Search'}>
+//                 <div className="profile">
+//                     <div className="container">
+//                         <h1> Category Search Results </h1>
+//                     </div>
+//                 </div>
+//             </Layout>
+//         );
+//     }
+//   }
+
+export default CategorySearchPage;

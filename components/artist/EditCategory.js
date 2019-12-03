@@ -3,7 +3,6 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
-
 import StepButtons from "./StepButtons";
 
 export default function EditCategory(props) {
@@ -50,6 +49,8 @@ export default function EditCategory(props) {
         let token = props.token;
         let mode = props.mode;
 
+        console.log('clicked save');
+
         let data = categories.map(item => {
           return { id: item.id, checked: item.checked };
         });
@@ -73,13 +74,13 @@ export default function EditCategory(props) {
     return (
         <div className="profile">
           <div className="container">
-            <div className="row">
+            <div >
                 { loading ? <Spinner animation="border" variant="dark" /> : 
-                <div>
-                    <div className="row">
+                <div className="row">
+                    <div className="">
                     <h3> What kind of work do you do? </h3>
                     </div>
-                    <div className="row description">  
+                    <div className="description">  
                         <p className="categorySubTitle">Categories</p>
                         <p>
                             What kinds of makeup do you do? Categories affect how you
@@ -87,7 +88,7 @@ export default function EditCategory(props) {
                             featured on.
                         </p>
                     </div>
-                    <div className="row" >
+                    <div className="" >
                         <div className="categoryList">
                             {categories.map((category, idx) => (
                                 <div className="item" key={idx}>

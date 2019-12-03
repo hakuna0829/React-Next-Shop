@@ -263,6 +263,8 @@ $danger_color:red;
     padding-top: 5%;
     background-color: white;
     color: #1787e0;
+    display: flex;
+    justify-content: center;
 
     /*#1787e0*/
 
@@ -284,6 +286,7 @@ $danger_color:red;
 .profile .container .row {
     max-width: 680px;
     margin: 0;
+    padding: 0 15px;
     width: 100%;
 }
 
@@ -458,26 +461,43 @@ span.button.confirm {
     color: #fff;
 }
 
-.profile .uploadImageList .item {
-    text-align: center;
+.profile .uploadImageList {
+    padding: 0px !important;
+
+    .outer {
+        margin-bottom: 2.5rem;
+    }
 }
 
-.profile .uploadImageList .item i {
+.profile .uploadImageList .item {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.profile .uploadImageList .item .remove_icon i {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 2rem;
     color: $placeholder_color;
+    cursor: pointer;
 }
 
 .profile .uploadImageList .title {
     width: 200px;
-    margin: 0 auto;
+    margin: 5px auto;
     display: flex;
 }
 
+.profile .uploadImageList input {
+    border-color: transparent !important;
+}
+
 .profile .uploadImageList .title i {
-    margin: 11px 8px 0px 0px;
+    position: relative;
+    margin: 11px 8px 0px 10px;
     font-size: 1.7rem;
     /* -webkit-transform: rotate(45deg); */
     transform: rotate(-30deg);
