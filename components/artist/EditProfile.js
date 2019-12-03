@@ -128,6 +128,10 @@ export default function EditCategory(props) {
         }
     };
 
+    let syncInstagram = async () => {
+        
+    }
+
 
     return (
         <div className="profile">
@@ -254,7 +258,7 @@ export default function EditCategory(props) {
                                 type="button"
                                 className="btn btn-secondary ellipsis btn-block"
                                 onClick={() => {
-                                    console.log("click Sync");
+                                    syncInstagram();
                                 }}
                                 >
                                 Sync
