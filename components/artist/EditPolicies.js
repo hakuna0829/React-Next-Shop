@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Profiler } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
@@ -34,7 +34,9 @@ export default function EditCategory(props) {
             .then(response => {
                 console.log('policy', response.data)
                 setLoading(false)
-                setPolicy(response.data.policy)
+                if(response.data.policy) {
+                  setPolicy(response.data.policy)
+                }
                 setDistances(response.data.distances)
                 setCreated(response.data.created)
             })

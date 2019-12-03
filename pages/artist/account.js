@@ -215,7 +215,7 @@ export default function AccountPage(props) {
         const value = target.type === "checkbox" ? target.checked : target.value;
     
         if(type == 'notification') {
-            let data = [...subscriptions]
+            let data = [...notifications]
             data[index].checked = value;
             setNotifications(data)
         }
