@@ -1,56 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import axios from "axios";
 import Rate from "../components/profile/Rate";
 import Layout from "../components/Layout";
+import constants from "../constants";
 import MultiCarousel from "../components/artist/carousel_many";
 import SingleCarousel from "../components/common/carousel_single";
 import ArtistList from "../components/artist/ArtistList";
 import CategoryButtonList from "../components/artist/CategoryBtnList";
 
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      artists: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    };
-  }
+const file_data = [
+  "user4.jpg",
+  "user5.png",
+  "user9.jpg",
+  "makeup_1.jpg",
+  "makeup_3.png",
+  "lowerRight.png",
+  "user4.jpg",
+  "user5.png",
+  "user9.jpg",
+  "makeup_1.jpg",
+  "makeup_3.png",
+  "lowerRight.png"
+];
+const HomePage = props => {
+// class HomePage extends React.Component {
+  const [loading, setLoading] = useState(true);
+  const [artists, setArtists] = useState({
+    email: "",
+    role: "",
+    name: "",
+    avatar: "",
+    bio: "",
+    is_public: false
+  });
 
-  componentDidMount() {
-    this.fetchData();
-  }
+  useEffect(() => {
+    setLoading(true);
+   
+    axios
+      .get(constants.serverUrl + "api/search")
+      .then(response => {
+        // console.log("response", response);
+        setArtists(response.data.users);
+        
+        // category.push(response.data.category)
+        setLoading(false);
+      })
+      .catch(error => {
+        // Router.push("/");
+        setLoading(false);
+      });
+  }, []);
+  console.log(artists)
+  // componentDidMount() {
+  //   this.fetchData();
+  // }
 
-  fetchData() {
-    let { artists } = this.state;
-    artists = artists.map(artist => {
-      return {
-        name: "Claire beckham",
-        year: ((artist * 7) % 10) + 1,
-        rate: ((artist * 3) % 4) + 1,
-        location: "Brooklyn, New York"
-      };
-    });
-    this.setState({ artists });
-  }
+ 
 
-  render() {
+  // render() {
     //const { artists } = this.state
-    const file_data = [
-      "user4.jpg",
-      "user5.png",
-      "user9.jpg",
-      "makeup_1.jpg",
-      "makeup_3.png",
-      "lowerRight.png",
-      "user4.jpg",
-      "user5.png",
-      "user9.jpg",
-      "makeup_1.jpg",
-      "makeup_3.png",
-      "lowerRight.png"
-    ];
+    
 
     return (
       <Layout title={"Guest Homepage"}>
@@ -92,7 +104,7 @@ class HomePage extends React.Component {
                 {/* heading end */}
                 {/* carousel start */}
                 <div className="row col-sm-12">
-                  <MultiCarousel></MultiCarousel>
+                  <MultiCarousel dataset={artists}></MultiCarousel>
                 </div>
                 {/* carousel end */}
               </div>
@@ -115,7 +127,7 @@ class HomePage extends React.Component {
                 {/* heading end */}
                 {/* carousel start */}
                 <div className="row col-sm-12">
-                  <MultiCarousel></MultiCarousel>
+                  <MultiCarousel dataset={artists}></MultiCarousel>
                 </div>
                 {/* carousel end */}
               </div>
@@ -210,7 +222,7 @@ class HomePage extends React.Component {
         </div>
       </Layout>
     );
-  }
+  // }
 }
 
 export default HomePage;

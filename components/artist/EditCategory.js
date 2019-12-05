@@ -7,7 +7,7 @@ import StepButtons from "./StepButtons";
 
 export default function EditCategory(props) {
 
-    const  [loading, setLoading] =  useState(false)
+    const  [loading, setLoading] =  useState(true)
     const  [categories, setCategories] = useState([])
 
     const backLinks = {

@@ -6,12 +6,14 @@ const noOfCards = 4;
 const chevronWidth = 30;
 const gutter = 12; //space between each cards
 
-const MultiCarousel = () => {
+const MultiCarousel = (props) => {
+  const {dataset} = props;
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [noOfCards, setNoOfCards] = useState(4);
-
+  const [items, setItems] = useState(dataset);
   const isClient = typeof window === "object";
 
+  
   function getSize() {
     return {
       width: isClient ? window.innerWidth : undefined,
@@ -19,6 +21,13 @@ const MultiCarousel = () => {
     };
   }
   const [windowSize, setWindowSize] = useState(getSize);
+
+  useEffect(() => {
+    setItems(dataset)
+},[dataset])
+
+// console.log('multi', items)
+//   console.log('props ', props.dataset)
 
   useEffect(() => {
     if (!isClient) {
@@ -79,13 +88,13 @@ const MultiCarousel = () => {
           <button type="button" className="chevron left-chevron"></button>
         }
       >
-        {Array.from(file_data).map((item, i) => (
-          <Link href={`/search/artist/${i}`} key={i}>
-            <div className={`card ${i}`}>
+        {Array.from(items).map((item, i) => (
+          <Link href={`/search/artist/${item.id}`} key={i}>
+            <div className={`card ${item.id}`}>
               {/* {item } */}
               <div className="card_item">
                 <div className="cover_image">
-                  <img src={`/images/${item}`} />
+                  <img src={`/images/user5.png`} />
                 </div>               
               </div>
               <span className="bookmark">
@@ -96,7 +105,7 @@ const MultiCarousel = () => {
                 </span>
 
                 <span className="name">
-                  Mylah Morales&nbsp;
+                {item.name}s&nbsp;
                   <i className="fas fa-calendar-check"></i>
                 </span>
 

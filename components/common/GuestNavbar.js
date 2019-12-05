@@ -5,6 +5,7 @@ import cookie from "js-cookie";
 import LoginWallModal from "../auth/LoginWall";
 import SignupModal from "../auth/signup";
 import LoginModal from "../auth/login";
+import AutoSearch from "../../components/common/Search";
 
 class GuestNavbar extends React.Component {
   constructor(props) {
@@ -77,10 +78,11 @@ class GuestNavbar extends React.Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <div className="col-md-12 col-lg-4 has-search">
+          <AutoSearch></AutoSearch>
+          {/* <div className="col-md-12 col-lg-4 has-search">
             <span className="fa fa-search form-control-feedback"></span>
             <input type="text" className="form-control" placeholder="Artist near Brooklyn, NY" />
-          </div>
+          </div> */}
           
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
             <li className="nav-item">

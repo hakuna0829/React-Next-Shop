@@ -32,11 +32,10 @@ const services = [
 
 const ArtistProfile = props => {
   // const [percent, setValue] = useState(props.query);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isSetting, setIsSetting] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [artistId, setArtistId] = useState(props.id);
-  const handleSetting = event => setIsSetting(!isSetting);
   const [isGuest, setIsGuest] = useState(true);
   const [isShareModalVisible, setIsShareModalVisible] = useState(false);
   const [isGalleryModalVisible, setIsGalleryModalVisible] = useState(false);
@@ -48,22 +47,43 @@ const ArtistProfile = props => {
     setIsServiceRequestModalVisible
   ] = useState(false);
   const [isReportModalVisible, setIsReportModalVisible] = useState(false);
-  // console.log(props.match.params.id);
+  const [artistData, setArtistData] = useState([]);
+  const [images, setImages] = useState(["","",""]);
 
+
+
+  const handleSetting = event => setIsSetting(!isSetting);
   useEffect(() => {
     // Update the document title using the browser API
     axios
-      .get(constants.serverUrl + "api/search/artist/" + 22) //+ artistId
+      .get(constants.serverUrl + "api/search/artist/" + artistId) //+ artistId
       .then(response => {
-        //setLoading(false);
+       
         console.log(response);
+        setArtistData(response.data.user);
+        setImages(response.data.user.images);
+        setLoading(false);
       })
       .catch(error => {
-        //setLoading(false)
+        setLoading(false);
         console.log(error);
         //   Router.push("/");
       });
   }, []);
+
+  useEffect(() => {
+    console.log("effect in ", artistData);
+    setLoading(false);
+  }, [artistData]);
+
+  useEffect(() => {
+    console.log("effect image ", images);
+    if(images.length < 3){
+      var count_more = 3 - images.length;
+      console.log('count_more',count_more);
+    }
+    setLoading(false);
+  }, [images]);
 
   let toggleShareModal = () => {
     // if (profile.avatar == "") return;
@@ -113,7 +133,29 @@ const ArtistProfile = props => {
     console.log("click share item");
   };
 
-  console.log(props);
+  let buildBanner = () => {
+    if (artistData && artistData.images){
+      // console.log(image)
+       artistData.images.map(el => {
+        console.log("asf", el.image);
+      });
+      return images;
+    }
+  }
+  // Array.from(artistData.images).map((item, i) => (
+  //   console.log(item)
+
+  // ));
+  // console.log("artistData", artistData)
+  
+  if(artistData)
+   images.map(el => {
+     console.log(el)
+   })
+
+  
+    
+
   return (
     <Layout title={"Guest Homepage"}>
       <div className="artist-profile" id="artist-profile">
@@ -123,7 +165,8 @@ const ArtistProfile = props => {
           <div className="container">
             <div className="body">
               <div className="top_banner">
-                {Array.from(file_data).map((item, i) => (
+                
+                {artistData ? Array.from(images).map((item, i) => (
                   // <Link href={`/search/artist/${i}`} key={i}>
                   <button
                     key={i}
@@ -133,12 +176,12 @@ const ArtistProfile = props => {
                   >
                     <div className="banner_item">
                       <div className="cover_image">
-                        <img src={`/images/${item}`} />
+                        <img src={`${item.image}`} />
                       </div>
                     </div>
                   </button>
                   // </Link>
-                ))}
+                )):("")}
                 <div className="left_top_menu" onClick={handleSetting}>
                   <button>
                     <i className="fas fa-ellipsis-h"></i>
@@ -204,16 +247,24 @@ const ArtistProfile = props => {
                   <div className="left_content col-md-8">
                     <div className="photo_name_area">
                       <div className="artist_photo">
-                        <img src="/images/makeup_1.jpg" width="30" />
+                        <img
+                          src={
+                            artistData.avatar
+                              ? artistData.avatar
+                              : "/images/profile-avatar.png"
+                          }
+                          width="30"
+                        />
+                        {/* /images/profile-avatar.png */}
                       </div>
                       <div className="artist_name">
                         <div>
                           <span>
                             BRIDAL <b>&#183;</b> COSTUME
                           </span>
-                          <h2>Mylah Morales</h2>
+                          <h2>Makeup by {artistData.name}</h2>
                           <span className="name">
-                            Mylah Morales&nbsp;
+                            {artistData.name}&nbsp;
                             <i className="fas fa-calendar-check"></i>
                           </span>
                         </div>
@@ -231,10 +282,7 @@ const ArtistProfile = props => {
                         Celeste
                       </span>
                       <p>
-                        Anny Chow provides on location makeup and hair service
-                        for bridal or any special occasion. Her studio is
-                        located in Sunset Park, Brooklyn for bridal consultation
-                        and makeup/hair trial.
+                        {artistData.bio}                       
                       </p>
                       <br></br>
 
@@ -274,23 +322,37 @@ const ArtistProfile = props => {
 
                     <div className="services">
                       {/*  start loop for services */}
-                      {Array.from(services).map((item, i) => (
+                      {artistData && artistData.services
+                        ? Array.from(artistData.services).map((item, i) => (
+                            // console.log("asf", el.name);
+                            <div key={i}>
+                              <div className="header">
+                                <b>{item.name}</b>
+                                <span>
+                                  <b>${item.base_price}</b>
+                                </span>
+                              </div>
+                              <div className="description">
+                                <p>{item.description}</p>
+                                <span>Starting cost</span>
+                              </div>
+                            </div>
+                            ))
+                        : ""}
+                      {/* {Array.from(artistData.services).map((item, i) => (
                         <div key={i}>
                           <div className="header">
-                            <b>{item}</b>
+                            <b>{item.name}</b>
                             <span>
-                              <b>$800</b>
+                              <b>${item.base_price}</b>
                             </span>
                           </div>
                           <div className="description">
-                            <p>
-                              Anny Chow provides on location makeup and hair
-                              service for bridal or any special occasion.
-                            </p>
+                            <p>{item.description}</p>
                             <span>Starting cost</span>
                           </div>
                         </div>
-                      ))}
+                      ))} */}
 
                       {/* end loop for services */}
                     </div>

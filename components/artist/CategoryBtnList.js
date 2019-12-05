@@ -3,10 +3,10 @@ import Link from "next/link";
 
 const data = [
   { id: 1, name: "Wedding", image: "user4.jpg" },
-  { id: 2, name: "Prom", image: "user5.png" },
-  { id: 3, name: "Lessons", image: "user9.jpg" },
-  { id: 4, name: "PhotoShoot", image: "makeup_1.jpg" },
-  { id: 5, name: "Natural look", image: "makeup_3.png" }
+  { id: 4, name: "Prom", image: "user5.png" },
+  { id: 8, name: "Lessons", image: "user9.jpg" },
+  { id: 2, name: "PhotoShoot", image: "makeup_1.jpg" },
+  { id: 9, name: "Natural look", image: "makeup_3.png" }
 ];
 
 const CategoryButtonList = props => {

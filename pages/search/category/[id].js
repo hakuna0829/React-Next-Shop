@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import Link from "next/link";
 import Router from "next/router";
+import Loader from "../../../components/common/loader";
 import axios from "axios";
 import constants from "../../../constants";
 import Layout from "../../../components/Layout";
@@ -10,7 +11,7 @@ import MultiCarousel from "../../../components/artist/carousel_many";
 const CategorySearchPage = props => {
   console.log(props);
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [catId, setCatId] = useState(props.id);
   const [category, setCategory] = useState({
     created_at: null,
@@ -25,19 +26,16 @@ const CategorySearchPage = props => {
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log(props.id);
-    console.log("fetch");
     setLoading(true);
+    
     // this.setState({loading: true}, () => {
     axios
       .get(constants.serverUrl + "api/search/category/" + props.id)
       .then(response => {
-        console.log("response", response);
-
-        setLoading(false);
-        console.log(response.data.category);
+        // console.log("response", response);
         setCategory(response.data.category);
         // category.push(response.data.category)
+        setLoading(false);
       })
       .catch(error => {
         // Router.push("/");
@@ -48,73 +46,82 @@ const CategorySearchPage = props => {
   return (
     <Layout title={"Category Search"}>
       <div className="container">
-        <div className="top_padding_content">
-          <div className="row"></div>
-          <center><h3>"{category.name}" makeup artists in Brooklyn </h3></center>
-          <div className="carousel_list row">
-            {/* heading start */}
-            <div className="row heading col-sm-12">
-              <div className="title">
-                <h3>Featured {category.name} artists in Brooklyn</h3>
+        {loading ? (
+           <center><Spinner animation="border" variant="dark" /></center>
+        ) : (
+          <div className="top_padding_content">
+            <div className="row"></div>
+            <center>
+              <h3>"{category.name}" makeup artists in Brooklyn </h3>
+            </center>
+            <div className="carousel_list row">
+              {/* heading start */}
+              <div className="row heading col-sm-12">
+                <div className="title">
+                  <h3>Featured {category.name} artists in Brooklyn</h3>
+                </div>
+                <div className="right_all">
+                  <span>
+                    <a href="#">See all</a>&nbsp;
+                    <i className="fas fa-arrow-right"></i>
+                  </span>
+                </div>
               </div>
-              <div className="right_all">
-                <span>
-                  <a href="#">See all</a>&nbsp;
-                  <i className="fas fa-arrow-right"></i>
-                </span>
+              {/* heading end */}
+              {/* carousel start */}
+              <div className="row col-sm-12">
+                <MultiCarousel></MultiCarousel>
               </div>
+              {/* carousel end */}
             </div>
-            {/* heading end */}
-            {/* carousel start */}
-            <div className="row col-sm-12">
-              <MultiCarousel></MultiCarousel>
-            </div>
-            {/* carousel end */}
-          </div>
 
-          <div className="carousel_list row">
-            {/* heading start */}
-            <div className="row heading col-sm-12">
-              <div className="title">
-                <h3>Most popular {category.name} makeup artists in Brooklyn</h3>
+            <div className="carousel_list row">
+              {/* heading start */}
+              <div className="row heading col-sm-12">
+                <div className="title">
+                  <h3>
+                    Most popular {category.name} makeup artists in Brooklyn
+                  </h3>
+                </div>
+                <div className="right_all">
+                  <span>
+                    <a href="#">See all</a>&nbsp;
+                    <i className="fas fa-arrow-right"></i>
+                  </span>
+                </div>
               </div>
-              <div className="right_all">
-                <span>
-                  <a href="#">See all</a>&nbsp;
-                  <i className="fas fa-arrow-right"></i>
-                </span>
+              {/* heading end */}
+              {/* carousel start */}
+              <div className="row col-sm-12">
+                <MultiCarousel></MultiCarousel>
               </div>
+              {/* carousel end */}
             </div>
-            {/* heading end */}
-            {/* carousel start */}
-            <div className="row col-sm-12">
-              <MultiCarousel></MultiCarousel>
-            </div>
-            {/* carousel end */}
-          </div>
 
-          <div className="carousel_list row">
-            {/* heading start */}
-            <div className="row heading col-sm-12">
-              <div className="title">
-                <h3>Most affordable {category.name} makeup artists in Brooklyn</h3>
+            <div className="carousel_list row">
+              {/* heading start */}
+              <div className="row heading col-sm-12">
+                <div className="title">
+                  <h3>
+                    Most affordable {category.name} makeup artists in Brooklyn
+                  </h3>
+                </div>
+                <div className="right_all">
+                  <span>
+                    <a href="#">See all</a>&nbsp;
+                    <i className="fas fa-arrow-right"></i>
+                  </span>
+                </div>
               </div>
-              <div className="right_all">
-                <span>
-                  <a href="#">See all</a>&nbsp;
-                  <i className="fas fa-arrow-right"></i>
-                </span>
+              {/* heading end */}
+              {/* carousel start */}
+              <div className="row col-sm-12">
+                <MultiCarousel></MultiCarousel>
               </div>
+              {/* carousel end */}
             </div>
-            {/* heading end */}
-            {/* carousel start */}
-            <div className="row col-sm-12">
-              <MultiCarousel></MultiCarousel>
-            </div>
-            {/* carousel end */}
           </div>
-
-        </div>
+        )}
       </div>
     </Layout>
   );
