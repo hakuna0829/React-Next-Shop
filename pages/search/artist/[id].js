@@ -10,6 +10,8 @@ import GalleryModal from "../../../components/artist/GalleryModal";
 import LoginWallModal from "../../../components/auth/LoginWall";
 import LoginModal from "../../../components/auth/login";
 import SignupModal from "../../../components/auth/signup";
+import ServiceRequestModal from "../../../components/artist/ServiceRequestModal";
+import ReportModal from "../../../components/artist/ReportModal";
 
 const file_data = ["user4.jpg", "user5.png", "user9.jpg"];
 const instagram = [
@@ -41,6 +43,11 @@ const ArtistProfile = props => {
   const [isLoginWallModalVisible, setIsLoginWallModalVisible] = useState(false);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
+  const [
+    isServiceRequestModalVisible,
+    setIsServiceRequestModalVisible
+  ] = useState(false);
+  const [isReportModalVisible, setIsReportModalVisible] = useState(false);
   // console.log(props.match.params.id);
 
   useEffect(() => {
@@ -65,10 +72,9 @@ const ArtistProfile = props => {
 
   let toggleGalleryMdoal = () => {
     setIsGalleryModalVisible(!isGalleryModalVisible);
-    
   };
 
- let toggleLoginWallMdoal = () => {
+  let toggleLoginWallMdoal = () => {
     setIsLoginWallModalVisible(!isLoginWallModalVisible);
     setIsLoginModalVisible(false);
     setIsSignupModalVisible(false);
@@ -85,17 +91,24 @@ const ArtistProfile = props => {
     setIsLoginWallModalVisible(false);
   };
 
+  let toggleServiceRequestMdoal = () => {
+    setIsServiceRequestModalVisible(!isServiceRequestModalVisible);
+  };
+
+  let toggleReportModal = () => {
+    setIsReportModalVisible(!isReportModalVisible);
+  };
   let chatWindow = () => {
     console.log("chat window");
   };
 
   let handleClickComment = () => {
-    if(isGuest){
+    if (isGuest) {
       toggleLoginWallMdoal();
-    }else{
+    } else {
       chatWindow();
     }
-  }
+  };
   let handleShare = () => {
     console.log("click share item");
   };
@@ -112,7 +125,12 @@ const ArtistProfile = props => {
               <div className="top_banner">
                 {Array.from(file_data).map((item, i) => (
                   // <Link href={`/search/artist/${i}`} key={i}>
-                  <button key={i}>
+                  <button
+                    key={i}
+                    onClick={() => {
+                      toggleGalleryMdoal();
+                    }}
+                  >
                     <div className="banner_item">
                       <div className="cover_image">
                         <img src={`/images/${item}`} />
@@ -128,7 +146,12 @@ const ArtistProfile = props => {
                   <div>
                     {isSetting ? (
                       <div className="dropdown-setting-menu">
-                        <a className="dropdown-item">
+                        <a
+                          className="dropdown-item"
+                          onClick={() => {
+                            toggleReportModal();
+                          }}
+                        >
                           <p>Report</p>
                         </a>
                         <a className="dropdown-item">
@@ -165,7 +188,11 @@ const ArtistProfile = props => {
                     </button>
                   </div>
                   <div>
-                    <button onClick={() => {handleClickComment();}}>
+                    <button
+                      onClick={() => {
+                        handleClickComment();
+                      }}
+                    >
                       <i className="far fa-comment"></i>
                     </button>
                   </div>
@@ -279,7 +306,12 @@ const ArtistProfile = props => {
                         />
                         <i className="far fa-calendar-alt"></i>
                       </div>
-                      <button className="btn btn-primary btn-block">
+                      <button
+                        className="btn btn-primary btn-block"
+                        onClick={() => {
+                          toggleServiceRequestMdoal();
+                        }}
+                      >
                         Schedule
                       </button>
                     </div>
@@ -297,22 +329,32 @@ const ArtistProfile = props => {
       ></ShareModal>
       <LoginWallModal
         show={isLoginWallModalVisible}
-        onClose={toggleLoginWallMdoal}   
+        onClose={toggleLoginWallMdoal}
         showSignUp={toggleSignupMdoal}
-        showLogin={toggleLoginMdoal}     
+        showLogin={toggleLoginMdoal}
       ></LoginWallModal>
-      <LoginModal 
-            show={isLoginModalVisible}
-            onClose={toggleLoginMdoal}
-            showSignUp={toggleSignupMdoal}
-        >          
-        </LoginModal>
-        <SignupModal 
-            show={isSignupModalVisible}
-            onClose={toggleSignupMdoal} 
-            showLoginWall={toggleLoginWallMdoal}           
-        >          
-        </SignupModal>
+      <LoginModal
+        show={isLoginModalVisible}
+        onClose={toggleLoginMdoal}
+        showSignUp={toggleSignupMdoal}
+      ></LoginModal>
+      <SignupModal
+        show={isSignupModalVisible}
+        onClose={toggleSignupMdoal}
+        showLoginWall={toggleLoginWallMdoal}
+      ></SignupModal>
+      <GalleryModal
+        show={isGalleryModalVisible}
+        onClose={toggleGalleryMdoal}
+      ></GalleryModal>
+      <ServiceRequestModal
+        show={isServiceRequestModalVisible}
+        onClose={toggleServiceRequestMdoal}
+      ></ServiceRequestModal>
+      <ReportModal
+        show={isReportModalVisible}
+        onClose={toggleReportModal}
+      ></ReportModal>
     </Layout>
   );
 };

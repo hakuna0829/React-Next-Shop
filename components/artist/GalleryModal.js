@@ -11,10 +11,11 @@ import axios from "axios";
 import Router from "next/router";
 import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
+import ProfileGallery from "./profileGallery";
 
 export default function GalleryModal(props) {
   const [loading, setLoading] = useState(false);
-  
+
   let onClose = e => {
     props.onClose && props.onClose(e);
   };
@@ -24,31 +25,46 @@ export default function GalleryModal(props) {
   };
 
   return (
-    <div className="profile">
+    <div>
       {loading ? (
         <Spinner animation="border" variant="dark" />
       ) : (
-        <Modal show={props.show} onHide={onClose} className="full-screen-modal" centered>
-          <Modal.Header>
-            <Modal.Title>
-              <h3>Share</h3>
-            </Modal.Title>
-            <span
-              className="closebutton"
-              onClick={e => {
-                onClose(e);
-              }}
-            >
-              <i className="fas fa-times"></i>
-            </span>
-          </Modal.Header>
-          <ModalBody>
-            <div className="share_list">
-              <div className="item" onClick={e =>{onClose(e);}}>FaceBook</div>
-              <div className="item" onClick={e =>{onClose(e);}}>Twitter</div>
-              <div className="item" onClick={e =>{onClose(e);}}>Copy link</div>
-            </div>
-          </ModalBody>
+        <Modal
+          show={props.show}
+          onHide={onClose}
+          className="full-screen-modal"
+          centered
+        >
+          <div className="container">
+            <Modal.Header>
+              <Modal.Title>
+                <div>Logo</div>
+                <div>Estimate: $200</div>
+                <div>
+                  <span
+                    className="closebutton"
+                    onClick={e => {
+                      onClose(e);
+                    }}
+                  >
+                    <i className="fas fa-times"></i>
+                  </span>
+                </div>
+              </Modal.Title>
+            </Modal.Header>
+            <ModalBody className="row">
+              <div className="profileGallery col-sm-7">
+                <ProfileGallery></ProfileGallery>
+              </div>
+              <div className="col-sm-5">
+                <p>
+                  Anny Chow provides on location makeup and hair service for
+                  bridal or any special occasion. Anny Chow provides on location makeup and hair service for
+                  bridal or any special occasion
+                </p>
+              </div>
+            </ModalBody>
+          </div>
         </Modal>
       )}
     </div>

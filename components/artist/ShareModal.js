@@ -26,7 +26,7 @@ export default function ShareModal(props) {
   };
 
   return (
-    <div className="profile">
+    <div className="">
       {loading ? (
         <Spinner animation="border" variant="dark" />
       ) : (

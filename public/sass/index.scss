@@ -811,6 +811,7 @@ div {
         width: 100%;
         height: 100%;
         padding: 0;
+        max-width: 100%;
 
         .modal-content {
             position: absolute;
@@ -821,6 +822,184 @@ div {
             border: 2px solid #3c7dcf;
             border-radius: 0;
             box-shadow: none;
+
+            // .contanier {
+            //     max-width: 600px;
+
+            .modal-header {
+                border-bottom: solid 1px;
+            }
+
+            .modal-title {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            // }
+            .modal-body {
+
+                .modal-body-container {
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    .modal-body-content {
+                        width: 100%;
+                        max-width: 620px;
+
+                        .categoryList div.item {
+                            border-radius: 5px;
+                            margin-right: 1rem;
+                            margin-bottom: 0.5rem;
+                            width: 100%;
+                        }
+
+                        .categoryList div.item .active {
+                            border-color: #1787e0;
+                        }
+
+                        /* The custom check container for profile categor*/
+                        .cat_container {
+                            /* display: block;
+                              position: relative;
+                              padding-left: 35px;
+                              margin-bottom: 12px; */
+                            cursor: pointer;
+                            font-size: 16px;
+                        }
+
+                        /* Hide the browser's default checkbox */
+                        .cat_container input {
+                            position: absolute;
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+                        }
+
+                        /* Create a custom checkbox */
+                        .cat_container .checkmark {
+                            /* position: absolute;
+                              top: 0;
+                              left: 0;
+                              height: 25px; */
+                            padding: 10px 15px;
+                            background-color: #fff;
+                            color: #1787e0;
+                            border: solid 2px #d9eefa;
+                            border-radius: 5px;
+                            display: flex;
+                            justify-content: space-between;
+
+                            .service_name {
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .service_price {
+                                text-align: right;
+
+                                span {
+                                    font-size: 0.7rem;
+                                    ;
+                                }
+                            }
+                        }
+
+                        /* On mouse-over, add a grey background color */
+                        .cat_container:hover input~.checkmark {
+                            background-color: #1787e0;
+                            color: #fff;
+                        }
+
+                        /* When the checkbox is checked, add a blue background */
+                        .cat_container input:checked~.checkmark {
+                            background-color: #fff;
+                            border: solid #1787e0 2px;
+                            color: #1787e0;
+                        }
+
+                        .cat_container:hover input:checked~.checkmark {
+                            background-color: #1787e0;
+                            border: solid #1787e0 2px;
+                            color: #fff;
+                        }
+
+                    }
+
+                }
+
+                .profileGallery {
+
+                    .image-gallery-swipe {
+                        // padding: 0 100px;
+                        width: 90%;
+                        padding-left: 10%;
+
+                    }
+
+                    .image-gallery-slide-wrapper {
+
+                        .image-gallery-index {
+                            right: -25px;
+                        }
+
+                        .image-gallery-left-nav::before,
+                        .image-gallery-right-nav::before {
+                            color: white;
+                            text-shadow: none;
+                            transition: none;
+                        }
+
+                        .image-gallery-left-nav,
+                        .image-gallery-right-nav {
+                            color: #f8f9fa;
+                            font-size: 2rem;
+                            padding: 10px 15px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background-color: #1787e0;
+                            border-radius: 25px;
+                            outline: none;
+                        }
+
+                        .image-gallery-slides {
+                            border-radius: 15px;
+
+                            .image-gallery-slide {
+                                border-radius: 15px;
+
+                                img {
+                                    width: 100%;
+                                    // height: 300px;
+                                    object-fit: cover;
+                                    // border-radius: 15px;
+                                }
+                            }
+                        }
+
+                    }
+
+                    .image-gallery-thumbnails-wrapper {
+                        .image-gallery-thumbnails {
+                            .image-gallery-thumbnail {
+                                display: inline-block;
+                                border: 3px solid transparent;
+                                transition: border .3s ease-out;
+                                width: 70px;
+                            }
+
+                            .image-gallery-thumbnail.active {
+                                border: 3px solid #1787e0;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+
         }
     }
 }
