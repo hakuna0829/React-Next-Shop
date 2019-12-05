@@ -304,13 +304,14 @@ export default function ShopProfilePage(props) {
                             <div className="tab-pane" id="tabs-2" role="tabpanel">
                                 <div className="bio">
                                     <div className="sub_bio layout">
-                                        <div className="left_span">
+                                       { !user.policy ? (<div className="left_span"></div>) :
+                                        (<div className="left_span">
                                             <p>Your studio:</p>
                                             <p>{user.policy.address1} {user.policy.address2}</p>
                                             <p>{user.policy.city}, {user.policy.state} {user.policy.zip}</p>
                                             &nbsp;
                                             <p>You will travel up to {user.policy.travel_distance_id} for appointments</p>
-                                        </div>
+                                        </div>) }
                                         <div className="right_span">
                                             <Link href="/artist/edit/policies">
                                                 <a className="btn btn-primary">Edit</a>

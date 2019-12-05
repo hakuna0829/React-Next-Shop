@@ -8,6 +8,7 @@ import '../public/sass/navbar.scss';
 import '../public/sass/profile.scss';
 import '../public/sass/account.scss';
 import '../public/sass/shop_profile.scss';
+import '../public/sass/chatting.scss';
 
 export default ({ children, title = 'Celeste'}) => (
   <div>
