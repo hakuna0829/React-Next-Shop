@@ -824,6 +824,10 @@ div {
             border-radius: 0;
             box-shadow: none;
 
+            .container {
+                overflow: scroll;
+            }
+
             // .contanier {
             //     max-width: 600px;
 

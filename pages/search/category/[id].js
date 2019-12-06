@@ -21,7 +21,7 @@ const CategorySearchPage = props => {
     name: "",
     updated_at: null
   });
-
+  const [artists, setArtists] = useState([]);
   const handleSetting = event => setIsSetting(!isSetting);
 
   useEffect(() => {
@@ -34,6 +34,25 @@ const CategorySearchPage = props => {
       .then(response => {
         // console.log("response", response);
         setCategory(response.data.category);
+        // category.push(responseata.category)
+        setLoading(false);
+      })
+      .catch(error => {
+        // Router.push("/");
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    setLoading(true);
+    
+    // this.setState({loading: true}, () => {
+    axios
+      .get(constants.serverUrl + "api/search?category=1")
+      .then(response => {
+        console.log("response categroy", response);
+        setArtists(response.data.users);
         // category.push(response.data.category)
         setLoading(false);
       })
@@ -42,7 +61,7 @@ const CategorySearchPage = props => {
         setLoading(false);
       });
   }, []);
-  console.log(category);
+  // console.log("caegory data",catData);
   return (
     <Layout title={"Category Search"}>
       <div className="container">
@@ -70,7 +89,7 @@ const CategorySearchPage = props => {
               {/* heading end */}
               {/* carousel start */}
               <div className="row col-sm-12">
-                <MultiCarousel></MultiCarousel>
+                <MultiCarousel dataset={artists}></MultiCarousel>
               </div>
               {/* carousel end */}
             </div>
@@ -93,7 +112,7 @@ const CategorySearchPage = props => {
               {/* heading end */}
               {/* carousel start */}
               <div className="row col-sm-12">
-                <MultiCarousel></MultiCarousel>
+                <MultiCarousel dataset={artists}></MultiCarousel>
               </div>
               {/* carousel end */}
             </div>
@@ -116,7 +135,7 @@ const CategorySearchPage = props => {
               {/* heading end */}
               {/* carousel start */}
               <div className="row col-sm-12">
-                <MultiCarousel></MultiCarousel>
+                <MultiCarousel dataset={artists}></MultiCarousel>
               </div>
               {/* carousel end */}
             </div>

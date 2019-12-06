@@ -48,9 +48,18 @@ const ArtistProfile = props => {
   ] = useState(false);
   const [isReportModalVisible, setIsReportModalVisible] = useState(false);
   const [artistData, setArtistData] = useState([]);
-  const [images, setImages] = useState(["","",""]);
+  const [bannerImages, setBannerImages] = useState(["", "", ""]);
 
-
+  const emptyImageItem = {
+    create_at: "",
+    deleted_at: null,
+    description: "",
+    id: null,
+    image: "/images/blank_art.png",
+    title: "",
+    updated_at: "",
+    user_id: ""
+  };
 
   const handleSetting = event => setIsSetting(!isSetting);
   useEffect(() => {
@@ -58,10 +67,18 @@ const ArtistProfile = props => {
     axios
       .get(constants.serverUrl + "api/search/artist/" + artistId) //+ artistId
       .then(response => {
-       
         console.log(response);
         setArtistData(response.data.user);
-        setImages(response.data.user.images);
+        var images_3 = response.data.user.images.slice(0, 3);
+        // for(var i = 3; i > 0 ; i--){
+          //push(emptyImageItem);
+          setBannerImages(bannerImages => images_3);
+        // }
+        //setBannerImages(response.data.user.images);
+        response.data.user.images.forEach((item, i) => {
+          console.log(item.image);
+        });
+        
         setLoading(false);
       })
       .catch(error => {
@@ -72,19 +89,22 @@ const ArtistProfile = props => {
   }, []);
 
   useEffect(() => {
-    console.log("effect in ", artistData);
-    setLoading(false);
-  }, [artistData]);
-
-  useEffect(() => {
-    console.log("effect image ", images);
-    if(images.length < 3){
-      var count_more = 3 - images.length;
-      console.log('count_more',count_more);
+    console.log("effect image ", bannerImages);
+    if (bannerImages.length < 3) {
+      console.log('image adding')
+      var count_more = 3 - bannerImages.length;
+      console.log("count_more", count_more);
+      for(var i = count_more; i > 0 ; i--){
+        //push(emptyImageItem);
+        setBannerImages(bannerImages => [...bannerImages,emptyImageItem]);
+      }
+    }else{
+      
     }
     setLoading(false);
-  }, [images]);
+  }, [bannerImages]);
 
+  console.log('artist data ',artistData.images)
   let toggleShareModal = () => {
     // if (profile.avatar == "") return;
     setIsShareModalVisible(!isShareModalVisible);
@@ -134,27 +154,19 @@ const ArtistProfile = props => {
   };
 
   let buildBanner = () => {
-    if (artistData && artistData.images){
+    if (artistData && artistData.images) {
       // console.log(image)
-       artistData.images.map(el => {
+      artistData.images.map(el => {
         console.log("asf", el.image);
       });
       return images;
     }
-  }
+  };
   // Array.from(artistData.images).map((item, i) => (
   //   console.log(item)
 
   // ));
   // console.log("artistData", artistData)
-  
-  if(artistData)
-   images.map(el => {
-     console.log(el)
-   })
-
-  
-    
 
   return (
     <Layout title={"Guest Homepage"}>
@@ -165,23 +177,24 @@ const ArtistProfile = props => {
           <div className="container">
             <div className="body">
               <div className="top_banner">
-                
-                {artistData ? Array.from(images).map((item, i) => (
-                  // <Link href={`/search/artist/${i}`} key={i}>
-                  <button
-                    key={i}
-                    onClick={() => {
-                      toggleGalleryMdoal();
-                    }}
-                  >
-                    <div className="banner_item">
-                      <div className="cover_image">
-                        <img src={`${item.image}`} />
-                      </div>
-                    </div>
-                  </button>
-                  // </Link>
-                )):("")}
+                {artistData
+                  ? Array.from(bannerImages).map((item, i) => (
+                      // <Link href={`/search/artist/${i}`} key={i}>
+                      <button
+                        key={i}
+                        onClick={() => {
+                          toggleGalleryMdoal();
+                        }}
+                      >
+                        <div className="banner_item">
+                          <div className="cover_image">
+                            <img src={`${item.image}`} />
+                          </div>
+                        </div>
+                      </button>
+                      // </Link>
+                    ))
+                  : ""}
                 <div className="left_top_menu" onClick={handleSetting}>
                   <button>
                     <i className="fas fa-ellipsis-h"></i>
@@ -281,9 +294,7 @@ const ArtistProfile = props => {
                         <i className="fas fa-calendar-check"></i> Backed by
                         Celeste
                       </span>
-                      <p>
-                        {artistData.bio}                       
-                      </p>
+                      <p>{artistData.bio}</p>
                       <br></br>
 
                       <p>Policies:</p>
@@ -337,7 +348,7 @@ const ArtistProfile = props => {
                                 <span>Starting cost</span>
                               </div>
                             </div>
-                            ))
+                          ))
                         : ""}
                       {/* {Array.from(artistData.services).map((item, i) => (
                         <div key={i}>
@@ -408,6 +419,7 @@ const ArtistProfile = props => {
       <GalleryModal
         show={isGalleryModalVisible}
         onClose={toggleGalleryMdoal}
+        dataSet={artistData.images}
       ></GalleryModal>
       <ServiceRequestModal
         show={isServiceRequestModalVisible}

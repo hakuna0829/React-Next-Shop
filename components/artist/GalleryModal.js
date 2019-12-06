@@ -23,7 +23,7 @@ export default function GalleryModal(props) {
   let handleClick = e => {
     console.log("clicked", e);
   };
-
+  
   return (
     <div>
       {loading ? (
@@ -54,7 +54,7 @@ export default function GalleryModal(props) {
             </Modal.Header>
             <ModalBody className="row">
               <div className="profileGallery col-sm-7">
-                <ProfileGallery></ProfileGallery>
+                <ProfileGallery dataSet={props.dataSet}></ProfileGallery>
               </div>
               <div className="col-sm-5">
                 <p>

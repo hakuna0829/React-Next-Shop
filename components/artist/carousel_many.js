@@ -94,7 +94,7 @@ const MultiCarousel = (props) => {
               {/* {item } */}
               <div className="card_item">
                 <div className="cover_image">
-                  <img src={`/images/user5.png`} />
+                  <img src={item.avatar} />
                 </div>               
               </div>
               <span className="bookmark">
