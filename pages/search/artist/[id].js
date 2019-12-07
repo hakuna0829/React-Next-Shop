@@ -65,7 +65,7 @@ const ArtistProfile = props => {
   useEffect(() => {
     // Update the document title using the browser API
     axios
-      .get(constants.serverUrl + "api/search/artist/" + artistId) //+ artistId
+      .get(serverUrl + "api/search/artist/" + artistId) //+ artistId
       .then(response => {
         console.log(response);
         setArtistData(response.data.user);

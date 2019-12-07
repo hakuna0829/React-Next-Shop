@@ -40,7 +40,7 @@ const HomePage = props => {
     setLoading(true);
    
     axios
-      .get(constants.serverUrl + "api/search")
+      .get(serverUrl + "api/search")
       .then(response => {
         // console.log("response", response);
         setArtists(response.data.users);

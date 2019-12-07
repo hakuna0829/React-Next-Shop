@@ -10,7 +10,7 @@ import * as Yup from "yup";
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class PoliciesPage extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class PoliciesPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/policies', { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/policies', { headers: { 'Authorization': token } })
             .then((response) => {
 
                 response.data.policies.map((policy, i) => {

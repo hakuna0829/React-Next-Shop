@@ -30,7 +30,7 @@ export default function ShopProfilePage(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/users/me/shop", {
+            .get(serverUrl + "api/users/me/shop", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -95,7 +95,7 @@ export default function ShopProfilePage(props) {
     
         axios
           .put(
-            constants.serverUrl + "api/users/me/updatePublicState",
+            serverUrl + "api/users/me/updatePublicState",
             { is_public },
             { headers: { Authorization: token } }
           )
@@ -114,7 +114,7 @@ export default function ShopProfilePage(props) {
         setLoading(true)
 
           axios
-            .delete(constants.serverUrl + "api/users/me/deleteAvatar", {
+            .delete(serverUrl + "api/users/me/deleteAvatar", {
               headers: { Authorization: token }
             })
             .then(response => {

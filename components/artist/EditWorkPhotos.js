@@ -25,7 +25,7 @@ export default function EditWorkPhotos(props) {
     setLoading(true);
 
     axios
-      .get(constants.serverUrl + "api/images/me", {
+      .get(serverUrl + "api/images/me", {
         headers: { Authorization: token }
       })
       .then(response => {
@@ -115,7 +115,7 @@ export default function EditWorkPhotos(props) {
 
     try {
       let resp = await axios.put(
-        constants.serverUrl + "api/images/me",
+        serverUrl + "api/images/me",
         { images, new_images, deleted_images },
         { headers: { Authorization: token } }
       );

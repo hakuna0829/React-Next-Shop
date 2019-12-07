@@ -64,7 +64,7 @@ class AvailabilityPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/availability/me", {
+        .get(serverUrl + "api/availability/me", {
           headers: { Authorization: token }
         })
         .then(response => {

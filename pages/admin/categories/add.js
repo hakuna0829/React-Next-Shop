@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Spinner } from "react-bootstrap";
 
 import Layout from '../../../components/Layout';
-import constants from '../../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class CategorysPage extends React.Component {
 
@@ -25,7 +25,7 @@ class CategorysPage extends React.Component {
         let { category } = this.state
 
         this.setState({loading: true}, () => {
-            axios.post(constants.serverUrl + 'api/categories', category, { headers: { 'Authorization': token } })
+            axios.post(serverUrl + 'api/categories', category, { headers: { 'Authorization': token } })
             .then((response) => {
                 Router.push('/admin/categories')
             })

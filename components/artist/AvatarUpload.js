@@ -14,7 +14,7 @@ export default function AvatarUpload(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/categories/me", {
+            .get(serverUrl + "api/categories/me", {
                 headers: { Authorization: token }
             })
             .then(response => {

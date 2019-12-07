@@ -29,7 +29,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/users/me/profile", {
+            .get(serverUrl + "api/users/me/profile", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -52,7 +52,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
           axios
-            .delete(constants.serverUrl + "api/users/me/deleteAvatar", {
+            .delete(serverUrl + "api/users/me/deleteAvatar", {
               headers: { Authorization: token }
             })
             .then(response => {
@@ -110,7 +110,7 @@ export default function EditCategory(props) {
         try {
 
             let resp = await axios.put(
-                constants.serverUrl + "api/users/me/profile",
+                serverUrl + "api/users/me/profile",
                     profile,
                 {
                 headers: { Authorization: token }

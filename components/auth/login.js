@@ -42,7 +42,7 @@ export default class LoginModal extends React.Component {
   };
   handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
     axios
-      .post(constants.serverUrl + "api/auth/login", values)
+      .post(serverUrl + "api/auth/login", values)
       .then(response => {
         if (response.data.auth == true) {
           cookie.set("token", response.data.token, { expires: 1 });

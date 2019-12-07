@@ -17,7 +17,7 @@ import * as Yup from "yup";
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class CategorysPage extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class CategorysPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/profiles/categories', { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/profiles/categories', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('categories response', response)
                 this.setState({
@@ -60,7 +60,7 @@ class CategorysPage extends React.Component {
         if( confirm("Are you sure?") == false)
             return
         const { token } = this.props
-        axios.delete(constants.serverUrl + `api/profiles/categories/${id}`, { headers: { 'Authorization': token } })
+        axios.delete(serverUrl + `api/profiles/categories/${id}`, { headers: { 'Authorization': token } })
             .then((response) => {
                 let leftCategories = this.state.categories.filter(item => item.id != id);
                 this.setState({

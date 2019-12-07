@@ -32,7 +32,7 @@ export default class SignupModal extends React.Component {
   };
   handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
     axios
-      .post(constants.serverUrl + "api/auth/signup", values)
+      .post(serverUrl + "api/auth/signup", values)
       .then(response => {
         if (response.data.auth == true) {
           cookie.set("token", response.data.token, { expires: 1 });

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class UsersPage extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class UsersPage extends React.Component {
         const { token } = this.props
 
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/users', { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/users', { headers: { 'Authorization': token } })
             .then((response) => {
                 this.setState({
                     loading: false,
@@ -51,7 +51,7 @@ class UsersPage extends React.Component {
 
     deleteUser = (id) => {
         const { token } = this.props
-        axios.delete(constants.serverUrl + `api/users/${id}`, { headers: { 'Authorization': token } })
+        axios.delete(serverUrl + `api/users/${id}`, { headers: { 'Authorization': token } })
             .then((response) => {
                 let leftUsers = this.state.users.filter(item => item.id != id);
                 this.setState({

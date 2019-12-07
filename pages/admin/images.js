@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class ImagesPage extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class ImagesPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/images', { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/images', { headers: { 'Authorization': token } })
             .then((response) => {
                 this.setState({
                     loading: false,

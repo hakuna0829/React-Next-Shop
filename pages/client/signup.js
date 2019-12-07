@@ -6,7 +6,7 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 import Router from 'next/router';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 import Layout from '../../components/Layout';
 
 const registerValidation = Yup.object().shape({
@@ -21,7 +21,7 @@ class RegisterPage extends React.Component {
 
     handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
 
-      axios.post(constants.serverUrl + 'api/auth/signup', values)
+      axios.post(serverUrl + 'api/auth/signup', values)
         .then((response) => {
           
           if( response.data.auth == true  ){

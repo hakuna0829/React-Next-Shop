@@ -49,7 +49,7 @@ export default class ReportModal extends React.Component {
     console.log("modal getServiceID", id);
 
     axios
-      .get(constants.serverUrl + `api/services/${id}`, {
+      .get(serverUrl + `api/services/${id}`, {
         headers: { Authorization: token }
       })
       .then(response => {

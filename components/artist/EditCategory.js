@@ -19,7 +19,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/categories/me", {
+            .get(serverUrl + "api/categories/me", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -57,7 +57,7 @@ export default function EditCategory(props) {
 
         try {
             let resp = await axios.put(
-                    constants.serverUrl + "api/categories/me",
+                    serverUrl + "api/categories/me",
                     { categories: data },
                     { headers: { Authorization: token } }
                 )

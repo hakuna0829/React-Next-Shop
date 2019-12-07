@@ -8,7 +8,7 @@ import Layout from '../../../components/Layout';
 import Rate from '../../../components/profile/Rate';
 import Skills from '../../../components/profile/Skills';
 
-import constants from '../../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class ArtistProfilePage extends React.Component {
 
@@ -34,7 +34,7 @@ class ArtistProfilePage extends React.Component {
     fetchData() {
         let token = this.props.token
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/artists/' + this.props.id, { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/artists/' + this.props.id, { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('get artist response', response)
                 

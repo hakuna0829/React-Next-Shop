@@ -14,7 +14,7 @@ class CompletePage extends React.Component {
 
     axios
       .put(
-        constants.serverUrl + "api/users/me/updatePublicState",
+        serverUrl + "api/users/me/updatePublicState",
         { is_public },
         { headers: { Authorization: token } }
       )

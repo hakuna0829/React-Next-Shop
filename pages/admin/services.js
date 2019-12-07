@@ -10,7 +10,7 @@ import * as Yup from "yup";
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class ServicesPage extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class ServicesPage extends React.Component {
     fetchData() {
         const { token } = this.props
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/services', { headers: { 'Authorization': token } })
+            axios.get(process.env.SERVER_URL + 'api/services', { headers: { 'Authorization': token } })
             .then((response) => {
 
                 response.data.services.map((service, i) => {
