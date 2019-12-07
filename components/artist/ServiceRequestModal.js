@@ -214,9 +214,9 @@ export default class ServiceRequestModal extends React.Component {
                                     <div className="cat_container">
                                       <input
                                         // type="radio"
-                                        type="checkbox"
-                                        checked={item.checked}
-                                        // name="service"
+                                        type="radio"
+                                        //checked={item.checked}
+                                        name="service"
                                         className="form-control"
                                         id={item.id}
                                         // value={item.name}
