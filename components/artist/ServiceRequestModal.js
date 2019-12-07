@@ -13,6 +13,8 @@ import { Spinner } from "react-bootstrap";
 import constants from "../../constants";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import DatePicker from "react-datepicker";
+import "react-datepicker/src/stylesheets/datepicker.scss";
 
 const serviceValidation = Yup.object().shape({
   name: Yup.string().required("Name is required."),
@@ -35,7 +37,8 @@ export default class ServiceRequestModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      startDate: new Date()
     };
   }
 
@@ -50,6 +53,7 @@ export default class ServiceRequestModal extends React.Component {
       this.setState({ loading: false });
     }
   }
+  
   // Modal Action
 
   onClose = e => {
@@ -145,7 +149,7 @@ export default class ServiceRequestModal extends React.Component {
     }
 
     return (
-      <div >
+      <div>
         {loading ? (
           <Spinner animation="border" variant="dark" />
         ) : (
@@ -238,7 +242,7 @@ export default class ServiceRequestModal extends React.Component {
                                 ))}
                               </div>
 
-                              <Field
+                              {/* <Field
                                 type="text"
                                 name="name"
                                 placeholder="Name"
@@ -255,7 +259,7 @@ export default class ServiceRequestModal extends React.Component {
                                 component="div"
                                 name="name"
                                 className="invalid-feedback"
-                              />
+                              /> */}
                             </div>
                           </div>
                           <div className="row">
@@ -313,7 +317,9 @@ export default class ServiceRequestModal extends React.Component {
 
                           <div className="row">
                             <div className="form-group col-md-12">
-                              <label>What day do you need your makeup done?</label>
+                              <label>
+                                What day do you need your makeup done?
+                              </label>
                               <Field
                                 type="text"
                                 name="base_price"
@@ -337,6 +343,21 @@ export default class ServiceRequestModal extends React.Component {
                           </div>
 
                           <div className="row">
+                            <div className="cover_date">
+                              <label>What day do you need your makeup done?</label>
+                              <div className="date_input">
+                                {/* <DatePicker
+                                  selected={startDate}
+                                  onChange={date => setStartDate(date)}
+                                  locale="en-GB"
+                                  placeholderText=""
+                                />
+                                <i className="far fa-calendar-alt"></i> */}
+                              </div>                             
+                            </div>
+                          </div>
+
+                          <div className="row">
                             <div className="column-2-start">
                               <div className="form-group col-md-6">
                                 <label>
@@ -347,8 +368,7 @@ export default class ServiceRequestModal extends React.Component {
                                   component="select"
                                   placeholder=""
                                   className={`form-control ${
-                                    touched.service_time &&
-                                    errors.service_time
+                                    touched.service_time && errors.service_time
                                       ? "is-invalid"
                                       : ""
                                   }`}
@@ -368,69 +388,71 @@ export default class ServiceRequestModal extends React.Component {
                           </div>
 
                           <div className="row">
-                              <div className="form-group col-md-6">
-                                <label>Please enter the address where the makeup artist will meet you</label>
-                                <Field
-                                  type="text"
-                                  name="address1"
-                                  placeholder="$0"
-                                  className={`form-control ${
-                                    touched.address1 && errors.address1
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values.address1}
-                                />
+                            <div className="form-group col-md-6">
+                              <label>
+                                Please enter the address where the makeup artist
+                                will meet you
+                              </label>
+                              <Field
+                                type="text"
+                                name="address1"
+                                placeholder="$0"
+                                className={`form-control ${
+                                  touched.address1 && errors.address1
+                                    ? "is-invalid"
+                                    : ""
+                                }`}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.address1}
+                              />
 
-                                <ErrorMessage
-                                  component="div"
-                                  name="address1"
-                                  className="invalid-feedback"
-                                />
-                             
-                                <Field
-                                  type="text"
-                                  name="address2"
-                                  placeholder="$0"
-                                  className={`form-control ${
-                                    touched.address2 && errors.address2
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values.address2}
-                                />
+                              <ErrorMessage
+                                component="div"
+                                name="address1"
+                                className="invalid-feedback"
+                              />
 
-                                <ErrorMessage
-                                  component="div"
-                                  name="address2"
-                                  className="invalid-feedback"
-                                />
-                             
-                                <Field
-                                  type="text"
-                                  name="address3"
-                                  placeholder="$0"
-                                  className={`form-control ${
-                                    touched.address3 && errors.address3
-                                      ? "is-invalid"
-                                      : ""
-                                  }`}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values.address3}
-                                />
+                              <Field
+                                type="text"
+                                name="address2"
+                                placeholder="$0"
+                                className={`form-control ${
+                                  touched.address2 && errors.address2
+                                    ? "is-invalid"
+                                    : ""
+                                }`}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.address2}
+                              />
 
-                                <ErrorMessage
-                                  component="div"
-                                  name="address3"
-                                  className="invalid-feedback"
-                                />
-                              </div>                              
-                            
+                              <ErrorMessage
+                                component="div"
+                                name="address2"
+                                className="invalid-feedback"
+                              />
+
+                              <Field
+                                type="text"
+                                name="address3"
+                                placeholder="$0"
+                                className={`form-control ${
+                                  touched.address3 && errors.address3
+                                    ? "is-invalid"
+                                    : ""
+                                }`}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.address3}
+                              />
+
+                              <ErrorMessage
+                                component="div"
+                                name="address3"
+                                className="invalid-feedback"
+                              />
+                            </div>
                           </div>
 
                           <div className="row">

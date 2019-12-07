@@ -825,7 +825,7 @@ div {
             box-shadow: none;
 
             .container {
-                overflow: scroll;
+                overflow: auto;
             }
 
             // .contanier {
@@ -879,8 +879,8 @@ div {
                             position: absolute;
                             opacity: 0;
                             cursor: pointer;
-                            height: 0;
-                            width: 0;
+                            height: calc(2.5em + 1.75rem + 2px) !important;
+                            width: 100%;
                         }
 
                         /* Create a custom checkbox */
