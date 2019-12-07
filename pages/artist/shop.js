@@ -6,7 +6,7 @@ import { Spinner } from "react-bootstrap";
 import Layout from '../../components/Layout';
 import ConfirmModal from "../../components/common/ConfirmModal";
 
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 
 export default function ShopProfilePage(props) {
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 import ConfirmModal from "../../components/common/ConfirmModal"
 

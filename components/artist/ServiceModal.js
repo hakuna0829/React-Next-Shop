@@ -11,7 +11,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import Router from "next/router";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import * as Yup from "yup";
 
 const serviceValidation = Yup.object().shape({

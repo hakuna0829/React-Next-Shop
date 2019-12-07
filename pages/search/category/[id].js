@@ -4,7 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import Loader from "../../../components/common/loader";
 import axios from "axios";
-import constants from "../../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import Layout from "../../../components/Layout";
 import MultiCarousel from "../../../components/artist/carousel_many";
 

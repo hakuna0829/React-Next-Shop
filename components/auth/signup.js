@@ -12,7 +12,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import cookie from "js-cookie";
 import Router from "next/router";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 
 export default class SignupModal extends React.Component {
   constructor(props) {
