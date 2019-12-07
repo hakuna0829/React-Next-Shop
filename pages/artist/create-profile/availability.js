@@ -4,7 +4,7 @@ import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import Layout from "../../../components/Layout";
-import constants from "../../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import ProgressBar from "../../../components/common/progress_bar";
 class AvailabilityPage extends React.Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class AvailabilityPage extends React.Component {
     let token = this.props.token;
     this.setState({ loading: true }, () => {
       axios
-        .get(constants.serverUrl + "api/availability/me", {
+        .get(serverUrl + "api/availability/me", {
           headers: { Authorization: token }
         })
         .then(response => {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import Loader from "../../../components/common/loader";
 import axios from "axios";
-import constants from "../../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import Layout from "../../../components/Layout";
 import MultiCarousel from "../../../components/artist/carousel_many";
 
@@ -30,7 +30,7 @@ const CategorySearchPage = props => {
     
     // this.setState({loading: true}, () => {
     axios
-      .get(constants.serverUrl + "api/search/category/" + props.id)
+      .get(serverUrl + "api/search/category/" + props.id)
       .then(response => {
         // console.log("response", response);
         setCategory(response.data.category);
@@ -49,7 +49,7 @@ const CategorySearchPage = props => {
     
     // this.setState({loading: true}, () => {
     axios
-      .get(constants.serverUrl + "api/search?category=1")
+      .get(serverUrl + "api/search?category=1")
       .then(response => {
         console.log("response categroy", response);
         setArtists(response.data.users);
@@ -177,7 +177,7 @@ CategorySearchPage.getInitialProps = ({ query: { id } }) => {
 //         console.log( this.props.id)
 //         console.log('fetch')
 //         this.setState({loading: true}, () => {
-//             axios.get(constants.serverUrl + 'api/search/category/' + this.props.id )
+//             axios.get(serverUrl + 'api/search/category/' + this.props.id )
 //             .then((response) => {
 //                 console.log('response', response)
 

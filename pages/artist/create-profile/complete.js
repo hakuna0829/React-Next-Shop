@@ -2,7 +2,7 @@ import React from "react";
 import Router from "next/router";
 import axios from "axios";
 import Layout from "../../../components/Layout";
-import constants from "../../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 
 class CompletePage extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class CompletePage extends React.Component {
 
     axios
       .put(
-        constants.serverUrl + "api/users/me/updatePublicState",
+        serverUrl + "api/users/me/updatePublicState",
         { is_public },
         { headers: { Authorization: token } }
       )

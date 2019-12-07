@@ -7,7 +7,7 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 
 import Layout from '../../components/Layout';
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 const loginValidation = Yup.object().shape({
   email: Yup.string()
@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     
       handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
         
-        axios.post(constants.serverUrl + 'api/auth/login', values)
+        axios.post(serverUrl + 'api/auth/login', values)
         .then((response) => {
             
             if( response.data.auth == true ){

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 import ConfirmModal from "../../components/common/ConfirmModal"
 
@@ -25,7 +25,7 @@ export default function EditWorkPhotos(props) {
     setLoading(true);
 
     axios
-      .get(constants.serverUrl + "api/images/me", {
+      .get(serverUrl + "api/images/me", {
         headers: { Authorization: token }
       })
       .then(response => {
@@ -115,7 +115,7 @@ export default function EditWorkPhotos(props) {
 
     try {
       let resp = await axios.put(
-        constants.serverUrl + "api/images/me",
+        serverUrl + "api/images/me",
         { images, new_images, deleted_images },
         { headers: { Authorization: token } }
       );

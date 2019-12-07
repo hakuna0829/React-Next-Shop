@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 import ConfirmModal from "../common/ConfirmModal";
 
@@ -29,7 +29,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/users/me/profile", {
+            .get(serverUrl + "api/users/me/profile", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -52,7 +52,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
           axios
-            .delete(constants.serverUrl + "api/users/me/deleteAvatar", {
+            .delete(serverUrl + "api/users/me/deleteAvatar", {
               headers: { Authorization: token }
             })
             .then(response => {
@@ -110,7 +110,7 @@ export default function EditCategory(props) {
         try {
 
             let resp = await axios.put(
-                constants.serverUrl + "api/users/me/profile",
+                serverUrl + "api/users/me/profile",
                     profile,
                 {
                 headers: { Authorization: token }

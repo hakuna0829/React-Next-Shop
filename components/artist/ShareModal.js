@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import Router from "next/router";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 
 export default function ShareModal(props) {
   const [loading, setLoading] = useState(false);

@@ -2,7 +2,7 @@ import React, { useState, useEffect, Profiler } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 
 export default function EditCategory(props) {
@@ -28,7 +28,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/policies/me", {
+            .get(serverUrl + "api/policies/me", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -67,7 +67,7 @@ export default function EditCategory(props) {
         try {
             if (created) {
                 let resp = await axios.put(
-                  constants.serverUrl + "api/policies/me",
+                  serverUrl + "api/policies/me",
                   params,
                   {
                     headers: { Authorization: token }
@@ -75,7 +75,7 @@ export default function EditCategory(props) {
                 );
               } else {
                 let resp = await axios.post(
-                  constants.serverUrl + "api/policies/me",
+                  serverUrl + "api/policies/me",
                   params,
                   {
                     headers: { Authorization: token }

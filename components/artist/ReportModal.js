@@ -11,7 +11,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import Router from "next/router";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import * as Yup from "yup";
 
 const reportValidation = Yup.object().shape({
@@ -49,7 +49,7 @@ export default class ReportModal extends React.Component {
     console.log("modal getServiceID", id);
 
     axios
-      .get(constants.serverUrl + `api/services/${id}`, {
+      .get(serverUrl + `api/services/${id}`, {
         headers: { Authorization: token }
       })
       .then(response => {

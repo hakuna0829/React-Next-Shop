@@ -7,7 +7,7 @@ import { Spinner, Tab, Tabs } from 'react-bootstrap';
 import Layout from '../../components/Layout';
 import ConfirmModal from "../../components/common/ConfirmModal";
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 export default function AccountPage(props) {
 
@@ -46,7 +46,7 @@ export default function AccountPage(props) {
 
          setLoading(true)
          
-        axios.get(constants.serverUrl + 'api/users/me/profile', { headers: { 'Authorization': token } })
+        axios.get(serverUrl + 'api/users/me/profile', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('me response', response)
 
@@ -64,7 +64,7 @@ export default function AccountPage(props) {
     let fetchEmailPreferenceData = () => {
         let token = props.token
         setLoading(true)
-        axios.get(constants.serverUrl + 'api/preferences/me/email', { headers: { 'Authorization': token } })
+        axios.get(serverUrl + 'api/preferences/me/email', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('me response', response)
 
@@ -108,7 +108,7 @@ export default function AccountPage(props) {
         setLoading(true)
 
           axios
-            .delete(constants.serverUrl + "api/users/me/deleteAvatar", {
+            .delete(serverUrl + "api/users/me/deleteAvatar", {
               headers: { Authorization: token }
             })
             .then(response => {
@@ -150,7 +150,7 @@ export default function AccountPage(props) {
     let saveProfile = () => {
         let token = props.token
 
-        axios.put(constants.serverUrl + 'api/users/me/profile', profile, { headers: { 'Authorization': token } })
+        axios.put(serverUrl + 'api/users/me/profile', profile, { headers: { 'Authorization': token } })
           .then((response) => {
           })
           .catch((error) => {
@@ -176,7 +176,7 @@ export default function AccountPage(props) {
             return;
         }
 
-        axios.put(constants.serverUrl + 'api/users/me/updateEmail', emailModel, { headers: { 'Authorization': token } })
+        axios.put(serverUrl + 'api/users/me/updateEmail', emailModel, { headers: { 'Authorization': token } })
           .then((response) => {
           })
           .catch((error) => {
@@ -202,7 +202,7 @@ export default function AccountPage(props) {
             return;
         }
 
-        axios.put(constants.serverUrl + 'api/users/me/updatePassword', passwordModel, { headers: { 'Authorization': token } })
+        axios.put(serverUrl + 'api/users/me/updatePassword', passwordModel, { headers: { 'Authorization': token } })
           .then((response) => {
           })
           .catch((error) => {
@@ -237,7 +237,7 @@ export default function AccountPage(props) {
 
         axios
         .put(
-            constants.serverUrl + "api/preferences/me/email",
+            serverUrl + "api/preferences/me/email",
             { preferences: data },
             { headers: { Authorization: token } }
         )

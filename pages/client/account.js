@@ -6,7 +6,7 @@ import { Spinner } from 'react-bootstrap';
 
 import Layout from '../../components/Layout';
 
-import constants from '../../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class AccountPage extends React.Component {
 
@@ -29,7 +29,7 @@ class AccountPage extends React.Component {
      fetchData() {
          let token = this.props.token
          this.setState({loading: true}, () => {
-             axios.get(constants.serverUrl + 'api/profiles/me/getProfile', { headers: { 'Authorization': token } })
+             axios.get(serverUrl + 'api/profiles/me/getProfile', { headers: { 'Authorization': token } })
              .then((response) => {
                 console.log('me response', response)
 
@@ -75,7 +75,7 @@ class AccountPage extends React.Component {
         let token = this.props.token
         let {...profile} = this.state
 
-        axios.put(constants.serverUrl + 'api/profiles/me/updateProfile', profile, { headers: { 'Authorization': token } })
+        axios.put(serverUrl + 'api/profiles/me/updateProfile', profile, { headers: { 'Authorization': token } })
           .then((response) => {
             
           })

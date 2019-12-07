@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 
 export default function EditCategory(props) {
@@ -19,7 +19,7 @@ export default function EditCategory(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/categories/me", {
+            .get(serverUrl + "api/categories/me", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -57,7 +57,7 @@ export default function EditCategory(props) {
 
         try {
             let resp = await axios.put(
-                    constants.serverUrl + "api/categories/me",
+                    serverUrl + "api/categories/me",
                     { categories: data },
                     { headers: { Authorization: token } }
                 )

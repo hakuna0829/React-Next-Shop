@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 
 
 export default function AvatarUpload(props) {
@@ -14,7 +14,7 @@ export default function AvatarUpload(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/categories/me", {
+            .get(serverUrl + "api/categories/me", {
                 headers: { Authorization: token }
             })
             .then(response => {

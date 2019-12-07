@@ -4,7 +4,7 @@ import Router from "next/router";
 import axios from "axios";
 import Rate from "../components/profile/Rate";
 import Layout from "../components/Layout";
-import constants from "../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import MultiCarousel from "../components/artist/carousel_many";
 import SingleCarousel from "../components/common/carousel_single";
 import ArtistList from "../components/artist/ArtistList";
@@ -40,7 +40,7 @@ const HomePage = props => {
     setLoading(true);
    
     axios
-      .get(constants.serverUrl + "api/search")
+      .get(serverUrl + "api/search")
       .then(response => {
         // console.log("response", response);
         setArtists(response.data.users);

@@ -2,7 +2,7 @@ import Router from 'next/router'
 import nextCookie from 'next-cookies'
 import axios from 'axios';
 
-import constants from '../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 export const auth = ctx => {
     const { token } = nextCookie(ctx)
@@ -59,7 +59,7 @@ export const auth = ctx => {
     }
 
     // if (ctx.req) {
-    //     axios.get(constants.serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
+    //     axios.get(serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
     //     .then((response) => {
     //         console.log('in auth users/me response server side');
     //         // console.log('in auth artists/me response', response)
@@ -87,7 +87,7 @@ export const auth = ctx => {
     // }
 
     // console.log('client route')
-    // axios.get(constants.serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
+    // axios.get(serverUrl + 'api/users/me', { headers: { 'Authorization': token } })
     // .then((response) => {
     //     console.log('in auth users/me response client  side');
     //     //console.log('in auth artists/me response', response)

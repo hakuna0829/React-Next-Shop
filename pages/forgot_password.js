@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import cookie from 'js-cookie';
 
-import constants from '../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 import Layout from '../components/Layout';
 
 
@@ -21,7 +21,7 @@ class ForgotPasswodPage extends React.Component {
   handleSubmit = async(values, { setSubmitting, setErrors, resetForm }) => {
     console.log(values)
 
-    axios.post(constants.serverUrl + 'api/auth/request_password', values)
+    axios.post(serverUrl + 'api/auth/request_password', values)
       .then((response) => {
         console.log(response)
         

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
-import constants from "../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import StepButtons from "./StepButtons";
 import ServiceModal from "./ServiceModal";
 import ConfirmModal from "../common/ConfirmModal";
@@ -33,7 +33,7 @@ export default function EditServices(props) {
         setLoading(true)
 
         axios
-            .get(constants.serverUrl + "api/services/me/getServices", {
+            .get(serverUrl + "api/services/me/getServices", {
                 headers: { Authorization: token }
             })
             .then(response => {
@@ -129,7 +129,7 @@ export default function EditServices(props) {
 
      
         axios
-          .delete(constants.serverUrl + "api/services/me/deleteService", {
+          .delete(serverUrl + "api/services/me/deleteService", {
             headers: { Authorization: token },
             data: {
               id: id
@@ -169,7 +169,7 @@ export default function EditServices(props) {
 
         try {
             // let resp = await axios.put(
-            //         constants.serverUrl + "api/services/me",
+            //         serverUrl + "api/services/me",
             //         { images, new_images, deleted_images },
             //         { headers: { Authorization: token } }
             //     )

@@ -3,7 +3,7 @@ import Layout from "../../../components/Layout";
 import Loader from "../../../components/common/loader";
 import DatePicker from "react-datepicker";
 import axios from "axios";
-import constants from "../../../constants";
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/'
 import "react-datepicker/src/stylesheets/datepicker.scss";
 import ShareModal from "../../../components/artist/ShareModal";
 import GalleryModal from "../../../components/artist/GalleryModal";
@@ -65,7 +65,7 @@ const ArtistProfile = props => {
   useEffect(() => {
     // Update the document title using the browser API
     axios
-      .get(constants.serverUrl + "api/search/artist/" + artistId) //+ artistId
+      .get(serverUrl + "api/search/artist/" + artistId) //+ artistId
       .then(response => {
         console.log(response);
         setArtistData(response.data.user);

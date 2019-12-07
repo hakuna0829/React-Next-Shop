@@ -7,7 +7,7 @@ import cookie from 'js-cookie';
 
 import Layout from '../components/Layout';
 
-import constants from '../constants';
+const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : 'https://tigerdeveloper.net/';
 
 class UsersPage extends React.Component {
     
@@ -27,7 +27,7 @@ class UsersPage extends React.Component {
     fetchData() {
         let token = cookie.get('token')
         this.setState({loading: true}, () => {
-            axios.get(constants.serverUrl + 'api/users', { headers: { 'Authorization': token } })
+            axios.get(serverUrl + 'api/users', { headers: { 'Authorization': token } })
             .then((response) => {
                 console.log('users response', response)
                 this.setState({
