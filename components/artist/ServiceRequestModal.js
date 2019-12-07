@@ -37,11 +37,12 @@ const services = [
 
  function ServiceRequestModal (props) {
   // const {show , mode } = props;
+  console.log('props', props)
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [startDate,setStartDate] = useState(new Date());
   const [service, setService] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(props.show);
   // const [onClose, setOnClose] = useState(props.onClose);
   // const [actionMode, setActionMode] = useState(mode);
   
@@ -97,10 +98,10 @@ const services = [
 //       .finally(() => {});
 //   };
 
-//   const handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, setErrors, resetForm }) => {
        
     
-//   };
+  };
 
 //   const handleUpdateSubmit = async (
 //     values,
@@ -146,8 +147,8 @@ const services = [
         <Spinner animation="border" variant="dark" />
       ) : (
         <Modal
-          show={showModal}
-          onHide={onClose}
+          show={props.show}
+          onHide={props.onClose}
           centered
           className="full-screen-modal"
         >
