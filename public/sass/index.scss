@@ -732,40 +732,7 @@ div.carousel_main {
                         }
                     }
 
-                    .right_panel {
-
-
-                        div.cover_date {
-                            border: solid 1px;
-                            border-radius: 7px;
-                            padding: 10px;
-
-                            div.date_input {
-                                border: solid 1px;
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                padding: 0 10px;
-                                border-radius: 8px;
-                                margin-bottom: 10px;
-
-
-                                .react-datepicker-wrapper {
-                                    width: 100%;
-                                }
-
-                                input {
-                                    width: calc(100% - 10px);
-                                    outline: none;
-                                    border-width: 0 !important;
-                                }
-
-                                i {
-                                    font-size: 1.5rem;
-                                }
-                            }
-                        }
-                    }
+                    .right_panel {}
                 }
 
             }
@@ -776,6 +743,43 @@ div.carousel_main {
 
     }
 }
+
+.noborder {
+    border: solid 0px !important;
+}
+
+div.cover_date {
+    border: solid 1px;
+    border-radius: 7px;
+    padding: 10px;
+
+    div.date_input {
+        border: solid 1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        width: 100%;
+
+        .react-datepicker-wrapper {
+            width: 100%;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            outline: none;
+            border-width: 0 !important;
+        }
+
+        i {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+
 
 p.error {
     color: $danger_color;
@@ -896,6 +900,10 @@ div {
                             border-radius: 5px;
                             display: flex;
                             justify-content: space-between;
+
+                            .single_label {
+                                padding: 12px 0px;
+                            }
 
                             .service_name {
                                 display: flex;
