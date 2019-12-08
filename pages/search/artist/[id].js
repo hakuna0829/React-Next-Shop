@@ -63,18 +63,15 @@ const ArtistProfile = props => {
 
   const handleSetting = event => setIsSetting(!isSetting);
   useEffect(() => {
-    // Update the document title using the browser API
+    
     axios
       .get(serverUrl + "api/search/artist/" + artistId) //+ artistId
       .then(response => {
         console.log(response);
         setArtistData(response.data.user);
         var images_3 = response.data.user.images.slice(0, 3);
-        // for(var i = 3; i > 0 ; i--){
-          //push(emptyImageItem);
-          setBannerImages(bannerImages => images_3);
-        // }
-        //setBannerImages(response.data.user.images);
+    
+        setBannerImages(bannerImages => images_3);
         response.data.user.images.forEach((item, i) => {
           console.log(item.image);
         });
@@ -95,7 +92,6 @@ const ArtistProfile = props => {
       var count_more = 3 - bannerImages.length;
       console.log("count_more", count_more);
       for(var i = count_more; i > 0 ; i--){
-        //push(emptyImageItem);
         setBannerImages(bannerImages => [...bannerImages,emptyImageItem]);
       }
     }else{
@@ -167,7 +163,7 @@ const ArtistProfile = props => {
 
   // ));
   // console.log("artistData", artistData)
-
+ console.log('isServiceRequestModalVisible', isServiceRequestModalVisible)
   return (
     <Layout title={"Guest Homepage"}>
       <div className="artist-profile" id="artist-profile">
@@ -381,8 +377,8 @@ const ArtistProfile = props => {
                       </div>
                       <button
                         className="btn btn-primary btn-block"
-                        onClick={() => {
-                          toggleServiceRequestMdoal();
+                        onClick={(e) => {
+                          toggleServiceRequestMdoal(e);
                         }}
                       >
                         Schedule
